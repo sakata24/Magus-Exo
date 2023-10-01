@@ -7,6 +7,7 @@ var spellLoad = preload("res://Abilities/Spell.tscn")
 
 signal gained_xp(curr_xp, xp_threshold)
 signal level_up(level)
+signal moving_to()
 
 # constants
 const XPTHRESHOLDS = [5, 10, 15, 20]
@@ -31,7 +32,7 @@ var xp = 0
 var learnedSkills = [0, 1, 2, 3, 4]
 
 # to be changed when the player equips different skills
-var equippedSkills = [0, 1, 2, 4]
+var equippedSkills = [0, 1, 2, 5]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -54,7 +55,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed('R-Click'):
 		moving = true
 		move_target = get_global_mouse_position()
-		emit_signal("moving_to", move_target)
+		emit_signal("moving_to")
 	
 	if event.is_action_pressed('Q'):
 		if skillReady[0]:

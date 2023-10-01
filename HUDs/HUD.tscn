@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://76xj3tuaqt16"]
+[gd_scene load_steps=7 format=3 uid="uid://76xj3tuaqt16"]
 
 [ext_resource type="Script" path="res://HUDs/HUD.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
-[ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="3_cbud7"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -44,63 +43,6 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cr0tb"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(582, 0, 97, 97)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s4qyb"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(485, 0, 97, 97)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rjxf4"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(388, 0, 97, 97)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0vhwl"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(291, 0, 97, 97)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_64sr1"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(194, 0, 97, 97)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uba6"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(97, 0, 97, 97)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kpf6h"]
-atlas = ExtResource("3_cbud7")
-region = Rect2(0, 0, 97, 97)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t16xg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cr0tb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s4qyb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rjxf4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0vhwl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_64sr1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5uba6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kpf6h")
-}],
-"loop": true,
-"name": &"click",
-"speed": 25.0
-}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1")
@@ -147,11 +89,3 @@ offset_right = 50.0
 offset_bottom = 14.0
 theme_override_fonts/font = SubResource("4")
 text = "Level: 0"
-
-[node name="ClickAnimation" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_t16xg")
-animation = &"click"
-frame_progress = 0.692352
-
-[connection signal="animation_finished" from="ClickAnimation" to="." method="_on_click_animation_animation_finished"]

@@ -1,13 +1,13 @@
 res://default_env.tres
-res://HUDs/Home.tscn
-res://Maps/Map.tscn
-res://Abilities/Bullet.gd
 res://Characters/Player.tscn
 res://Characters/Player.gd
-res://Main.tscn
+res://HUDs/Home.tscn
+res://Maps/Map.tscn
 res://Characters/Monster.tscn
 res://HUDs/Menu.tscn
 res://HUDs/HUD.tscn
+res://Main.tscn
 res://Abilities/Bullet.tscn
 res://HUDs/HUD.gd
 res://Main.gd
+res://UniversalSkills.gd

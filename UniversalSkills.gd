@@ -9,8 +9,9 @@ var skill2 = ["bolt",     1.1, 1.3, 0.8, 1.0, 0.5, 0.5, "shock"    , 0]
 var skill3 = ["rock",     0.6, 2.0, 1.5, 0.5, 0.5, 1.0, "construct", 0]
 var skill4 = ["cell",     0.4, 1.0, 1.0, 0.1, 3.0, 6.0, "growth"   , 0]
 var skill5 = ["fountain", 0.0, 4.0, 2.5, 0.7, 0.7, 6.0, "flow"     , 1]
+var skill6 = ["suspend",  0.0, 6.0, 0.1, 1.5, 0.5, 9.0, "wither"   , 1]
 
-var skillArr = [skill1, skill2, skill3, skill4, skill5]
+var skillArr = [skill1, skill2, skill3, skill4, skill5, skill6]
 
 func _ready():
 	pass
@@ -56,6 +57,10 @@ func perform_timeout(ability):
 		"fountain":
 			print("woosh")
 			ability.modulate.a = 1.0
+			ability.monitoring = true
+		"suspend":
+			print("fade")
+			ability.modulate.a = 0.5
 			ability.monitoring = true
 		_:
 			print("nothing")

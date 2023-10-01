@@ -1,10 +1,68 @@
-[gd_scene load_steps=6 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=15 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d3ijipo5rvv8c" path="res://Maps/Map.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://83qg0j5exfyc" path="res://Characters/Player.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://d37cep1ypwea6" path="res://HUDs/Menu.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr0tb"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(582, 0, 97, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4qyb"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(485, 0, 97, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjxf4"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(388, 0, 97, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vhwl"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(291, 0, 97, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64sr1"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(194, 0, 97, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uba6"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(97, 0, 97, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpf6h"]
+atlas = ExtResource("6_f2si5")
+region = Rect2(0, 0, 97, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_33bx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr0tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4qyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjxf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vhwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64sr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uba6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpf6h")
+}],
+"loop": false,
+"name": &"click",
+"speed": 25.0
+}]
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -26,3 +84,11 @@ position_smoothing_speed = 20.0
 [node name="Menu" parent="." instance=ExtResource("5")]
 process_mode = 3
 visible = false
+
+[node name="ClickAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_33bx4")
+animation = &"click"
+
+[connection signal="animation_finished" from="ClickAnimation" to="." method="_on_click_animation_animation_finished"]
