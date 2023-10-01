@@ -14,10 +14,10 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -3.0
-margin_top = -3.0
-margin_right = 3.0
-margin_bottom = 3.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
 color = Color( 0, 0.529412, 1, 1 )
 
 [node name="TimeoutTimer" type="Timer" parent="."]

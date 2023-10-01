@@ -1,8 +1,7 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var abilityID = 0
 var speed = 300
-var velocity = Vector2.ZERO
 var dmg = 10
 var timeout = 0.5
 var lifetime = 0.5
@@ -26,12 +25,12 @@ func init(skillArr):
 
 # handles movement of bullet
 func _physics_process(delta):
-	var collision = move_and_collide(velocity.normalized() * delta * speed)
-	if collision and collision.collider.name != "Player":
-		if collision.collider.name == "BulletBody" or collision.collider.name == "SpellBody":
+	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
+	if collision and collision.get_collider().get_name() != "Player":
+		if collision.get_collider().get_name() == "BulletBody" or collision.get_collider().get_name() == "SpellBody":
 			print("reaction")
-		if collision.collider.is_in_group("monsters"):
-			collision.collider._hit(dmg)
+		if collision.get_collider().is_in_group("monsters"):
+			collision.get_collider()._hit(dmg)
 		UniversalSkills.perform_despawn(self)
 
 # if end of timeout, perform action (usually start lifetime timer)

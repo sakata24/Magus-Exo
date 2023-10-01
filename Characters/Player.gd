@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name Player
 
@@ -54,6 +54,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed('R-Click'):
 		moving = true
 		move_target = get_global_mouse_position()
+		emit_signal("moving_to", move_target)
 	
 	if event.is_action_pressed('Q'):
 		if skillReady[0]:
@@ -115,11 +116,13 @@ func movementHelper(delta):
 	
 	# calculates movement and direction
 	movement = position.direction_to(move_target) * speed
-	move_dir = rad2deg(move_target.angle_to_point(position))
+	move_dir = rad_to_deg(move_target.angle_to_point(position))
 	
 	# do we need to move more or not
 	if position.distance_to(move_target) > 1:
-		movement = move_and_slide(movement)
+		set_velocity(movement)
+		move_and_slide()
+		movement = velocity
 	else:
 		moving = false
 
@@ -130,7 +133,7 @@ func cast_ability(skill):
 	
 	if ability[8] == 0:
 		# load the projectile
-		var projectile = projectileLoad.instance()
+		var projectile = projectileLoad.instantiate()
 		# spawn the projectile and initialize it
 		get_parent().add_child(projectile)
 		projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
@@ -139,7 +142,7 @@ func cast_ability(skill):
 		projectile.velocity = get_global_mouse_position() - projectile.position
 	elif ability[8] == 1:
 		# load the spell
-		var spell = spellLoad.instance()
+		var spell = spellLoad.instantiate()
 		# spawn the spell and initialize it
 		get_parent().add_child(spell)
 		spell.init(ability, get_global_mouse_position())

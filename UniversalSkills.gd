@@ -32,7 +32,7 @@ func perform_spawn(ability):
 				print("beeg")
 				ability.scale *= 1.1
 				ability.dmg += 1
-				yield(timer, "timeout")
+				await timer.timeout
 				timer.start()
 			
 			timer.queue_free()
@@ -68,7 +68,7 @@ func perform_despawn(ability):
 			timer.wait_time = 1.0
 			ability.add_child(timer)
 			timer.start()
-			yield(timer, "timeout")
+			await timer.timeout
 		_:
 			print("simple despawn")
 	ability.queue_free()

@@ -1,9 +1,9 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 # is it mad
 var aggro = false
 # reference to chase the player
-var player = KinematicBody2D
+var player = CharacterBody2D
 # how fast i move
 var speed = 50
 # my health
@@ -32,7 +32,8 @@ func _physics_process(delta):
 # chases the player
 func chase(delta):
 	if position.distance_to(player.position) > 1:
-		move_and_slide(position.direction_to(player.position) * speed)
+		set_velocity(position.direction_to(player.position) * speed)
+		move_and_slide()
 
 # hit by something
 func _hit(dmg_to_take):
@@ -40,7 +41,7 @@ func _hit(dmg_to_take):
 	print("i took ", dmg_to_take, " dmg")
 
 # when player makes me mad
-func _on_AggroRange_body_entered(body: KinematicBody2D):
+func _on_AggroRange_body_entered(body: CharacterBody2D):
 	if body:
 		if body.name == "Player":
 			aggro = true
