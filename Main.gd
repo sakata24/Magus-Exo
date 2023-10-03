@@ -7,9 +7,9 @@ func _ready():
 		monster.connect("giveXp", Callable($Player, "gain_xp"))
 	
 	# connect hud to player
-	$HUD/HealthLabel.text = ("Health: " + str($Player.health))
-	$HUD/EXPLabel.text = ("EXP: " + str($Player.xp) + " /" + str($Player.currentXpThreshold))
-	$HUD/EquippedSkills.text = ("Q: " + str(UniversalSkills.skillArr[$Player.equippedSkills[0]][0]) + "\n\n" + "W: " + str(UniversalSkills.skillArr[$Player.equippedSkills[1]][0]) + "\n\n" + "E: " + str(UniversalSkills.skillArr[$Player.equippedSkills[2]][0]) + "\n\n" + "R: " + str(UniversalSkills.skillArr[$Player.equippedSkills[3]][0]))
+	$HUD/MarginContainer/VBoxContainer/HBoxContainer/HealthLabel.text = ("Health: " + str($Player.health))
+	$HUD/MarginContainer/VBoxContainer/EXPLabel.text = ("EXP: " + str($Player.xp) + " /" + str($Player.currentXpThreshold))
+	$HUD/MarginContainer/VBoxContainer/EquippedSkills.text = ("Q: " + str(UniversalSkills.skillArr[$Player.equippedSkills[0]][0]) + "\n\n" + "W: " + str(UniversalSkills.skillArr[$Player.equippedSkills[1]][0]) + "\n\n" + "E: " + str(UniversalSkills.skillArr[$Player.equippedSkills[2]][0]) + "\n\n" + "R: " + str(UniversalSkills.skillArr[$Player.equippedSkills[3]][0]))
 	$Player.connect("gained_xp", Callable($HUD, "_set_xp"))
 	$Player.connect("level_up", Callable($HUD, "_set_lvl"))
 	$Player.connect("moving_to", Callable(self, "_show_click"))

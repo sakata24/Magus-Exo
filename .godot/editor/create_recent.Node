@@ -1,2 +1,8 @@
+CanvasLayer
+Control
+MarginContainer
+ProgressBar
+HBoxContainer
+VBoxContainer
 AnimatedSprite2D
 Camera2D

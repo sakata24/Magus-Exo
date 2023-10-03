@@ -4,6 +4,9 @@
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
 
 [sub_resource type="FontFile" id="1"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("2")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
@@ -13,6 +16,9 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="3"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("2")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
@@ -48,12 +54,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -66.0
-offset_top = -23.0
+offset_left = -91.0
+offset_top = -44.0
+offset_right = -25.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_fonts/font = SubResource("3")
 text = "QUIT"
 
 [node name="QuitConfirm" type="ConfirmationDialog" parent="."]
+initial_position = 1
 dialog_text = "Exit the game?"
 
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
