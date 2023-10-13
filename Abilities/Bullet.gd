@@ -3,19 +3,21 @@ extends CharacterBody2D
 var abilityID = 0
 var speed = 300
 var dmg = 10
-var timeout = 0.5
-var lifetime = 0.5
+var timeout = 1.0
+var lifetime = 1.0
 var cooldown = 0.1
+var element
 
 # constructs the bullet
-func init(skillArr):
+func init(skillDict):
 	# set variables
-	abilityID = skillArr[0]
-	speed = skillArr[1] * speed
-	scale *= skillArr[2]
-	dmg *= skillArr[3]
-	timeout *= skillArr[4]
-	lifetime *= skillArr[5]
+	abilityID = skillDict["name"]
+	speed = skillDict["speed"] * speed
+	scale *= skillDict["size"]
+	dmg *= skillDict["dmg"]
+	timeout *= skillDict["timeout"]
+	lifetime *= skillDict["lifetime"]
+	element = skillDict["element"]
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
 	$TimeoutTimer.wait_time = timeout

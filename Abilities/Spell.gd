@@ -4,21 +4,21 @@ var abilityID = 0
 var speed = 300
 var velocity = Vector2.ZERO
 var dmg = 10
-var timeout = 0.5
-var lifetime = 0.5
+var timeout = 1
+var lifetime = 1
 var cooldown = 0.1
 
 const CAST_RANGE = 500
 
 # constructs the bullet
-func init(skillArr, pos):
+func init(skillDict, pos):
 	# set variables
-	abilityID = skillArr[0]
-	speed = skillArr[1] * speed
-	self.scale *= skillArr[2]
-	dmg *= skillArr[3]
-	timeout *= skillArr[4]
-	lifetime *= skillArr[5]
+	abilityID = skillDict["name"]
+	speed = skillDict["speed"] * speed
+	self.scale *= skillDict["size"]
+	dmg *= skillDict["dmg"]
+	timeout *= skillDict["timeout"]
+	lifetime *= skillDict["lifetime"]
 	self.position = pos
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
@@ -32,11 +32,14 @@ func _ready():
 
 func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
-		if body.name == "BulletBody" or body.name == "SpellBody":
+		if body.name == "BulletBody":
 			print("reaction")
 		if body.is_in_group("monsters"):
 			body._hit(dmg)
-		UniversalSkills.perform_despawn(self)
+
+func _on_area_entered(area):
+	if area.name == "SpellBody":
+		print("reaction spells")
 
 func _on_TimeoutTimer_timeout():
 	$LifetimeTimer.start()

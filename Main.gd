@@ -9,7 +9,7 @@ func _ready():
 	# connect hud to player
 	$HUD/HealthLabel.text = ("Health: " + str($Player.health))
 	$HUD/EXPLabel.text = ("EXP: " + str($Player.xp) + " /" + str($Player.currentXpThreshold))
-	$HUD/EquippedSkills.text = ("Q: " + str(UniversalSkills.skillArr[$Player.equippedSkills[0]][0]) + "\n\n" + "W: " + str(UniversalSkills.skillArr[$Player.equippedSkills[1]][0]) + "\n\n" + "E: " + str(UniversalSkills.skillArr[$Player.equippedSkills[2]][0]) + "\n\n" + "R: " + str(UniversalSkills.skillArr[$Player.equippedSkills[3]][0]))
+	$HUD/EquippedSkills.text = ("Q: " + str($Player.equippedSkills[0]) + "\n\n" + "W: " + str($Player.equippedSkills[1]) + "\n\n" + "E: " + str($Player.equippedSkills[2]) + "\n\n" + "R: " + str($Player.equippedSkills[3]))
 	$Player.connect("gained_xp", Callable($HUD, "_set_xp"))
 	$Player.connect("level_up", Callable($HUD, "_set_lvl"))
 	$Player.connect("moving_to", Callable(self, "_show_click"))

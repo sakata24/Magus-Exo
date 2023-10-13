@@ -29,10 +29,10 @@ var lvl = 0
 var xp = 0
 
 # to be changed when the player obtains a new skill
-var learnedSkills = [0, 1, 2, 3, 4]
+var learnedSkills = [0, 1, 2, 3, 4, 5]
 
 # to be changed when the player equips different skills
-var equippedSkills = [0, 1, 2, 5]
+var equippedSkills = ["bolt", "cell", "fountain", "suspend"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -44,10 +44,10 @@ func _ready():
 	initSkills()
 
 func initSkills():
-	skillCD[0] *= UniversalSkills.skillArr[equippedSkills[0]][6]
-	skillCD[1] *= UniversalSkills.skillArr[equippedSkills[1]][6]
-	skillCD[2] *= UniversalSkills.skillArr[equippedSkills[2]][6]
-	skillCD[3] *= UniversalSkills.skillArr[equippedSkills[3]][6]
+	skillCD[0] *= UniversalSkills.skillDict[equippedSkills[0]]["cooldown"]
+	skillCD[1] *= UniversalSkills.skillDict[equippedSkills[1]]["cooldown"]
+	skillCD[2] *= UniversalSkills.skillDict[equippedSkills[2]]["cooldown"]
+	skillCD[3] *= UniversalSkills.skillDict[equippedSkills[3]]["cooldown"]
 
 # handles right clicks
 func _unhandled_input(event):
@@ -129,10 +129,10 @@ func movementHelper(delta):
 
 # This function handles skill casting
 func cast_ability(skill):
-	# obtain reference to the ability array
+	# obtain reference to the ability dict
 	var ability = UniversalSkills._get_ability(skill)
 	
-	if ability[8] == 0:
+	if ability["type"] == "bullet":
 		# load the projectile
 		var projectile = projectileLoad.instantiate()
 		# spawn the projectile and initialize it
@@ -141,7 +141,7 @@ func cast_ability(skill):
 		projectile.init(ability)
 		# calculates the projectiles direction
 		projectile.velocity = get_global_mouse_position() - projectile.position
-	elif ability[8] == 1:
+	elif ability["type"] == "spell":
 		# load the spell
 		var spell = spellLoad.instantiate()
 		# spawn the spell and initialize it
