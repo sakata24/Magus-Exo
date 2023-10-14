@@ -1,15 +1,7 @@
 res://default_env.tres
-res://Abilities/Bullet.tscn
-res://UniversalSkills.gd
-res://Characters/Player.tscn
-res://Characters/Player.gd
 res://HUDs/Home.tscn
+res://Characters/Player.tscn
 res://Characters/Monster.tscn
 res://Main.tscn
-res://Abilities/Bullet.gd
-res://Abilities/Spell.gd
-res://Resources/abilitysheet.tres
-res://Resources/abilitysheet.json
-res://Resources/abilitysheet.txt
-res://Main.gd
+res://Abilities/Bullet.tscn
 res://Abilities/Spell.tscn
