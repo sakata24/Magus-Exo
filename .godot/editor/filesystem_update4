@@ -1,7 +1,0 @@
-res://default_env.tres
-res://HUDs/Home.tscn
-res://Characters/Player.tscn
-res://Characters/Monster.tscn
-res://Main.tscn
-res://Abilities/Bullet.tscn
-res://Abilities/Spell.tscn
