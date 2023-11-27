@@ -8,6 +8,7 @@ var spellLoad = preload("res://Abilities/Spell.tscn")
 signal gained_xp(curr_xp, xp_threshold)
 signal level_up(level)
 signal moving_to()
+signal dashing_()
 
 # constants
 const XPTHRESHOLDS = [5, 10, 15, 20]
@@ -19,6 +20,7 @@ var health = 25
 var max_speed = 100
 var speed = 0
 var moving = false
+var dashing = false
 var move_dir
 var move_target = Vector2()
 var movement = Vector2()
@@ -39,8 +41,15 @@ var skillReady = [true, true, true, true]
 var skillCD = [10, 10, 10, 10]
 # the current amt of physics processes that ran since last using the skill
 var skillTimer = [10, 10, 10, 10]
+# the dash cd
+var dashCD = 4
+# can dash
+var canDash = true
+# the dash ready
+var dashIFrames = 0
 
 func _ready():
+	$DashTimer.wait_time = dashCD
 	initSkills()
 
 func initSkills():
@@ -51,11 +60,14 @@ func initSkills():
 
 # handles right clicks
 func _unhandled_input(event):
-	
 	if event.is_action_pressed('R-Click'):
 		moving = true
 		move_target = get_global_mouse_position()
 		emit_signal("moving_to")
+	
+	if event.is_action_pressed('Space'):
+		dashing = true
+		move_target = get_global_mouse_position()
 	
 	if event.is_action_pressed('Q'):
 		if skillReady[0]:
@@ -109,8 +121,20 @@ func _physics_process(delta):
 		skillTimer[3] += 1
 
 func movementHelper(delta):
+	
+	if dashing and canDash:
+		print("debug")
+		get_node("CollisionShape2D").disabled = true
+		speed = max_speed * 11
+		dashIFrames += 1
+		$DashTimer.start()
+		if dashIFrames >= 3:
+			dashIFrames = 0
+			dashing = false
+			canDash = false
+			get_node("CollisionShape2D").disabled = false
 	# if moving continue, if not stop moving
-	if not moving:
+	elif not moving:
 		speed = 0
 	else:
 		speed = max_speed
@@ -161,3 +185,6 @@ func gain_xp(amount):
 
 func hit(damage):
 	health -= damage
+
+func _on_dash_timer_timeout():
+	canDash = true

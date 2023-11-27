@@ -1,69 +1,69 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1697242156
-default_env.tres::Environment::5025068929242938522::1697241993::0::1::::<><>::
-Main.gd::GDScript::-1::1697239625::0::1::::<>Node2D<>::
-Main.tscn::PackedScene::7371735675159223026::1697241993::0::1::::<><>::res://Main.gd<>uid://d3ijipo5rvv8c::::res://Maps/Map.tscn<>uid://83qg0j5exfyc::::res://Characters/Player.tscn<>uid://76xj3tuaqt16::::res://HUDs/HUD.tscn<>uid://d37cep1ypwea6::::res://HUDs/Menu.tscn<>uid://cu3clq06ceo3a::::res://Resources/hud_elements/click_sprites.png
-TopScript.gd::GDScript::-1::1697070449::0::1::::<>Node<>::
-UniversalSkills.gd::GDScript::-1::1697240527::0::1::::<>Node<>::
-::res://Abilities/::1697241993
-Bullet.gd::GDScript::-1::1697240183::0::1::::<>CharacterBody2D<>::
-Bullet.tscn::PackedScene::2702864548459730026::1697241993::0::1::::<><>::res://Abilities/Bullet.gd
-Spell.gd::GDScript::-1::1697241268::0::1::::<>Node<>::
-Spell.tscn::PackedScene::3316486938028157650::1697241993::0::1::::<><>::res://Abilities/Spell.gd
-::res://Characters/::1697241993
-Monster.gd::GDScript::-1::1697070449::0::1::::<>CharacterBody2D<>::
-Monster.tscn::PackedScene::6830158330018226717::1697241993::0::1::::<><>::res://Characters/Monster.gd<>uid://dylnl4hcv320u::::res://Resources/icon.png
-Player.gd::GDScript::-1::1697239782::0::1::::Player<>CharacterBody2D<>::
-Player.tscn::PackedScene::2375017932172747198::1697241993::0::1::::<><>::res://Characters/Player.gd<>uid://dylnl4hcv320u::::res://Resources/icon.png
-::res://HUDs/::1697241993
-Home.gd::GDScript::-1::1697070449::0::1::::<>CanvasLayer<>::
-Home.tscn::PackedScene::4916289288811870075::1697241993::0::1::::<><>::res://HUDs/Home.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
-HUD.gd::GDScript::-1::1697070449::0::1::::<>CanvasLayer<>::
-HUD.tscn::PackedScene::2311452770686110239::1697070449::0::1::::<><>::res://HUDs/HUD.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
-Menu.gd::GDScript::-1::1697070449::0::1::::<>CanvasLayer<>::
-Menu.tscn::PackedScene::9190739167361806799::1697070449::0::1::::<><>::res://HUDs/Menu.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
-::res://Maps/::1697070449
-GrassHill.tres::TileSet::-1::1697070449::0::1::::<><>::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/new tiles/Grass hill tiles v.2.png
-Map.gd::GDScript::-1::1697070449::0::1::::<>Node2D<>::
-Map.tscn::PackedScene::9141626245126970672::1697070449::0::1::::<><>::res://Maps/Map.gd<>res://Maps/GrassHill.tres<>uid://c4ktyer38vnk4::::res://Characters/Monster.tscn
-::res://Resources/::1697240296
-abilitysheet.txt::TextFile::-1::1697240296::0::1::::<><>::
-icon.png::CompressedTexture2D::8867312952436507394::1697070449::1697242157::1::::<><>::
-::res://Resources/fonts/::1697070449
-KiriFont.otf::FontFile::6710469502586762507::1697070449::1697242157::1::::<><>::
-Kirifont.tres::FontFile::-1::1697070449::0::1::::<><>::res://fonts/kirifont/KiriFont.otf
-KiriFont.ttf::FontFile::1049483772331387356::1697070449::1697242157::1::::<><>::
-OFL.txt::TextFile::-1::1697070449::0::1::::<><>::
-::res://Resources/hud_elements/::1697070449
-click_sprites.png::CompressedTexture2D::6234562775384068176::1697070449::1697242157::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/::1697070449
-read_me.txt::TextFile::-1::1697070449::0::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/Characters/::1697070449
-Basic Charakter Actions.png::CompressedTexture2D::6489226341196393801::1697070449::1697242157::1::::<><>::
-Basic Charakter Spritesheet.png::CompressedTexture2D::668529467456521010::1697070449::1697242157::1::::<><>::
-Free Cow Sprites.png::CompressedTexture2D::8803922655036718472::1697070449::1697242157::1::::<><>::
-Tools.png::CompressedTexture2D::3480863170978012169::1697070449::1697242157::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/Color pallete/::1697070449
-Color pallete in aseprite - screenshot.PNG::CompressedTexture2D::8681266693668144867::1697070449::1697242157::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/Objects/::1697070449
-Basic Furniture.png::CompressedTexture2D::2029286884116433652::1697070449::1697242157::1::::<><>::
-Basic Grass Biom things 1.png::CompressedTexture2D::765099808903955160::1697070449::1697242157::1::::<><>::
-Basic Plants.png::CompressedTexture2D::4953092788736538438::1697070449::1697242157::1::::<><>::
-Basic tools and meterials.png::CompressedTexture2D::5330744140286983779::1697070449::1697242157::1::::<><>::
-Chest.png::CompressedTexture2D::814292978766188205::1697070449::1697242157::1::::<><>::
-Paths.png::CompressedTexture2D::7525915602356610110::1697070449::1697242157::1::::<><>::
-Simple Milk and grass item.png::CompressedTexture2D::1588970088167578098::1697070449::1697242157::1::::<><>::
-Wood Bridge.png::CompressedTexture2D::7797957375855839790::1697070449::1697242157::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/::1697070449
-Fences.png::CompressedTexture2D::1926017820488337941::1697070449::1697242157::1::::<><>::
-Water.png::CompressedTexture2D::5396012949535483872::1697070449::1697242157::1::::<><>::
-Wooden House.png::CompressedTexture2D::4099064504916320770::1697070449::1697242157::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/::1697070449
-::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/new tiles/::1697070449
-Grass hill tiles v.2.png::CompressedTexture2D::3636388944784549958::1697070449::1697242157::1::::<><>::
-Grass tiles v.2.png::CompressedTexture2D::8124594564963986234::1697070449::1697242157::1::::<><>::
-Tall Grass hill tiles v.2.png::CompressedTexture2D::1363781267614001237::1697070449::1697242157::1::::<><>::
-::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/old tiles/::1697070449
-Grass.png::CompressedTexture2D::4575159756983365440::1697070449::1697242157::1::::<><>::
-Hills.png::CompressedTexture2D::312603735058760977::1697070449::1697242157::1::::<><>::
-Tilled Dirt.png::CompressedTexture2D::5354140260537986855::1697070449::1697242157::1::::<><>::
+::res://::1701084170
+default_env.tres::Environment::5025068929242938522::1697238393::0::1::::<><>::
+Main.gd::GDScript::-1::1697236025::0::1::::<>Node2D<>::
+Main.tscn::PackedScene::7371735675159223026::1697238393::0::1::::<><>::res://Main.gd<>uid://d3ijipo5rvv8c::::res://Maps/Map.tscn<>uid://83qg0j5exfyc::::res://Characters/Player.tscn<>uid://76xj3tuaqt16::::res://HUDs/HUD.tscn<>uid://d37cep1ypwea6::::res://HUDs/Menu.tscn<>uid://cu3clq06ceo3a::::res://Resources/hud_elements/click_sprites.png
+TopScript.gd::GDScript::-1::1697066849::0::1::::<>Node<>::
+UniversalSkills.gd::GDScript::-1::1697236927::0::1::::<>Node<>::
+::res://Abilities/::1697238393
+Bullet.gd::GDScript::-1::1697236583::0::1::::<>CharacterBody2D<>::
+Bullet.tscn::PackedScene::2702864548459730026::1697238393::0::1::::<><>::res://Abilities/Bullet.gd
+Spell.gd::GDScript::-1::1697237668::0::1::::<>Node<>::
+Spell.tscn::PackedScene::3316486938028157650::1697238393::0::1::::<><>::res://Abilities/Spell.gd
+::res://Characters/::1697238393
+Monster.gd::GDScript::-1::1697066849::0::1::::<>CharacterBody2D<>::
+Monster.tscn::PackedScene::6830158330018226717::1697238393::0::1::::<><>::res://Characters/Monster.gd<>uid://dylnl4hcv320u::::res://Resources/icon.png
+Player.gd::GDScript::-1::1697236182::0::1::::Player<>CharacterBody2D<>::
+Player.tscn::PackedScene::2375017932172747198::1697238393::0::1::::<><>::res://Characters/Player.gd<>uid://dylnl4hcv320u::::res://Resources/icon.png
+::res://HUDs/::1697238393
+Home.gd::GDScript::-1::1697066849::0::1::::<>CanvasLayer<>::
+Home.tscn::PackedScene::4916289288811870075::1697238393::0::1::::<><>::res://HUDs/Home.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
+HUD.gd::GDScript::-1::1697066849::0::1::::<>CanvasLayer<>::
+HUD.tscn::PackedScene::2311452770686110239::1697066849::0::1::::<><>::res://HUDs/HUD.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
+Menu.gd::GDScript::-1::1697066849::0::1::::<>CanvasLayer<>::
+Menu.tscn::PackedScene::9190739167361806799::1697066849::0::1::::<><>::res://HUDs/Menu.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
+::res://Maps/::1697066849
+GrassHill.tres::TileSet::-1::1697066849::0::1::::<><>::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/new tiles/Grass hill tiles v.2.png
+Map.gd::GDScript::-1::1697066849::0::1::::<>Node2D<>::
+Map.tscn::PackedScene::9141626245126970672::1697066849::0::1::::<><>::res://Maps/Map.gd<>res://Maps/GrassHill.tres<>uid://c4ktyer38vnk4::::res://Characters/Monster.tscn
+::res://Resources/::1697238557
+abilitysheet.txt::TextFile::-1::1697236696::0::1::::<><>::
+icon.png::CompressedTexture2D::8867312952436507394::1697066849::1697238557::1::::<><>::
+::res://Resources/fonts/::1697238557
+KiriFont.otf::FontFile::6710469502586762507::1697066849::1697238557::1::::<><>::
+Kirifont.tres::FontFile::-1::1697066849::0::1::::<><>::res://fonts/kirifont/KiriFont.otf
+KiriFont.ttf::FontFile::1049483772331387356::1697066849::1697238557::1::::<><>::
+OFL.txt::TextFile::-1::1697066849::0::1::::<><>::
+::res://Resources/hud_elements/::1697238557
+click_sprites.png::CompressedTexture2D::6234562775384068176::1697066849::1697238557::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/::1697066849
+read_me.txt::TextFile::-1::1697066849::0::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/Characters/::1697238557
+Basic Charakter Actions.png::CompressedTexture2D::6489226341196393801::1697066849::1697238557::1::::<><>::
+Basic Charakter Spritesheet.png::CompressedTexture2D::668529467456521010::1697066849::1697238557::1::::<><>::
+Free Cow Sprites.png::CompressedTexture2D::8803922655036718472::1697066849::1697238557::1::::<><>::
+Tools.png::CompressedTexture2D::3480863170978012169::1697066849::1697238557::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/Color pallete/::1697238557
+Color pallete in aseprite - screenshot.PNG::CompressedTexture2D::8681266693668144867::1697066849::1697238557::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/Objects/::1697238557
+Basic Furniture.png::CompressedTexture2D::2029286884116433652::1697066849::1697238557::1::::<><>::
+Basic Grass Biom things 1.png::CompressedTexture2D::765099808903955160::1697066849::1697238557::1::::<><>::
+Basic Plants.png::CompressedTexture2D::4953092788736538438::1697066849::1697238557::1::::<><>::
+Basic tools and meterials.png::CompressedTexture2D::5330744140286983779::1697066849::1697238557::1::::<><>::
+Chest.png::CompressedTexture2D::814292978766188205::1697066849::1697238557::1::::<><>::
+Paths.png::CompressedTexture2D::7525915602356610110::1697066849::1697238557::1::::<><>::
+Simple Milk and grass item.png::CompressedTexture2D::1588970088167578098::1697066849::1697238557::1::::<><>::
+Wood Bridge.png::CompressedTexture2D::7797957375855839790::1697066849::1697238557::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/::1697238557
+Fences.png::CompressedTexture2D::1926017820488337941::1697066849::1697238557::1::::<><>::
+Water.png::CompressedTexture2D::5396012949535483872::1697066849::1697238557::1::::<><>::
+Wooden House.png::CompressedTexture2D::4099064504916320770::1697066849::1697238557::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/::1697066849
+::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/new tiles/::1697238557
+Grass hill tiles v.2.png::CompressedTexture2D::3636388944784549958::1697066849::1697238557::1::::<><>::
+Grass tiles v.2.png::CompressedTexture2D::8124594564963986234::1697066849::1697238557::1::::<><>::
+Tall Grass hill tiles v.2.png::CompressedTexture2D::1363781267614001237::1697066849::1697238557::1::::<><>::
+::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/old tiles/::1697238557
+Grass.png::CompressedTexture2D::4575159756983365440::1697066849::1697238557::1::::<><>::
+Hills.png::CompressedTexture2D::312603735058760977::1697066849::1697238557::1::::<><>::
+Tilled Dirt.png::CompressedTexture2D::5354140260537986855::1697066849::1697238557::1::::<><>::

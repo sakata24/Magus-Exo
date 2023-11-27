@@ -1,0 +1,7 @@
+res://default_env.tres
+res://HUDs/Home.tscn
+res://Abilities/Bullet.tscn
+res://Characters/Player.tscn
+res://Characters/Player.gd
+res://Main.tscn
+res://Main.gd
