@@ -9,6 +9,7 @@ signal gained_xp(curr_xp, xp_threshold)
 signal level_up(level)
 signal moving_to()
 signal dashing_()
+signal cooling_down(skill_cds, skill_cds_max)
 
 # constants
 const XPTHRESHOLDS = [5, 10, 15, 20]
@@ -34,7 +35,7 @@ var xp = 0
 var learnedSkills = [0, 1, 2, 3, 4, 5]
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "cell", "fountain", "suspend"]
+var equippedSkills = ["bolt", "rock", "fountain", "suspend"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -57,6 +58,10 @@ func initSkills():
 	skillCD[1] *= UniversalSkills.skillDict[equippedSkills[1]]["cooldown"]
 	skillCD[2] *= UniversalSkills.skillDict[equippedSkills[2]]["cooldown"]
 	skillCD[3] *= UniversalSkills.skillDict[equippedSkills[3]]["cooldown"]
+	skillTimer[0] = skillCD[0]
+	skillTimer[1] = skillCD[1]
+	skillTimer[2] = skillCD[2]
+	skillTimer[3] = skillCD[3]
 
 # handles right clicks
 func _unhandled_input(event):
@@ -65,7 +70,7 @@ func _unhandled_input(event):
 		move_target = get_global_mouse_position()
 		emit_signal("moving_to")
 	
-	if event.is_action_pressed('Space'):
+	if event.is_action_pressed('Space') and canDash:
 		dashing = true
 		move_target = get_global_mouse_position()
 	
@@ -99,6 +104,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	$ProjectilePivot.look_at(get_global_mouse_position())
+	emit_signal("cooling_down", skillTimer, skillCD)
 	movementHelper(delta)
 	if skillTimer[0] == skillCD[0]:
 		skillReady[0] = true

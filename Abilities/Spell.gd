@@ -7,6 +7,7 @@ var dmg = 10
 var timeout = 1
 var lifetime = 1
 var cooldown = 0.1
+var element
 
 const CAST_RANGE = 500
 
@@ -19,6 +20,20 @@ func init(skillDict, pos):
 	dmg *= skillDict["dmg"]
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
+	element = skillDict["element"]
+	print(element)
+	if element == "sunder":
+		$ColorRect.color = Color("#c00000")
+	elif element == "entropy":
+		$ColorRect.color = Color("#ffd966")
+	elif element == "construct":
+		$ColorRect.color = Color("#833c0c")
+	elif element == "growth":
+		$ColorRect.color = Color("#70ad47")
+	elif element == "flow":
+		$ColorRect.color = Color("#9bc2e6")
+	elif element == "wither":
+		$ColorRect.color = Color("#7030a0")
 	self.position = pos
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
@@ -33,7 +48,7 @@ func _ready():
 func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
 		if body.name == "BulletBody":
-			print("reaction")
+			print("reaction with " + body.element + " + " + self.element)
 		if body.is_in_group("monsters"):
 			body._hit(dmg)
 

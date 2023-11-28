@@ -2,6 +2,12 @@ res://default_env.tres
 res://HUDs/Home.tscn
 res://Abilities/Bullet.tscn
 res://Characters/Player.tscn
-res://Characters/Player.gd
 res://Main.tscn
+res://HUDs/HUD.tscn
 res://Main.gd
+res://HUDs/HUD.gd
+res://Characters/Player.gd
+res://Abilities/Bullet.gd
+res://Abilities/Spell.gd
+res://UniversalSkills.gd
+res://Resources/abilitysheet.txt

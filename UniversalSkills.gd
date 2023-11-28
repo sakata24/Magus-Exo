@@ -80,3 +80,8 @@ func perform_despawn(ability):
 		_:
 			print("simple despawn")
 	ability.queue_free()
+
+func perform_reaction(ability1, ability2):
+	match ability1.element and ability2.element:
+		_:
+			pass

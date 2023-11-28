@@ -18,7 +18,7 @@ offset_left = -3.0
 offset_top = -3.0
 offset_right = 3.0
 offset_bottom = 3.0
-color = Color(1, 0, 0, 1)
+color = Color(0.439216, 0.678431, 0.278431, 1)
 
 [node name="TimeoutTimer" type="Timer" parent="."]
 one_shot = true
