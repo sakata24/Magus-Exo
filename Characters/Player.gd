@@ -74,29 +74,25 @@ func _unhandled_input(event):
 		dashing = true
 		move_target = get_global_mouse_position()
 	
-	if event.is_action_pressed('Q'):
-		if skillReady[0]:
-			cast_ability(equippedSkills[0])
-			skillReady[0] = false
-			skillTimer[0] = 0
+	if event.is_action_pressed('Q') and skillReady[0]:
+		cast_ability(equippedSkills[0])
+		skillReady[0] = false
+		skillTimer[0] = 0
 			
-	if event.is_action_pressed('W'):
-		if skillReady[1]:
-			cast_ability(equippedSkills[1])
-			skillReady[1] = false
-			skillTimer[1] = 0
+	if event.is_action_pressed('W') and skillReady[1]:
+		cast_ability(equippedSkills[1])
+		skillReady[1] = false
+		skillTimer[1] = 0
 			
-	if event.is_action_pressed('E'):
-		if skillReady[2]:
-			cast_ability(equippedSkills[2])
-			skillReady[2] = false
-			skillTimer[2] = 0
+	if event.is_action_pressed('E') and skillReady[2]:
+		cast_ability(equippedSkills[2])
+		skillReady[2] = false
+		skillTimer[2] = 0
 			
-	if event.is_action_pressed('R'):
-		if skillReady[3]:
-			cast_ability(equippedSkills[3])
-			skillReady[3] = false
-			skillTimer[3] = 0
+	if event.is_action_pressed('R') and skillReady[3]:
+		cast_ability(equippedSkills[3])
+		skillReady[3] = false
+		skillTimer[3] = 0
 			
 			
 func _process(delta):
@@ -161,7 +157,8 @@ func movementHelper(delta):
 func cast_ability(skill):
 	# obtain reference to the ability dict
 	var ability = UniversalSkills._get_ability(skill)
-	
+	speed = 0
+	moving = false
 	if ability["type"] == "bullet":
 		# load the projectile
 		var projectile = projectileLoad.instantiate()

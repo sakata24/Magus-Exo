@@ -1,4 +1,11 @@
+Timer
+Polygon2D
+Sprite2D
+CollisionPolygon2D
+Area2D
+AnimatedSprite2D
+CollisionShape2D
+CharacterBody2D
 ColorRect
 Label
 Node2D
-Timer

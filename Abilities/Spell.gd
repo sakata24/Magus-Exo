@@ -34,6 +34,7 @@ func init(skillDict, pos):
 		$ColorRect.color = Color("#9bc2e6")
 	elif element == "wither":
 		$ColorRect.color = Color("#7030a0")
+	add_to_group("skills")
 	self.position = pos
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
@@ -47,7 +48,7 @@ func _ready():
 
 func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
-		if body.name == "BulletBody":
+		if body.is_in_group("skills"):
 			print("reaction with " + body.element + " + " + self.element)
 		if body.is_in_group("monsters"):
 			body._hit(dmg)

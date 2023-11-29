@@ -4,6 +4,9 @@
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
 
 [sub_resource type="FontFile" id="1"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("2")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
@@ -13,6 +16,9 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="3"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("2")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0

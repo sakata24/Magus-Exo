@@ -1,5 +1,6 @@
 extends Node
 
+var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
 var skillDict = {}
 
 func _ready():
@@ -81,7 +82,18 @@ func perform_despawn(ability):
 			print("simple despawn")
 	ability.queue_free()
 
-func perform_reaction(ability1, ability2):
-	match ability1.element and ability2.element:
-		_:
-			pass
+func perform_reaction(collider, collided):
+	print("reaction with " + collider.element + " + " + collided.element)
+	# pause timers if reaction so it may complete
+	collided.get_node("TimeoutTimer").stop()
+	collided.get_node("LifetimeTimer").stop()
+	match collider.element + collided.element:
+		"sunder" + "construct":
+			# SHATTER: Disable initial ability and create an explosion
+			var shatter = shatterScene.instantiate()
+			shatter.parent = collided
+			shatter.dmg = collider.dmg * 1.7
+			collided.add_child(shatter)
+			collided.get_node("CollisionShape2D").disabled = true
+			collided.get_node("ColorRect").visible = false
+			collided.speed = collided.speed * 0.2

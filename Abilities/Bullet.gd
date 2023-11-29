@@ -30,7 +30,7 @@ func init(skillDict):
 		$ColorRect.color = Color("#9bc2e6")
 	elif element == "wither":
 		$ColorRect.color = Color("#7030a0")
-		
+	add_to_group("skills")
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
 	$TimeoutTimer.wait_time = timeout
@@ -42,8 +42,7 @@ func init(skillDict):
 func _physics_process(delta):
 	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
 	if collision and collision.get_collider().get_name() != "Player":
-		if collision.get_collider().get_name() == "BulletBody" or collision.get_collider().get_name() == "SpellBody":
-			print("reaction with " + collision.get_collider().element + " + " + self.element)
+		if collision.get_collider().is_in_group("skills"):
 			UniversalSkills.perform_reaction(self, collision.get_collider())
 		if collision.get_collider().is_in_group("monsters"):
 			collision.get_collider()._hit(dmg)

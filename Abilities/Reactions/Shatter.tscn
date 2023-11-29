@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpw4fwdf5q47y"]
+
+[ext_resource type="Script" path="res://Abilities/Reactions/Shatter.gd" id="1_6aelp"]
+
+[node name="Shatter" type="Area2D"]
+scale = Vector2(1e-05, 1e-05)
+script = ExtResource("1_6aelp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -49, 7, -49, 18, -46, 26, -42, 32, -38, 38, -32, 43, -24, 47, -15, 49, -6, 49, 6, 47, 16, 44, 23, 38, 32, 32, 38, 23, 44, 12, 48, 0, 49, -11, 48, -25, 43, -38, 32, -46, 17, -49, 0, -47, -15, -43, -24, -35, -34, -27, -41, -15, -47, -9, -48, -9, -45, -17, -42, -24, -39, -32, -33, -39, -25, -43, -16, -46, -6, -46, 6, -44, 15, -39, 25, -33, 32, -20, 42, -11, 45, 0, 46, 11, 45, 22, 41, 31, 34, 39, 25, 44, 15, 46, 0, 45, -11, 42, -20, 39, -25, 35, -30, 28, -37, 22, -41, 15, -44, 11, -45, 0, -46, -6, -46)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(-7, -49, 7, -49, 18, -46, 26, -42, 32, -38, 38, -32, 43, -24, 47, -15, 49, -6, 49, 6, 47, 16, 44, 23, 38, 32, 32, 38, 23, 44, 12, 48, 0, 49, -11, 48, -25, 43, -38, 32, -46, 17, -49, 0, -47, -15, -43, -24, -35, -34, -27, -41, -15, -47, -7, -49, -9, -45, -17, -42, -24, -39, -32, -33, -39, -25, -43, -16, -46, -6, -46, 6, -44, 15, -39, 25, -33, 32, -20, 42, -11, 45, 0, 46, 11, 45, 22, 41, 31, 34, 39, 25, 44, 15, 46, 0, 45, -11, 42, -20, 39, -25, 35, -30, 28, -37, 22, -41, 15, -44, 11, -45, 0, -46, -9, -45)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
