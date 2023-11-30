@@ -97,3 +97,6 @@ func perform_reaction(collider, collided):
 			collided.get_node("CollisionShape2D").disabled = true
 			collided.get_node("ColorRect").visible = false
 			collided.speed = collided.speed * 0.2
+
+func get_skills():
+	return skillDict

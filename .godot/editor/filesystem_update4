@@ -6,7 +6,8 @@ res://Main.tscn
 res://HUDs/HUD.tscn
 res://Abilities/Reactions/Shatter.tscn
 res://HUDs/Menu.tscn
-res://Abilities/Bullet.gd
-res://Characters/Player.gd
-res://Abilities/Spell.gd
+res://Characters/Monster.tscn
+res://Characters/Monster.gd
 res://UniversalSkills.gd
+res://HUDs/SkillMenu.tscn
+res://HUDs/SkillMenu.gd

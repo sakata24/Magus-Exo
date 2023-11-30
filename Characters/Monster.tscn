@@ -23,6 +23,7 @@ texture = ExtResource("2")
 shape = SubResource("1")
 
 [node name="AggroRange" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("2")
