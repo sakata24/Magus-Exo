@@ -36,7 +36,7 @@ func _get_icon():
 
 func set_icon(spl:String):
 	spell = spl
-	$ProgressBar.max_value = UniversalSkills._get_ability(spl)["cd"]
+	$ProgressBar.max_value = UniversalSkills._get_ability(spl)["cooldown"]
 	_get_icon()
 
 

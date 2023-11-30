@@ -14,6 +14,10 @@ func _ready():
 	dict = UniversalSkills.get_skills()
 #	print_dictionary()
 	file.close()
+	$Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities/Ability1/Label.text = "Q"
+	$Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities/Ability2/Label.text = "W"
+	$Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities/Ability3/Label.text = "E"
+	$Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities/Ability4/Label.text = "R"
 	_draw_icons()
 
 
@@ -50,6 +54,14 @@ func _select_skill(skill:SkillIcon):
 
 
 func _equip_skill(skill:SkillIcon):
+	#Check if already equipped -> remove
+	var skillInfo = UniversalSkills._get_ability(skill.spell)
 	for n in EquipContainer.get_children():
-		if n.name == "":
-			n.set_icon(skill)
+		if n.spell == skillInfo.name:
+			n.empty()
+			return
+	#Check for empty skill slot
+	for n in EquipContainer.get_children():
+		if n.spell == "":
+			n.set_icon(skill.spell)
+			return

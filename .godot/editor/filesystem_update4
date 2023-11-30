@@ -1,5 +1,6 @@
 res://default_env.tres
-res://Resources/hud_elements/SkillIcon.tscn
-res://Resources/hud_elements/SkillIcon.gd
 res://HUDs/SkillMenu.tscn
 res://HUDs/SkillMenu.gd
+res://Resources/hud_elements/SkillIcon.tscn
+res://Main.tscn
+res://Resources/hud_elements/SkillIcon.gd
