@@ -12,7 +12,9 @@ var spell : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	print(size)
+	var scaleValue = size.y/500
+	$ProgressBar.scale = Vector2(scaleValue,scaleValue)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,9 +36,10 @@ func _get_icon():
 		texture = load("res://Resources/icon.png")
 
 
-func set_icon(spl:String):
+func set_icon(spl:String, lab = $Label.text):
 	spell = spl
-	$ProgressBar.max_value = UniversalSkills._get_ability(spl)["cooldown"]
+	$ProgressBar.max_value = 10*UniversalSkills._get_ability(spl)["cooldown"]
+	$Label.text = lab
 	_get_icon()
 
 

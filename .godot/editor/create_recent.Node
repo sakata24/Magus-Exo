@@ -1,4 +1,7 @@
+Control
 MarginContainer
+Container
+ColorRect
 HBoxContainer
 VBoxContainer
 TextureProgressBar
@@ -6,16 +9,6 @@ ProgressBar
 Label
 TextureRect
 Button
-ColorRect
 HFlowContainer
-Control
 CanvasLayer
 Timer
-Polygon2D
-Sprite2D
-CollisionPolygon2D
-Area2D
-AnimatedSprite2D
-CollisionShape2D
-CharacterBody2D
-Node2D
