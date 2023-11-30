@@ -4,14 +4,32 @@ extends CanvasLayer
 func _ready():
 	pass
 
+func init(health, xp, max_xp, skill1, skill2, skill3, skill4):
+	_set_health(health)
+	_set_xp(xp,max_xp)
+	set_lvl(0)
+	_set_skills(skill1,skill2,skill3,skill4)
+	pass
+
+func _set_health(hp):
+	$HealthLabel.text = ("Health: " + str(hp))
+
 func _set_xp(xp, max_xp):
 	$EXPLabel.text = ("EXP: " + str(xp) + "/" + str(max_xp))
 
 func set_lvl(lvl):
 	$LVLLabel.text = ("Level: " + str(lvl))
 
+func _set_skills(one,two,three,four):
+	$Skill/Ability1/HBoxContainer/SkillName.text = one
+	$Skill/Ability2/HBoxContainer/SkillName.text = two
+	$Skill/Ability3/HBoxContainer/SkillName.text = three
+	$Skill/Ability4/HBoxContainer/SkillName.text = four
+	$Skill/Ability1/HBoxContainer/SkillIcon.set_icon(one)
+	$Skill/Ability2/HBoxContainer/SkillIcon.set_icon(two)
+	$Skill/Ability3/HBoxContainer/SkillIcon.set_icon(three)
+	$Skill/Ability4/HBoxContainer/SkillIcon.set_icon(four)
+
 func _set_cd(skill_cds, skill_cds_max):
-	$Skill0/ProgressBar.set_size(Vector2(200-(skill_cds[0]*200/skill_cds_max[0]),35))
-	$Skill1/ProgressBar.set_size(Vector2(200-(skill_cds[1]*200/skill_cds_max[1]),35))
-	$Skill2/ProgressBar.set_size(Vector2(200-(skill_cds[2]*200/skill_cds_max[2]),35))
-	$Skill3/ProgressBar.set_size(Vector2(200-(skill_cds[3]*200/skill_cds_max[3]),35))
+#	$VBoxContainer/Ability1/HBoxContainer/SkillIcon/ProgressBar.value
+	pass

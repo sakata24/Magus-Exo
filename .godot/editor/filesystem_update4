@@ -4,3 +4,6 @@ res://HUDs/SkillMenu.gd
 res://Resources/hud_elements/SkillIcon.tscn
 res://Main.tscn
 res://Resources/hud_elements/SkillIcon.gd
+res://HUDs/HUD.tscn
+res://HUDs/HUD.gd
+res://Main.gd

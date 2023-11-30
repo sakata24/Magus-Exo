@@ -1,12 +1,12 @@
+MarginContainer
+HBoxContainer
+VBoxContainer
 TextureProgressBar
 ProgressBar
 Label
 TextureRect
-MarginContainer
 Button
 ColorRect
-HBoxContainer
-VBoxContainer
 HFlowContainer
 Control
 CanvasLayer
