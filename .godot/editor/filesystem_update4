@@ -1,13 +1,5 @@
 res://default_env.tres
-res://HUDs/Home.tscn
-res://Abilities/Bullet.tscn
-res://Characters/Player.tscn
-res://Main.tscn
-res://HUDs/HUD.tscn
-res://Abilities/Reactions/Shatter.tscn
-res://HUDs/Menu.tscn
-res://Characters/Monster.tscn
-res://Characters/Monster.gd
-res://UniversalSkills.gd
+res://Resources/hud_elements/SkillIcon.tscn
+res://Resources/hud_elements/SkillIcon.gd
 res://HUDs/SkillMenu.tscn
 res://HUDs/SkillMenu.gd

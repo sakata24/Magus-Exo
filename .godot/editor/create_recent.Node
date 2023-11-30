@@ -1,7 +1,9 @@
-ColorRect
+ProgressBar
+Label
 TextureRect
 MarginContainer
-Label
+Button
+ColorRect
 HBoxContainer
 VBoxContainer
 HFlowContainer

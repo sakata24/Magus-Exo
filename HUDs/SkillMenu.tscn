@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmyojc688oa3f"]
+[gd_scene load_steps=4 format=3 uid="uid://cmyojc688oa3f"]
 
 [ext_resource type="Script" path="res://HUDs/SkillMenu.gd" id="1_tifqh"]
 [ext_resource type="Texture2D" uid="uid://dylnl4hcv320u" path="res://Resources/icon.png" id="2_hjnh2"]
+[ext_resource type="PackedScene" uid="uid://jb02v63no31m" path="res://Resources/hud_elements/SkillIcon.tscn" id="3_r72yw"]
 
 [node name="SkillMenu" type="CanvasLayer"]
 script = ExtResource("1_tifqh")
@@ -21,27 +22,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="ColorRect2" type="ColorRect" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+color = Color(0.611765, 0.12549, 0, 1)
 
-[node name="Left" type="VBoxContainer" parent="Control/HBoxContainer/ColorRect2"]
+[node name="LeftMargin" type="MarginContainer" parent="Control/HBoxContainer/ColorRect2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Left" type="VBoxContainer" parent="Control/HBoxContainer/ColorRect2/LeftMargin"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="LeftContainer" type="HFlowContainer" parent="Control/HBoxContainer/ColorRect2/Left"]
+[node name="SpellContainer" type="HFlowContainer" parent="Control/HBoxContainer/ColorRect2/LeftMargin/Left"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/h_separation = 50
 
 [node name="Right" type="ColorRect" parent="Control/HBoxContainer"]
 clip_contents = true
@@ -51,10 +62,12 @@ size_flags_vertical = 3
 color = Color(0.231373, 0, 0, 1)
 
 [node name="RightContainer" type="VBoxContainer" parent="Control/HBoxContainer/Right"]
-layout_mode = 2
-offset_left = 4.0
-offset_right = 386.0
-offset_bottom = 666.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="DetailsMargin" type="MarginContainer" parent="Control/HBoxContainer/Right/RightContainer"]
@@ -76,7 +89,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/PhotoContainer"]
+[node name="DetailIcon" type="TextureRect" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/PhotoContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 200)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -98,6 +111,7 @@ text = "Name"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/name"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="cooldown" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -108,6 +122,7 @@ text = "Cooldown"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/cooldown"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="dmg" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -118,6 +133,7 @@ text = "Damage"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/dmg"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="element" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -128,6 +144,7 @@ text = "Element"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/element"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="lifetime" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -138,6 +155,7 @@ text = "Lifetime"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/lifetime"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="size" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -148,6 +166,7 @@ text = "Size"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/size"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="speed" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -158,6 +177,7 @@ text = "Speed"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/speed"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="timeout" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -168,6 +188,7 @@ text = "Timeout"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/timeout"]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="type" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
 layout_mode = 2
@@ -178,10 +199,16 @@ text = "Type"
 
 [node name="Value" type="Label" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails/type"]
 layout_mode = 2
+size_flags_horizontal = 10
 
-[node name="SpacerBar2" type="ColorRect" parent="Control/HBoxContainer/Right/RightContainer/DetailsMargin/SkillDetails"]
-custom_minimum_size = Vector2(2.08165e-12, 2)
+[node name="SpacerBar2" type="ColorRect" parent="Control/HBoxContainer/Right/RightContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 5)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/RightContainer"]
+layout_mode = 2
+text = "Equipped"
+horizontal_alignment = 1
 
 [node name="EquipMargin" type="MarginContainer" parent="Control/HBoxContainer/Right/RightContainer"]
 layout_mode = 2
@@ -193,15 +220,34 @@ theme_override_constants/margin_bottom = 5
 
 [node name="EquippedAbilities" type="HBoxContainer" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Ability1" type="TextureRect" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities"]
+[node name="Ability1" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities" instance=ExtResource("3_r72yw")]
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Ability2" type="TextureRect" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities"]
+[node name="Ability2" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities" instance=ExtResource("3_r72yw")]
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Ability3" type="TextureRect" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities"]
+[node name="Ability3" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities" instance=ExtResource("3_r72yw")]
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Ability4" type="TextureRect" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities"]
+[node name="Ability4" parent="Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities" instance=ExtResource("3_r72yw")]
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "X"
