@@ -2,7 +2,7 @@
 	"skills": {
 		"bolt": {
 			"name": "bolt",
-			"cooldown": 0.5,
+			"cooldown": 0.7,
 			"dmg": 1.0,
 			"element": "sunder",
 			"lifetime": 0.5,

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var damageNumber = preload("res://HUDs/DamageNumber.tscn")
+
 # is it mad
 var aggro = false
 # reference to chase the player
@@ -8,6 +10,8 @@ var player = CharacterBody2D
 var speed = 50
 # my health
 var health = 50
+# max health
+var maxHealth = 50
 # exp i give
 var bestowedXp = 1
 
@@ -39,6 +43,10 @@ func chase(delta):
 func _hit(dmg_to_take):
 	health -= dmg_to_take
 	print("i took ", dmg_to_take, " dmg")
+	var dmgNum = damageNumber.instantiate()
+	get_parent().add_child(dmgNum)
+	dmgNum.set_value_and_pos(self.global_position, dmg_to_take)
+	
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):

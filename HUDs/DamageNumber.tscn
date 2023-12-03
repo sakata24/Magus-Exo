@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://btw5y36cr8p0b"]
+
+[ext_resource type="Script" path="res://HUDs/DamageNumber.gd" id="1_0qs7g"]
+
+[node name="DamageNumber" type="Node2D"]
+script = ExtResource("1_0qs7g")
+
+[node name="DmgText" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "text"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

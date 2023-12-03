@@ -1,6 +1,8 @@
 extends Node
 
 var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
+var singularityScene = preload("res://Abilities/Reactions/Singularity.tscn")
+var extinctionScene = preload("res://Abilities/Reactions/Extinction.tscn")
 var skillDict = {}
 
 func _ready():
@@ -38,17 +40,15 @@ func perform_spawn(ability):
 		"suspend":
 			ability.modulate.a = 0.5
 			var timer = Timer.new()
-			timer.wait_time = 0.35
+			timer.wait_time = 0.13
 			ability.add_child(timer)
-			
-			timer.start()
 			while true:
-				print("tick")
+				timer.start()
 				ability.monitoring = true
 				await timer.timeout
-				ability.monitoring = false
 				timer.start()
-			
+				ability.monitoring = false
+				await timer.timeout
 			timer.queue_free()
 			print("smoke")
 		_:
@@ -85,8 +85,8 @@ func perform_despawn(ability):
 func perform_reaction(collider, collided):
 	print("reaction with " + collider.element + " + " + collided.element)
 	# pause timers if reaction so it may complete
-	collided.get_node("TimeoutTimer").stop()
-	collided.get_node("LifetimeTimer").stop()
+	collided.get_node("TimeoutTimer").paused = true
+	collided.get_node("LifetimeTimer").paused = true
 	match collider.element + collided.element:
 		"sunder" + "construct":
 			# SHATTER: Disable initial ability and create an explosion
@@ -95,5 +95,26 @@ func perform_reaction(collider, collided):
 			shatter.dmg = collider.dmg * 1.7
 			collided.add_child(shatter)
 			collided.get_node("CollisionShape2D").disabled = true
-			collided.get_node("ColorRect").visible = false
+			collided.get_node("Texture").visible = false
 			collided.speed = collided.speed * 0.2
+		"growth" + "construct":
+			# VINE: Transform type of spell to growth
+			collided.element = "growth"
+			collided.get_node("Texture").color = Color("#70ad47")
+		"sunder" + "wither":
+			# SINGULARITY: Suck in enemies to center
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			var singularity = singularityScene.instantiate()
+			singularity.parent = collided
+			collided.add_child(singularity)
+		"construct" + "wither":
+			# EXTINCTION: Execute enemies
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			var extinction = extinctionScene.instantiate()
+			collided.add_child(extinction)
+		"growth" + "wither":
+			# EXTEND: Greatly increase lifetime of both spells
+			collided.get_node("LifetimeTimer").start()
+			collider.get_node("LifetimeTimer").start()

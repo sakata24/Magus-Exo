@@ -25,6 +25,7 @@ var dashing = false
 var move_dir
 var move_target = Vector2()
 var movement = Vector2()
+var castTarget = Vector2()
 
 # instance variables for XP handling
 var currentXpThreshold = XPTHRESHOLDS[0]
@@ -35,7 +36,7 @@ var xp = 0
 var learnedSkills = [0, 1, 2, 3, 4, 5]
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "rock", "fountain", "suspend"]
+var equippedSkills = ["bolt", "rock", "cell", "suspend"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -99,7 +100,7 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	$ProjectilePivot.look_at(get_global_mouse_position())
+	$ProjectilePivot.look_at(castTarget)
 	emit_signal("cooling_down", skillTimer, skillCD)
 	movementHelper(delta)
 	if skillTimer[0] == skillCD[0]:
@@ -157,8 +158,11 @@ func movementHelper(delta):
 func cast_ability(skill):
 	# obtain reference to the ability dict
 	var ability = UniversalSkills._get_ability(skill)
+	castTarget = get_global_mouse_position()
 	speed = 0
 	moving = false
+	$CastTimer.start()
+	await $CastTimer.timeout
 	if ability["type"] == "bullet":
 		# load the projectile
 		var projectile = projectileLoad.instantiate()
@@ -167,13 +171,13 @@ func cast_ability(skill):
 		projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
 		projectile.init(ability)
 		# calculates the projectiles direction
-		projectile.velocity = get_global_mouse_position() - projectile.position
+		projectile.velocity = castTarget - projectile.position
 	elif ability["type"] == "spell":
 		# load the spell
 		var spell = spellLoad.instantiate()
 		# spawn the spell and initialize it
 		get_parent().add_child(spell)
-		spell.init(ability, get_global_mouse_position())
+		spell.init(ability, castTarget)
 
 func gain_xp(amount):
 	xp += amount

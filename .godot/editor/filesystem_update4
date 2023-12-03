@@ -6,7 +6,13 @@ res://Main.tscn
 res://HUDs/HUD.tscn
 res://Abilities/Reactions/Shatter.tscn
 res://HUDs/Menu.tscn
-res://Abilities/Bullet.gd
-res://Characters/Player.gd
-res://Abilities/Spell.gd
+res://Abilities/Reactions/Singularity.tscn
+res://Abilities/Spell.tscn
+res://Abilities/Reactions/Extinction.tscn
+res://Characters/Monster.tscn
+res://Maps/Map.tscn
+res://Maps/GrassHill.tres
+res://Characters/Monster.gd
+res://HUDs/DamageNumber.gd
+res://HUDs/DamageNumber.tscn
 res://UniversalSkills.gd

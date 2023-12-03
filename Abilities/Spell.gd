@@ -1,4 +1,4 @@
-extends Node
+extends Area2D
 
 var abilityID = 0
 var speed = 300
@@ -23,17 +23,17 @@ func init(skillDict, pos):
 	element = skillDict["element"]
 	print(element)
 	if element == "sunder":
-		$ColorRect.color = Color("#c00000")
+		$Texture.color = Color("#c00000")
 	elif element == "entropy":
-		$ColorRect.color = Color("#ffd966")
+		$Texture.color = Color("#ffd966")
 	elif element == "construct":
-		$ColorRect.color = Color("#833c0c")
+		$Texture.color = Color("#833c0c")
 	elif element == "growth":
-		$ColorRect.color = Color("#70ad47")
+		$Texture.color = Color("#70ad47")
 	elif element == "flow":
-		$ColorRect.color = Color("#9bc2e6")
+		$Texture.color = Color("#9bc2e6")
 	elif element == "wither":
-		$ColorRect.color = Color("#7030a0")
+		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
 	self.position = pos
 	$LifetimeTimer.wait_time = lifetime
@@ -50,6 +50,7 @@ func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
 		if body.is_in_group("skills"):
 			print("reaction with " + body.element + " + " + self.element)
+			UniversalSkills.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
 			body._hit(dmg)
 
