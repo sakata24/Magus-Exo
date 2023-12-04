@@ -1,5 +1,6 @@
 res://default_env.tres
 res://HUDs/Home.tscn
+res://Maps/GrassHill.tres
 res://Abilities/Bullet.tscn
 res://Characters/Player.tscn
 res://Main.tscn
@@ -11,8 +12,6 @@ res://Abilities/Spell.tscn
 res://Abilities/Reactions/Extinction.tscn
 res://Characters/Monster.tscn
 res://Maps/Map.tscn
-res://Maps/GrassHill.tres
-res://Characters/Monster.gd
-res://HUDs/DamageNumber.gd
 res://HUDs/DamageNumber.tscn
-res://UniversalSkills.gd
+res://Characters/Player.gd
+res://Characters/Monster.gd

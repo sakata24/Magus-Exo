@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dylnl4hcv320u" path="res://Resources/icon.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(8, 8)
+size = Vector2(15, 15)
 
 [sub_resource type="CircleShape2D" id="2"]
 radius = 75.0

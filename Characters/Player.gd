@@ -52,6 +52,8 @@ var dashIFrames = 0
 
 func _ready():
 	$DashTimer.wait_time = dashCD
+	self.look_at(Vector2(self.position.x, 10000.0))
+	move_target = Vector2(self.position.x, 10000.0)
 	initSkills()
 
 func initSkills():
@@ -97,7 +99,8 @@ func _unhandled_input(event):
 			
 			
 func _process(delta):
-	pass
+	if self.global_position.distance_to(move_target) > 1:
+		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(move_target), 0.1)
 
 func _physics_process(delta):
 	$ProjectilePivot.look_at(castTarget)

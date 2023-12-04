@@ -35,7 +35,7 @@ func _physics_process(delta):
 
 # chases the player
 func chase(delta):
-	if position.distance_to(player.position) > 1:
+	if position.distance_to(player.position) > 2:
 		set_velocity(position.direction_to(player.position) * speed)
 		move_and_slide()
 

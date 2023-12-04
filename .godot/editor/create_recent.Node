@@ -1,9 +1,9 @@
+Polygon2D
 Timer
 Label
 Node2D
 TextEdit
 Area2D
-Polygon2D
 Sprite2D
 CollisionPolygon2D
 AnimatedSprite2D
