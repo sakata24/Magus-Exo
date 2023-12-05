@@ -1,19 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://btw5y36cr8p0b"]
+[gd_scene load_steps=4 format=3 uid="uid://btw5y36cr8p0b"]
 
 [ext_resource type="Script" path="res://HUDs/DamageNumber.gd" id="1_0qs7g"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="2_4yha6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qwbw"]
+font = ExtResource("2_4yha6")
 font_size = 8
-font_color = Color(1, 0, 0, 1)
+font_color = Color(0.654902, 0.654902, 0.654902, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.607843)
 
 [node name="DamageNumber" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_0qs7g")
 
 [node name="DmgText" type="Label" parent="."]
-texture_filter = 4
-offset_right = 40.0
-offset_bottom = 23.0
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "text"
 label_settings = SubResource("LabelSettings_5qwbw")
 

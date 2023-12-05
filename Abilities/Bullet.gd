@@ -29,7 +29,7 @@ func init(skillDict):
 	elif element == "flow":
 		$Texture.color = Color("#9bc2e6")
 	elif element == "wither":
-		$ColorRect.color = Color("#7030a0")
+		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
@@ -45,7 +45,7 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group("skills"):
 			UniversalSkills.perform_reaction(self, collision.get_collider())
 		if collision.get_collider().is_in_group("monsters"):
-			collision.get_collider()._hit(dmg)
+			collision.get_collider()._hit(dmg, $Texture.color)
 		UniversalSkills.perform_despawn(self)
 
 # if end of timeout, perform action (usually start lifetime timer)

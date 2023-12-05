@@ -9,9 +9,7 @@ res://Abilities/Reactions/Shatter.tscn
 res://HUDs/Menu.tscn
 res://Abilities/Reactions/Singularity.tscn
 res://Abilities/Spell.tscn
-res://Abilities/Reactions/Extinction.tscn
-res://Characters/Monster.tscn
-res://Maps/Map.tscn
 res://HUDs/DamageNumber.tscn
-res://Characters/Player.gd
-res://Characters/Monster.gd
+res://Abilities/Reactions/Extinction.tscn
+res://Maps/Map.tscn
+res://Characters/Enemies/Monster.tscn

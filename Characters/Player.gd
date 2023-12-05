@@ -4,12 +4,14 @@ class_name Player
 
 var projectileLoad = preload("res://Abilities/Bullet.tscn")
 var spellLoad = preload("res://Abilities/Spell.tscn")
+var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
 signal gained_xp(curr_xp, xp_threshold)
 signal level_up(level)
 signal moving_to()
 signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)
+signal player_hit(newHP)
 
 # constants
 const XPTHRESHOLDS = [5, 10, 15, 20]
@@ -195,6 +197,11 @@ func gain_xp(amount):
 
 func hit(damage):
 	health -= damage
+	emit_signal("player_hit", health)
+	var dmgNum = damageNumber.instantiate()
+	dmgNum.modulate = Color(255, 0, 0)
+	get_parent().add_child(dmgNum)
+	dmgNum.set_value_and_pos(self.global_position, damage)
 
 func _on_dash_timer_timeout():
 	canDash = true

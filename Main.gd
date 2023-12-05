@@ -17,6 +17,7 @@ func _ready():
 	$Player.connect("level_up", Callable(self, "_leveled_up"))
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
+	$Player.connect("player_hit", Callable($HUD, "_set_hp"))
 
 
 func _unhandled_input(event):

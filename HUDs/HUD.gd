@@ -15,3 +15,6 @@ func _set_cd(skill_cds, skill_cds_max):
 	$Skill1/ProgressBar.set_size(Vector2(200-(skill_cds[1]*200/skill_cds_max[1]),35))
 	$Skill2/ProgressBar.set_size(Vector2(200-(skill_cds[2]*200/skill_cds_max[2]),35))
 	$Skill3/ProgressBar.set_size(Vector2(200-(skill_cds[3]*200/skill_cds_max[3]),35))
+
+func _set_hp(newHP):
+	$HealthLabel.text = ("HEALTH: " + str(newHP))

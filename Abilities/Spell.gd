@@ -52,7 +52,7 @@ func _on_SpellBody_body_entered(body):
 			print("reaction with " + body.element + " + " + self.element)
 			UniversalSkills.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
-			body._hit(dmg)
+			body._hit(dmg, $Texture.color)
 
 func _on_area_entered(area):
 	if area.name == "SpellBody":

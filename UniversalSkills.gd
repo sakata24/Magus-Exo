@@ -116,5 +116,9 @@ func perform_reaction(collider, collided):
 			collided.add_child(extinction)
 		"growth" + "wither":
 			# EXTEND: Greatly increase lifetime of both spells
-			collided.get_node("LifetimeTimer").start()
-			collider.get_node("LifetimeTimer").start()
+			collided.get_node("LifetimeTimer").wait_time = collided.get_node("LifetimeTimer").wait_time * 1.5
+			collider.get_node("LifetimeTimer").wait_time = collider.get_node("LifetimeTimer").wait_time * 1.5
+			collided.get_node("TimeoutTimer").wait_time = collided.get_node("TimeoutTimer").wait_time * 1.5
+			collider.get_node("TimeoutTimer").wait_time = collider.get_node("TimeoutTimer").wait_time * 1.5
+			collided.get_node("TimeoutTimer").start()
+			collider.get_node("TimeoutTimer").start()
