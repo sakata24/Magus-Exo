@@ -38,7 +38,7 @@ var xp = 0
 var learnedSkills = [0, 1, 2, 3, 4, 5]
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "rock", "cell", "suspend"]
+var equippedSkills = ["bolt", "rock", "crack", "suspend"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again

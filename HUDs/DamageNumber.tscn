@@ -4,8 +4,9 @@
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="2_4yha6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qwbw"]
+line_spacing = 2.0
 font = ExtResource("2_4yha6")
-font_size = 8
+font_size = 9
 font_color = Color(0.654902, 0.654902, 0.654902, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)

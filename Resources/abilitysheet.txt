@@ -11,6 +11,17 @@
 			"timeout": 1.0,
 			"type": "bullet"
 		},
+		"crack": {
+			"name": "crack",
+			"cooldown": 14.0,
+			"dmg": 2.5,
+			"element": "sunder",
+			"lifetime": 0.5,
+			"size": 10.0,
+			"speed": 0.0,
+			"timeout": 0.1,
+			"type": "spell"
+		},
 		"cell": {
 			"name": "cell",
 			"cooldown": 8.0,
@@ -24,12 +35,12 @@
 		},
 		"charge": {
 			"name": "charge",
-			"cooldown": 0.8,
-			"dmg": 0.8,
+			"cooldown": 2.5,
+			"dmg": 1.0,
 			"element": "entropy",
 			"lifetime": 0.5,
 			"size": 1.3,
-			"speed": 1.1,
+			"speed": 0.1,
 			"timeout": 1.0,
 			"type": "bullet"
 		},

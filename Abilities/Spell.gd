@@ -7,6 +7,7 @@ var dmg = 10
 var timeout = 1
 var lifetime = 1
 var cooldown = 0.1
+var canReact = true
 var element
 
 const CAST_RANGE = 500
@@ -21,6 +22,7 @@ func init(skillDict, pos):
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
+	self.modulate.a = 0.5
 	print(element)
 	if element == "sunder":
 		$Texture.color = Color("#c00000")
@@ -48,15 +50,19 @@ func _ready():
 
 func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
-		if body.is_in_group("skills"):
+		if body.is_in_group("skills") and canReact:
 			print("reaction with " + body.element + " + " + self.element)
+			self.canReact = false
+			body.canReact = false
 			UniversalSkills.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
 			body._hit(dmg, $Texture.color)
 
 func _on_area_entered(area):
-	if area.name == "SpellBody":
-		print("reaction spells")
+	if area.name == "SpellBody" and canReact:
+		self.canReact = false
+		area.canReact = false
+		UniversalSkills.perform_reaction(area, self)
 
 func _on_TimeoutTimer_timeout():
 	$LifetimeTimer.start()

@@ -30,6 +30,6 @@ wait_time = 0.15
 rotation = -6.28319
 
 [node name="ProjectileSpawnPos" type="Marker2D" parent="ProjectilePivot"]
-position = Vector2(8, 3.5731e-05)
+position = Vector2(2, 8.93276e-06)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

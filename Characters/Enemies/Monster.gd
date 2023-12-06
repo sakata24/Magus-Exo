@@ -2,14 +2,14 @@ extends CharacterBody2D
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
-# is it mad
+# am i mad
 var aggro = false
 # reference to chase the player
 var player = CharacterBody2D
 # how fast i move
 var speed = 50
 # my health
-var health = 50
+var health = 100
 # damage
 var myDmg = 2
 # max health
@@ -71,7 +71,6 @@ func die():
 	queue_free()
 
 func _on_attack_timer_timeout():
-	print($DamageArea.has_overlapping_bodies())
 	for body in $DamageArea.get_overlapping_bodies():
 		if body.name == "Player":
 			body.hit(myDmg)

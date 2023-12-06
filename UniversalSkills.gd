@@ -57,10 +57,16 @@ func perform_spawn(ability):
 # performs action of an ability on timeout
 func perform_timeout(ability):
 	match ability.abilityID:
-		"fireball":
-			print("BOOM")
 		"bolt":
-			print("zap")
+			print("BOOM")
+		"crack":
+			ability.monitoring = false
+			ability.monitorable = false
+			ability.modulate.a = 0.2
+		"charge":
+			ability.speed = 1.4 * 300
+			ability.dmg = ability.dmg * 1.5
+			ability.scale = ability.scale * 1.5
 		"rock":
 			print("*falling rock noises*")
 		"cell":
@@ -88,21 +94,36 @@ func perform_reaction(collider, collided):
 	collided.get_node("TimeoutTimer").paused = true
 	collided.get_node("LifetimeTimer").paused = true
 	match collider.element + collided.element:
+		"construct" + "sunder":
+			# SHATTER: Disable construct ability and create an explosion
+			var shatter = shatterScene.instantiate()
+			shatter.parent = collider
+			shatter.dmg = collided.dmg + collider.dmg
+			collider.add_child(shatter)
+			collider.get_node("CollisionShape2D").disabled = true
+			collider.get_node("Texture").visible = false
+			collider.speed = collided.speed * 0.2
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
 		"sunder" + "construct":
-			# SHATTER: Disable initial ability and create an explosion
+			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()
 			shatter.parent = collided
-			shatter.dmg = collider.dmg * 1.7
+			shatter.dmg = collider.dmg + collider.dmg
 			collided.add_child(shatter)
 			collided.get_node("CollisionShape2D").disabled = true
 			collided.get_node("Texture").visible = false
 			collided.speed = collided.speed * 0.2
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 		"growth" + "construct":
 			# VINE: Transform type of spell to growth
 			collided.element = "growth"
+			collided.canReact = true
 			collided.get_node("Texture").color = Color("#70ad47")
 		"sunder" + "wither":
 			# SINGULARITY: Suck in enemies to center
+			print("penis")
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
 			var singularity = singularityScene.instantiate()
@@ -122,3 +143,7 @@ func perform_reaction(collider, collided):
 			collider.get_node("TimeoutTimer").wait_time = collider.get_node("TimeoutTimer").wait_time * 1.5
 			collided.get_node("TimeoutTimer").start()
 			collider.get_node("TimeoutTimer").start()
+		_:
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+	

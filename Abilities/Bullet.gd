@@ -6,6 +6,7 @@ var dmg = 10
 var timeout = 1.0
 var lifetime = 1.0
 var cooldown = 0.1
+var canReact = true
 var element
 
 # constructs the bullet
@@ -42,7 +43,9 @@ func init(skillDict):
 func _physics_process(delta):
 	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
 	if collision and collision.get_collider().get_name() != "Player":
-		if collision.get_collider().is_in_group("skills"):
+		if collision.get_collider().is_in_group("skills") and canReact:
+			self.canReact = false
+			collision.get_collider().canReact = false
 			UniversalSkills.perform_reaction(self, collision.get_collider())
 		if collision.get_collider().is_in_group("monsters"):
 			collision.get_collider()._hit(dmg, $Texture.color)

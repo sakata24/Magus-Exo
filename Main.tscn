@@ -76,7 +76,7 @@ process_mode = 1
 position = Vector2(115, 91)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(3, 3)
 position_smoothing_speed = 20.0
 
 [node name="HUD" parent="." instance=ExtResource("4")]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://u0342krk7yvn"]
+
+[ext_resource type="Script" path="res://Characters/Enemies/Charger.gd" id="1_kvkxl"]
+
+[node name="Charger" type="CharacterBody2D"]
+script = ExtResource("1_kvkxl")
