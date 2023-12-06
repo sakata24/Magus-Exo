@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://u0342krk7yvn"]
+[gd_scene load_steps=3 format=3 uid="uid://dfp0saptduhg3"]
 
+[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="1_aci6j"]
 [ext_resource type="Script" path="res://Characters/Enemies/Charger.gd" id="1_kvkxl"]
 
-[node name="Charger" type="CharacterBody2D"]
+[node name="Charger" instance=ExtResource("1_aci6j")]
 script = ExtResource("1_kvkxl")
+
+[node name="DamageArea" parent="." index="3"]
+visible = false
+
+[node name="CollisionPolygon2D" parent="DamageArea" index="0"]
+polygon = PackedVector2Array(-10, -9, -1, -11, 8, -9, 9, 0, 8, 9, -1, 11, -10, 9, -11, 0)
+
+[node name="Indicator" parent="DamageArea" index="1"]
+visible = true
+position = Vector2(-1, 0)
+color = Color(1, 0, 0, 0.509804)
+polygon = PackedVector2Array(12, -5, 24, -7, 29, 0, 24, 7, 12, 5, 14, 0)
+
+[node name="Indicator2" type="Polygon2D" parent="DamageArea" index="2"]
+position = Vector2(15, 0)
+color = Color(1, 0, 0, 0.313726)
+polygon = PackedVector2Array(11, -8, 23, -9, 29, 0, 23, 9, 11, 8, 17, 0)
+
+[node name="Indicator3" type="Polygon2D" parent="DamageArea" index="3"]
+position = Vector2(37, 0)
+color = Color(1, 0, 0, 0.196078)
+polygon = PackedVector2Array(5, -9, 18, -8, 23, 0, 18, 8, 5, 9, 11, 0)
+
+[node name="DashTimer" type="Timer" parent="." index="5"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

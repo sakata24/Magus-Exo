@@ -1,28 +1,38 @@
-extends CharacterBody2D
+extends "res://Characters/Enemies/Monster.gd"
 
+var lockTarget
+var dashing = 0
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
+# make the monster move
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+	if aggro and not attacking and not dashing:
+		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
+		chase(delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if dashing:
+			print(lockTarget)
+			set_velocity(position.direction_to(lockTarget) * speed * 4.5)
+			move_and_slide()
+			
 
-	move_and_slide()
+# chases the player
+func chase(delta):
+	if position.distance_to(player.position) > 75:
+		set_velocity(position.direction_to(player.position) * speed)
+		move_and_slide()
+	else:
+		attacking = true
+		lockTarget = (player.position-self.position) * 3 * player.position
+		$DamageArea.look_at(lockTarget)
+		$DamageArea.visible = true
+		$AttackTimer.start()
+
+func _on_attack_timer_timeout():
+	dashing = true
+	$DamageArea.visible = false
+	$DashTimer.start()
+
+
+func _on_dash_timer_timeout():
+	dashing = false
+	attacking = false

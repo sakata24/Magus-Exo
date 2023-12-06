@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3ijipo5rvv8c"]
+[gd_scene load_steps=5 format=3 uid="uid://d3ijipo5rvv8c"]
 
 [ext_resource type="Script" path="res://Maps/Map.gd" id="1"]
 [ext_resource type="TileSet" uid="uid://d4a2fvccc734x" path="res://Maps/GrassHill.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dfp0saptduhg3" path="res://Characters/Enemies/Charger.tscn" id="4_ynbhv"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1")
@@ -37,3 +38,6 @@ position = Vector2(62, 234)
 
 [node name="Monster6" parent="TileMap" groups=["monsters"] instance=ExtResource("3")]
 position = Vector2(489, 10)
+
+[node name="Charger" parent="TileMap" instance=ExtResource("4_ynbhv")]
+position = Vector2(28, 92)
