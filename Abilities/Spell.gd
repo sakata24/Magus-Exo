@@ -7,17 +7,18 @@ var dmg = 10
 var timeout = 1
 var lifetime = 1
 var cooldown = 0.1
+var size = 1
 var canReact = true
 var element
 
 const CAST_RANGE = 500
 
 # constructs the bullet
-func init(skillDict, pos):
+func init(skillDict, castTarget, caster):
 	# set variables
 	abilityID = skillDict["name"]
 	speed = skillDict["speed"] * speed
-	self.scale *= skillDict["size"]
+	size *= skillDict["size"]
 	dmg *= skillDict["dmg"]
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
@@ -37,13 +38,14 @@ func init(skillDict, pos):
 	elif element == "wither":
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
-	self.position = pos
+	self.position = castTarget
+	self.scale *= size
 	$LifetimeTimer.wait_time = lifetime
 	# start timer
 	$TimeoutTimer.wait_time = timeout
 	$TimeoutTimer.start()
 	# perform operation on spawn
-	UniversalSkills.perform_spawn(self)
+	UniversalSkills.perform_spawn(self, castTarget, caster)
 
 func _ready():
 	pass

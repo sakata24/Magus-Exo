@@ -15,7 +15,6 @@ polygon = PackedVector2Array(-10, -9, -1, -11, 8, -9, 9, 0, 8, 9, -1, 11, -10, 9
 [node name="Indicator" parent="DamageArea" index="1"]
 visible = true
 position = Vector2(-1, 0)
-color = Color(1, 0, 0, 0.509804)
 polygon = PackedVector2Array(12, -5, 24, -7, 29, 0, 24, 7, 12, 5, 14, 0)
 
 [node name="Indicator2" type="Polygon2D" parent="DamageArea" index="2"]

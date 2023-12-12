@@ -38,7 +38,7 @@ var xp = 0
 var learnedSkills = [0, 1, 2, 3, 4, 5]
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "rock", "crack", "suspend"]
+var equippedSkills = ["bolt", "rock", "fissure", "suspend"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -51,6 +51,8 @@ var dashCD = 4
 var canDash = true
 # the dash ready
 var dashIFrames = 0
+# can cast an ability
+var canCast = true
 
 func _ready():
 	$DashTimer.wait_time = dashCD
@@ -163,18 +165,20 @@ func movementHelper(delta):
 func cast_ability(skill):
 	# obtain reference to the ability dict
 	var ability = UniversalSkills._get_ability(skill)
+	canCast = false
 	castTarget = get_global_mouse_position()
 	speed = 0
 	moving = false
 	$CastTimer.start()
 	await $CastTimer.timeout
+	canCast = true
 	if ability["type"] == "bullet":
 		# load the projectile
 		var projectile = projectileLoad.instantiate()
 		# spawn the projectile and initialize it
 		get_parent().add_child(projectile)
 		projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
-		projectile.init(ability)
+		projectile.init(ability, castTarget, self)
 		# calculates the projectiles direction
 		projectile.velocity = castTarget - projectile.position
 	elif ability["type"] == "spell":
@@ -182,7 +186,7 @@ func cast_ability(skill):
 		var spell = spellLoad.instantiate()
 		# spawn the spell and initialize it
 		get_parent().add_child(spell)
-		spell.init(ability, castTarget)
+		spell.init(ability, castTarget, self)
 
 func gain_xp(amount):
 	xp += amount

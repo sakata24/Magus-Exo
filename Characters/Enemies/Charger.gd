@@ -6,7 +6,7 @@ var dashing = 0
 # make the monster move
 func _physics_process(delta):
 	if aggro and not attacking and not dashing:
-		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
+		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.5)
 		chase(delta)
 	else:
 		if dashing:
@@ -22,7 +22,7 @@ func chase(delta):
 		move_and_slide()
 	else:
 		attacking = true
-		lockTarget = (player.position-self.position) * 3 * player.position
+		lockTarget = player.global_position - (self.global_position - player.global_position)
 		$DamageArea.look_at(lockTarget)
 		$DamageArea.visible = true
 		$AttackTimer.start()

@@ -7,14 +7,15 @@ var timeout = 1.0
 var lifetime = 1.0
 var cooldown = 0.1
 var canReact = true
+var size = 1
 var element
 
 # constructs the bullet
-func init(skillDict):
+func init(skillDict, castTarget, caster):
 	# set variables
 	abilityID = skillDict["name"]
 	speed = skillDict["speed"] * speed
-	scale *= skillDict["size"]
+	size *= skillDict["size"]
 	dmg *= skillDict["dmg"]
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
@@ -33,11 +34,12 @@ func init(skillDict):
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
 	$LifetimeTimer.wait_time = lifetime
+	scale *= size
 	# start timer
 	$TimeoutTimer.wait_time = timeout
 	$TimeoutTimer.start()
 	# perform operation on spawn
-	UniversalSkills.perform_spawn(self)
+	UniversalSkills.perform_spawn(self, castTarget, caster)
 
 # handles movement of bullet
 func _physics_process(delta):

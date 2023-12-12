@@ -18,7 +18,7 @@ func _get_ability(skill):
 	return skillDict[skill]
 
 # performs action of ability on spawn
-func perform_spawn(ability):
+func perform_spawn(ability, pos, caster):
 	match ability.abilityID:
 		"cell":
 			var timer = Timer.new()
@@ -50,9 +50,19 @@ func perform_spawn(ability):
 				ability.monitoring = false
 				await timer.timeout
 			timer.queue_free()
-			print("smoke")
+		"fissure":
+			ability.modulate.a = 0.5
+			ability.monitoring = false
+			ability.scale.x *= 3.0
+			ability.scale.y *= 0.8
+			ability.position = clamp_vector(pos, caster.global_position, 70)
+			ability.look_at(caster.global_position)
 		_:
 			print("nothing")
+
+func clamp_vector(vector, clamp_origin, clamp_length):
+	var offset = (vector - clamp_origin) * 10000
+	return clamp_origin + offset.limit_length(clamp_length)
 
 # performs action of an ability on timeout
 func perform_timeout(ability):
@@ -78,6 +88,19 @@ func perform_timeout(ability):
 		"suspend":
 			print("fade")
 			ability.modulate.a = 0.3
+		"fissure":
+			ability.modulate.a = 0.7
+			var timer = Timer.new()
+			timer.wait_time = 0.5
+			ability.add_child(timer)
+			while true:
+				timer.start()
+				ability.monitoring = true
+				await timer.timeout
+				timer.start()
+				ability.monitoring = false
+				await timer.timeout
+			timer.queue_free()
 		_:
 			print("nothing")
 
@@ -99,6 +122,7 @@ func perform_reaction(collider, collided):
 			var shatter = shatterScene.instantiate()
 			shatter.parent = collider
 			shatter.dmg = collided.dmg + collider.dmg
+			collider.scale = Vector2(1,1)
 			collider.add_child(shatter)
 			collider.get_node("CollisionShape2D").disabled = true
 			collider.get_node("Texture").visible = false
@@ -110,6 +134,7 @@ func perform_reaction(collider, collided):
 			var shatter = shatterScene.instantiate()
 			shatter.parent = collided
 			shatter.dmg = collider.dmg + collider.dmg
+			collided.scale = Vector2(1,1)
 			collided.add_child(shatter)
 			collided.get_node("CollisionShape2D").disabled = true
 			collided.get_node("Texture").visible = false

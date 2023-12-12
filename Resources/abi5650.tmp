@@ -80,10 +80,10 @@
 		"fissure": {
 			"name": "fissure",
 			"cooldown": 12.0,
-			"dmg": 0.5,
+			"dmg": 0.2,
 			"element": "construct",
 			"lifetime": 3.5,
-			"size": 5.0,
+			"size": 10.0,
 			"speed": 0.0,
 			"timeout": 0.5,
 			"type": "spell"

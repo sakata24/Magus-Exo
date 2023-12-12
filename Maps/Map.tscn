@@ -39,5 +39,8 @@ position = Vector2(62, 234)
 [node name="Monster6" parent="TileMap" groups=["monsters"] instance=ExtResource("3")]
 position = Vector2(489, 10)
 
-[node name="Charger" parent="TileMap" instance=ExtResource("4_ynbhv")]
-position = Vector2(28, 92)
+[node name="Charger" parent="TileMap" groups=["monsters"] instance=ExtResource("4_ynbhv")]
+position = Vector2(410, 175)
+
+[node name="Charger2" parent="TileMap" groups=["monsters"] instance=ExtResource("4_ynbhv")]
+position = Vector2(106, -42)
