@@ -1,7 +1,7 @@
+CollisionPolygon2D
 Timer
 CharacterBody2D
 Polygon2D
-CollisionPolygon2D
 Area2D
 Label
 Node2D

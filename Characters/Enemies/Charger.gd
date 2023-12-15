@@ -22,7 +22,8 @@ func chase(delta):
 		move_and_slide()
 	else:
 		attacking = true
-		lockTarget = player.global_position - (self.global_position - player.global_position)
+		# target PAST the player
+		lockTarget = player.global_position - ((self.global_position - player.global_position) * speed * 4.5)
 		$DamageArea.look_at(lockTarget)
 		$DamageArea.visible = true
 		$AttackTimer.start()
@@ -36,3 +37,8 @@ func _on_attack_timer_timeout():
 func _on_dash_timer_timeout():
 	dashing = false
 	attacking = false
+
+
+func _on_damage_area_body_entered(body):
+	if body.name == "Player":
+			body.hit(myDmg)

@@ -8,7 +8,6 @@ var timeout = 1
 var lifetime = 1
 var cooldown = 0.1
 var size = 1
-var canReact = true
 var element
 
 const CAST_RANGE = 500
@@ -52,18 +51,18 @@ func _ready():
 
 func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
-		if body.is_in_group("skills") and canReact:
+		if body.is_in_group("skills"):
 			print("reaction with " + body.element + " + " + self.element)
-			self.canReact = false
-			body.canReact = false
+			set_collision_layer_value(3, false)
+			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
 			body._hit(dmg, $Texture.color)
 
 func _on_area_entered(area):
-	if area.name == "SpellBody" and canReact:
-		self.canReact = false
-		area.canReact = false
+	if area.name == "SpellBody":
+		set_collision_layer_value(3, false)
+		set_collision_mask_value(3, false)
 		UniversalSkills.perform_reaction(area, self)
 
 func _on_TimeoutTimer_timeout():

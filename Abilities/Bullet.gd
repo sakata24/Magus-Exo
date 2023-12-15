@@ -45,9 +45,9 @@ func init(skillDict, castTarget, caster):
 func _physics_process(delta):
 	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
 	if collision and collision.get_collider().get_name() != "Player":
-		if collision.get_collider().is_in_group("skills") and canReact:
-			self.canReact = false
-			collision.get_collider().canReact = false
+		if collision.get_collider().is_in_group("skills"):
+			set_collision_layer_value(3, false)
+			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(self, collision.get_collider())
 		if collision.get_collider().is_in_group("monsters"):
 			collision.get_collider()._hit(dmg, $Texture.color)
