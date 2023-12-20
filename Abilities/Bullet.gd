@@ -44,6 +44,7 @@ func init(skillDict, castTarget, caster):
 # handles movement of bullet
 func _physics_process(delta):
 	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
+	# check collisions
 	if collision and collision.get_collider().get_name() != "Player":
 		if collision.get_collider().is_in_group("skills"):
 			set_collision_layer_value(3, false)

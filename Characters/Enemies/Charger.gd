@@ -2,12 +2,15 @@ extends "res://Characters/Enemies/Monster.gd"
 
 var lockTarget
 var dashing = 0
+var canHit = true
 
 # make the monster move
 func _physics_process(delta):
+	# make it rotate around and chase
 	if aggro and not attacking and not dashing:
 		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.5)
 		chase(delta)
+	# make it dash
 	else:
 		if dashing:
 			print(lockTarget)
@@ -37,7 +40,6 @@ func _on_attack_timer_timeout():
 func _on_dash_timer_timeout():
 	dashing = false
 	attacking = false
-
 
 func _on_damage_area_body_entered(body):
 	if body.name == "Player":

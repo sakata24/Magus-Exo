@@ -7,7 +7,7 @@ func _ready():
 		monster.connect("giveXp", Callable($Player, "gain_xp"))
 	
 	# connect hud to player
-	$HUD/HealthLabel.text = ("Health: " + str($Player.health))
+	$HUD/Health/HealthLabel.text = ("Health: " + str($Player.health))
 	$HUD/EXPLabel.text = ("EXP: " + str($Player.xp) + " /" + str($Player.currentXpThreshold))
 	$HUD/Skill0/SkillName.text = ("Q: " + str($Player.equippedSkills[0]))
 	$HUD/Skill1/SkillName.text = ("W: " + str($Player.equippedSkills[1]))
@@ -17,6 +17,7 @@ func _ready():
 	$Player.connect("level_up", Callable(self, "_leveled_up"))
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
+	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_hp"))
 
 

@@ -11,6 +11,7 @@ signal level_up(level)
 signal moving_to()
 signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)
+signal cooling_dash(dash_cd, dash_cd_max)
 signal player_hit(newHP)
 
 # constants
@@ -18,6 +19,7 @@ const XPTHRESHOLDS = [5, 10, 15, 20]
 
 # instance variable for player HP
 var health = 25
+var maxHealth = 25
 
 # instance variables for player movement
 var max_speed = 100
@@ -109,6 +111,7 @@ func _process(delta):
 func _physics_process(delta):
 	$ProjectilePivot.look_at(castTarget)
 	emit_signal("cooling_down", skillTimer, skillCD)
+	emit_signal("cooling_dash", $DashTimer.time_left, $DashTimer.wait_time)
 	movementHelper(delta)
 	if skillTimer[0] == skillCD[0]:
 		skillReady[0] = true
@@ -194,6 +197,7 @@ func gain_xp(amount):
 		print("level up!")
 		lvl += 1
 		emit_signal("level_up", lvl)
+		$DashTimer.wait_time *= 0.85
 		# increment currentXpThreshold to the next
 		currentXpThreshold = XPTHRESHOLDS[XPTHRESHOLDS.find(currentXpThreshold) + 1]
 	print("gained ", amount, " xp")
@@ -201,7 +205,7 @@ func gain_xp(amount):
 
 func hit(damage):
 	health -= damage
-	emit_signal("player_hit", health)
+	emit_signal("player_hit", health, maxHealth)
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = Color(255, 0, 0)
 	get_parent().add_child(dmgNum)
