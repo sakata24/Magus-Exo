@@ -6,7 +6,7 @@
 [node name="Charger" instance=ExtResource("1_aci6j")]
 script = ExtResource("1_kvkxl")
 
-[node name="DamageArea" parent="." index="3"]
+[node name="DamageArea" parent="." index="4"]
 visible = false
 
 [node name="CollisionPolygon2D" parent="DamageArea" index="0"]

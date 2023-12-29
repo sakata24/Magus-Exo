@@ -67,6 +67,7 @@ Space={
 
 2d_physics/layer_1="players"
 2d_physics/layer_2="enemies"
+2d_navigation/layer_2="collisions"
 2d_physics/layer_3="spells"
 2d_physics/layer_4="characters"
 

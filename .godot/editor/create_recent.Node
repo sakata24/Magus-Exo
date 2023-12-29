@@ -1,9 +1,11 @@
+NavigationRegion2D
+Timer
+NavigationAgent2D
 Control
 Container
 ColorRect
 Node2D
 CollisionPolygon2D
-Timer
 CharacterBody2D
 Polygon2D
 Area2D

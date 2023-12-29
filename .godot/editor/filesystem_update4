@@ -13,9 +13,5 @@ res://Abilities/Reactions/Extinction.tscn
 res://Maps/Map.tscn
 res://Characters/Enemies/Monster.tscn
 res://Characters/Enemies/Charger.tscn
-res://HUDs/HUD.gd
-res://Main.gd
-res://Characters/Enemies/Charger.gd
-res://Characters/Player.gd
-res://Abilities/Bullet.gd
 res://Maps/Home.tscn
+res://Characters/Enemies/Monster.gd

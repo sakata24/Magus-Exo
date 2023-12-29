@@ -35,17 +35,19 @@ func _process(delta):
 # make the monster move
 func _physics_process(delta):
 	if aggro and not attacking:
-		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
+		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
 		chase(delta)
 
 # chases the player
 func chase(delta):
 	if position.distance_to(player.position) > 17:
-		set_velocity(position.direction_to(player.position) * speed)
+		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
+		#print(velocity)
 		move_and_slide()
 	else:
 		attacking = true
 		$DamageArea/Indicator.visible = true
+		$DamageArea.look_at(player.position)
 		$AttackTimer.start()
 
 # hit by something
@@ -64,6 +66,7 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 		if body.name == "Player":
 			aggro = true
 			player = body
+			$PathTimer.start()
 
 # when i die
 func die():
@@ -76,3 +79,7 @@ func _on_attack_timer_timeout():
 			body.hit(myDmg)
 	attacking = false
 	$DamageArea/Indicator.visible = false
+
+func _on_path_timer_timeout():
+	print($NavigationAgent2D.target_position)
+	$NavigationAgent2D.target_position = player.global_position

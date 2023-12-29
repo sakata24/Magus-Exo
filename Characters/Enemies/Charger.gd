@@ -8,7 +8,7 @@ var canHit = true
 func _physics_process(delta):
 	# make it rotate around and chase
 	if aggro and not attacking and not dashing:
-		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.5)
+		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.5)
 		chase(delta)
 	# make it dash
 	else:
@@ -21,7 +21,7 @@ func _physics_process(delta):
 # chases the player
 func chase(delta):
 	if position.distance_to(player.position) > 75:
-		set_velocity(position.direction_to(player.position) * speed)
+		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
 		move_and_slide()
 	else:
 		attacking = true
