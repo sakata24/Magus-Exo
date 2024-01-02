@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4ktyer38vnk4"]
+[gd_scene load_steps=7 format=3 uid="uid://c4ktyer38vnk4"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/Monster.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dylnl4hcv320u" path="res://Resources/icon.png" id="2"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_801wt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8g1r8"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="2"]
 radius = 75.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5y84s"]
+font = ExtResource("3_801wt")
+font_size = 9
+font_color = Color(1, 0, 1, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.478431)
 
 [node name="Monster" type="CharacterBody2D"]
 collision_layer = 10
@@ -24,7 +33,6 @@ shape = SubResource("CircleShape2D_8g1r8")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2
-path_postprocessing = 1
 debug_enabled = true
 
 [node name="AggroRange" type="Area2D" parent="."]
@@ -51,6 +59,15 @@ one_shot = true
 
 [node name="PathTimer" type="Timer" parent="."]
 wait_time = 0.4
+
+[node name="StatusLabel" type="Label" parent="."]
+visible = false
+offset_left = -18.0
+offset_top = -14.0
+offset_right = 18.0
+offset_bottom = 1.0
+text = "STUN"
+label_settings = SubResource("LabelSettings_5y84s")
 
 [connection signal="body_entered" from="AggroRange" to="." method="_on_AggroRange_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

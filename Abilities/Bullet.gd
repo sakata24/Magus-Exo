@@ -50,9 +50,10 @@ func _physics_process(delta):
 			set_collision_layer_value(3, false)
 			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(self, collision.get_collider())
-		if collision.get_collider().is_in_group("monsters"):
+		elif collision.get_collider().is_in_group("monsters"):
 			collision.get_collider()._hit(dmg, $Texture.color)
-		UniversalSkills.perform_despawn(self)
+			UniversalSkills.perform_despawn(self, collision.get_collider())
+		UniversalSkills.perform_despawn(self, null)
 
 # if end of timeout, perform action (usually start lifetime timer)
 func _on_TimeoutTimer_timeout():
@@ -60,7 +61,7 @@ func _on_TimeoutTimer_timeout():
 	UniversalSkills.perform_timeout(self)
 
 func _on_LifetimeTimer_timeout():
-	UniversalSkills.perform_despawn(self)
+	UniversalSkills.perform_despawn(self, null)
 
 func _delete():
 	queue_free()

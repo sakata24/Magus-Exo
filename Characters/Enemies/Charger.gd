@@ -7,7 +7,7 @@ var canHit = true
 # make the monster move
 func _physics_process(delta):
 	# make it rotate around and chase
-	if aggro and not attacking and not dashing:
+	if aggro and not attacking and not dashing and canMove:
 		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.5)
 		chase(delta)
 	# make it dash
@@ -15,16 +15,16 @@ func _physics_process(delta):
 		if dashing:
 			print(lockTarget)
 			set_velocity(position.direction_to(lockTarget) * speed * 4.5)
-			move_and_slide()
-			
+	move_and_slide()
 
 # chases the player
 func chase(delta):
 	if position.distance_to(player.position) > 75:
 		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
-		move_and_slide()
+
 	else:
 		attacking = true
+		set_velocity(Vector2.ZERO)
 		# target PAST the player
 		lockTarget = player.global_position - ((self.global_position - player.global_position) * speed * 4.5)
 		$DamageArea.look_at(lockTarget)

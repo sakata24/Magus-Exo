@@ -70,4 +70,4 @@ func _on_TimeoutTimer_timeout():
 	UniversalSkills.perform_timeout(self)
 
 func _on_LifetimeTimer_timeout():
-	UniversalSkills.perform_despawn(self)
+	UniversalSkills.perform_despawn(self, null)

@@ -1,8 +1,9 @@
 res://default_env.tres
-res://HUDs/Home.tscn
-res://Maps/GrassHill.tres
-res://Abilities/Bullet.tscn
 res://Characters/Player.tscn
+res://Maps/GrassHill.tres
+res://Characters/Player.gd
+res://HUDs/Home.tscn
+res://Abilities/Bullet.tscn
 res://Main.tscn
 res://HUDs/HUD.tscn
 res://Abilities/Reactions/Shatter.tscn
@@ -14,4 +15,9 @@ res://Maps/Map.tscn
 res://Characters/Enemies/Monster.tscn
 res://Characters/Enemies/Charger.tscn
 res://Maps/Home.tscn
+res://Resources/abilitysheet.txt
+res://UniversalSkills.gd
+res://Abilities/Bullet.gd
+res://Abilities/Spell.gd
 res://Characters/Enemies/Monster.gd
+res://Characters/Enemies/Charger.gd

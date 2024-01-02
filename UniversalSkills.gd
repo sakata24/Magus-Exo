@@ -35,6 +35,7 @@ func start_tick_timer(ability, tick):
 func perform_spawn(ability, pos, caster):
 	match ability.abilityID:
 		"cell":
+			# Timer that ticks every .05 and grows
 			var timer = Timer.new()
 			timer.wait_time = 0.05
 			ability.add_child(timer)
@@ -42,12 +43,13 @@ func perform_spawn(ability, pos, caster):
 			timer.start()
 			while true:
 				print("beeg")
-				ability.scale *= 1.1
+				ability.scale += Vector2(0.2, 0.2)
 				ability.dmg += 1
 				await timer.timeout
 				timer.start()
 			timer.queue_free()
 		"vine":
+			# Simply change the hitbox
 			ability.modulate.a = 1.0
 			var vectorArray = PackedVector2Array([
 				Vector2(0, -0.4),
@@ -60,12 +62,15 @@ func perform_spawn(ability, pos, caster):
 			ability.position = clamp_vector(pos, caster.global_position, 10)
 			ability.look_at(pos)
 		"fountain":
+			# add a color to indicate colliision delay
 			ability.modulate.a = 0.5
 			ability.set_collision_mask_value(2, false)
 		"suspend":
+			# make it tick
 			ability.modulate.a = 0.5
 			start_tick_timer(ability, 0.13)
 		"fissure":
+			# change the hitbox
 			ability.modulate.a = 0.5
 			ability.set_collision_mask_value(2, false)
 			# setting hitbox
@@ -80,6 +85,7 @@ func perform_spawn(ability, pos, caster):
 			ability.position = clamp_vector(pos, caster.global_position, 10)
 			ability.look_at(pos)
 		"storm":
+			# create a timer that will tick at a time relevant to the amount of enemies in area, as well as dmg
 			ability.modulate.a = 0.5
 			ability.disconnect("body_entered", ability._on_SpellBody_body_entered)
 			var timer = Timer.new()
@@ -103,6 +109,7 @@ func perform_spawn(ability, pos, caster):
 		_:
 			print("nothing")
 
+# helper method to create spells cast from char
 func clamp_vector(vector, clamp_origin, clamp_length):
 	var offset = (vector - clamp_origin) * 10000
 	return clamp_origin + offset.limit_length(clamp_length)
@@ -137,11 +144,27 @@ func perform_timeout(ability):
 			print("nothing")
 
 # performs action of an ability before despawn
-func perform_despawn(ability):
-	match ability.abilityID:
-		_:
-			print("simple despawn")
-	ability.queue_free()
+func perform_despawn(ability, target):
+	if target != null:
+		match ability.abilityID:
+			"displace":
+				# remove target's ability to move and force their velocity to the bullet's
+				print(target)
+				target.canMove = false
+				target.velocity = ability.velocity * 1.5
+				ability.queue_free()
+				var timer = Timer.new()
+				timer.wait_time = 0.5
+				target.add_child(timer)
+				timer.start()
+				await timer.timeout
+				target.canMove = true
+				target.velocity = Vector2.ZERO
+			_:
+				print("simple despawn")
+				ability.queue_free()
+	else:
+		ability.queue_free()
 
 func perform_reaction(collider, collided):
 	print("reaction with " + collider.element + " + " + collided.element)

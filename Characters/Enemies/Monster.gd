@@ -18,6 +18,8 @@ var maxHealth = 50
 var bestowedXp = 1
 # am i attacking
 var attacking = false
+# can i move
+var canMove = true
 
 signal giveXp(xp)
 
@@ -29,22 +31,28 @@ func init():
 
 # handle internal processes
 func _process(delta):
+	if !canMove:
+		$StatusLabel.visible = true
+	else:
+		$StatusLabel.visible = false
 	if health <= 0:
 		die()
 
 # make the monster move
 func _physics_process(delta):
-	if aggro and not attacking:
+	if aggro and not attacking and canMove:
 		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
 		chase(delta)
+	move_and_slide()
 
 # chases the player
 func chase(delta):
 	if position.distance_to(player.position) > 17:
 		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
 		#print(velocity)
-		move_and_slide()
+		
 	else:
+		set_velocity(Vector2(0,0))
 		attacking = true
 		$DamageArea/Indicator.visible = true
 		$DamageArea.look_at(player.position)

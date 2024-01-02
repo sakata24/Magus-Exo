@@ -1,3 +1,5 @@
+Label
+TextEdit
 NavigationRegion2D
 Timer
 NavigationAgent2D
@@ -9,8 +11,6 @@ CollisionPolygon2D
 CharacterBody2D
 Polygon2D
 Area2D
-Label
-TextEdit
 Sprite2D
 AnimatedSprite2D
 CollisionShape2D
