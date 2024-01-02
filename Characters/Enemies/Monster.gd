@@ -52,7 +52,7 @@ func chase(delta):
 		#print(velocity)
 		
 	else:
-		set_velocity(Vector2(0,0))
+		set_velocity(Vector2.ZERO)
 		attacking = true
 		$DamageArea/Indicator.visible = true
 		$DamageArea.look_at(player.position)

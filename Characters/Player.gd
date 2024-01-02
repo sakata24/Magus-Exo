@@ -105,6 +105,8 @@ func _unhandled_input(event):
 			
 			
 func _process(delta):
+	if health <= 0:
+		pass
 	if self.global_position.distance_to(move_target) > 1:
 		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(move_target), 0.1)
 
