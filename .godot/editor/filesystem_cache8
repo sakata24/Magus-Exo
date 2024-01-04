@@ -1,44 +1,44 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1704202267
-default_env.tres::Environment::5025068929242938522::1704200675::0::1::::<><>::
+::res://::1704373705
+default_env.tres::Environment::5025068929242938522::1704205721::0::1::::<><>::
 Main.gd::GDScript::-1::1702984166::0::1::::<>Node2D<>::
-Main.tscn::PackedScene::7371735675159223026::1704200623::0::1::::<><>::res://Main.gd<>uid://d3ijipo5rvv8c::::res://Maps/Map.tscn<>uid://83qg0j5exfyc::::res://Characters/Player.tscn<>uid://76xj3tuaqt16::::res://HUDs/HUD.tscn<>uid://d37cep1ypwea6::::res://HUDs/Menu.tscn<>uid://cu3clq06ceo3a::::res://Resources/hud_elements/click_sprites.png
+Main.tscn::PackedScene::7371735675159223026::1704205641::0::1::::<><>::res://Main.gd<>uid://d3ijipo5rvv8c::::res://Maps/Map.tscn<>uid://83qg0j5exfyc::::res://Characters/Player.tscn<>uid://76xj3tuaqt16::::res://HUDs/HUD.tscn<>uid://d37cep1ypwea6::::res://HUDs/Menu.tscn<>uid://cu3clq06ceo3a::::res://Resources/hud_elements/click_sprites.png
 TopScript.gd::GDScript::-1::1697066849::0::1::::<>Node<>::
 UniversalSkills.gd::GDScript::-1::1704200574::0::1::::<>Node<>::
-::res://Abilities/::1704200675
+::res://Abilities/::1704205641
 Bullet.gd::GDScript::-1::1704200548::0::1::::<>CharacterBody2D<>::
-Bullet.tscn::PackedScene::2702864548459730026::1704200675::0::1::::<><>::res://Abilities/Bullet.gd
+Bullet.tscn::PackedScene::2702864548459730026::1704205641::0::1::::<><>::res://Abilities/Bullet.gd
 Spell.gd::GDScript::-1::1704198379::0::1::::<>Area2D<>::
-Spell.tscn::PackedScene::3316486938028157650::1704200623::0::1::::<><>::res://Abilities/Spell.gd
-::res://Abilities/Reactions/::1704200623
+Spell.tscn::PackedScene::3316486938028157650::1704205641::0::1::::<><>::res://Abilities/Spell.gd
+::res://Abilities/Reactions/::1704205641
 Extinction.gd::GDScript::-1::1701761071::0::1::::<>Area2D<>::
-Extinction.tscn::PackedScene::9035733413822788748::1704200623::0::1::::<><>::res://Abilities/Reactions/Extinction.gd
+Extinction.tscn::PackedScene::9035733413822788748::1704205641::0::1::::<><>::res://Abilities/Reactions/Extinction.gd
 Shatter.gd::GDScript::-1::1702378139::0::1::::<>Area2D<>::
-Shatter.tscn::PackedScene::3486440531028700940::1704200623::0::1::::<><>::res://Abilities/Reactions/Shatter.gd
+Shatter.tscn::PackedScene::3486440531028700940::1704205641::0::1::::<><>::res://Abilities/Reactions/Shatter.gd
 Singularity.gd::GDScript::-1::1701807548::0::1::::<>Area2D<>::
 Singularity.tscn::PackedScene::7772799341123602183::1702582602::0::1::::<><>::res://Abilities/Reactions/Singularity.gd
-::res://Characters/::1704200623
-Player.gd::GDScript::-1::1704199694::0::1::::Player<>CharacterBody2D<>::
-Player.tscn::PackedScene::2375017932172747198::1704200623::0::1::::<><>::res://Characters/Player.gd<>uid://b4xwkyie2sgob::::res://Resources/playersprite.png
-::res://Characters/Enemies/::1704200623
+::res://Characters/::1704205641
+Player.gd::GDScript::-1::1704204422::0::1::::Player<>CharacterBody2D<>::
+Player.tscn::PackedScene::2375017932172747198::1704205641::0::1::::<><>::res://Characters/Player.gd<>uid://b4xwkyie2sgob::::res://Resources/playersprite.png
+::res://Characters/Enemies/::1704205721
 Charger.gd::GDScript::-1::1704199031::0::1::::<>CharacterBody2D<>::
-Charger.tscn::PackedScene::7542722028729954164::1704200623::0::1::::<><>::uid://c4ktyer38vnk4::::res://Characters/Enemies/Monster.tscn<>res://Characters/Enemies/Charger.gd
-Monster.gd::GDScript::-1::1704200350::0::1::::<>CharacterBody2D<>::
-Monster.tscn::PackedScene::6830158330018226717::1704200623::0::1::::<><>::res://Characters/Enemies/Monster.gd<>uid://dylnl4hcv320u::::res://Resources/icon.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
-::res://HUDs/::1704200623
+Charger.tscn::PackedScene::7542722028729954164::1704205642::0::1::::<><>::uid://c4ktyer38vnk4::::res://Characters/Enemies/Monster.tscn<>res://Characters/Enemies/Charger.gd
+Monster.gd::GDScript::-1::1704205721::0::1::::<>CharacterBody2D<>::
+Monster.tscn::PackedScene::6830158330018226717::1704205721::0::1::::<><>::res://Characters/Enemies/Monster.gd<>uid://dylnl4hcv320u::::res://Resources/icon.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
+::res://HUDs/::1704205641
 DamageNumber.gd::GDScript::-1::1701759160::0::1::::<>Node2D<>::
-DamageNumber.tscn::PackedScene::3767290910899387559::1704200623::0::1::::<><>::res://HUDs/DamageNumber.gd<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
+DamageNumber.tscn::PackedScene::3767290910899387559::1704205641::0::1::::<><>::res://HUDs/DamageNumber.gd<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
 Home.gd::GDScript::-1::1697066849::0::1::::<>CanvasLayer<>::
-Home.tscn::PackedScene::4916289288811870075::1704200623::0::1::::<><>::res://HUDs/Home.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
+Home.tscn::PackedScene::4916289288811870075::1704205641::0::1::::<><>::res://HUDs/Home.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
 HUD.gd::GDScript::-1::1702984618::0::1::::<>CanvasLayer<>::
-HUD.tscn::PackedScene::2311452770686110239::1704200623::0::1::::<><>::res://HUDs/HUD.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
+HUD.tscn::PackedScene::2311452770686110239::1704205641::0::1::::<><>::res://HUDs/HUD.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
 Menu.gd::GDScript::-1::1697066849::0::1::::<>CanvasLayer<>::
-Menu.tscn::PackedScene::9190739167361806799::1704200623::0::1::::<><>::res://HUDs/Menu.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
-::res://Maps/::1704200623
-GrassHill.tres::TileSet::9196387910531257793::1704197921::0::1::::<><>::uid://br2q2auoy85w1::::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/new tiles/Grass hill tiles v.2.png
-Home.tscn::PackedScene::4860928445268822331::1704200623::0::1::::<><>::
+Menu.tscn::PackedScene::9190739167361806799::1704205641::0::1::::<><>::res://HUDs/Menu.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf
+::res://Maps/::1704205642
+GrassHill.tres::TileSet::9196387910531257793::1704204403::0::1::::<><>::uid://br2q2auoy85w1::::res://Resources/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/new tiles/Grass hill tiles v.2.png
+Home.tscn::PackedScene::4860928445268822331::1704205642::0::1::::<><>::
 Map.gd::GDScript::-1::1697066849::0::1::::<>Node2D<>::
-Map.tscn::PackedScene::9141626245126970672::1704200623::0::1::::<><>::res://Maps/Map.gd<>uid://d4a2fvccc734x::::res://Maps/GrassHill.tres<>uid://c4ktyer38vnk4::::res://Characters/Enemies/Monster.tscn<>uid://dfp0saptduhg3::::res://Characters/Enemies/Charger.tscn
+Map.tscn::PackedScene::9141626245126970672::1704205642::0::1::::<><>::res://Maps/Map.gd<>uid://d4a2fvccc734x::::res://Maps/GrassHill.tres<>uid://c4ktyer38vnk4::::res://Characters/Enemies/Monster.tscn<>uid://dfp0saptduhg3::::res://Characters/Enemies/Charger.tscn
 ::res://Resources/::1704199557
 abilitysheet.txt::TextFile::-1::1704199557::0::1::::<><>::
 icon.png::CompressedTexture2D::8867312952436507394::1697066849::1697238557::1::::<><>::

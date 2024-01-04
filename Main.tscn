@@ -73,7 +73,7 @@ process_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3")]
 process_mode = 1
-position = Vector2(257, 229)
+position = Vector2(325, 237)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
