@@ -89,5 +89,4 @@ func _on_attack_timer_timeout():
 	$DamageArea/Indicator.visible = false
 
 func _on_path_timer_timeout():
-	print($NavigationAgent2D.target_position)
 	$NavigationAgent2D.target_position = player.global_position

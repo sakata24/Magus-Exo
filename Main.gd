@@ -1,12 +1,9 @@
 extends Node2D
 
 var map = preload("res://Maps/Map.tscn")
+var roomArray = []
 
 func _ready():
-	# fetch group of monsters on the map and connect their giveXp signals to player
-	var monsters = $Map.get_tree().get_nodes_in_group("monsters")
-	for monster in monsters:
-		monster.connect("giveXp", Callable($Player, "gain_xp"))
 	
 	# connect hud to player
 	$HUD/Health/HealthLabel.text = ("Health: " + str($Player.health))
@@ -21,7 +18,16 @@ func _ready():
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_hp"))
-	$Map.connect("edge_reached", Callable(self, "_create_room"))
+	
+	for i in range(0,6):
+		for j in range(0,6):
+			var newRoom = map.instantiate()
+			newRoom.position = Vector2(position.x + (816.0 * i), position.y + (816.0 * j))
+			$Rooms.add_child(newRoom)
+			# fetch group of monsters on the map and connect their giveXp signals to player
+			var monsters = newRoom.get_tree().get_nodes_in_group("monsters")
+			for monster in monsters:
+				monster.connect("giveXp", Callable($Player, "gain_xp"))
 
 
 func _unhandled_input(event):
@@ -41,21 +47,3 @@ func _show_click():
 func _on_click_animation_animation_finished():
 	$ClickAnimation.visible = false
 
-func _create_room(edge, location):
-	print("balls")
-	var newRoom = map.instantiate()
-	newRoom.connect("edge_reached", Callable(self, "_create_room"))
-	match edge:
-		'N': 
-			newRoom.position = Vector2(location.x, location.y - 816.0)
-			newRoom.get_node("SouthVisibilityNotifier").queue_free()
-		'S': 
-			newRoom.position = Vector2(location.x, location.y + 816.0)
-			newRoom.get_node("NorthVisibilityNotifier").queue_free()
-		'E': 
-			newRoom.position = Vector2(location.x + 816.0, location.y)
-			newRoom.get_node("WestVisibilityNotifier").queue_free()
-		'W': 
-			newRoom.position = Vector2(location.x - 816.0, location.y)
-			newRoom.get_node("EastVisibilityNotifier").queue_free()
-	$Map.add_sibling(newRoom)

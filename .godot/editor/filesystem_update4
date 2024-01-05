@@ -1,5 +1,4 @@
 res://default_env.tres
-res://Maps/Map.tscn
 res://Maps/GrassHill.tres
 res://HUDs/Home.tscn
 res://Abilities/Bullet.tscn
@@ -11,8 +10,10 @@ res://HUDs/Menu.tscn
 res://Abilities/Spell.tscn
 res://HUDs/DamageNumber.tscn
 res://Abilities/Reactions/Extinction.tscn
+res://Maps/Map.tscn
 res://Characters/Enemies/Monster.tscn
 res://Characters/Enemies/Charger.tscn
 res://Maps/Home.tscn
-res://Maps/Map.gd
+res://Maps/Map1.tscn
 res://Main.gd
+res://Maps/Map.gd

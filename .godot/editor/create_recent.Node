@@ -1,3 +1,7 @@
+Node2D
+Node
+CollisionShape2D
+Area2D
 VisibleOnScreenNotifier2D
 Label
 TextEdit
@@ -7,11 +11,8 @@ NavigationAgent2D
 Control
 Container
 ColorRect
-Node2D
 CollisionPolygon2D
 CharacterBody2D
 Polygon2D
-Area2D
 Sprite2D
 AnimatedSprite2D
-CollisionShape2D
