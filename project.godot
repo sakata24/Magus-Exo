@@ -23,8 +23,6 @@ Spell="*res://Abilities/Spell.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
@@ -72,6 +70,10 @@ Space={
 2d_navigation/layer_2="collisions"
 2d_physics/layer_3="spells"
 2d_physics/layer_4="characters"
+
+[navigation]
+
+2d/default_edge_connection_margin=8.0
 
 [physics]
 

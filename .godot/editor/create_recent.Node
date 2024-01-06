@@ -1,3 +1,7 @@
+ColorRect
+Control
+TileMap
+NavigationRegion2D
 Node2D
 Node
 CollisionShape2D
@@ -5,14 +9,6 @@ Area2D
 VisibleOnScreenNotifier2D
 Label
 TextEdit
-NavigationRegion2D
 Timer
 NavigationAgent2D
-Control
 Container
-ColorRect
-CollisionPolygon2D
-CharacterBody2D
-Polygon2D
-Sprite2D
-AnimatedSprite2D

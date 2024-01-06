@@ -15,9 +15,9 @@ func set_value_and_pos(pos, dmg):
 	$DmgText.text = str(dmg)
 	var tween = get_tree().create_tween()
 	var end_pos = Vector2(randf_range(-7, 7), -10) + pos
-	
-	tween.tween_property(self, "position", end_pos, 0.9)
+	print(pos)
+	print(end_pos)
+	tween.tween_property(self, "global_position", end_pos, 0.9)
 
 func _on_timer_timeout():
-	print("hi")
 	self.queue_free()

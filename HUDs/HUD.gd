@@ -1,18 +1,23 @@
 extends CanvasLayer
 
+var hudScale = 100
 
 func _ready():
 	_set_ui_size()
 	_hide_ability_names()
 
-func init(health, xp, max_xp, skill1, skill2, skill3, skill4):
-	_set_health(health)
+func init(health, max_health, xp, max_xp, skill1, skill2, skill3, skill4):
+	_set_health(health, max_health)
 	_set_xp(xp,max_xp)
 	set_lvl(0)
 	_set_skills(skill1,skill2,skill3,skill4)
 
-func _set_health(hp):
-	$HealthLabel.text = ("Health: " + str(hp))
+func _set_health(new_HP, max_HP):
+	$Health/ProgressBar.set_size(Vector2((4*hudScale*new_HP)/max_HP,(0.35*hudScale)))
+	$Health/HealthLabel.text = ("HEALTH: " + str(new_HP))
+
+func _set_dash_cd(dash_cd, dash_cd_max):
+	$Dash/ProgressBar.set_size(Vector2((4*hudScale)-(dash_cd*(4*hudScale)/dash_cd_max),(0.05*hudScale)))
 
 func _set_xp(xp, max_xp):
 	$EXPLabel.text = ("EXP: " + str(xp) + "/" + str(max_xp))

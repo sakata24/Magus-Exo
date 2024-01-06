@@ -1,5 +1,6 @@
 res://default_env.tres
-res://Maps/GrassHill.tres
+res://Maps/Map.tscn
+res://Maps/DungeonTileset.tres
 res://HUDs/Home.tscn
 res://Abilities/Bullet.tscn
 res://Characters/Player.tscn
@@ -10,10 +11,13 @@ res://HUDs/Menu.tscn
 res://Abilities/Spell.tscn
 res://HUDs/DamageNumber.tscn
 res://Abilities/Reactions/Extinction.tscn
-res://Maps/Map.tscn
 res://Characters/Enemies/Monster.tscn
 res://Characters/Enemies/Charger.tscn
 res://Maps/Home.tscn
 res://Maps/Map1.tscn
+res://Maps/Map2.tscn
 res://Main.gd
-res://Maps/Map.gd
+res://Characters/Enemies/Charger.gd
+res://Characters/Enemies/Monster.gd
+res://HUDs/HUD.gd
+res://HUDs/DamageNumber.gd

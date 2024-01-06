@@ -1,7 +1,7 @@
 extends "res://Characters/Enemies/Monster.gd"
 
 var lockTarget
-var dashing = 0
+var dashing = false
 var canHit = true
 
 # make the monster move
@@ -13,13 +13,12 @@ func _physics_process(delta):
 	# make it dash
 	else:
 		if dashing:
-			print(lockTarget)
 			set_velocity(position.direction_to(lockTarget) * speed * 4.5)
 	move_and_slide()
 
 # chases the player
 func chase(delta):
-	if position.distance_to(player.position) > 75:
+	if global_position.distance_to(player.global_position) > 75:
 		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
 
 	else:

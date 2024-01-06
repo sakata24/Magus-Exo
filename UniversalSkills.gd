@@ -226,4 +226,6 @@ func perform_reaction(collider, collided):
 		_:
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
-	
+			
+func get_skills():
+	return skillDict

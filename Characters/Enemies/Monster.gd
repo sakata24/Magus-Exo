@@ -49,7 +49,6 @@ func _physics_process(delta):
 func chase(delta):
 	if position.distance_to(player.position) > 17:
 		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
-		#print(velocity)
 		
 	else:
 		set_velocity(Vector2.ZERO)

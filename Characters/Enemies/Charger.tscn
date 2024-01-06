@@ -6,6 +6,9 @@
 [node name="Charger" instance=ExtResource("1_aci6j")]
 script = ExtResource("1_kvkxl")
 
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 0.431373, 0, 1)
+
 [node name="DamageArea" parent="." index="4"]
 visible = false
 
