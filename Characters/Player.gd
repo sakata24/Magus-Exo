@@ -30,7 +30,7 @@ signal moving_to()
 signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)
 signal cooling_dash(dash_cd, dash_cd_max)
-signal player_hit(newHP)
+signal player_hit(newHP, maxHP)
 
 # constants
 const XPTHRESHOLDS = [5, 10, 15, 20]
@@ -122,8 +122,7 @@ func _unhandled_input(event):
 			
 			
 func _process(delta):
-	if health <= 0:
-		pass
+	pass
 
 func _physics_process(delta):
 	$ProjectilePivot.look_at(castTarget)

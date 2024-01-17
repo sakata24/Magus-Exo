@@ -2,10 +2,6 @@ res://default_env.tres
 res://Characters/Player.tscn
 res://Maps/DungeonTileset.tres
 res://Characters/Player.gd
-res://Interactables/UpgradeChest.tscn
-res://HUDs/Selection.gd
-res://Interactables/UpgradeChest.gd
-res://HUDs/Selection.tscn
 res://Abilities/Bullet.tscn
 res://Main.tscn
 res://HUDs/HUD.tscn
@@ -13,9 +9,12 @@ res://Maps/Map.tscn
 res://Characters/Enemies/Monster.tscn
 res://Characters/Enemies/Charger.tscn
 res://Maps/Home.tscn
+res://Interactables/UpgradeChest.tscn
 res://HUDs/Menu.tscn
+res://HUDs/Selection.tscn
 res://Maps/Map1.tscn
 res://Maps/Spawn.tscn
-res://Characters/Enemies/Monster.gd
-res://UniversalSkills.gd
-res://Resources/abilitysheet.txt
+res://Main.gd
+res://HUDs/Selection.gd
+res://HUDs/Death.tscn
+res://HUDs/Death.gd

@@ -9,6 +9,7 @@ var exit = preload("res://Maps/Exit.tscn")
 var exit_room = Vector2i()
 var roomArray = []
 var MAP_SIZE = 3 # sqrt of room amt
+var popup = false
 
 func _ready():
 	# connect hud to player
@@ -18,6 +19,7 @@ func _ready():
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
+	$Player.connect("player_hit", Callable(self, "_check_death"))
 	init_rooms()
 
 func init_rooms():
@@ -91,7 +93,7 @@ func init_rooms():
 				monster.connect("giveXp", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
-	if event.is_action_pressed('ui_cancel'):
+	if event.is_action_pressed('ui_cancel') and !popup:
 		$Menu.visible = !$Menu.visible
 		get_tree().paused = !get_tree().paused
 
@@ -106,3 +108,9 @@ func _show_click():
 
 func _on_click_animation_animation_finished():
 	$ClickAnimation.visible = false
+
+func _check_death(newHP, maxHP):
+	if newHP <= 0:
+		popup = true
+		$Death.setup()
+		$Death.visible = true
