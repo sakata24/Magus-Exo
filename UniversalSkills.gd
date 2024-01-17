@@ -106,6 +106,7 @@ func perform_spawn(ability, pos, caster):
 			# create a timer that will tick at a time relevant to the amount of enemies in area, as well as dmg
 			ability.modulate.a = 0.5
 			ability.disconnect("body_entered", ability._on_SpellBody_body_entered)
+			ability.connect("body_entered", ability.on_spellBody_entered_override)
 			var timer = Timer.new()
 			timer.wait_time = 0.5
 			ability.add_child(timer)
@@ -167,7 +168,6 @@ func perform_despawn(ability, target):
 		match ability.abilityID:
 			"displace":
 				# remove target's ability to move and force their velocity to the bullet's
-				print(target)
 				target.canMove = false
 				target.velocity = ability.get_velocity() * 100
 				ability.queue_free()
@@ -178,6 +178,15 @@ func perform_despawn(ability, target):
 				await timer.timeout
 				target.canMove = true
 				target.velocity = Vector2.ZERO
+			"decay":
+				target.speed *= 0.5
+				ability.queue_free()
+				var timer = Timer.new()
+				timer.wait_time = 0.5
+				target.add_child(timer)
+				timer.start()
+				await timer.timeout
+				target.speed *= 2
 			_:
 				print("simple despawn")
 				ability.queue_free()
@@ -194,12 +203,16 @@ func perform_reaction(collider, collided):
 			# BLAST: Spawn projectiles randomly and radiate them outwards
 			var blast = blastScene.instantiate()
 			blast.init(collider, collided)
-			collided.add_child(blast)
+			collided.add_sibling(blast)
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
 		"entropy" + "sunder":
 			# BLAST: Spawn projectiles randomly and radiate them outwards
 			var blast = blastScene.instantiate()
 			blast.init(collider, collided)
-			collided.add_child(blast)
+			collided.add_sibling(blast)
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
 		"construct" + "sunder":
 			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()

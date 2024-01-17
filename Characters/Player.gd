@@ -4,6 +4,8 @@ class_name Player
 
 @export var sunder_dmg_boost = 1.0
 @export var sunder_extra_casts = 0
+var remainingCasts = 0
+var skillRef = null
 
 @export var entropy_speed_boost = 1.0
 @export var entropy_crit_chance = 0.0
@@ -17,7 +19,7 @@ class_name Player
 @export var flow_cooldown_reduction = 1.0
 @export var flow_spell_copies = 0
 
-@export var wither_lifetime_increase = 1.0
+@export var wither_lifetime_boost = 1.0
 @export var wither_size_boost = 1.0
 
 var projectileLoad = preload("res://Abilities/Bullet.tscn")
@@ -58,7 +60,7 @@ var xp = 0
 var upgradesChosen = []
 
 # to be changed when the player equips different skills
-var equippedSkills = ["charge", "crack", "fissure", "displace"]
+var equippedSkills = ["bolt", "storm", "fissure", "decay"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -210,6 +212,34 @@ func cast_ability(skill):
 		# spawn the spell and initialize it
 		get_parent().add_child(spell)
 		spell.init(ability, castTarget, self)
+	if ability["element"] == "sunder" and sunder_extra_casts > 0:
+		remainingCasts = sunder_extra_casts
+		skillRef = skill
+		$MultiCastTimer.start()
+
+func _on_multi_cast_timer_timeout():
+	if remainingCasts > 0:
+		var ability = UniversalSkills._get_ability(skillRef)
+		if ability["type"] == "bullet":
+			# load the projectile
+			var projectile = projectileLoad.instantiate()
+			# spawn the projectile and initialize it
+			get_parent().add_child(projectile)
+			projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
+			projectile.init(ability, castTarget, self)
+			# calculates the projectiles direction
+			projectile.velocity = (castTarget - projectile.position).normalized()
+		elif ability["type"] == "spell":
+			# load the spell
+			var spell = spellLoad.instantiate()
+			# spawn the spell and initialize it
+			get_parent().add_child(spell)
+			spell.init(ability, castTarget, self)
+		remainingCasts -= 1
+		$MultiCastTimer.start()
+	else:
+		skillRef = null
+
 
 func gain_xp(amount):
 	xp += amount
@@ -250,7 +280,7 @@ func upgrade(upgrade_int):
 				if UniversalSkills.skillDict[equippedSkills[i]]["element"] == "flow":
 					skillCD[i] *= 0.9
 		9: flow_spell_copies += 1
-		10: wither_lifetime_increase += 0.1
+		10: wither_lifetime_boost += 0.1
 		11: wither_size_boost += 0.1
 		_: pass
 	print("upgraded: ", upgrade_int)

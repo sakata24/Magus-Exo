@@ -1,6 +1,8 @@
-HSeparator
-VBoxContainer
 Button
+OptionButton
+VBoxContainer
+Timer
+HSeparator
 Label
 CanvasLayer
 VSplitContainer
@@ -10,6 +12,3 @@ Control
 AspectRatioContainer
 Container
 VSeparator
-ColorRect
-TextureButton
-HBoxContainer

@@ -18,3 +18,10 @@ res://Main.gd
 res://HUDs/Selection.gd
 res://HUDs/Death.tscn
 res://HUDs/Death.gd
+res://HUDs/Home.tscn
+res://Resources/abilitysheet.txt
+res://UniversalSkills.gd
+res://Abilities/Reactions/Blast.gd
+res://Abilities/Spell.tscn
+res://Abilities/Spell.gd
+res://HUDs/Menu.gd

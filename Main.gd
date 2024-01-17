@@ -20,6 +20,7 @@ func _ready():
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
 	$Player.connect("player_hit", Callable(self, "_check_death"))
+	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	init_rooms()
 
 func init_rooms():
@@ -114,3 +115,4 @@ func _check_death(newHP, maxHP):
 		popup = true
 		$Death.setup()
 		$Death.visible = true
+

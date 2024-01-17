@@ -6,6 +6,7 @@ func _ready():
 	self.scale = self.scale/get_parent().scale
 
 func init(sunderParent, entropyParent):
+	self.position = sunderParent.position
 	dmg = sunderParent.dmg + entropyParent.dmg
 	for n in range(1, 9):
 		get_node(str("Projectile", n)).init(450, dmg, self)
