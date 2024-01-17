@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://83qg0j5exfyc"]
+[gd_scene load_steps=5 format=3 uid="uid://83qg0j5exfyc"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://b4xwkyie2sgob" path="res://Resources/playersprite.png" id="2_bnuq4"]
+[ext_resource type="Texture2D" uid="uid://cryka57a5ond" path="res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="2_7vbht"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la2ll"]
+atlas = ExtResource("2_7vbht")
+region = Rect2(98, 32, 13, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bixge"]
 radius = 8.0
@@ -9,14 +13,12 @@ radius = 8.0
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 9
+motion_mode = 1
 script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(3, 0)
-rotation = 1.5708
-scale = Vector2(0.3, 0.295)
-texture = ExtResource("2_bnuq4")
+texture = SubResource("AtlasTexture_la2ll")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bixge")

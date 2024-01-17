@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch3yocec6sk0e"]
+
+[ext_resource type="Texture2D" uid="uid://bl4bjpbncf41p" path="res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="1_g8xes"]
+[ext_resource type="Script" path="res://Interactables/UpgradeChest.gd" id="1_u4jhe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1t8l3"]
+radius = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcfpg"]
+atlas = ExtResource("1_g8xes")
+region = Rect2(83, 132, 10, 10)
+
+[node name="UpgradeChest" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_u4jhe")
+
+[node name="Texture" type="Polygon2D" parent="."]
+color = Color(1, 1, 0, 0)
+polygon = PackedVector2Array(0, -15, 8, -13, 13, -8, 15, 0, 13, 8, 8, 13, 0, 15, -8, 13, -13, 8, -15, 0, -13, -8, -8, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_1t8l3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_fcfpg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

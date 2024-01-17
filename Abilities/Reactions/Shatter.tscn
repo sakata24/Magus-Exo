@@ -4,6 +4,8 @@
 
 [node name="Shatter" type="Area2D"]
 scale = Vector2(1e-05, 1e-05)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_6aelp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://rgu2qb8ck42q"]
+
+[ext_resource type="Script" path="res://Abilities/Reactions/Blast.gd" id="1_x77nc"]
+[ext_resource type="Script" path="res://Abilities/Reactions/BlastProjectile.gd" id="2_mko80"]
+
+[node name="Blast" type="Node2D"]
+script = ExtResource("1_x77nc")
+
+[node name="Projectile1" type="CharacterBody2D" parent="."]
+position = Vector2(-4, -6)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_mko80")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile1"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Projectile1"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Projectile2" type="CharacterBody2D" parent="."]
+position = Vector2(4, -6)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_mko80")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile2"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Projectile2"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Projectile3" type="CharacterBody2D" parent="."]
+position = Vector2(7, 0)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_mko80")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile3"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Projectile3"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Projectile4" type="CharacterBody2D" parent="."]
+position = Vector2(4, 6)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_mko80")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile4"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Projectile4"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Projectile5" type="CharacterBody2D" parent="."]
+position = Vector2(-4, 6)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_mko80")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile5"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Projectile5"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Projectile6" type="CharacterBody2D" parent="."]
+position = Vector2(-7, 0)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_mko80")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile6"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Projectile6"]
+polygon = PackedVector2Array(0, -3, 1, -1, 3, 0, 1, 1, 0, 3, -1, 1, -3, 0, -1, -1)

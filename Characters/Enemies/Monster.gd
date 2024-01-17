@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
+var upgradeDrop = preload("res://Interactables/UpgradeChest.tscn")
 
 # am i mad
 var aggro = false
@@ -47,8 +48,13 @@ func _physics_process(delta):
 
 # chases the player
 func chase(delta):
-	if position.distance_to(player.position) > 17:
-		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
+	if global_position.distance_to(player.global_position) > 19:
+		var new_velocity = to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed
+		if new_velocity.x < 0:
+			$Sprite2D.flip_h = true
+		elif new_velocity.x > 0:
+			$Sprite2D.flip_h = false
+		set_velocity(new_velocity)
 		
 	else:
 		set_velocity(Vector2.ZERO)
@@ -78,6 +84,16 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 # when i die
 func die():
 	emit_signal("giveXp", bestowedXp)
+	var drop
+	match randi_range(0, 2):
+		0: 
+			print("pee")
+			drop = upgradeDrop.instantiate()
+		_:
+			drop = null
+	if drop != null:
+		drop.position = position
+		get_parent().add_child(drop)
 	queue_free()
 
 func _on_attack_timer_timeout():

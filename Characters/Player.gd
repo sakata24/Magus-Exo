@@ -2,6 +2,24 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var sunder_dmg_boost = 1.0
+@export var sunder_extra_casts = 0
+
+@export var entropy_speed_boost = 1.0
+@export var entropy_crit_chance = 0.0
+
+@export var construct_size_boost = 1.0
+@export var construct_ignore_walls = false
+
+@export var growth_lifetime_boost = 1.0
+@export var growth_reaction_potency = 1.0
+
+@export var flow_cooldown_reduction = 1.0
+@export var flow_spell_copies = 0
+
+@export var wither_lifetime_increase = 1.0
+@export var wither_size_boost = 1.0
+
 var projectileLoad = preload("res://Abilities/Bullet.tscn")
 var spellLoad = preload("res://Abilities/Spell.tscn")
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
@@ -37,10 +55,10 @@ var lvl = 0
 var xp = 0
 
 # to be changed when the player obtains a new skill
-var learnedSkills = [0, 1, 2, 3, 4, 5]
+var upgradesChosen = []
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "cell", "fissure", "displace"]
+var equippedSkills = ["charge", "crack", "fissure", "displace"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -58,7 +76,6 @@ var canCast = true
 
 func _ready():
 	$DashTimer.wait_time = dashCD
-	self.look_at(Vector2(self.position.x, 10000.0))
 	move_target = Vector2(self.position.x, 10000.0)
 	initSkills()
 
@@ -107,8 +124,6 @@ func _unhandled_input(event):
 func _process(delta):
 	if health <= 0:
 		pass
-	if self.global_position.distance_to(move_target) > 1:
-		self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(move_target), 0.1)
 
 func _physics_process(delta):
 	$ProjectilePivot.look_at(castTarget)
@@ -165,6 +180,10 @@ func movementHelper(delta):
 		movement = velocity
 	else:
 		moving = false
+	if movement.x < 0:
+		$Sprite2D.flip_h = true
+	elif movement.x > 0:
+		$Sprite2D.flip_h = false
 
 # This function handles skill casting
 func cast_ability(skill):
@@ -185,7 +204,7 @@ func cast_ability(skill):
 		projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
 		projectile.init(ability, castTarget, self)
 		# calculates the projectiles direction
-		projectile.velocity = castTarget - projectile.position
+		projectile.velocity = (castTarget - projectile.position).normalized()
 	elif ability["type"] == "spell":
 		# load the spell
 		var spell = spellLoad.instantiate()
@@ -215,3 +234,24 @@ func hit(damage):
 
 func _on_dash_timer_timeout():
 	canDash = true
+
+func upgrade(upgrade_int):
+	match upgrade_int:
+		0: sunder_dmg_boost += 0.1
+		1: sunder_extra_casts += 1
+		2: entropy_speed_boost += 0.1
+		3: entropy_crit_chance += 0.15
+		4: construct_size_boost += 0.1
+		5: construct_ignore_walls = true
+		6: growth_lifetime_boost += 0.1
+		7: growth_reaction_potency += 0.1
+		8: 
+			flow_cooldown_reduction *= 0.9
+			for i in range(0, 4):
+				if UniversalSkills.skillDict[equippedSkills[i]]["element"] == "flow":
+					skillCD[i] *= 0.9
+		9: flow_spell_copies += 1
+		10: wither_lifetime_increase += 0.1
+		11: wither_size_boost += 0.1
+		_: pass
+	print("upgraded: ", upgrade_int)

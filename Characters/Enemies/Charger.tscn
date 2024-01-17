@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfp0saptduhg3"]
+[gd_scene load_steps=5 format=3 uid="uid://dfp0saptduhg3"]
 
 [ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="1_aci6j"]
 [ext_resource type="Script" path="res://Characters/Enemies/Charger.gd" id="1_kvkxl"]
+[ext_resource type="Texture2D" uid="uid://cryka57a5ond" path="res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="3_qc6dx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j336n"]
+atlas = ExtResource("3_qc6dx")
+region = Rect2(81, 48, 15, 15)
 
 [node name="Charger" instance=ExtResource("1_aci6j")]
 script = ExtResource("1_kvkxl")
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 0.431373, 0, 1)
+texture = SubResource("AtlasTexture_j336n")
 
 [node name="DamageArea" parent="." index="4"]
 visible = false

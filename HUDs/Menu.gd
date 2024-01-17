@@ -3,7 +3,6 @@ extends CanvasLayer
 func _ready():
 	pass
 
-
 func _on_QuitButton_pressed():
 	$QuitConfirm.popup()
 

@@ -3,8 +3,12 @@ extends Node2D
 var map0 = preload("res://Maps/Map.tscn")
 var map1 = preload("res://Maps/Map1.tscn")
 var map2 = preload("res://Maps/Map2.tscn")
+var map3 = preload("res://Maps/Map3.tscn")
+var spawn = preload("res://Maps/Spawn.tscn")
+var exit = preload("res://Maps/Exit.tscn")
+var exit_room = Vector2i()
 var roomArray = []
-var MAP_SIZE = 2 # amt of rooms
+var MAP_SIZE = 3 # sqrt of room amt
 
 func _ready():
 	# connect hud to player
@@ -17,16 +21,24 @@ func _ready():
 	init_rooms()
 
 func init_rooms():
+	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
 	for i in range(0,MAP_SIZE):
 		for j in range(0,MAP_SIZE):
 			var newRoom
-			var rand = randi_range(0,2);
-			if rand == 0:
-				newRoom = map0.instantiate()
-			elif rand == 1:
-				newRoom = map1.instantiate()
+			if Vector2i(0, 0) == Vector2i(i, j):
+				newRoom = spawn.instantiate()
+			elif exit_room == Vector2i(i, j):
+				newRoom = exit.instantiate()
 			else:
-				newRoom = map2.instantiate()
+				var rand = randi_range(0,3);
+				if rand == 0:
+					newRoom = map0.instantiate()
+				elif rand == 1:
+					newRoom = map1.instantiate()
+				elif rand == 2:
+					newRoom = map2.instantiate()
+				else:
+					newRoom = map3.instantiate()
 			newRoom.position = Vector2(position.x + (496.0 * i), position.y + (496.0 * j))
 			
 			# block off edges of map
@@ -34,26 +46,44 @@ func init_rooms():
 			var tileset = tilemap.get_tileset()
 			# top
 			if j == 0:
-				for n in range(-1, 2):
-					tilemap.set_cell(0, Vector2i(15 + n, 0), 0, Vector2i(1, 0))
-					tilemap.set_cell(0, Vector2i(15 + n, 1), 0, Vector2i(2, 1))
+				for n in range(0, 31):
+					if n == 13:
+						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(0, 3))
+					elif 13 < n and n < 17:
+						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(1, 0))
+					elif n == 17:
+						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(5, 0))
+					else:
+						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(8, 7))
 			# left
 			if i == 0:
-				for n in range(-2, 2):
-					tilemap.set_cell(0, Vector2i(0, 15 + n), 0, Vector2i(0, 1))
-				for n in range(-1, 2):
-					tilemap.set_cell(0, Vector2i(1, 15 + n), 0, Vector2i(1, 2))
+				for n in range(0, 31):
+					if 12 < n and n < 17:
+						tilemap.set_cell(0, Vector2i(-1, n), 0, Vector2i(0, 1))
+					elif n == 17:
+						tilemap.set_cell(0, Vector2i(-1, n), 0, Vector2i(0, 4))
+					else:
+						tilemap.set_cell(0, Vector2i(-1, n), 0, Vector2i(8, 7))
 			# bottom
 			if j == MAP_SIZE-1:
-				for n in range(-1, 2):
-					tilemap.set_cell(0, Vector2i(15 + n, 30), 0, Vector2i(1, 4))
-					tilemap.set_cell(0, Vector2i(15 + n, 29), 0, Vector2i(2, 3))
+				for n in range(0, 31):
+					if n == 13:
+						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(0, 4))
+					elif 13 < n and n < 17:
+						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(1, 4))
+					elif n == 17:
+						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(5, 4))
+					else:
+						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(8, 7))
 			# right
 			if i == MAP_SIZE-1:
-				for n in range(-2, 2):
-					tilemap.set_cell(0, Vector2i(30, 15 + n), 0, Vector2i(5, 1))
-				for n in range(-1, 2):
-					tilemap.set_cell(0, Vector2i(29, 15 + n), 0, Vector2i(4, 2))
+				for n in range(0, 31):
+					if 12 < n and n < 17:
+						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(5, 1))
+					elif n == 17:
+						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(5, 4))
+					else:
+						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(8, 7))
 			$Rooms.add_child(newRoom)
 			# fetch group of monsters on the map and connect their giveXp signals to player
 			var monsters = newRoom.get_tree().get_nodes_in_group("monsters")

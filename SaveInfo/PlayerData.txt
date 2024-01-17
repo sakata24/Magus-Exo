@@ -1,0 +1,10 @@
+{
+	"player_xp": {
+		"sunder_xp": 0,
+		"entropy_xp": 0,
+		"construct_xp": 0,
+		"growth_xp": 0,
+		"flow_xp": 0,
+		"wither_xp": 0
+	}
+}

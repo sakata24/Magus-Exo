@@ -18,14 +18,23 @@ func _physics_process(delta):
 
 # chases the player
 func chase(delta):
-	if global_position.distance_to(player.global_position) > 75:
-		set_velocity(to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed)
+	if global_position.distance_to(player.global_position) > 70:
+		var new_velocity = to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed
+		if new_velocity.x < 0:
+			$Sprite2D.flip_h = true
+		elif new_velocity.x > 0:
+			$Sprite2D.flip_h = false
+		set_velocity(new_velocity)
 
 	else:
 		attacking = true
 		set_velocity(Vector2.ZERO)
 		# target PAST the player
 		lockTarget = player.global_position - ((self.global_position - player.global_position) * speed * 4.5)
+		if self.global_position.x - lockTarget.x > 0:
+			$Sprite2D.flip_h = true
+		else:
+			$Sprite2D.flip_h = false
 		$DamageArea.look_at(lockTarget)
 		$DamageArea.visible = true
 		$AttackTimer.start()

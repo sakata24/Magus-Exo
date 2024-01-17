@@ -3,10 +3,10 @@ extends Node
 var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
 var singularityScene = preload("res://Abilities/Reactions/Singularity.tscn")
 var extinctionScene = preload("res://Abilities/Reactions/Extinction.tscn")
+var blastScene = preload("res://Abilities/Reactions/Blast.tscn")
 var skillDict = {}
 
 func _ready():
-	var dict = {}
 	var file = FileAccess.open("res://Resources/abilitysheet.txt", FileAccess.READ)
 	var content = file.get_as_text()
 	skillDict = JSON.parse_string(content)["skills"]
@@ -33,6 +33,24 @@ func start_tick_timer(ability, tick):
 
 # performs action of ability on spawn
 func perform_spawn(ability, pos, caster):
+	match ability.element:
+		"sunder":
+			ability.dmg = floor(ability.dmg * caster.sunder_dmg_boost)
+		"entropy":
+			ability.speed *= caster.entropy_speed_boost
+			if randf_range(0, 1) < caster.entropy_crit_chance:
+				ability.dmg = floor(ability.dmg * 1.75)
+		"construct":
+			ability.scale *= caster.construct_size_boost
+		"growth":
+			ability.lifetime *= caster.growth_lifetime_boost
+			ability.get_node("LifetimeTimer").wait_time *= caster.growth_lifetime_boost
+		"flow":
+			pass
+		"wither":
+			ability.lifetime *= caster.wither_lifetime_boost
+			ability.get_node("LifetimeTimer").wait_time *= caster.wither_lifetime_boost
+			ability.scale *= caster.construct_size_boost
 	match ability.abilityID:
 		"cell":
 			# Timer that ticks every .05 and grows
@@ -124,7 +142,7 @@ func perform_timeout(ability):
 			ability.modulate.a = 0.2
 		"charge":
 			ability.speed = 1.4 * 300
-			ability.dmg = ability.dmg * 1.5
+			ability.dmg = floor(ability.dmg * 1.5)
 			ability.scale = ability.scale * 1.5
 		"rock":
 			print("*falling rock noises*")
@@ -151,7 +169,7 @@ func perform_despawn(ability, target):
 				# remove target's ability to move and force their velocity to the bullet's
 				print(target)
 				target.canMove = false
-				target.velocity = ability.velocity * 1.5
+				target.velocity = ability.get_velocity() * 100
 				ability.queue_free()
 				var timer = Timer.new()
 				timer.wait_time = 0.5
@@ -172,6 +190,16 @@ func perform_reaction(collider, collided):
 	collided.get_node("TimeoutTimer").paused = true
 	collided.get_node("LifetimeTimer").paused = true
 	match collider.element + collided.element:
+		"sunder" + "entropy":
+			# BLAST: Spawn projectiles randomly and radiate them outwards
+			var blast = blastScene.instantiate()
+			blast.init(collider, collided)
+			collided.add_child(blast)
+		"entropy" + "sunder":
+			# BLAST: Spawn projectiles randomly and radiate them outwards
+			var blast = blastScene.instantiate()
+			blast.init(collider, collided)
+			collided.add_child(blast)
 		"construct" + "sunder":
 			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()
@@ -203,7 +231,6 @@ func perform_reaction(collider, collided):
 			collided.get_node("Texture").color = Color("#70ad47")
 		"sunder" + "wither":
 			# SINGULARITY: Suck in enemies to center
-			print("penis")
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
 			var singularity = singularityScene.instantiate()
