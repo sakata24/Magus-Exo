@@ -1,0 +1,72 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://bh3g6addnd6jh"]
+
+[ext_resource type="Texture2D" uid="uid://ca7i15a2ejxt4" path="res://Resources/abilities/fountain-sprite.png" id="1_w1d1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d3pd"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_untl0"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3efg4"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41xbr"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd243"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx2lu"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mbu2"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b54o"]
+atlas = ExtResource("1_w1d1c")
+region = Rect2(112, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d3pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_untl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3efg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41xbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd243")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx2lu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mbu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b54o")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 9.0
+}]

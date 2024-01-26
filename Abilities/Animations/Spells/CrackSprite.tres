@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bhlyybjt1q5vy"]
+
+[ext_resource type="Texture2D" uid="uid://0o0ld2xk0r8w" path="res://Resources/abilities/crack-sprite.png" id="1_o5cn3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt514"]
+atlas = ExtResource("1_o5cn3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pam6k"]
+atlas = ExtResource("1_o5cn3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aomk"]
+atlas = ExtResource("1_o5cn3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obqpl"]
+atlas = ExtResource("1_o5cn3")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt514")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pam6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aomk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obqpl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]

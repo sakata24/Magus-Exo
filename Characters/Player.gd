@@ -217,7 +217,6 @@ func cast_ability(skill):
 		projectile.init(ability, castTarget, self)
 		# calculates the projectiles direction
 		projectile.velocity = (castTarget - projectile.position).normalized()
-		projectile.look_at(castTarget)
 	elif ability["type"] == "spell":
 		# load the spell
 		var spell = spellLoad.instantiate()

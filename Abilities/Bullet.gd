@@ -39,6 +39,7 @@ func init(skillDict, castTarget, caster):
 		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.witherSpriteRes)
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
+	look_at(castTarget)
 	# play the anim
 	$AnimatedSprite2D.play()
 	$LifetimeTimer.wait_time = lifetime

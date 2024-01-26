@@ -83,8 +83,12 @@ func perform_spawn(ability, pos, caster):
 			ability.look_at(pos)
 		"fountain":
 			# add a color to indicate colliision delay
-			ability.modulate.a = 0.5
+			ability.get_node("AnimatedSprite2D").set_sprite_frames(CustomResourceLoader.fountainSpriteRes)
+			ability.get_node("AnimatedSprite2D").play()
 			ability.set_collision_mask_value(2, false)
+		"crack":
+			ability.get_node("AnimatedSprite2D").set_sprite_frames(CustomResourceLoader.crackSpriteRes)
+			ability.get_node("AnimatedSprite2D").play()
 		"suspend":
 			# make it tick
 			ability.modulate.a = 0.5
@@ -143,7 +147,6 @@ func perform_timeout(ability):
 			print("BOOM")
 		"crack":
 			ability.set_collision_mask_value(2, false)
-			ability.modulate.a = 0.2
 		"charge":
 			ability.speed = 1.4 * 300
 			ability.dmg = floor(ability.dmg * 1.5)
@@ -154,7 +157,8 @@ func perform_timeout(ability):
 			print("im grass")
 		"fountain":
 			print("woosh")
-			ability.modulate.a = 0.8
+			ability.get_node("AnimatedSprite2D").set_animation("hit")
+			ability.get_node("AnimatedSprite2D").play()
 			ability.set_collision_mask_value(2, true)
 		"suspend":
 			print("fade")
