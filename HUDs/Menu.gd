@@ -17,13 +17,13 @@ func _on_QuitConfirm_confirmed():
 	get_tree().quit()
 
 func _on_option_button_item_selected(index):
-	get_node("../Player").equippedSkills[0] = $VBoxContainer2/OptionButton.get_item_text(index)
+	emit_signal("skill_changed", 0, $VBoxContainer2/OptionButton.get_item_text(index))
 
 func _on_option_button_2_item_selected(index):
-	get_node("../Player").equippedSkills[1] = $VBoxContainer2/OptionButton2.get_item_text(index)
+	emit_signal("skill_changed", 1, $VBoxContainer2/OptionButton2.get_item_text(index))
 
 func _on_option_button_3_item_selected(index):
-	get_node("../Player").equippedSkills[2] = $VBoxContainer2/OptionButton3.get_item_text(index)
+	emit_signal("skill_changed", 2, $VBoxContainer2/OptionButton3.get_item_text(index))
 
 func _on_option_button_4_item_selected(index):
-	get_node("../Player").equippedSkills[3] = $VBoxContainer2/OptionButton4.get_item_text(index)
+	emit_signal("skill_changed", 3, $VBoxContainer2/OptionButton4.get_item_text(index))

@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://mtfmebe5a6fp"]
+
+[ext_resource type="Script" path="res://Abilities/Reactions/Sickness.gd" id="1_07cfe"]
+
+[node name="Sickness" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_07cfe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(0, -10, 5, -9, 9, -5, 10, 0, 9, 5, 5, 9, 0, 10, -5, 9, -9, 5, -10, 0, -9, -5, -5, -9)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.364706)
+polygon = PackedVector2Array(0, -10, 5, -9, 9, -5, 10, 0, 9, 5, 5, 9, 0, 10, -5, 9, -9, 5, -10, 0, -9, -5, -5, -9)
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[node name="DebuffTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 3.6
+autostart = true
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
+[connection signal="timeout" from="DebuffTimer" to="." method="_on_debuff_timer_timeout"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

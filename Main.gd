@@ -22,6 +22,7 @@ func _ready():
 	$Player.connect("player_hit", Callable(self, "_check_death"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	init_rooms()
+	$Player.position = Vector2i(250, 250)
 
 func init_rooms():
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
@@ -116,3 +117,6 @@ func _check_death(newHP, maxHP):
 		$Death.setup()
 		$Death.visible = true
 
+func _change_skills(idx, newSkill):
+	$Player.equippedSkills[idx] = newSkill
+	$Player.initSkills()

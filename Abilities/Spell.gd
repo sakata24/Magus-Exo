@@ -9,6 +9,7 @@ var lifetime = 1
 var cooldown = 0.1
 var size = 1
 var element
+var canReact
 
 const CAST_RANGE = 500
 

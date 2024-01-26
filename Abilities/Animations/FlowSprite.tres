@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://y0xnhl5pqtm"]
+
+[ext_resource type="Texture2D" uid="uid://bmck6fd6mbcqo" path="res://Resources/abilities/flow-sprite.png" id="1_wifvb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekjuk"]
+atlas = ExtResource("1_wifvb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrwdk"]
+atlas = ExtResource("1_wifvb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cp3p"]
+atlas = ExtResource("1_wifvb")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekjuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrwdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cp3p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

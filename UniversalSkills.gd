@@ -4,6 +4,8 @@ var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
 var singularityScene = preload("res://Abilities/Reactions/Singularity.tscn")
 var extinctionScene = preload("res://Abilities/Reactions/Extinction.tscn")
 var blastScene = preload("res://Abilities/Reactions/Blast.tscn")
+var dischargeScene = preload("res://Abilities/Reactions/Discharge.tscn")
+var sicknessScene = preload("res://Abilities/Reactions/Sickness.tscn")
 var skillDict = {}
 
 func _ready():
@@ -46,7 +48,7 @@ func perform_spawn(ability, pos, caster):
 			ability.lifetime *= caster.growth_lifetime_boost
 			ability.get_node("LifetimeTimer").wait_time *= caster.growth_lifetime_boost
 		"flow":
-			pass
+			ability.scale *= caster.flow_size_boost
 		"wither":
 			ability.lifetime *= caster.wither_lifetime_boost
 			ability.get_node("LifetimeTimer").wait_time *= caster.wither_lifetime_boost
@@ -93,14 +95,15 @@ func perform_spawn(ability, pos, caster):
 			ability.set_collision_mask_value(2, false)
 			# setting hitbox
 			var vectorArray = PackedVector2Array([
-				Vector2(0, -3),
-				Vector2(0, 3),
-				Vector2(8 * ability.size, 3),
-				Vector2(8 * ability.size, -3)
+				Vector2(-3 * ability.size, -3),
+				Vector2(-3 * ability.size, 3),
+				Vector2(3 * ability.size, 3),
+				Vector2(3 * ability.size, -3)
 			])
 			ability.get_node("Texture").set_polygon(vectorArray)
 			ability.get_node("CollisionPolygon2D").set_polygon(vectorArray)
-			ability.position = clamp_vector(pos, caster.global_position, 10)
+			var offset = (pos - caster.global_position).normalized() * 9 * (ability.size * 2)
+			ability.position = caster.global_position + offset
 			ability.look_at(pos)
 		"storm":
 			# create a timer that will tick at a time relevant to the amount of enemies in area, as well as dmg
@@ -130,7 +133,7 @@ func perform_spawn(ability, pos, caster):
 
 # helper method to create spells cast from char
 func clamp_vector(vector, clamp_origin, clamp_length):
-	var offset = (vector - clamp_origin) * 10000
+	var offset = (vector - clamp_origin).normalized() * 10000
 	return clamp_origin + offset.limit_length(clamp_length)
 
 # performs action of an ability on timeout
@@ -198,6 +201,8 @@ func perform_reaction(collider, collided):
 	# pause timers if reaction so it may complete
 	collided.get_node("TimeoutTimer").paused = true
 	collided.get_node("LifetimeTimer").paused = true
+	collider.get_node("TimeoutTimer").paused = true
+	collider.get_node("LifetimeTimer").paused = true
 	match collider.element + collided.element:
 		"sunder" + "entropy":
 			# BLAST: Spawn projectiles randomly and radiate them outwards
@@ -206,6 +211,8 @@ func perform_reaction(collider, collided):
 			collided.add_sibling(blast)
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 		"entropy" + "sunder":
 			# BLAST: Spawn projectiles randomly and radiate them outwards
 			var blast = blastScene.instantiate()
@@ -213,6 +220,22 @@ func perform_reaction(collider, collided):
 			collided.add_sibling(blast)
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+		"entropy" + "construct":
+			var discharge = dischargeScene.instantiate()
+			collided.add_child(discharge)
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+		"construct" + "entropy":
+			var discharge = dischargeScene.instantiate()
+			collider.add_child(discharge)
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 		"construct" + "sunder":
 			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()
@@ -225,6 +248,8 @@ func perform_reaction(collider, collided):
 			collider.speed = collided.speed * 0.2
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 		"sunder" + "construct":
 			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()
@@ -237,22 +262,61 @@ func perform_reaction(collider, collided):
 			collided.speed = collided.speed * 0.2
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 		"growth" + "construct":
 			# VINE: Transform type of spell to growth
 			collided.element = "growth"
 			collided.canReact = true
 			collided.get_node("Texture").color = Color("#70ad47")
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+		"construct" + "growth":
+			# VINE: Transform type of spell to growth
+			collider.element = "growth"
+			collider.canReact = true
+			collider.get_node("Texture").color = Color("#70ad47")
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
 		"sunder" + "wither":
 			# SINGULARITY: Suck in enemies to center
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 			var singularity = singularityScene.instantiate()
 			singularity.parent = collided
 			collided.add_child(singularity)
+		"wither" + "entropy":
+			# SICKNESS: Random debuff in a large AOE
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+			var sickness = sicknessScene.instantiate()
+			sickness.position = collided.position
+			sickness.scale = collided.scale
+			collided.add_sibling(sickness)
+		"entropy" + "wither":
+			# SICKNESS: Random debuff in a large AOE
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+			var sickness = sicknessScene.instantiate()
+			sickness.position = collided.position
+			sickness.scale = collided.scale
+			collided.add_sibling(sickness)
 		"construct" + "wither":
 			# EXTINCTION: Execute enemies
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 			var extinction = extinctionScene.instantiate()
 			collided.add_child(extinction)
 		"growth" + "wither":
@@ -263,9 +327,27 @@ func perform_reaction(collider, collided):
 			collider.get_node("TimeoutTimer").wait_time = collider.get_node("TimeoutTimer").wait_time * 1.5
 			collided.get_node("TimeoutTimer").start()
 			collider.get_node("TimeoutTimer").start()
+		"flow" + "wither":
+			# SWARM: Increase size of flow but decrease lifetime
+			collider.scale *= 1.75
+			collider.get_node("LifetimeTimer").wait_time *= 0.75
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+		"wither" + "flow":
+			# SWARM: Increase size of flow but decrease lifetime
+			collided.scale *= 1.75
+			collided.get_node("LifetimeTimer").wait_time *= 0.75
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 		_:
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
 			
 func get_skills():
 	return skillDict

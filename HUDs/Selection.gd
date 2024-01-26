@@ -23,12 +23,13 @@ func setup():
 			6: text = "Increase growth spell lifetime by 10%"
 			7: text = "Increase growth spell reaction potency by 10%"
 			8: text = "Reduce flow spell cooldowns by 10%"
-			9: text = "Flow spells gain another copy"
+			9: text = "Increase flow spell size by 10%"
 			10: text = "Increase wither spell lifetime by 10%"
 			11: text = "Increase wither spell size by 10%"
 			_: text = str(rand)
 		get_node(str("HBoxContainer/Slot", i, "/VBoxContainer/Label")).text = text
 		slots.push_back(rand)
+		self.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -74,7 +74,7 @@ process_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3")]
 process_mode = 1
-position = Vector2(248, 248)
+position = Vector2(250, 250)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visible = false

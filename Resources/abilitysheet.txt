@@ -2,7 +2,7 @@
 	"skills": {
 		"bolt": {
 			"name": "bolt",
-			"cooldown": 1.0,
+			"cooldown": 1.5,
 			"dmg": 1.0,
 			"element": "sunder",
 			"lifetime": 0.5,
@@ -55,7 +55,7 @@
 			"element": "growth",
 			"lifetime": 0.8,
 			"size": 1.0,
-			"speed": 0.4,
+			"speed": 0.6,
 			"timeout": 0.1,
 			"type": "bullet",
 			"description": "A growing cell that increases in damage and size"

@@ -21,18 +21,26 @@ func init(skillDict, castTarget, caster):
 	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
 	if element == "sunder":
+		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.sunderSpriteRes)
 		$Texture.color = Color("#c00000")
 	elif element == "entropy":
+		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.entropySpriteRes)
 		$Texture.color = Color("#ffd966")
 	elif element == "construct":
+		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.constructSpriteRes)
 		$Texture.color = Color("#833c0c")
 	elif element == "growth":
+		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.growthSpriteRes)
 		$Texture.color = Color("#70ad47")
 	elif element == "flow":
+		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.flowSpriteRes)
 		$Texture.color = Color("#9bc2e6")
 	elif element == "wither":
+		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.witherSpriteRes)
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
+	# play the anim
+	$AnimatedSprite2D.play()
 	$LifetimeTimer.wait_time = lifetime
 	scale *= size
 	# start timer

@@ -9,10 +9,14 @@ var aggro = false
 var player = CharacterBody2D
 # how fast i move
 var speed = 50
+# base speed for ref
+const baseSpeed = 50
 # my health
 var health = 100
 # damage
 var myDmg = 2
+# base dmg for ref
+const baseDmg = 2
 # max health
 var maxHealth = 50
 # exp i give

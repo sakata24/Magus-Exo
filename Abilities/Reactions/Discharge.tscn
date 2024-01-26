@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdx05qsaongnb"]
+
+[ext_resource type="Script" path="res://Abilities/Reactions/Discharge.gd" id="1_7oqkg"]
+
+[node name="Discharge" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_7oqkg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 1, 0.215686, 0.168627)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

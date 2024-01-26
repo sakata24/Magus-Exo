@@ -17,7 +17,7 @@ var skillRef = null
 @export var growth_reaction_potency = 1.0
 
 @export var flow_cooldown_reduction = 1.0
-@export var flow_spell_copies = 0
+@export var flow_size_boost = 1.0
 
 @export var wither_lifetime_boost = 1.0
 @export var wither_size_boost = 1.0
@@ -35,7 +35,7 @@ signal cooling_dash(dash_cd, dash_cd_max)
 signal player_hit(newHP, maxHP)
 
 # constants
-const XPTHRESHOLDS = [5, 10, 15, 20]
+const XPTHRESHOLDS = [5, 10, 15, 20, 25, 30, 40, 60]
 
 # instance variable for player HP
 var health = 25
@@ -64,7 +64,7 @@ var equippedSkills = ["bolt", "storm", "fissure", "decay"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
-var skillCD = [10, 10, 10, 10]
+var skillCD = [0, 0, 0, 0]
 # the current amt of physics processes that ran since last using the skill
 var skillTimer = [10, 10, 10, 10]
 # the dash cd
@@ -82,10 +82,10 @@ func _ready():
 	initSkills()
 
 func initSkills():
-	skillCD[0] *= UniversalSkills.skillDict[equippedSkills[0]]["cooldown"]
-	skillCD[1] *= UniversalSkills.skillDict[equippedSkills[1]]["cooldown"]
-	skillCD[2] *= UniversalSkills.skillDict[equippedSkills[2]]["cooldown"]
-	skillCD[3] *= UniversalSkills.skillDict[equippedSkills[3]]["cooldown"]
+	skillCD[0] = UniversalSkills.skillDict[equippedSkills[0]]["cooldown"] * 10
+	skillCD[1] = UniversalSkills.skillDict[equippedSkills[1]]["cooldown"] * 10
+	skillCD[2] = UniversalSkills.skillDict[equippedSkills[2]]["cooldown"] * 10
+	skillCD[3] = UniversalSkills.skillDict[equippedSkills[3]]["cooldown"] * 10
 	skillTimer[0] = skillCD[0]
 	skillTimer[1] = skillCD[1]
 	skillTimer[2] = skillCD[2]
@@ -124,29 +124,38 @@ func _unhandled_input(event):
 			
 			
 func _process(delta):
-	pass
+	if moving:
+		var frame = $AnimatedSprite2D.get_frame()
+		var progress = $AnimatedSprite2D.get_frame_progress()
+		$AnimatedSprite2D.set_animation("walk")
+		$AnimatedSprite2D.set_frame_and_progress(frame, progress)
+	else:
+		var frame = $AnimatedSprite2D.get_frame()
+		var progress = $AnimatedSprite2D.get_frame_progress()
+		$AnimatedSprite2D.set_animation("idle")
+		$AnimatedSprite2D.set_frame_and_progress(frame, progress)
 
 func _physics_process(delta):
 	$ProjectilePivot.look_at(castTarget)
 	emit_signal("cooling_down", skillTimer, skillCD)
 	emit_signal("cooling_dash", $DashTimer.time_left, $DashTimer.wait_time)
 	movementHelper(delta)
-	if skillTimer[0] == skillCD[0]:
+	if skillTimer[0] >= skillCD[0]:
 		skillReady[0] = true
 	else:
 		skillTimer[0] += 1
 		
-	if skillTimer[1] == skillCD[1]:
+	if skillTimer[1] >= skillCD[1]:
 		skillReady[1] = true
 	else:
 		skillTimer[1] += 1
 		
-	if skillTimer[2] == skillCD[2]:
+	if skillTimer[2] >= skillCD[2]:
 		skillReady[2] = true
 	else:
 		skillTimer[2] += 1
 		
-	if skillTimer[3] == skillCD[3]:
+	if skillTimer[3] >= skillCD[3]:
 		skillReady[3] = true
 	else:
 		skillTimer[3] += 1
@@ -155,7 +164,8 @@ func movementHelper(delta):
 	
 	if dashing and canDash:
 		print("debug")
-		get_node("CollisionShape2D").disabled = true
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(4, false)
 		speed = max_speed * 11
 		dashIFrames += 1
 		$DashTimer.start()
@@ -163,7 +173,8 @@ func movementHelper(delta):
 			dashIFrames = 0
 			dashing = false
 			canDash = false
-			get_node("CollisionShape2D").disabled = false
+			set_collision_layer_value(1, true)
+			set_collision_layer_value(4, true)
 	# if moving continue, if not stop moving
 	elif not moving:
 		speed = 0
@@ -182,9 +193,9 @@ func movementHelper(delta):
 	else:
 		moving = false
 	if movement.x < 0:
-		$Sprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = true
 	elif movement.x > 0:
-		$Sprite2D.flip_h = false
+		$AnimatedSprite2D.flip_h = false
 
 # This function handles skill casting
 func cast_ability(skill):
@@ -206,6 +217,7 @@ func cast_ability(skill):
 		projectile.init(ability, castTarget, self)
 		# calculates the projectiles direction
 		projectile.velocity = (castTarget - projectile.position).normalized()
+		projectile.look_at(castTarget)
 	elif ability["type"] == "spell":
 		# load the spell
 		var spell = spellLoad.instantiate()
@@ -278,8 +290,10 @@ func upgrade(upgrade_int):
 			flow_cooldown_reduction *= 0.9
 			for i in range(0, 4):
 				if UniversalSkills.skillDict[equippedSkills[i]]["element"] == "flow":
-					skillCD[i] *= 0.9
-		9: flow_spell_copies += 1
+					skillCD[i] *= flow_cooldown_reduction
+					skillTimer[i] = skillCD[i]
+					print(skillCD[i])
+		9: flow_size_boost += 0.1
 		10: wither_lifetime_boost += 0.1
 		11: wither_size_boost += 0.1
 		_: pass
