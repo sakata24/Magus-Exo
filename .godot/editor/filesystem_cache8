@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1726345625
+::res://::1726459524
 CustomResourceLoader.gd::GDScript::-1::1706344288::0::1::::<>Node<>::
 default_env.tres::Environment::5025068929242938522::1725946864::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1725859613::0::1::::<><>::
@@ -26,19 +26,19 @@ Suspend.gd::GDScript::-1::1706412725::0::1::::<>Area2D<>::
 Suspend.tscn::PackedScene::9138935449925350010::1725862716::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/Spell.tscn<>res://Abilities/Suspend.gd
 Vine.gd::GDScript::-1::1706432873::0::1::::<>Area2D<>::
 Vine.tscn::PackedScene::32944974777073060::1725862715::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/Spell.tscn<>res://Abilities/Vine.gd<>uid://bw078nwaoajdj::::res://Abilities/Animations/Spells/VineSprite.tres
-::res://Abilities/Animations/::1725946863
-ConstructSprite.tres::SpriteFrames::331825422754274001::1725946863::0::1::::<><>::uid://bsb7al2k0fvg1::::res://Resources/abilities/construct-sprite.png
-EntropySprite.tres::SpriteFrames::3429911642186802133::1725946863::0::1::::<><>::uid://bcnjh85rwog6s::::res://Resources/abilities/entropy-sprite.png
-FlowSprite.tres::SpriteFrames::51104758334080074::1725946863::0::1::::<><>::uid://bmck6fd6mbcqo::::res://Resources/abilities/flow-sprite.png
-GrowthSprite.tres::SpriteFrames::1606553202045316021::1725946863::0::1::::<><>::uid://cbv6dr66jqon2::::res://Resources/abilities/growth-sprite.png
-SunderSprite.tres::SpriteFrames::409297509121864440::1725946863::0::1::::<><>::uid://cmydxqn28pll6::::res://Resources/abilities/sunder-sprite.png
-WitherSprite.tres::SpriteFrames::8430189838969755074::1725946863::0::1::::<><>::uid://c4kix7dbt6nxq::::res://Resources/abilities/wither-sprite.png
-::res://Abilities/Animations/Spells/::1725946863
-CrackSprite.tres::SpriteFrames::2901950878659369882::1725946863::0::1::::<><>::uid://0o0ld2xk0r8w::::res://Resources/abilities/crack-sprite.png
-FissureSprite.tres::SpriteFrames::145329412306204634::1725946863::0::1::::<><>::uid://bmdc53k07rkwm::::res://Resources/abilities/fissure-sprite.png
-FountainSprite.tres::SpriteFrames::2935964832628897981::1725946863::0::1::::<><>::uid://ca7i15a2ejxt4::::res://Resources/abilities/fountain-sprite.png
-StormSprite.tres::SpriteFrames::813877913652123257::1725946863::0::1::::<><>::uid://bliqyqpe6sp25::::res://Resources/abilities/storm-sprite.png
-VineSprite.tres::SpriteFrames::3984187279356664563::1725946863::0::1::::<><>::uid://b7d28s67m5xxs::::res://Resources/abilities/vine-sprite.png
+::res://Abilities/Animations/::1726350567
+ConstructSprite.tres::SpriteFrames::331825422754274001::1726350567::0::1::::<><>::uid://bsb7al2k0fvg1::::res://Resources/abilities/construct-sprite.png
+EntropySprite.tres::SpriteFrames::3429911642186802133::1726350567::0::1::::<><>::uid://bcnjh85rwog6s::::res://Resources/abilities/entropy-sprite.png
+FlowSprite.tres::SpriteFrames::51104758334080074::1726350567::0::1::::<><>::uid://bmck6fd6mbcqo::::res://Resources/abilities/flow-sprite.png
+GrowthSprite.tres::SpriteFrames::1606553202045316021::1726350567::0::1::::<><>::uid://cbv6dr66jqon2::::res://Resources/abilities/growth-sprite.png
+SunderSprite.tres::SpriteFrames::409297509121864440::1726350567::0::1::::<><>::uid://cmydxqn28pll6::::res://Resources/abilities/sunder-sprite.png
+WitherSprite.tres::SpriteFrames::8430189838969755074::1726350567::0::1::::<><>::uid://c4kix7dbt6nxq::::res://Resources/abilities/wither-sprite.png
+::res://Abilities/Animations/Spells/::1726350567
+CrackSprite.tres::SpriteFrames::2901950878659369882::1726350567::0::1::::<><>::uid://0o0ld2xk0r8w::::res://Resources/abilities/crack-sprite.png
+FissureSprite.tres::SpriteFrames::145329412306204634::1726350567::0::1::::<><>::uid://bmdc53k07rkwm::::res://Resources/abilities/fissure-sprite.png
+FountainSprite.tres::SpriteFrames::2935964832628897981::1726350567::0::1::::<><>::uid://ca7i15a2ejxt4::::res://Resources/abilities/fountain-sprite.png
+StormSprite.tres::SpriteFrames::813877913652123257::1726350567::0::1::::<><>::uid://bliqyqpe6sp25::::res://Resources/abilities/storm-sprite.png
+VineSprite.tres::SpriteFrames::3984187279356664563::1726350567::0::1::::<><>::uid://b7d28s67m5xxs::::res://Resources/abilities/vine-sprite.png
 ::res://Abilities/Reactions/::1725862717
 Blast.gd::GDScript::-1::1705476984::0::1::::<>Node2D<>::
 Blast.tscn::PackedScene::1206860008082546538::1725862717::0::1::::<><>::res://Abilities/Reactions/Blast.gd<>res://Abilities/Reactions/BlastProjectile.gd<>uid://xox7jfsei02j::::res://Resources/abilities/blast-sprite.png
@@ -87,8 +87,8 @@ CrackIcon.tres::ImageTexture::4219299928961817038::1725859882::0::1::::<><>::
 ::res://Interactables/::1705562955
 UpgradeChest.gd::GDScript::-1::1705562950::0::1::::<>Area2D<>::
 UpgradeChest.tscn::PackedScene::5323448170266101310::1705562955::0::1::::<><>::uid://bl4bjpbncf41p::::res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png<>res://Interactables/UpgradeChest.gd
-::res://Maps/::1725946864
-DungeonTileset.tres::TileSet::8586209358062189473::1725946864::0::1::::<><>::uid://bl4bjpbncf41p::::res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png
+::res://Maps/::1726350567
+DungeonTileset.tres::TileSet::8586209358062189473::1726350567::0::1::::<><>::uid://bl4bjpbncf41p::::res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png
 Exit.gd::GDScript::-1::1706330819::0::1::::<>Node<>::
 Exit.tscn::PackedScene::5958851315610089395::1706350196::0::1::::<><>::uid://dulhu4nsq70uv::::res://Maps/DungeonTileset.tres<>res://Maps/Exit.gd<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
 Home.gd::GDScript::-1::1706330871::0::1::::<>Node2D<>::

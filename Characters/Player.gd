@@ -30,6 +30,13 @@ var skillRef = null
 @export var wither_lifetime_boost = 1.0
 @export var wither_size_boost = 1.0
 
+var sunder_xp = 0
+var entropy_xp = 0
+var construct_xp = 0
+var growth_xp = 0
+var flow_xp = 0
+var wither_xp = 0
+
 var projectileLoad = preload("res://Abilities/Bullet.tscn")
 var spellLoad = preload("res://Abilities/Spell.tscn")
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
@@ -85,6 +92,12 @@ var dashIFrames = 0
 var canCast = true
 
 func _ready():
+	sunder_xp = get_node("/root/CustomResourceLoader").sunder_xp
+	entropy_xp = get_node("/root/CustomResourceLoader").entropy_xp
+	construct_xp = get_node("/root/CustomResourceLoader").construct_xp
+	growth_xp = get_node("/root/CustomResourceLoader").growth_xp
+	flow_xp = get_node("/root/CustomResourceLoader").flow_xp
+	wither_xp = get_node("/root/CustomResourceLoader").wither_xp
 	$DashTimer.wait_time = dashCD
 	move_target = Vector2(self.position.x, 10000.0)
 	initSkills()
@@ -310,3 +323,14 @@ func upgrade(upgrade_int):
 		11: wither_size_boost += 0.1
 		_: pass
 	print("upgraded: ", upgrade_int)
+
+func save():
+	var save_dict = {
+		"sunder_xp": sunder_xp,
+		"entropy_xp": entropy_xp,
+		"construct_xp": construct_xp,
+		"growth_xp": growth_xp,
+		"flow_xp": flow_xp,
+		"wither_xp": wither_xp
+	}
+	return save_dict

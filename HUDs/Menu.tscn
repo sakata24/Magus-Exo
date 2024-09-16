@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://HUDs/Menu.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_w5m8w"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -14,22 +15,18 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0pibi"]
-font = ExtResource("2")
+font = ExtResource("3_w5m8w")
 font_size = 32
-
-[sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("2")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1")
@@ -72,8 +69,14 @@ grow_vertical = 2
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("3")
+theme_override_fonts/font = ExtResource("3_w5m8w")
 text = "QUIT"
+
+[node name="SaveButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w5m8w")
+text = "SAVE
+"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 anchors_preset = 4
@@ -87,18 +90,23 @@ grow_vertical = 2
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w5m8w")
 
 [node name="OptionButton2" type="OptionButton" parent="VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w5m8w")
 
 [node name="OptionButton3" type="OptionButton" parent="VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w5m8w")
 
 [node name="OptionButton4" type="OptionButton" parent="VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w5m8w")
 
 [connection signal="confirmed" from="QuitConfirm" to="." method="_on_QuitConfirm_confirmed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton2" to="." method="_on_option_button_2_item_selected"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton3" to="." method="_on_option_button_3_item_selected"]

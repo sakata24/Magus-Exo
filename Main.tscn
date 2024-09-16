@@ -75,7 +75,7 @@ process_mode = 1
 
 [node name="Home" parent="Rooms" instance=ExtResource("2_0l3k2")]
 
-[node name="Player" parent="." instance=ExtResource("3")]
+[node name="Player" parent="." groups=["Persist"] instance=ExtResource("3")]
 process_mode = 1
 position = Vector2(168, 104)
 

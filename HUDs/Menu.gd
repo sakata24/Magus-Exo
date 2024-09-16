@@ -16,6 +16,10 @@ func _on_QuitButton_pressed():
 func _on_QuitConfirm_confirmed():
 	get_tree().quit()
 
+func _on_save_button_pressed():
+	get_node("/root/CustomResourceLoader").save_game()
+
+
 func _on_option_button_item_selected(index):
 	emit_signal("skill_changed", 0, $VBoxContainer2/OptionButton.get_item_text(index))
 

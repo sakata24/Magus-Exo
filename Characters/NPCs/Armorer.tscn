@@ -81,7 +81,6 @@ offset_bottom = 30.0
 grow_horizontal = 2
 
 [node name="Button" type="Button" parent="HBoxContainer"]
-visible = false
 z_index = 100
 layout_mode = 2
 size_flags_horizontal = 3
