@@ -6,6 +6,9 @@ var extinctionScene = preload("res://Abilities/Reactions/Extinction.tscn")
 var blastScene = preload("res://Abilities/Reactions/Blast.tscn")
 var dischargeScene = preload("res://Abilities/Reactions/Discharge.tscn")
 var sicknessScene = preload("res://Abilities/Reactions/Sickness.tscn")
+
+var crackScene = preload("res://Abilities/Crack.tscn")
+var stormScene = preload("res://Abilities/Storm.tscn")
 var skillDict = {}
 
 func _ready():
@@ -69,69 +72,16 @@ func perform_spawn(ability, pos, caster):
 				timer.start()
 			timer.queue_free()
 		"vine":
-			# Simply change the hitbox
-			ability.modulate.a = 1.0
-			var vectorArray = PackedVector2Array([
-				Vector2(0, -0.4),
-				Vector2(0, 0.4),
-				Vector2(8 * ability.size, 0.4),
-				Vector2(8 * ability.size, -0.4)
-			])
-			ability.get_node("Texture").set_polygon(vectorArray)
-			ability.get_node("CollisionPolygon2D").set_polygon(vectorArray)
-			ability.position = clamp_vector(pos, caster.global_position, 10)
-			ability.look_at(pos)
+			pass
 		"fountain":
-			# add a color to indicate colliision delay
-			ability.get_node("AnimatedSprite2D").set_sprite_frames(CustomResourceLoader.fountainSpriteRes)
-			ability.get_node("AnimatedSprite2D").play()
 			ability.set_collision_mask_value(2, false)
 		"crack":
-			ability.get_node("AnimatedSprite2D").set_sprite_frames(CustomResourceLoader.crackSpriteRes)
-			ability.get_node("AnimatedSprite2D").play()
+			pass
 		"suspend":
 			# make it tick
-			ability.modulate.a = 0.5
 			start_tick_timer(ability, 0.13)
-		"fissure":
-			# change the hitbox
-			ability.modulate.a = 0.5
-			ability.set_collision_mask_value(2, false)
-			# setting hitbox
-			var vectorArray = PackedVector2Array([
-				Vector2(-3 * ability.size, -3),
-				Vector2(-3 * ability.size, 3),
-				Vector2(3 * ability.size, 3),
-				Vector2(3 * ability.size, -3)
-			])
-			ability.get_node("Texture").set_polygon(vectorArray)
-			ability.get_node("CollisionPolygon2D").set_polygon(vectorArray)
-			var offset = (pos - caster.global_position).normalized() * 9 * (ability.size * 2)
-			ability.position = caster.global_position + offset
-			ability.look_at(pos)
 		"storm":
-			# create a timer that will tick at a time relevant to the amount of enemies in area, as well as dmg
-			ability.modulate.a = 0.5
-			ability.disconnect("body_entered", ability._on_SpellBody_body_entered)
-			ability.connect("body_entered", ability.on_spellBody_entered_override)
-			var timer = Timer.new()
-			timer.wait_time = 0.5
-			ability.add_child(timer)
-			timer.start()
-			while true:
-				# randomly select someone to damage. more enemies = more attacks = less dmg
-				if ability.has_overlapping_bodies():
-					var array = []
-					for body in ability.get_overlapping_bodies():
-						if body.is_in_group("monsters"):
-							array.push_back(body)
-					if not array.is_empty():
-						var enemy = array[randi() % array.size()]
-						enemy._hit(floor(ability.dmg/(array.size()+1)), ability.get_node("Texture").color)
-						timer.wait_time = (0.9/(array.size()+1))
-				await timer.timeout
-				timer.start()
-			timer.queue_free()
+			pass
 		_:
 			print("nothing")
 
@@ -157,15 +107,9 @@ func perform_timeout(ability):
 			print("im grass")
 		"fountain":
 			print("woosh")
-			ability.get_node("AnimatedSprite2D").set_animation("hit")
-			ability.get_node("AnimatedSprite2D").play()
-			ability.set_collision_mask_value(2, true)
 		"suspend":
 			print("fade")
 			ability.modulate.a = 0.3
-		"fissure":
-			ability.modulate.a = 0.7
-			start_tick_timer(ability, 0.5)
 		_:
 			print("nothing")
 
@@ -209,7 +153,7 @@ func perform_reaction(collider, collided):
 	collider.get_node("LifetimeTimer").paused = true
 	match collider.element + collided.element:
 		"sunder" + "entropy":
-			# BLAST: Spawn projectiles randomly and radiate them outwards
+			# BLAST: Spawn projectiles and radiate them outwards
 			var blast = blastScene.instantiate()
 			blast.init(collider, collided)
 			collided.add_sibling(blast)
@@ -218,7 +162,7 @@ func perform_reaction(collider, collided):
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
 		"entropy" + "sunder":
-			# BLAST: Spawn projectiles randomly and radiate them outwards
+			# BLAST: Spawn projectiles and radiate them outwards
 			var blast = blastScene.instantiate()
 			blast.init(collider, collided)
 			collided.add_sibling(blast)
@@ -243,7 +187,7 @@ func perform_reaction(collider, collided):
 		"construct" + "sunder":
 			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()
-			shatter.parent = collider
+			shatter.myParent = collider
 			shatter.dmg = collided.dmg + collider.dmg
 			collider.scale = Vector2(1,1)
 			collider.add_child(shatter)
@@ -257,7 +201,7 @@ func perform_reaction(collider, collided):
 		"sunder" + "construct":
 			# SHATTER: Disable construct ability and create an explosion
 			var shatter = shatterScene.instantiate()
-			shatter.parent = collided
+			shatter.myParent = collided
 			shatter.dmg = collider.dmg + collider.dmg
 			collided.scale = Vector2(1,1)
 			collided.add_child(shatter)

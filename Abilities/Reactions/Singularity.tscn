@@ -1,17 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://di0g4tf6ylxyd"]
+[gd_scene load_steps=2 format=3 uid="uid://di0g4tf6ylxyd"]
 
 [ext_resource type="Script" path="res://Abilities/Reactions/Singularity.gd" id="1_7dx8e"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tattg"]
-radius = 4.12311
 
 [node name="Singularity" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_7dx8e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tattg")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 [node name="DragTimer" type="Timer" parent="."]
 wait_time = 0.1

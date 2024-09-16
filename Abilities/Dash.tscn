@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://sr7xm2t52u8g"]
+
+[ext_resource type="Texture2D" uid="uid://bvgyawfvf23x" path="res://Resources/abilities/dash.png" id="1_2u7jf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffn37"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq3t3"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ick3h"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j3yu"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewf37"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xcqa"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7ln4"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyxhx"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(448, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n2vc"]
+atlas = ExtResource("1_2u7jf")
+region = Rect2(512, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gsoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffn37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq3t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ick3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j3yu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewf37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xcqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7ln4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyxhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n2vc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Dash" type="AnimatedSprite2D"]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_1gsoy")
+autoplay = "default"

@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://luipktyt6tcb"]
+
+[ext_resource type="Texture2D" uid="uid://bliqyqpe6sp25" path="res://Resources/abilities/storm-sprite.png" id="1_ktcuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foh6u"]
+atlas = ExtResource("1_ktcuo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyocl"]
+atlas = ExtResource("1_ktcuo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulsql"]
+atlas = ExtResource("1_ktcuo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i7wo"]
+atlas = ExtResource("1_ktcuo")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foh6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyocl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulsql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i7wo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

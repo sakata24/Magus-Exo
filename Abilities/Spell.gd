@@ -17,13 +17,7 @@ const CAST_RANGE = 500
 func init(skillDict, castTarget, caster):
 	# set variables
 	abilityID = skillDict["name"]
-	speed = skillDict["speed"] * speed
-	size *= skillDict["size"]
-	dmg *= skillDict["dmg"]
-	timeout *= skillDict["timeout"]
-	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
-	self.modulate.a = 0.5
 	print(element)
 	if element == "sunder":
 		$Texture.color = Color("#c00000")
@@ -39,11 +33,6 @@ func init(skillDict, castTarget, caster):
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
 	self.position = castTarget
-	self.scale *= size
-	$LifetimeTimer.wait_time = lifetime
-	# start timer
-	$TimeoutTimer.wait_time = timeout
-	$TimeoutTimer.start()
 	# perform operation on spawn
 	UniversalSkills.perform_spawn(self, castTarget, caster)
 
@@ -72,11 +61,3 @@ func _on_TimeoutTimer_timeout():
 
 func _on_LifetimeTimer_timeout():
 	UniversalSkills.perform_despawn(self, null)
-
-func on_spellBody_entered_override(body):
-	if body.name != "Player":
-		if body.is_in_group("skills"):
-			print("reaction with " + body.element + " + " + self.element)
-			set_collision_layer_value(3, false)
-			set_collision_mask_value(3, false)
-			UniversalSkills.perform_reaction(body, self)

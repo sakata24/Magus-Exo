@@ -30,9 +30,8 @@ func init(spl:String, text = ""):
 
 
 func _get_icon():
-	if ResourceLoader.exists(ART_PATH+spell+".png"):
-		texture = load(ART_PATH+spell+".png")
-	else:
+	texture = load(ART_PATH+spell+".png")
+	if !texture:
 		texture = load("res://Resources/icon.png")
 
 

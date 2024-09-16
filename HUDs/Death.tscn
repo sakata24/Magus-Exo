@@ -40,6 +40,6 @@ layout_mode = 2
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ppyl2")
-text = "Try Again?"
+text = "Next"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://ceqvkhki38wwr"]
+
+[ext_resource type="Script" path="res://Characters/NPCs/NPC.gd" id="1_2cod3"]
+[ext_resource type="Texture2D" uid="uid://dan0j4bwdb37c" path="res://Resources/warlock.png" id="2_6dfoj"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_s2qmh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxb7v"]
+radius = 25.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0hd0"]
+atlas = ExtResource("2_6dfoj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tli2y"]
+atlas = ExtResource("2_6dfoj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4qshb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0hd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tli2y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ohol"]
+font = ExtResource("3_s2qmh")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="Theme" id="Theme_lpuhh"]
+default_font = ExtResource("3_s2qmh")
+default_font_size = 8
+
+[node name="Armorer" type="Node2D"]
+script = ExtResource("1_2cod3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_dxb7v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4qshb")
+autoplay = "default"
+flip_h = true
+
+[node name="Name" type="Label" parent="."]
+z_index = 100
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -25.0
+offset_right = 36.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Librarian"
+label_settings = SubResource("LabelSettings_2ohol")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 28.0
+grow_horizontal = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+visible = false
+z_index = 100
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_lpuhh")
+text = "shop"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -2,6 +2,14 @@ extends CharacterBody2D
 
 class_name Player
 
+var stormScene = preload("res://Abilities/Storm.tscn")
+var crackScene = preload("res://Abilities/Crack.tscn")
+var vineScene = preload("res://Abilities/Vine.tscn")
+var fissureScene = preload("res://Abilities/Fissure.tscn")
+var fountainScene = preload("res://Abilities/Fountain.tscn")
+var suspendScene = preload("res://Abilities/Suspend.tscn")
+var dashScene = preload("res://Abilities/Dash.tscn")
+
 @export var sunder_dmg_boost = 1.0
 @export var sunder_extra_casts = 0
 var remainingCasts = 0
@@ -99,8 +107,14 @@ func _unhandled_input(event):
 		emit_signal("moving_to")
 	
 	if event.is_action_pressed('Space') and canDash:
+		$DashTimer.start()
 		dashing = true
 		move_target = get_global_mouse_position()
+		var dashAnim = dashScene.instantiate()
+		var offset = (move_target - self.global_position).normalized() * 34
+		dashAnim.position = self.global_position + offset
+		dashAnim.look_at(get_global_mouse_position())
+		get_parent().add_child(dashAnim)
 	
 	if event.is_action_pressed('Q') and skillReady[0]:
 		cast_ability(equippedSkills[0])
@@ -163,18 +177,10 @@ func _physics_process(delta):
 func movementHelper(delta):
 	
 	if dashing and canDash:
-		print("debug")
-		set_collision_layer_value(1, false)
-		set_collision_layer_value(4, false)
-		speed = max_speed * 11
-		dashIFrames += 1
-		$DashTimer.start()
-		if dashIFrames >= 3:
-			dashIFrames = 0
-			dashing = false
-			canDash = false
-			set_collision_layer_value(1, true)
-			set_collision_layer_value(4, true)
+		var offset = (move_target - self.global_position).normalized() * 58
+		move_and_collide(offset)
+		dashing = false
+		canDash = false
 	# if moving continue, if not stop moving
 	elif not moving:
 		speed = 0
@@ -218,8 +224,15 @@ func cast_ability(skill):
 		# calculates the projectiles direction
 		projectile.velocity = (castTarget - projectile.position).normalized()
 	elif ability["type"] == "spell":
-		# load the spell
-		var spell = spellLoad.instantiate()
+		var spell
+		match skill:
+			"crack": spell = crackScene.instantiate()
+			"storm": spell = stormScene.instantiate()
+			"fissure": spell = fissureScene.instantiate()
+			"vine": spell = vineScene.instantiate()
+			"fountain": spell = fountainScene.instantiate()
+			"suspend": spell = suspendScene.instantiate()
+			_: crackScene.instantiate()
 		# spawn the spell and initialize it
 		get_parent().add_child(spell)
 		spell.init(ability, castTarget, self)

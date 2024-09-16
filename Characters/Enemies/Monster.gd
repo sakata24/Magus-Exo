@@ -16,9 +16,9 @@ var health = 100
 # damage
 var myDmg = 2
 # base dmg for ref
-const baseDmg = 2
+var baseDmg = 2
 # max health
-var maxHealth = 50
+var maxHealth = 100
 # exp i give
 var bestowedXp = 1
 # am i attacking

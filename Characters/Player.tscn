@@ -76,18 +76,19 @@ animations = [{
 radius = 8.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 9
 collision_layer = 9
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1")
-flow_cooldown_reduction = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bv2qp")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0275906
+frame = 3
+frame_progress = 0.0152724
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bixge")
@@ -100,7 +101,7 @@ one_shot = true
 wait_time = 0.15
 
 [node name="MultiCastTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.08
 
 [node name="ProjectilePivot" type="Node2D" parent="."]
 rotation = -6.28319

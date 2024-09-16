@@ -8,8 +8,9 @@ var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
 var exit_room = Vector2i()
 var roomArray = []
-var MAP_SIZE = 3 # sqrt of room amt
+var MAP_SIZE = 4 # sqrt of room amt
 var popup = false
+var diff = 0
 
 func _ready():
 	# connect hud to player
@@ -20,11 +21,24 @@ func _ready():
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
 	$Player.connect("player_hit", Callable(self, "_check_death"))
+	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
-	init_rooms()
+	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
+
+func _load_level():
+	# inc difficulty when loading
+	diff += 1;
+	# clean rooms node
+	for child in $Rooms.get_children():
+		child.queue_free()
 	$Player.position = Vector2i(250, 250)
+	$Player.moving = false
+	# init rooms
+	init_rooms()
+	
 
 func init_rooms():
+	print(diff)
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
 	for i in range(0,MAP_SIZE):
 		for j in range(0,MAP_SIZE):
@@ -33,6 +47,7 @@ func init_rooms():
 				newRoom = spawn.instantiate()
 			elif exit_room == Vector2i(i, j):
 				newRoom = exit.instantiate()
+				newRoom.connect("load_level", Callable(self, "_load_level"))
 			else:
 				var rand = randi_range(0,3);
 				if rand == 0:
@@ -89,10 +104,15 @@ func init_rooms():
 					else:
 						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(8, 7))
 			$Rooms.add_child(newRoom)
-			# fetch group of monsters on the map and connect their giveXp signals to player
-			var monsters = newRoom.get_tree().get_nodes_in_group("monsters")
-			for monster in monsters:
-				monster.connect("giveXp", Callable($Player, "gain_xp"))
+	# fetch group of monsters on the map and connect their giveXp signals to player
+	var monsters = get_tree().get_nodes_in_group("monsters")
+	for monster in monsters:
+		monster.maxHealth *= diff
+		monster.health *= diff
+		monster.myDmg *= diff
+		monster.baseDmg *= diff
+		print(monster, monster.myDmg)
+		monster.connect("giveXp", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !popup:
@@ -116,7 +136,16 @@ func _check_death(newHP, maxHP):
 		popup = true
 		$Death.setup()
 		$Death.visible = true
+		# reset difficulty
+		diff = 0
 
 func _change_skills(idx, newSkill):
+	var key
+	match idx:
+		0: key = "Q"
+		1: key = "W"
+		2: key = "E"
+		3: key = "R"
 	$Player.equippedSkills[idx] = newSkill
 	$Player.initSkills()
+	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)

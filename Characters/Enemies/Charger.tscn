@@ -9,12 +9,17 @@ atlas = ExtResource("3_qc6dx")
 region = Rect2(81, 48, 15, 15)
 
 [node name="Charger" instance=ExtResource("1_aci6j")]
+z_index = 999
 script = ExtResource("1_kvkxl")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = SubResource("AtlasTexture_j336n")
 
-[node name="DamageArea" parent="." index="4"]
+[node name="DashTimer" type="Timer" parent="." index="5"]
+wait_time = 0.5
+one_shot = true
+
+[node name="DamageArea" parent="." index="6"]
 visible = false
 
 [node name="CollisionPolygon2D" parent="DamageArea" index="0"]
@@ -35,9 +40,5 @@ position = Vector2(37, 0)
 color = Color(1, 0, 0, 0.196078)
 polygon = PackedVector2Array(5, -9, 18, -8, 23, 0, 18, 8, 5, 9, 11, 0)
 
-[node name="DashTimer" type="Timer" parent="." index="5"]
-wait_time = 0.5
-one_shot = true
-
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

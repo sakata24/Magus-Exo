@@ -9,6 +9,7 @@ var flowSpriteRes = preload("res://Abilities/Animations/FlowSprite.tres")
 var witherSpriteRes = preload("res://Abilities/Animations/WitherSprite.tres")
 var fountainSpriteRes = preload("res://Abilities/Animations/Spells/FountainSprite.tres")
 var crackSpriteRes = preload("res://Abilities/Animations/Spells/CrackSprite.tres")
+var stormSpriteRes = preload("res://Abilities/Animations/Spells/StormSprite.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

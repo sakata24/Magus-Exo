@@ -1,6 +1,6 @@
 extends Area2D
 
-var parent
+var myParent
 var dmg = 0
 var max_size = Vector2(1.5, 1.5)
 
@@ -10,17 +10,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(self.scale)
-	print(max_size)
 	if self.scale >= max_size:
-		print("die mf")
-		parent.queue_free()
-	self.scale = self.scale + Vector2(0.07, 0.07)
-	print(parent.size)
+		myParent.queue_free()
+	self.scale = self.scale + Vector2(0.01, 0.01)
 
 func _on_timer_timeout():
-	parent.queue_free()
+	myParent.queue_free()
 
 func _on_body_entered(body):
+	print(body)
 	if body.is_in_group("monsters"):
-		body._hit(dmg, parent.get_node("Texture").color)
+		body._hit(dmg, myParent.get_node("Texture").color)

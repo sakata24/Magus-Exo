@@ -1,5 +1,6 @@
 extends Node
 
+signal load_level(diff)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,5 +21,5 @@ func _on_exit_door_area_body_exited(body):
 
 func _on_exit_door_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('L-Click') and $ExitLabel.visible:
-		print("EXIt CILKC")
+		emit_signal("load_level")
 

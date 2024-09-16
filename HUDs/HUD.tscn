@@ -85,11 +85,15 @@ offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 
 [node name="ProgressBar" type="ColorRect" parent="Health"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -200.0
 offset_top = 2.0
 offset_right = 200.0
 offset_bottom = 38.0
+grow_horizontal = 2
 color = Color(1, 0, 0, 1)
 
 [node name="HealthLabel" type="Label" parent="Health"]
@@ -108,6 +112,41 @@ grow_vertical = 2
 theme_override_fonts/font = SubResource("1")
 text = "Health: 0"
 label_settings = SubResource("LabelSettings_dy1tj")
+
+[node name="Dash" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -42.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Body" type="ColorRect" parent="Dash"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.0
+offset_right = 205.0
+offset_bottom = 10.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar" type="ColorRect" parent="Dash"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 2.0
+offset_right = 200.0
+offset_bottom = 6.0
+grow_horizontal = 2
+color = Color(0.698039, 1, 0.996078, 1)
 
 [node name="EXPLabel" type="Label" parent="."]
 anchors_preset = 2

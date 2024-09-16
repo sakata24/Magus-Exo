@@ -27,19 +27,21 @@ func _on_tick_timer_timeout():
 		$DebuffTimer.start()
 
 func _on_debuff_timer_timeout():
-	for body in debuffedEnemies:
-		if body != null and body.is_in_group("monsters"):
-			print(body.speed)
-			body.canMove = true
-			body.speed = body.baseSpeed
-			body.myDmg = body.baseDmg
+	if debuffedEnemies != null:
+		for body in debuffedEnemies:
+			if body != null and body.is_in_group("monsters"):
+				print(body.speed)
+				body.canMove = true
+				body.speed = body.baseSpeed
+				body.myDmg = body.baseDmg
 
 
 func _on_lifetime_timer_timeout():
-	for body in debuffedEnemies:
-		if body != null and body.is_in_group("monsters"):
-			print(body.speed)
-			body.canMove = true
-			body.speed = body.baseSpeed
-			body.myDmg = body.baseDmg
+	if debuffedEnemies != null:
+		for body in debuffedEnemies:
+			if body != null and body.is_in_group("monsters"):
+				print(body.speed)
+				body.canMove = true
+				body.speed = body.baseSpeed
+				body.myDmg = body.baseDmg
 	queue_free()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=17 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cbiw1tglncahn" path="res://Maps/Home.tscn" id="2_0l3k2"]
 [ext_resource type="PackedScene" uid="uid://83qg0j5exfyc" path="res://Characters/Player.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://d37cep1ypwea6" path="res://HUDs/Menu.tscn" id="5"]
@@ -72,9 +73,11 @@ script = ExtResource("1")
 [node name="Rooms" type="Node2D" parent="."]
 process_mode = 1
 
+[node name="Home" parent="Rooms" instance=ExtResource("2_0l3k2")]
+
 [node name="Player" parent="." instance=ExtResource("3")]
 process_mode = 1
-position = Vector2(250, 250)
+position = Vector2(168, 104)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visible = false

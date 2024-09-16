@@ -20,7 +20,7 @@ func _set_dash_cd(dash_cd, dash_cd_max):
 	$Dash/ProgressBar.set_size(Vector2((4*hudScale)-(dash_cd*(4*hudScale)/dash_cd_max),(0.05*hudScale)))
 
 func _set_xp(xp, max_xp):
-	$EXPLabel.text = ("EXP: " + str(xp) + "/" + str(max_xp))
+	$EXPLabel.text = ("EXP: " + str(xp) + " /" + str(max_xp))
 
 func set_lvl(lvl):
 	$LVLLabel.text = ("Level: " + str(lvl))
