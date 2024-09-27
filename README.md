@@ -3,13 +3,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/sakata24/JustAnRPG">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">JustAnRPG (working title)</h3>
 
   <p align="center">
-    This is a small, independent game by myself, with some help from others. \n A top-down 2d spell-comboing game that has unique spells, animations and interactions!
+    This is a small, independent game by myself, with some help from others. A top-down 2d spell-comboing game that has unique spells, animations and interactions!
     <br />
     <a href="https://github.com/sakata24/JustAnRPG"><strong>Explore the docs »</strong></a>
     <br />
@@ -58,21 +58,6 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `sakata24`, `JustAnRPG`, `twitter_handle`, `Tyler Kaikena Sakata`, `gmail`, `tundrus808`, `project_title`, `project_description`
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Built With
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
