@@ -1,6 +1,8 @@
+Control
+AnimationPlayer
+AnimatedSprite2D
 Button
 ColorRect
-Control
 HBoxContainer
 ItemList
 VBoxContainer
@@ -9,6 +11,4 @@ CanvasLayer
 Sprite2D
 Label
 CollisionShape2D
-AnimatedSprite2D
 Area2D
-CollisionPolygon2D

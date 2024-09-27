@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://76xj3tuaqt16"]
+[gd_scene load_steps=8 format=3 uid="uid://76xj3tuaqt16"]
 
 [ext_resource type="Script" path="res://HUDs/HUD.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_2uc2n"]
 [ext_resource type="PackedScene" uid="uid://jb02v63no31m" path="res://Resources/hud_elements/SkillIcon.tscn" id="3_e3bud"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_typ2u"]
 
@@ -22,47 +23,6 @@ font = ExtResource("3_typ2u")
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.796078)
 
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("2")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="4"]
-fallbacks = Array[Font]([ExtResource("2")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("2")])
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/glyphs/0/advance = Vector2(0, 0)
-cache/0/16/0/glyphs/0/offset = Vector2(0, 0)
-cache/0/16/0/glyphs/0/size = Vector2(0, 0)
-cache/0/16/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
-cache/0/16/0/glyphs/0/texture_idx = -1
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1")
 
@@ -76,6 +36,7 @@ anchor_bottom = 1.0
 offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_2uc2n")
 
 [node name="Body" type="ColorRect" parent="Health"]
 layout_mode = 0
@@ -124,6 +85,7 @@ offset_top = -42.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_2uc2n")
 
 [node name="Body" type="ColorRect" parent="Dash"]
 layout_mode = 1
@@ -152,15 +114,18 @@ color = Color(0.698039, 1, 0.996078, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -17.0
-offset_right = 79.0
-theme_override_fonts/font = SubResource("2")
-text = "EXP: 0 /10"
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 140.0
+grow_vertical = 0
+theme = ExtResource("2_2uc2n")
+text = "EXP: 0/10"
 
 [node name="LVLLabel" type="Label" parent="."]
-offset_right = 50.0
-offset_bottom = 14.0
-theme_override_fonts/font = SubResource("4")
+offset_left = 5.0
+offset_right = 125.0
+offset_bottom = 20.0
+theme = ExtResource("2_2uc2n")
 text = "Level: 0"
 
 [node name="Skill" type="VBoxContainer" parent="."]
@@ -171,6 +136,7 @@ offset_top = -294.5
 offset_right = 200.0
 offset_bottom = -41.5
 grow_vertical = 2
+theme = ExtResource("2_2uc2n")
 theme_override_constants/separation = 15
 alignment = 1
 
@@ -212,7 +178,6 @@ size_flags_vertical = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = SubResource("3")
 text = "Q:"
 
 [node name="Ability2" type="MarginContainer" parent="Skill"]
@@ -252,7 +217,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = SubResource("3")
 text = "Q:"
 
 [node name="Ability3" type="MarginContainer" parent="Skill"]
@@ -292,7 +256,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = SubResource("3")
 text = "Q:"
 
 [node name="Ability4" type="MarginContainer" parent="Skill"]
@@ -332,7 +295,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = SubResource("3")
 text = "Q:"
 
 [connection signal="mouse_entered" from="Skill/Ability1/HBoxContainer/SkillMargin/SkillIcon" to="." method="_show_ability_names"]

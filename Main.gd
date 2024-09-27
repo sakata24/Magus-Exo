@@ -9,7 +9,8 @@ var exit = preload("res://Maps/Exit.tscn")
 var exit_room = Vector2i()
 var roomArray = []
 var MAP_SIZE = 4 # sqrt of room amt
-var popup = false
+var dead = false
+var menus = []
 var diff = 0
 
 func _ready():
@@ -23,6 +24,7 @@ func _ready():
 	$Player.connect("player_hit", Callable(self, "_check_death"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
+	$Shop.connect("opened", Callable(self, "_add_menu"))
 	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 
 func _load_level():
@@ -115,9 +117,19 @@ func init_rooms():
 		monster.connect("giveXp", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
-	if event.is_action_pressed('ui_cancel') and !popup:
-		$Menu.visible = !$Menu.visible
-		get_tree().paused = !get_tree().paused
+	if event.is_action_pressed('ui_cancel') and !dead:
+		# if no menu open, open the pause menu
+		if menus.is_empty():
+			menus.push_front($Menu)
+			$Menu.visible = true
+			get_tree().paused = !get_tree().paused
+		# if menu is open, close it
+		else:
+			menus.pop_front().visible = false
+
+func _add_menu(menu):
+	menus.push_front(menu)
+	menu.visible = true
 
 func _leveled_up(lvl):
 	$HUD.set_lvl(lvl)
@@ -133,7 +145,7 @@ func _on_click_animation_animation_finished():
 
 func _check_death(newHP, maxHP):
 	if newHP <= 0:
-		popup = true
+		dead = true
 		$Death.setup()
 		$Death.visible = true
 		# reset difficulty
