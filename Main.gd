@@ -126,6 +126,7 @@ func _unhandled_input(event):
 		# if menu is open, close it
 		else:
 			menus.pop_front().visible = false
+			get_tree().paused = !get_tree().paused
 
 func _add_menu(menu):
 	menus.push_front(menu)
