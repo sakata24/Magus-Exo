@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sakata24/JustAnRPG">
-    <img src="logo.png" alt="Logo" width="400" height="370">
+    <img src="logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">JustAnRPG (working title)</h3>
