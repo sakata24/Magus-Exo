@@ -4,8 +4,11 @@ extends Node2D
 @export var IMPACT_DISTANCE := 20
 @export var RADIUS := 10
 
+var player = null
+
 func _ready() -> void:
 	var mesh = SphereMesh.new()
+	$Area2D/CollisionShape2D.shape.radius = RADIUS
 	mesh.radius = 1
 	mesh.height = 2
 	$Meter.mesh = mesh
@@ -25,3 +28,14 @@ func _explode():
 	$Meter.visible = false
 	$Projectile.visible = false
 	$GPUParticles2D.emitting = true
+	if player != null:
+		player.hit(3)
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		player = body
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player = null

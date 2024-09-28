@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://p2sdmnec2uhl"]
+[gd_scene load_steps=9 format=3 uid="uid://p2sdmnec2uhl"]
 
 [ext_resource type="Script" path="res://Abilities/BossMoves/Cannon.gd" id="1_vlhfd"]
 [ext_resource type="Texture2D" uid="uid://c4kix7dbt6nxq" path="res://Resources/abilities/wither-sprite.png" id="2_4gkk4"]
@@ -31,13 +31,17 @@ gravity = Vector3(0, 0, 0)
 damping_min = 30.0
 damping_max = 30.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ut1fj"]
+
 [node name="Cannon" type="Node2D"]
-position = Vector2(50, 92)
 script = ExtResource("1_vlhfd")
 IMPACT_DISTANCE = 50
+RADIUS = 15
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Range" type="MeshInstance2D" parent="."]
-modulate = Color(0.576471, 0, 0, 0.396078)
+self_modulate = Color(0.34902, 0, 0, 0.196078)
 mesh = SubResource("SphereMesh_klwyj")
 
 [node name="Meter" type="MeshInstance2D" parent="."]
@@ -61,4 +65,13 @@ explosiveness = 0.9
 [node name="DelayTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ut1fj")
+
 [connection signal="timeout" from="DelayTimer" to="." method="_explode"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -84,7 +84,6 @@ one_shot = true
 wait_time = 0.4
 
 [node name="StatusLabel" type="Label" parent="."]
-visible = false
 texture_filter = 1
 offset_left = -18.0
 offset_top = -14.0
@@ -92,6 +91,12 @@ offset_right = 18.0
 offset_bottom = 1.0
 text = "STUN"
 label_settings = SubResource("LabelSettings_5y84s")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="body_entered" from="AggroRange" to="." method="_on_AggroRange_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

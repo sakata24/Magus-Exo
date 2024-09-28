@@ -25,7 +25,7 @@ func _ready():
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	$Shop.connect("opened", Callable(self, "_add_menu"))
-	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
+	#$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 
 func _load_level():
 	# inc difficulty when loading

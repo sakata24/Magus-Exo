@@ -120,6 +120,9 @@ func _unhandled_input(event):
 		emit_signal("moving_to")
 	
 	if event.is_action_pressed('Space') and canDash:
+		set_collision_mask_value(4, false)
+		#set_collision_layer_value(1, false)
+		#set_collision_layer_value(4, false)
 		$DashTimer.start()
 		dashing = true
 		move_target = get_global_mouse_position()
@@ -128,6 +131,10 @@ func _unhandled_input(event):
 		dashAnim.position = self.global_position + offset
 		dashAnim.look_at(get_global_mouse_position())
 		get_parent().add_child(dashAnim)
+		await get_tree().create_timer(0.1).timeout
+		set_collision_mask_value(4, true)
+		#set_collision_layer_value(4, true)
+		#set_collision_layer_value(1, true)
 	
 	if event.is_action_pressed('Q') and skillReady[0]:
 		cast_ability(equippedSkills[0])
