@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://p2sdmnec2uhl"]
+
+[ext_resource type="Script" path="res://Abilities/BossMoves/Cannon.gd" id="1_vlhfd"]
+[ext_resource type="Texture2D" uid="uid://c4kix7dbt6nxq" path="res://Resources/abilities/wither-sprite.png" id="2_4gkk4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q58be"]
+shading_mode = 0
+detail_blend_mode = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_klwyj"]
+material = SubResource("StandardMaterial3D_q58be")
+radius = 10.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65nq7"]
+shading_mode = 0
+detail_blend_mode = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_tan0g"]
+material = SubResource("StandardMaterial3D_65nq7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hfdma"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 0, 0)
+damping_min = 30.0
+damping_max = 30.0
+
+[node name="Cannon" type="Node2D"]
+position = Vector2(50, 92)
+script = ExtResource("1_vlhfd")
+IMPACT_DISTANCE = 50
+
+[node name="Range" type="MeshInstance2D" parent="."]
+modulate = Color(0.576471, 0, 0, 0.396078)
+mesh = SubResource("SphereMesh_klwyj")
+
+[node name="Meter" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 0.396078)
+mesh = SubResource("SphereMesh_tan0g")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4gkk4")
+hframes = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.439216, 0.188235, 0.627451, 1)
+emitting = false
+amount = 45
+process_material = SubResource("ParticleProcessMaterial_hfdma")
+one_shot = true
+explosiveness = 0.9
+
+[node name="DelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DelayTimer" to="." method="_explode"]

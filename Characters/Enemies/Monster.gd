@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Monster extends CharacterBody2D
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 var upgradeDrop = preload("res://Interactables/UpgradeChest.tscn")
@@ -10,7 +10,7 @@ var player = CharacterBody2D
 # how fast i move
 var speed = 50
 # base speed for ref
-const baseSpeed = 50
+var baseSpeed = 50
 # my health
 var health = 100
 # damage

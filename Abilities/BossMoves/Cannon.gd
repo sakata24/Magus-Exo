@@ -1,0 +1,27 @@
+extends Node2D
+
+@export var DELAY_TIME := 1.0
+@export var IMPACT_DISTANCE := 20
+@export var RADIUS := 10
+
+func _ready() -> void:
+	var mesh = SphereMesh.new()
+	mesh.radius = 1
+	mesh.height = 2
+	$Meter.mesh = mesh
+	$Projectile.visible = false
+	$Projectile.position.y -= IMPACT_DISTANCE
+	$Projectile.visible = true
+	var tween = create_tween()
+	$DelayTimer.start(DELAY_TIME)
+	tween.parallel().tween_property($Projectile, "position", Vector2.ZERO, DELAY_TIME+0.5).set_trans(Tween.TRANS_EXPO)
+	tween.parallel().tween_property($Meter.mesh, "radius", RADIUS, DELAY_TIME).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property($Meter.mesh, "height", RADIUS*2, DELAY_TIME).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property($Projectile, "scale", Vector2.ONE, DELAY_TIME).set_trans(Tween.TRANS_LINEAR)
+	
+
+func _explode():
+	$Range.visible = false
+	$Meter.visible = false
+	$Projectile.visible = false
+	$GPUParticles2D.emitting = true
