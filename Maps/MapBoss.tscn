@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1u0k02nfhygq"]
+[gd_scene load_steps=6 format=3 uid="uid://c1u0k02nfhygq"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_oomlo"]
+[ext_resource type="Script" path="res://Maps/MapBoss.gd" id="1_vx3fa"]
 [ext_resource type="PackedScene" uid="uid://d1hnawkho7eos" path="res://Characters/Enemies/DarkMage.tscn" id="3_l0kxp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1vbm6"]
@@ -9,7 +10,14 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-9, -12, 506, -11, 505, 506, -8, 507)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
+[sub_resource type="Curve2D" id="Curve2D_s3m4f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 40, 40, 0, 0, 0, 0, 460, 40, 0, 0, 0, 0, 460, 460, 0, 0, 0, 0, 40, 460, 0, 0, 0, 0, 40, 40)
+}
+point_count = 5
+
 [node name="MapBoss" type="Node2D"]
+script = ExtResource("1_vx3fa")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1vbm6")
@@ -22,3 +30,24 @@ layer_0/tile_data = PackedInt32Array(0, 0, 1, 1966110, 327680, 4, 1114124, 39321
 
 [node name="DarkMage" parent="." instance=ExtResource("3_l0kxp")]
 position = Vector2(249, 235)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s3m4f")
+
+[node name="MoveTimer" type="Timer" parent="Path2D"]
+wait_time = 3.0
+autostart = true
+
+[node name="SpawnTimer" type="Timer" parent="Path2D/MoveTimer"]
+wait_time = 3.0
+one_shot = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(460, 287.298)
+rotation = 1.5708
+progress = 667.296
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(40, 40)
+
+[connection signal="timeout" from="Path2D/MoveTimer/SpawnTimer" to="." method="_on_spawn_timer_timeout"]

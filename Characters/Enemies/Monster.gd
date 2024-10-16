@@ -25,6 +25,8 @@ var bestowedXp = 1
 var attacking = false
 # can i move
 var canMove = true
+# can i drop upgrades
+var droppable = true
 
 signal giveXp(xp)
 
@@ -70,7 +72,7 @@ func chase(delta):
 # hit by something
 func _hit(dmg_to_take, dmg_color):
 	health -= dmg_to_take
-	print("i took ", dmg_to_take, " dmg")
+	#print("i took ", dmg_to_take, " dmg")
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = dmg_color
 	get_parent().add_child(dmgNum)
@@ -88,16 +90,17 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 # when i die
 func die():
 	emit_signal("giveXp", bestowedXp)
-	var drop
-	match randi_range(0, 2):
-		0: 
-			print("pee")
-			drop = upgradeDrop.instantiate()
-		_:
-			drop = null
-	if drop != null:
-		drop.position = position
-		get_parent().add_child(drop)
+	if droppable:
+		var drop
+		match randi_range(0, 2):
+			0: 
+				print("pee")
+				drop = upgradeDrop.instantiate()
+			_:
+				drop = null
+		if drop != null:
+			drop.position = position
+			get_parent().add_child(drop)
 	queue_free()
 
 func _on_attack_timer_timeout():

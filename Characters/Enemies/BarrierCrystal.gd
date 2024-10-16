@@ -32,10 +32,13 @@ func _hit(dmg_to_take, dmg_color):
 
 # when i die
 func die():
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(4, false)
 	invincible = true
 	$GPUParticles2D.emitting = true
 	var tween = create_tween()
 	tween.tween_property($Sprite2D, "self_modulate", Color(1,1,1,0), $GPUParticles2D.lifetime).set_ease(Tween.EASE_IN)
-	await $GPUParticles2D.finished
+	await get_tree().create_timer($GPUParticles2D.lifetime/2)
 	emit_signal("destroyed_crystal")
+	await tween.finished
 	queue_free()

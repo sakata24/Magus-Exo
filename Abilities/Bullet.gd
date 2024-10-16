@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Bullet extends CharacterBody2D
 
 var abilityID = 0
 var speed = 300

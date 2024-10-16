@@ -1,4 +1,4 @@
-extends Area2D
+class_name Spell extends Area2D
 
 var abilityID = 0
 var speed = 300

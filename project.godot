@@ -19,8 +19,6 @@ config/icon="res://Resources/icon.png"
 [autoload]
 
 UniversalSkills="*res://UniversalSkills.gd"
-Bullet="*res://Abilities/Bullet.gd"
-Spell="*res://Abilities/Spell.gd"
 CustomResourceLoader="*res://CustomResourceLoader.gd"
 
 [debug]
@@ -91,6 +89,7 @@ Space={
 2d_navigation/layer_2="collisions"
 2d_physics/layer_3="spells"
 2d_physics/layer_4="characters"
+2d_physics/layer_5="enemy_spells"
 
 [navigation]
 

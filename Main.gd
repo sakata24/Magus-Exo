@@ -162,3 +162,14 @@ func _change_skills(idx, newSkill):
 	$Player.equippedSkills[idx] = newSkill
 	$Player.initSkills()
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
+
+
+func despawn_light():
+	var tween = create_tween()
+	tween.tween_property($CanvasModulate, "color", Color(1,1,1,1), 2)
+	tween.parallel().tween_property($Player/PointLight2D, "modulate", Color(1,1,1,0), 2)
+	await tween.finished
+	$CanvasModulate.visible = false
+	$CanvasModulate.color = Color(0,0,0,1)
+	$Player/PointLight2D.visible = false
+	$Player/PointLight2D.modulate = Color(1,1,1,1)

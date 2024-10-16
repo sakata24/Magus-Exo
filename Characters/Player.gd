@@ -341,3 +341,12 @@ func save():
 		"wither_xp": wither_xp
 	}
 	return save_dict
+
+func spawn_light():
+	var light = $PointLight2D
+	light.scale = Vector2(20,20)
+	light.visible = true
+	var tween = create_tween()
+	tween.tween_property(light, "scale", Vector2(1.5,1.5), 2)
+	await tween.finished
+	return true

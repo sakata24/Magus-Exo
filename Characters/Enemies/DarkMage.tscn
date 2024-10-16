@@ -37,6 +37,9 @@ outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.478431)
 
 [node name="DarkMage" type="CharacterBody2D"]
+z_index = 4
+collision_layer = 10
+collision_mask = 13
 script = ExtResource("1_3rra0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -73,9 +76,11 @@ visible = false
 color = Color(1, 0, 0, 0.509804)
 polygon = PackedVector2Array(6, -14, 19, -18, 24, -8, 25, 0, 24, 8, 19, 18, 6, 14, 10, 7, 11, 0, 10, -7)
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="CannonTimer" type="Timer" parent="."]
 wait_time = 0.4
-autostart = true
+
+[node name="SpikeTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="PathTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -90,4 +95,5 @@ offset_bottom = 1.0
 text = "STUN"
 label_settings = SubResource("LabelSettings_qumqc")
 
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="CannonTimer" to="." method="_fire_cannon"]
+[connection signal="timeout" from="SpikeTimer" to="." method="_fire_spike"]
