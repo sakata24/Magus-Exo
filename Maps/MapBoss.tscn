@@ -18,6 +18,8 @@ point_count = 5
 
 [node name="MapBoss" type="Node2D"]
 script = ExtResource("1_vx3fa")
+SPAWN_ENEMIES = true
+MAX_ENEMIES = 30
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_1vbm6")

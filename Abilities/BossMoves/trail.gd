@@ -1,7 +1,7 @@
 class_name Trail extends Line2D
 
 @onready var curve := Curve2D.new()
-@export var MAX_POINTS : int = 500
+@export var MAX_POINTS : int = 200
 var started = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

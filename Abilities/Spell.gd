@@ -42,7 +42,6 @@ func _ready():
 func _on_SpellBody_body_entered(body):
 	if body.name != "Player":
 		if body.is_in_group("skills"):
-			print("reaction with " + body.element + " + " + self.element)
 			set_collision_layer_value(3, false)
 			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(body, self)

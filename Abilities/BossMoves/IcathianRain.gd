@@ -10,14 +10,13 @@ func _ready() -> void:
 	lifetime = 6
 	size = 1
 	scale *= size
+	$LifetimeTimer.wait_time = lifetime
+	$LifetimeTimer.start()
 
 func set_player(p : Player, origin : Vector2, rotate : float):
 	player = p
 	global_position = origin
 	rotation = rotate
-	$LifetimeTimer.wait_time = lifetime
-	# start timer
-	$TimeoutTimer.wait_time = timeout
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -36,6 +35,11 @@ func _turn():
 	tween.parallel().tween_property(self, "velocity", (player.global_position-position).normalized(), 1)
 	$Line2D.started = true
 
+func react():
+	pass
 
 func _on_turn_timer_timeout() -> void:
 	_turn()
+
+func _on_LifetimeTimer_timeout():
+	queue_free()

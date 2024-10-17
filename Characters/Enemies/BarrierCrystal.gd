@@ -5,8 +5,8 @@ signal destroyed_crystal
 var invincible := false
 
 func _ready():
-	maxHealth = 50
-	health = 50
+	maxHealth = 10
+	health = 10
 	speed = 0
 	baseSpeed = 0
 	add_to_group("monsters")

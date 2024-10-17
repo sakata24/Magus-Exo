@@ -54,3 +54,5 @@ modulate = Color(0.439216, 0.188235, 0.627451, 1)
 position = Vector2(-4, 0)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_65heq")
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]

@@ -5,6 +5,8 @@ extends Monster
 @onready var Minion = load("res://Characters/Enemies/Monster.tscn")
 @onready var Spike = load("res://Abilities/BossMoves/VolitileSpike.tscn")
 
+@export var CANNON_SPAWN_RADIUS : int = 100
+
 var stage = 0
 var invincible := true
 var crystal_amount := 4
@@ -25,16 +27,6 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	pass
 
-
-func _get_playable_area():
-	var rect = get_parent().get_node("NavigationRegion2D/TileMap").get_used_rect()
-	rect.size.x -= 1
-	rect.size.y -= 1
-	rect.size.x *= 16
-	rect.size.y *= 16
-	rect.position.x = 16
-	rect.position.y = 16
-	playable_area = rect
 
 func _set_player():
 	player = get_parent().get_parent().get_parent().get_node("Player")
@@ -116,18 +108,18 @@ func _on_crystal_destroyed():
 
 func begin_stage():
 	match stage:
-		#Cannon Round
+		#Spike Round
 		1:
 			invincible = false
 			emit_signal("health_changed", health, false)
-			$CannonTimer.start()
+			$SpikeTimer.start()
 		#Second Crystal Round
 		2:
 			crystal_amount = 5
 			get_tree().current_scene.get_node("CanvasModulate").visible = true
 			await player.spawn_light()
 			_spawn_crystals()
-		#Spike Round
+		#Cannon Round
 		3:
 			invincible = false
 			get_tree().current_scene.despawn_light()
@@ -137,11 +129,11 @@ func begin_stage():
 
 
 func _fire_cannon():
-	for n in 7:
+	for n in 5:
 		var inst = Cannon.instantiate()
 		var pos : Vector2i
-		pos.x = randi_range(playable_area.position.x, playable_area.size.x)
-		pos.y = randi_range(playable_area.position.y, playable_area.size.y)
+		pos.x = randi_range(player.global_position.x - CANNON_SPAWN_RADIUS, player.global_position.x + CANNON_SPAWN_RADIUS)
+		pos.y = randi_range(player.global_position.y - CANNON_SPAWN_RADIUS, player.global_position.y + CANNON_SPAWN_RADIUS)
 		inst.global_position = pos
 		get_parent().add_child(inst)
 
@@ -151,5 +143,7 @@ func _fire_spike():
 	# spawn the projectile and initialize it
 	projectile.set_player(player, global_position)
 	get_parent().add_child(projectile)
+	projectile.add_to_group("skills")
+	projectile.add_to_group("enemy_skills")
 	# calculates the projectiles direction
 	projectile.velocity = (player.global_position - projectile.position).normalized()

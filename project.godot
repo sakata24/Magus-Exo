@@ -39,6 +39,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 windows=""
+enemy_skills=""
 
 [gui]
 
@@ -90,6 +91,7 @@ Space={
 2d_physics/layer_3="spells"
 2d_physics/layer_4="characters"
 2d_physics/layer_5="enemy_spells"
+2d_physics/layer_6="map"
 
 [navigation]
 
