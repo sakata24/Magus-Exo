@@ -1,4 +1,4 @@
-extends "res://Characters/Enemies/Monster.gd"
+extends Monster
 
 var lockTarget
 var dashing = false
