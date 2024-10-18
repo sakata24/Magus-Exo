@@ -21,7 +21,6 @@ func _ready():
 	maxHealth = 500
 	add_to_group("monsters")
 	_spawn_crystals()
-	call_deferred("_get_playable_area")
 	call_deferred("_set_player")
 
 func _physics_process(delta: float) -> void:
@@ -79,7 +78,6 @@ func die():
 	var drop
 	match randi_range(0, 2):
 		0: 
-			print("pee")
 			drop = upgradeDrop.instantiate()
 		_:
 			drop = null

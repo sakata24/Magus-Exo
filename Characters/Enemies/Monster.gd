@@ -72,7 +72,6 @@ func chase(delta):
 # hit by something
 func _hit(dmg_to_take, dmg_color):
 	health -= dmg_to_take
-	#print("i took ", dmg_to_take, " dmg")
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = dmg_color
 	get_parent().add_child(dmgNum)
@@ -94,7 +93,6 @@ func die():
 		var drop
 		match randi_range(0, 2):
 			0: 
-				print("pee")
 				drop = upgradeDrop.instantiate()
 			_:
 				drop = null

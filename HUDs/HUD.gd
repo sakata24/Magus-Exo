@@ -74,5 +74,7 @@ func _on_boss_health_change(newHealth : int, immune = false):
 	$MarginContainer/BossBar/ProgressBar.value = newHealth
 	if immune:
 		$MarginContainer/BossBar/ProgressBar.self_modulate = Color.WEB_GRAY
+		$MarginContainer/BossBar/ProgressBar.show_percentage = false
 	else:
+		$MarginContainer/BossBar/ProgressBar.show_percentage = true
 		$MarginContainer/BossBar/ProgressBar.self_modulate = Color(1,0,0,1)

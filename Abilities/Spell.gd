@@ -18,7 +18,6 @@ func init(skillDict, castTarget, caster):
 	# set variables
 	abilityID = skillDict["name"]
 	element = skillDict["element"]
-	print(element)
 	if element == "sunder":
 		$Texture.color = Color("#c00000")
 	elif element == "entropy":

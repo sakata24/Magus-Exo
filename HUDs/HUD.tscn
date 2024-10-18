@@ -302,21 +302,23 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 54.0
 grow_horizontal = 2
+theme = ExtResource("2_2uc2n")
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 
 [node name="BossBar" type="VBoxContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/BossBar"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_typ2u")
-text = "Dark Mage"
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/BossBar"]
+custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 
 [connection signal="mouse_entered" from="Skill/Ability1/HBoxContainer/SkillMargin/SkillIcon" to="." method="_show_ability_names"]

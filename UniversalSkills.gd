@@ -65,7 +65,6 @@ func perform_spawn(ability, pos, caster):
 			
 			timer.start()
 			while true:
-				print("beeg")
 				ability.scale += Vector2(0.2, 0.2)
 				ability.dmg += 1
 				await timer.timeout
@@ -83,7 +82,7 @@ func perform_spawn(ability, pos, caster):
 		"storm":
 			pass
 		_:
-			print("nothing")
+			pass
 
 # helper method to create spells cast from char
 func clamp_vector(vector, clamp_origin, clamp_length):
@@ -94,7 +93,7 @@ func clamp_vector(vector, clamp_origin, clamp_length):
 func perform_timeout(ability):
 	match ability.abilityID:
 		"bolt":
-			print("BOOM")
+			pass
 		"crack":
 			ability.set_collision_mask_value(2, false)
 		"charge":
@@ -102,16 +101,16 @@ func perform_timeout(ability):
 			ability.dmg = floor(ability.dmg * 1.5)
 			ability.scale = ability.scale * 1.5
 		"rock":
-			print("*falling rock noises*")
+			pass
 		"cell":
-			print("im grass")
+			pass
 		"fountain":
-			print("woosh")
+			pass
 		"suspend":
-			print("fade")
+			pass
 			ability.modulate.a = 0.3
 		_:
-			print("nothing")
+			pass
 
 # performs action of an ability before despawn
 func perform_despawn(ability, target):
@@ -139,7 +138,6 @@ func perform_despawn(ability, target):
 				await timer.timeout
 				target.speed *= 2
 			_:
-				print("simple despawn")
 				ability.queue_free()
 	else:
 		ability.queue_free()
@@ -303,6 +301,7 @@ func perform_reaction(collider, collided):
 			collided.get_node("LifetimeTimer").paused = false
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
+			print("no reaction implemented!")
 			
 func get_skills():
 	return skillDict

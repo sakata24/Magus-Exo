@@ -6,12 +6,15 @@ var map2 = preload("res://Maps/Map2.tscn")
 var map3 = preload("res://Maps/Map3.tscn")
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
+var boss_level = preload("res://Maps/MapBoss.tscn")
 var exit_room = Vector2i()
 var roomArray = []
-var MAP_SIZE = 4 # sqrt of room amt
+var MAP_SIZE = 2 # sqrt of room amt
 var dead = false
 var menus = []
-var diff = 0
+var floor = 0
+
+# room hex: 25131a
 
 func _ready():
 	# connect hud to player
@@ -24,25 +27,30 @@ func _ready():
 	$Player.connect("player_hit", Callable(self, "_check_death"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
-	#$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
-	#$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
+	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
+	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 	$Shop.connect("opened", Callable(self, "_add_menu"))
-	#$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
+	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 
 func _load_level():
 	# inc difficulty when loading
-	diff += 1;
+	floor += 1;
 	# clean rooms node
 	for child in $Rooms.get_children():
 		child.queue_free()
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
 	# init rooms
-	init_rooms()
-	
+	if floor % 2 == 0:
+		init_boss_room()
+	else:
+		init_rooms()
+
+func init_boss_room():
+	var new_room = boss_level.instantiate()
+	$Rooms.add_child(new_room)
 
 func init_rooms():
-	print(diff)
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
 	for i in range(0,MAP_SIZE):
 		for j in range(0,MAP_SIZE):
@@ -111,11 +119,10 @@ func init_rooms():
 	# fetch group of monsters on the map and connect their giveXp signals to player
 	var monsters = get_tree().get_nodes_in_group("monsters")
 	for monster in monsters:
-		monster.maxHealth *= diff
-		monster.health *= diff
-		monster.myDmg *= diff
-		monster.baseDmg *= diff
-		print(monster, monster.myDmg)
+		monster.maxHealth *= floor
+		monster.health *= floor
+		monster.myDmg *= floor
+		monster.baseDmg *= floor
 		monster.connect("giveXp", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
@@ -153,7 +160,7 @@ func _check_death(newHP, maxHP):
 		$Death.setup()
 		$Death.visible = true
 		# reset difficulty
-		diff = 0
+		floor = 0
 
 func _change_skills(idx, newSkill):
 	var key

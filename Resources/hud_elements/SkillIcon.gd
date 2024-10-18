@@ -12,7 +12,6 @@ var spell : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(size)
 	var scaleValue = size.y/500
 	$ProgressBar.scale = Vector2(scaleValue,scaleValue)
 
@@ -50,8 +49,6 @@ func empty():
 func _on_gui_input(event:InputEvent):
 	if event is InputEventMouseButton and event.is_pressed():
 		if  event.is_action_pressed("R-Click"):
-			print(spell + "-right clicked")
 			emit_signal("equip", self)
 		else:
-			print(spell + "-clicked")
 			emit_signal("select", self)

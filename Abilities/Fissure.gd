@@ -18,6 +18,5 @@ func _process(delta):
 	pass
 
 func _on_TimeoutTimer_timeout():
-	print("pe")
 	self.set_collision_mask_value(2, !get_collision_mask_value(2))
 	$TimeoutTimer.start()

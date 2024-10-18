@@ -288,13 +288,11 @@ func _on_multi_cast_timer_timeout():
 func gain_xp(amount):
 	xp += amount
 	if xp >= currentXpThreshold:
-		print("level up!")
 		lvl += 1
 		emit_signal("level_up", lvl)
 		$DashTimer.wait_time *= 0.85
 		# increment currentXpThreshold to the next
 		currentXpThreshold = XPTHRESHOLDS[XPTHRESHOLDS.find(currentXpThreshold) + 1]
-	print("gained ", amount, " xp")
 	emit_signal("gained_xp", xp, currentXpThreshold)
 
 func hit(damage):
@@ -324,7 +322,6 @@ func upgrade(upgrade_int):
 				if UniversalSkills.skillDict[equippedSkills[i]]["element"] == "flow":
 					skillCD[i] *= flow_cooldown_reduction
 					skillTimer[i] = skillCD[i]
-					print(skillCD[i])
 		9: flow_size_boost += 0.1
 		10: wither_lifetime_boost += 0.1
 		11: wither_size_boost += 0.1
