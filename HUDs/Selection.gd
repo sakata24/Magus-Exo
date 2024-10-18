@@ -7,7 +7,8 @@ func _ready():
 	pass # Replace with function body.
 
 func setup():
-	get_node("..").popup = true
+	get_tree().paused = true
+	get_parent()._add_menu(self)
 	# loop thru card slots
 	for i in range(1, 4):
 		var text = ""
@@ -50,5 +51,4 @@ func _on_slot_3_button_pressed():
 func cleanup():
 	slots = []
 	self.visible = false
-	get_node("..").popup = false
 	get_tree().paused = false

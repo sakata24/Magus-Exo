@@ -1,7 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3g76w8m4y2q5"]
+[gd_scene load_steps=13 format=3 uid="uid://d3g76w8m4y2q5"]
 
 [ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/Spell.tscn" id="1_4q4dl"]
 [ext_resource type="Script" path="res://Abilities/Suspend.gd" id="2_kh6hv"]
+[ext_resource type="Texture2D" uid="uid://6ss5fr76n3q6" path="res://Resources/abilities/suspend-sprite.png" id="3_i2k2j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsd6w"]
+atlas = ExtResource("3_i2k2j")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y73wt"]
+atlas = ExtResource("3_i2k2j")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h2c6"]
+atlas = ExtResource("3_i2k2j")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekvti"]
+atlas = ExtResource("3_i2k2j")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skfmi"]
+atlas = ExtResource("3_i2k2j")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8hmw"]
+atlas = ExtResource("3_i2k2j")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hxpl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsd6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y73wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y73wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h2c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekvti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skfmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skfmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8hmw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_7647b"]
+_data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.656904, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ejkfu"]
+offsets = PackedFloat32Array(0, 0.376682, 1)
+colors = PackedColorArray(0.162508, 1.87048e-05, 0.162506, 1, 0.678431, 0, 0.678431, 1, 1, 1, 1, 0)
 
 [node name="SpellBody" instance=ExtResource("1_4q4dl")]
 script = ExtResource("2_kh6hv")
@@ -18,7 +83,23 @@ wait_time = 5.0
 autostart = true
 
 [node name="Texture" parent="." index="3"]
+visible = false
 polygon = PackedVector2Array(-10, -40, 10, -40, 30, -30, 40, -10, 40, 10, 30, 30, 10, 40, -10, 40, -30, 30, -40, 10, -40, -10, -30, -30)
 
 [node name="AnimatedSprite2D" parent="." index="4"]
-visible = false
+modulate = Color(1, 1, 1, 0.517647)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_7hxpl")
+autoplay = "default"
+frame_progress = 0.625702
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="5"]
+amount = 15
+lifetime = 2.0
+emission_shape = 2
+emission_sphere_radius = 40.0
+gravity = Vector2(0, -4)
+scale_amount_max = 1.4
+scale_amount_curve = SubResource("Curve_7647b")
+color = Color(0.678352, 0.000346638, 0.678347, 1)
+color_ramp = SubResource("Gradient_ejkfu")

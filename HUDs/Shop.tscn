@@ -1,38 +1,90 @@
-[gd_scene load_steps=3 format=3 uid="uid://b87627nrcya2c"]
+[gd_scene load_steps=4 format=3 uid="uid://b87627nrcya2c"]
 
 [ext_resource type="Script" path="res://HUDs/Shop.gd" id="1_3qepl"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
 
-[node name="Shop" type="CanvasLayer"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cxjwf"]
+
+[node name="Shop" type="CanvasLayer" groups=["windows"]]
 script = ExtResource("1_3qepl")
 
-[node name="SplitContainer" type="HBoxContainer" parent="."]
+[node name="ScreenDimmer" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-theme = ExtResource("2_22pmb")
+color = Color(0, 0, 0, 0.333333)
 
-[node name="ItemList" type="ItemList" parent="SplitContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme = ExtResource("2_22pmb")
-item_count = 2
-item_0/text = "One"
-item_1/text = "Two"
-
-[node name="Items" type="VBoxContainer" parent="SplitContainer"]
-layout_mode = 2
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0, 0.215686, 0.392157)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control" groups=["windows"]]
+[node name="SplitContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_22pmb")
+
+[node name="ItemList" type="ItemList" parent="Control/SplitContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_22pmb")
+same_column_width = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/SplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_cxjwf")
+
+[node name="Label" type="Label" parent="Control/SplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="SpriteNode" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 150)
+layout_mode = 3
+anchor_top = 0.6
+anchor_right = 0.3
+anchor_bottom = 1.1
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="SpriteNode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+
+[connection signal="item_selected" from="Control/SplitContainer/ItemList" to="." method="_on_item_list_item_selected"]

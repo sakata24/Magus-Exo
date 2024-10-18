@@ -1,5 +1,6 @@
 extends Node2D
 
+signal button_pressed(shop_data, icon)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,4 +21,3 @@ func _on_area_2d_body_exited(body):
 
 func _on_button_pressed():
 	pass
-	# figure out how to connect the npc's button to the shop

@@ -1,4 +1,4 @@
+AtlasTexture
 ImageTexture
 SpriteFrames
 Resource
-AtlasTexture

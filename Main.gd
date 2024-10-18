@@ -24,8 +24,9 @@ func _ready():
 	$Player.connect("player_hit", Callable(self, "_check_death"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
-	$Shop.connect("opened", Callable(self, "_add_menu"))
 	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
+	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
+	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 
 func _load_level():
 	# inc difficulty when loading
@@ -122,13 +123,14 @@ func _unhandled_input(event):
 		if menus.is_empty():
 			menus.push_front($Menu)
 			$Menu.visible = true
-			get_tree().paused = !get_tree().paused
+			get_tree().paused = true
 		# if menu is open, close it
 		else:
 			menus.pop_front().visible = false
-			get_tree().paused = !get_tree().paused
+			get_tree().paused = false
 
 func _add_menu(menu):
+	add_child(menu)
 	menus.push_front(menu)
 	menu.visible = true
 
