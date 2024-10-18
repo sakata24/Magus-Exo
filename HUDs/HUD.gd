@@ -62,3 +62,17 @@ func _hide_ability_names():
 	for n in $Skill.get_children():
 		n.get_node("Body").visible = false
 		n.get_node("HBoxContainer/SkillName").self_modulate = Color(1,1,1,0)
+
+
+func show_boss_bar(n : String, health : int):
+	$MarginContainer/BossBar/Label.text = n
+	$MarginContainer/BossBar/ProgressBar.max_value = health
+	$MarginContainer/BossBar/ProgressBar.value = health
+	$MarginContainer/BossBar.visible = true
+
+func _on_boss_health_change(newHealth : int, immune = false):
+	$MarginContainer/BossBar/ProgressBar.value = newHealth
+	if immune:
+		$MarginContainer/BossBar/ProgressBar.self_modulate = Color.WEB_GRAY
+	else:
+		$MarginContainer/BossBar/ProgressBar.self_modulate = Color(1,0,0,1)

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://foe6afgvwd6q"]
+
+[ext_resource type="Script" path="res://Abilities/BossMoves/VolitileSpike.gd" id="1_dk85w"]
+
+[sub_resource type="Gradient" id="Gradient_0lceo"]
+offsets = PackedFloat32Array(0.202186, 0.568306, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0.313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4sskp"]
+gradient = SubResource("Gradient_0lceo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_65heq"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.0
+damping_max = 10.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_4sskp")
+
+[node name="BulletBody" type="CharacterBody2D"]
+process_mode = 1
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_dk85w")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+polygon = PackedVector2Array(0, 0, 3, 7, -3, 7)
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Texture" type="Polygon2D" parent="."]
+z_index = 1
+rotation = 1.5708
+color = Color(0.665112, 0.395538, 0.842654, 1)
+polygon = PackedVector2Array(0, 0, 3, 7, -3, 7)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(0.439216, 0.188235, 0.627451, 1)
+position = Vector2(-4, 0)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_65heq")
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]

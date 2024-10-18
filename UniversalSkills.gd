@@ -145,7 +145,14 @@ func perform_despawn(ability, target):
 		ability.queue_free()
 
 func perform_reaction(collider, collided):
-	print("reaction with " + collider.element + " + " + collided.element)
+	#TO CHECK ENEMY SPELLS (specifically VolitileSpike)
+	if collider.is_in_group("enemy_skills"):
+		collider.react()
+		return
+	elif collided.is_in_group("enemy_skills"):
+		collider.react()
+		return
+	
 	# pause timers if reaction so it may complete
 	collided.get_node("TimeoutTimer").paused = true
 	collided.get_node("LifetimeTimer").paused = true
