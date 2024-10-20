@@ -12,10 +12,7 @@ var stormScene = preload("res://Abilities/Storm.tscn")
 var skillDict = {}
 
 func _ready():
-	var file = FileAccess.open("res://Resources/abilitysheet.txt", FileAccess.READ)
-	var content = file.get_as_text()
-	skillDict = JSON.parse_string(content)["skills"]
-	file.close()
+	skillDict = PlayerSkills.all_skills["skills"]
 	pass
 
 # returns the skill requested

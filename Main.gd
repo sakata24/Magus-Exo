@@ -12,7 +12,7 @@ var roomArray = []
 var MAP_SIZE = 2 # sqrt of room amt
 var dead = false
 var menus = []
-var floor = 0
+var level = 0
 
 # room hex: 25131a
 
@@ -34,14 +34,14 @@ func _ready():
 
 func _load_level():
 	# inc difficulty when loading
-	floor += 1;
+	level += 1;
 	# clean rooms node
 	for child in $Rooms.get_children():
 		child.queue_free()
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
 	# init rooms
-	if floor % 2 == 0:
+	if level % 2 == 0:
 		init_boss_room()
 	else:
 		init_rooms()
@@ -119,10 +119,10 @@ func init_rooms():
 	# fetch group of monsters on the map and connect their giveXp signals to player
 	var monsters = get_tree().get_nodes_in_group("monsters")
 	for monster in monsters:
-		monster.maxHealth *= floor
-		monster.health *= floor
-		monster.myDmg *= floor
-		monster.baseDmg *= floor
+		monster.maxHealth *= level
+		monster.health *= level
+		monster.myDmg *= level
+		monster.baseDmg *= level
 		monster.connect("giveXp", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
@@ -160,7 +160,7 @@ func _check_death(newHP, maxHP):
 		$Death.setup()
 		$Death.visible = true
 		# reset difficulty
-		floor = 0
+		level = 0
 
 func _change_skills(idx, newSkill):
 	var key

@@ -20,6 +20,7 @@ config/icon="res://Resources/icon.png"
 
 UniversalSkills="*res://UniversalSkills.gd"
 CustomResourceLoader="*res://CustomResourceLoader.gd"
+PlayerSkills="*res://PlayerSkills.gd"
 
 [debug]
 
