@@ -50,6 +50,11 @@ script = ExtResource("1_dpsci")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_dxb7v")
 
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(2, 0)
+color = Color(0, 0, 0, 0.294118)
+polygon = PackedVector2Array(1, 6, -8, 7, -9, 8, -8, 9, 6, 9, 7, 8, 6, 7)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4qshb")
 autoplay = "default"

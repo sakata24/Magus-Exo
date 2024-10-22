@@ -220,8 +220,10 @@ func movementHelper(delta):
 		moving = false
 	if movement.x < 0:
 		$AnimatedSprite2D.flip_h = true
+		$Shadow.scale.x = -1
 	elif movement.x > 0:
 		$AnimatedSprite2D.flip_h = false
+		$Shadow.scale.x = 1
 
 # This function handles skill casting
 func cast_ability(skill):

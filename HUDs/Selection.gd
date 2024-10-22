@@ -38,8 +38,10 @@ func setup():
 				element = "construct"
 			6: 
 				text = "Increase growth spell lifetime by 10%"
+				element = "growth"
 			7: 
 				text = "Increase growth spell reaction potency by 10%"
+				element = "growth"
 			8: 
 				text = "Reduce flow spell cooldowns by 10%"
 				element = "flow"

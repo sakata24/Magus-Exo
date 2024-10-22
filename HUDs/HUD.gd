@@ -9,7 +9,7 @@ func _ready():
 func init(health, max_health, xp, max_xp, skill1, skill2, skill3, skill4):
 	_set_health(health, max_health)
 	_set_xp(xp,max_xp)
-	set_lvl(0)
+	set_floor(0)
 	_set_skills(skill1,skill2,skill3,skill4)
 
 func _set_health(new_HP, max_HP):
@@ -21,9 +21,6 @@ func _set_dash_cd(dash_cd, dash_cd_max):
 
 func _set_xp(xp, max_xp):
 	$EXPLabel.text = ("EXP: " + str(xp) + "\nNEXT LVL: " + str(max_xp))
-
-func set_lvl(lvl):
-	$LVLLabel.text = ("Level: " + str(lvl))
 
 func _set_skills(one,two,three,four):
 	$Skill/Ability1/HBoxContainer/SkillName.text = one
@@ -63,6 +60,8 @@ func _hide_ability_names():
 		n.get_node("Body").visible = false
 		n.get_node("HBoxContainer/SkillName").self_modulate = Color(1,1,1,0)
 
+func set_floor(i : int):
+	$FloorLabel.text = "Floor: " + str(i)
 
 func show_boss_bar(n : String, health : int):
 	$MarginContainer/BossBar/Label.text = n

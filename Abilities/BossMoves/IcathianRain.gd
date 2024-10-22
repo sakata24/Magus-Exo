@@ -29,8 +29,9 @@ func _physics_process(delta):
 
 func _turn():
 	var tween = create_tween()
+	tween.tween_property(self, "rotation", position.angle_to_point(player.global_position), 0.5)
 	#Can't figure out how to tween look at so yeah
-	look_at(player.global_position)
+	#look_at(player.global_position)
 	tween.tween_property(self, "speed", 200, 1).set_ease(Tween.EASE_IN)
 	tween.parallel().tween_property(self, "velocity", (player.global_position-position).normalized(), 1)
 	$Line2D.started = true

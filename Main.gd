@@ -27,21 +27,22 @@ func _ready():
 	$Player.connect("player_hit", Callable(self, "_check_death"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
+	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 	$Shop.connect("opened", Callable(self, "_add_menu"))
-	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 
 func _load_level():
 	# inc difficulty when loading
-	level += 1;
+	level += 1
+	$HUD.set_floor(level)
 	# clean rooms node
 	for child in $Rooms.get_children():
 		child.queue_free()
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
 	# init rooms
-	if level % 2 == 0:
+	if level % 5 == 0:
 		init_boss_room()
 	else:
 		init_rooms()

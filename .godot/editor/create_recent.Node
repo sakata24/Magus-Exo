@@ -1,3 +1,4 @@
+Polygon2D
 ColorRect
 CanvasModulate
 PointLight2D
@@ -11,5 +12,3 @@ ProgressBar
 PathFollow2D
 Path2D
 HBoxContainer
-Control
-Node

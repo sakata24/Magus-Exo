@@ -91,6 +91,11 @@ autoplay = "idle"
 frame = 3
 frame_progress = 0.0152724
 
+[node name="Shadow" type="Polygon2D" parent="."]
+z_index = -2
+color = Color(0, 0, 0, 0.298039)
+polygon = PackedVector2Array(-2, 6, -8, 7, -9, 8, -7, 9, 6, 9, 7, 8, 6, 7)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bixge")
 

@@ -121,12 +121,12 @@ grow_vertical = 0
 theme = ExtResource("2_2uc2n")
 text = "EXP: 0/10"
 
-[node name="LVLLabel" type="Label" parent="."]
+[node name="FloorLabel" type="Label" parent="."]
 offset_left = 5.0
 offset_right = 125.0
 offset_bottom = 20.0
 theme = ExtResource("2_2uc2n")
-text = "Level: 0"
+text = "Floor: 0"
 
 [node name="Skill" type="VBoxContainer" parent="."]
 anchors_preset = 4
