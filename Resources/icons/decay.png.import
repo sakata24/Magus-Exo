@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfqvqr8qh1eea"
-path="res://.godot/imported/charge.png-b2768777b7b85828e96f372240175f21.ctex"
+uid="uid://cs0tfreiodnnf"
+path="res://.godot/imported/decay.png-c7f56fafe6dac6d0f60b309ae2101215.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/icons/charge.png"
-dest_files=["res://.godot/imported/charge.png-b2768777b7b85828e96f372240175f21.ctex"]
+source_file="res://Resources/icons/decay.png"
+dest_files=["res://.godot/imported/decay.png-c7f56fafe6dac6d0f60b309ae2101215.ctex"]
 
 [params]
 

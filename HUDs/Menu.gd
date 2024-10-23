@@ -5,10 +5,11 @@ signal skill_changed(idx, newSkill)
 func _ready():
 	var skillDict = UniversalSkills.get_skills()
 	for skill in skillDict:
-		$VBoxContainer2/OptionButton.add_item(skill)
-		$VBoxContainer2/OptionButton2.add_item(skill)
-		$VBoxContainer2/OptionButton3.add_item(skill)
-		$VBoxContainer2/OptionButton4.add_item(skill)
+		if skill:
+			$VBoxContainer2/OptionButton.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+			$VBoxContainer2/OptionButton2.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+			$VBoxContainer2/OptionButton3.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+			$VBoxContainer2/OptionButton4.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
 
 func _on_QuitButton_pressed():
 	$QuitConfirm.popup()

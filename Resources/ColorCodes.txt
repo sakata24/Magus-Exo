@@ -1,5 +1,5 @@
-Sunder:
-Entropy:
+Sunder: 7a0002
+Entropy: ffd966
 Growth:
 Construct:
 Flow: 82b1ff
