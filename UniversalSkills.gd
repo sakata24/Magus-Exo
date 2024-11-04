@@ -173,6 +173,7 @@ func perform_reaction(collider, collided):
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
 		"entropy" + "construct":
+			# DISCHARGE: Spawns an area DOT on the construct spell
 			var discharge = dischargeScene.instantiate()
 			collided.add_child(discharge)
 			collided.get_node("TimeoutTimer").paused = false
@@ -180,6 +181,7 @@ func perform_reaction(collider, collided):
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
 		"construct" + "entropy":
+			# DISCHARGE: Spawns an area DOT on the construct spell
 			var discharge = dischargeScene.instantiate()
 			collider.add_child(discharge)
 			collided.get_node("TimeoutTimer").paused = false
@@ -269,6 +271,14 @@ func perform_reaction(collider, collided):
 			collider.get_node("LifetimeTimer").paused = false
 			var extinction = extinctionScene.instantiate()
 			collided.add_child(extinction)
+		"wither" + "growth":
+			# EXTEND: Greatly increase lifetime of both spells
+			collided.get_node("LifetimeTimer").wait_time = collided.get_node("LifetimeTimer").wait_time * 1.5
+			collider.get_node("LifetimeTimer").wait_time = collider.get_node("LifetimeTimer").wait_time * 1.5
+			collided.get_node("TimeoutTimer").wait_time = collided.get_node("TimeoutTimer").wait_time * 1.5
+			collider.get_node("TimeoutTimer").wait_time = collider.get_node("TimeoutTimer").wait_time * 1.5
+			collided.get_node("TimeoutTimer").start()
+			collider.get_node("TimeoutTimer").start()
 		"growth" + "wither":
 			# EXTEND: Greatly increase lifetime of both spells
 			collided.get_node("LifetimeTimer").wait_time = collided.get_node("LifetimeTimer").wait_time * 1.5
