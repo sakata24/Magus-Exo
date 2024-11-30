@@ -1,6 +1,6 @@
 Sunder: 7a0002
 Entropy: ffd966
 Growth:
-Construct:
+Construct: 663c33
 Flow: 82b1ff
 Wither: 591b82
