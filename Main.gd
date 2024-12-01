@@ -31,6 +31,7 @@ func _ready():
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 	$Shop.connect("opened", Callable(self, "_add_menu"))
+	update_shopkeeper()
 
 func _load_level():
 	# inc difficulty when loading
@@ -174,6 +175,9 @@ func _change_skills(idx, newSkill):
 	$Player.initSkills()
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
 
+# make librarian update inventory based on players unlocked skills
+func update_shopkeeper():
+	$Rooms/Home/Librarian.update_inventory($Player.get_unlocked_skills())
 
 func despawn_light():
 	var tween = create_tween()

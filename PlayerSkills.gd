@@ -79,10 +79,10 @@ var all_skills = {
 			"cooldown": 1.3,
 			"dmg": 1.5,
 			"element": "construct",
-			"lifetime": 0.5,
+			"lifetime": 0.75,
 			"size": 2.5,
 			"speed": 0.5,
-			"timeout": 0.5,
+			"timeout": 0.75,
 			"type": "bullet",
 			"description": "A rock, suitable for reactions"
 		},
@@ -96,7 +96,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.5,
 			"type": "spell",
-			"description": "Opens a fissure in the ground, dealing damage to targets whom walk into it constantly"
+			"description": "Opens a fissure in the ground, dealing constant damage to targets whom walk into it"
 		},
 		"fountain": {
 			"name": "fountain",

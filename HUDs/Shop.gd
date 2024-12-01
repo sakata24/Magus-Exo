@@ -14,4 +14,4 @@ func _process(delta):
 
 func _on_item_list_item_selected(index: int) -> void:
 	if shop_data:
-		$Control/SplitContainer/VBoxContainer/Label.text = shop_data[index]["desc"]
+		$Control/SplitContainer/VBoxContainer/Label.text = shop_data[index]["description"]

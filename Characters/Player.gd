@@ -75,7 +75,10 @@ var xp = 0
 var upgradesChosen = []
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "storm", "fissure", "decay"]
+var equippedSkills = ["bolt", "charge", "rock", "fountain"]
+
+# player's unlocked skills
+var unlockedSkills = ["bolt", "charge", "rock", "fountain"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
@@ -111,6 +114,9 @@ func initSkills():
 	skillTimer[1] = skillCD[1]
 	skillTimer[2] = skillCD[2]
 	skillTimer[3] = skillCD[3]
+
+func get_unlocked_skills():
+	return unlockedSkills
 
 # handles right clicks
 func _unhandled_input(event):
@@ -331,14 +337,19 @@ func upgrade(upgrade_int):
 	print("upgraded: ", upgrade_int)
 
 func save():
+	var save_skills = []
+	for e in unlockedSkills:
+		save_skills.append({"name": e})
 	var save_dict = {
 		"sunder_xp": sunder_xp,
 		"entropy_xp": entropy_xp,
 		"construct_xp": construct_xp,
 		"growth_xp": growth_xp,
 		"flow_xp": flow_xp,
-		"wither_xp": wither_xp
+		"wither_xp": wither_xp,
+		"skills": save_skills
 	}
+	print(save_dict)
 	return save_dict
 
 func spawn_light():

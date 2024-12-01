@@ -1,5 +1,5 @@
 res://default_env.tres
-res://Main.tscn
+res://Characters/Player.tscn
 res://Abilities/Animations/SunderSprite.tres
 res://Abilities/Animations/EntropySprite.tres
 res://Abilities/Animations/ConstructSprite.tres
@@ -9,10 +9,12 @@ res://Abilities/Animations/WitherSprite.tres
 res://Abilities/Animations/Spells/FountainSprite.tres
 res://Abilities/Animations/Spells/CrackSprite.tres
 res://Abilities/Animations/Spells/StormSprite.tres
+res://Maps/DungeonTileset.tres
+res://Resources/hud_elements/default.theme
 res://Abilities/Animations/Spells/VineSprite.tres
 res://Abilities/Animations/Spells/FissureSprite.tres
-res://Resources/hud_elements/default.theme
-res://Maps/DungeonTileset.tres
+res://Characters/Player.gd
+res://Main.tscn
 res://Maps/Map1.tscn
 res://Characters/Enemies/Monster.tscn
 res://HUDs/Home.tscn
@@ -32,8 +34,13 @@ res://HUDs/Selection.tscn
 res://Maps/MapBoss.tscn
 res://Abilities/Reactions/Shatter.tscn
 res://Abilities/BossMoves/IcathianRain.tscn
-res://Characters/Player.tscn
 res://Abilities/BossMoves/VolitileSpike.tscn
 res://Abilities/BossMoves/Cannon.tscn
 res://HUDs/Menu.tscn
-res://Resources/ColorCodes.txt
+res://HUDs/Menu.gd
+res://Settings.gd
+res://PlayerSkills.gd
+res://Characters/NPCs/Librarian.gd
+res://UniversalSkills.gd
+res://Main.gd
+res://HUDs/Shop.gd

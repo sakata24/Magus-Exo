@@ -3,13 +3,17 @@ extends CanvasLayer
 signal skill_changed(idx, newSkill)
 
 func _ready():
-	var skillDict = UniversalSkills.get_skills()
-	for skill in skillDict:
-		if skill:
-			$VBoxContainer2/OptionButton.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
-			$VBoxContainer2/OptionButton2.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
-			$VBoxContainer2/OptionButton3.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
-			$VBoxContainer2/OptionButton4.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+	if Settings.dev_mode:
+		var skillDict = UniversalSkills.get_skills()
+		for skill in skillDict:
+			if skill:
+				$VBoxContainer2/OptionButton.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+				$VBoxContainer2/OptionButton2.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+				$VBoxContainer2/OptionButton3.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+				$VBoxContainer2/OptionButton4.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+	else:
+		$VBoxContainer2.visible = false
+		$Descriptions.visible = false
 
 func _on_QuitButton_pressed():
 	$QuitConfirm.popup()
