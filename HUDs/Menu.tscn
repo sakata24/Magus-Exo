@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d37cep1ypwea6"]
+[gd_scene load_steps=7 format=3 uid="uid://d37cep1ypwea6"]
 
 [ext_resource type="Script" path="res://HUDs/Menu.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_w5m8w"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="4_44w5e"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -77,6 +78,26 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_w5m8w")
 text = "SAVE
 "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="XPLabels" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_44w5e")
+text = "Sunder XP:
+Entropy XP:
+Construct XP:
+Growth XP:
+Flow XP:
+Wither XP:"
+
+[node name="XPCounts" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_44w5e")
+horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 anchors_preset = 4

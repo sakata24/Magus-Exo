@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=17 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cbiw1tglncahn" path="res://Maps/Home.tscn" id="2_oh4kf"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://d14papl6dxsqu" path="res://HUDs/Selection.tscn" id="6_7rc56"]
 [ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
 [ext_resource type="PackedScene" uid="uid://cpkd7jx2ts1lw" path="res://HUDs/Death.tscn" id="6_m4you"]
-[ext_resource type="PackedScene" uid="uid://b87627nrcya2c" path="res://HUDs/Shop.tscn" id="8_60jd4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cr0tb"]
 atlas = ExtResource("6_f2si5")
@@ -107,9 +106,6 @@ visible = false
 visible = false
 
 [node name="Death" parent="." instance=ExtResource("6_m4you")]
-visible = false
-
-[node name="Shop" parent="." instance=ExtResource("8_60jd4")]
 visible = false
 
 [node name="ClickAnimation" type="AnimatedSprite2D" parent="."]

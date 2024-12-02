@@ -29,8 +29,8 @@ func _ready():
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
+	$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
-	$Shop.connect("opened", Callable(self, "_add_menu"))
 	update_shopkeeper()
 
 func _load_level():
@@ -133,6 +133,8 @@ func _unhandled_input(event):
 		if menus.is_empty():
 			menus.push_front($Menu)
 			$Menu.visible = true
+			# pass along the xp from player to the menu
+			$Menu.update_exp_count($Player.sunder_xp, $Player.entropy_xp, $Player.construct_xp, $Player.growth_xp, $Player.flow_xp, $Player.wither_xp)
 			get_tree().paused = true
 		# if menu is open, close it
 		else:
@@ -174,6 +176,42 @@ func _change_skills(idx, newSkill):
 	$Player.equippedSkills[idx] = newSkill
 	$Player.initSkills()
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
+
+func _unlock_skill(name, element, price):
+	# check if player has enough xp for the transaction, then add it to the players spells
+	match element:
+		"sunder":
+			if $Player.sunder_xp >= price:
+				$Player.sunder_xp -= price
+				$Player.unlockedSkills.append(name)
+				$Rooms/Home/Librarian/Shop.remove_item(name)
+		"entropy":
+			if $Player.entropy_xp >= price:
+				$Player.entropy_xp -= price
+				$Player.unlockedSkills.append(name)
+				$Rooms/Home/Librarian/Shop.remove_item(name)
+		"construct":
+			if $Player.construct_xp >= price:
+				$Player.construct_xp -= price
+				$Player.unlockedSkills.append(name)
+				$Rooms/Home/Librarian/Shop.remove_item(name)
+		"growth":
+			if $Player.growth_xp >= price:
+				$Player.growth_xp -= price
+				$Player.unlockedSkills.append(name)
+				$Rooms/Home/Librarian/Shop.remove_item(name)
+		"flow":
+			if $Player.flow_xp >= price:
+				$Player.flow_xp -= price
+				$Player.unlockedSkills.append(name)
+				$Rooms/Home/Librarian/Shop.remove_item(name)
+		"wither":
+			if $Player.wither_xp >= price:
+				$Player.wither_xp -= price
+				$Player.unlockedSkills.append(name)
+				$Rooms/Home/Librarian/Shop.remove_item(name)
+				
+	print($Player.unlockedSkills)
 
 # make librarian update inventory based on players unlocked skills
 func update_shopkeeper():

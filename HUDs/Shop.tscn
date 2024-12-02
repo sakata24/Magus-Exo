@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b87627nrcya2c"]
+[gd_scene load_steps=3 format=3 uid="uid://b87627nrcya2c"]
 
 [ext_resource type="Script" path="res://HUDs/Shop.gd" id="1_3qepl"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cxjwf"]
 
 [node name="Shop" type="CanvasLayer" groups=["windows"]]
 script = ExtResource("1_3qepl")
@@ -56,15 +54,34 @@ same_column_width = true
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/SplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_22pmb")
+theme_override_constants/separation = 5
 
 [node name="TextureRect" type="TextureRect" parent="Control/SplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("PlaceholderTexture2D_cxjwf")
+theme = ExtResource("2_22pmb")
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="Control/SplitContainer/VBoxContainer"]
+[node name="BuyButton" type="Button" parent="Control/SplitContainer/VBoxContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Buy"
+
+[node name="Price" type="Label" parent="Control/SplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Control/SplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+text = "Select an item on the left"
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="SpriteNode" type="Control" parent="."]
@@ -89,3 +106,4 @@ grow_vertical = 2
 expand_mode = 5
 
 [connection signal="item_selected" from="Control/SplitContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="Control/SplitContainer/VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]

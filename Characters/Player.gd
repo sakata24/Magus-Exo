@@ -251,6 +251,8 @@ func cast_ability(skill):
 		projectile.init(ability, castTarget, self)
 		# calculates the projectiles direction
 		projectile.velocity = (castTarget - projectile.position).normalized()
+		if construct_ignore_walls and projectile.element == "construct":
+			projectile.set_collision_mask_value(6, false)
 	elif ability["type"] == "spell":
 		var spell
 		match skill:

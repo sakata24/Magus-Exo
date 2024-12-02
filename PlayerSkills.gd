@@ -12,6 +12,7 @@ var all_skills = {
 			"speed": 1.0,
 			"timeout": 1.0,
 			"type": "bullet",
+			"price": 0,
 			"description": "A particle of destruction launched in a direction"
 		},
 		"crack": {
@@ -24,6 +25,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.1,
 			"type": "spell",
+			"price": 0,
 			"description": "Shatters the very fabric of space in a large area, dealing high damage"
 		},
 		"charge": {
@@ -36,6 +38,7 @@ var all_skills = {
 			"speed": 0.1,
 			"timeout": 0.8,
 			"type": "bullet",
+			"price": 0,
 			"description": "A bolt of pure energy that gets increased damage after a charge up"
 		},
 		"storm": {
@@ -48,6 +51,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 1.0,
 			"type": "spell",
+			"price": 0,
 			"description": "Summons an indiscriminate storm that has special properties depending on the amount of targets in the area"
 		},
 		"cell": {
@@ -60,6 +64,7 @@ var all_skills = {
 			"speed": 0.6,
 			"timeout": 0.1,
 			"type": "bullet",
+			"price": 0,
 			"description": "A growing cell that increases in damage and size"
 		},
 		"vine": {
@@ -72,6 +77,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.1,
 			"type": "spell",
+			"price": 0,
 			"description": "Conjures a thorny vine that pierces and instantly damages enemies"
 		},
 		"rock": {
@@ -84,6 +90,7 @@ var all_skills = {
 			"speed": 0.5,
 			"timeout": 0.75,
 			"type": "bullet",
+			"price": 0,
 			"description": "A rock, suitable for reactions"
 		},
 		"fissure": {
@@ -96,6 +103,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.5,
 			"type": "spell",
+			"price": 0,
 			"description": "Opens a fissure in the ground, dealing constant damage to targets whom walk into it"
 		},
 		"fountain": {
@@ -108,6 +116,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.5,
 			"type": "spell",
+			"price": 0,
 			"description": "A burst of energy damaging all targets inside after a delay"
 		},
 		"displace": {
@@ -120,6 +129,7 @@ var all_skills = {
 			"speed": 1.0,
 			"timeout": 0.5,
 			"type": "bullet",
+			"price": 0,
 			"description": "A projectile that shoves enemies on contact"
 		},
 		"suspend": {
@@ -132,6 +142,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 3.0,
 			"type": "spell",
+			"price": 0,
 			"description": "Fills the area with decay, dealing damage constantly to targets"
 		},
 		"decay": {
@@ -144,6 +155,7 @@ var all_skills = {
 			"speed": 0.8,
 			"timeout": 0.5,
 			"type": "bullet",
+			"price": 0,
 			"description": "Fires a bolt of decay that slows a target hit"
 		}
 	}
