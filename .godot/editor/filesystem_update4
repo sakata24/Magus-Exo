@@ -45,3 +45,5 @@ res://Characters/Enemies/Charger.gd
 res://HUDs/DamageNumber.tscn
 res://Characters/Player.gd
 res://HUDs/HUD.gd
+res://Characters/NPCs/Tome.tscn
+res://Characters/NPCs/Tome.gd

@@ -1,25 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccbqtiwfuron8"]
+[gd_scene load_steps=3 format=3 uid="uid://ccbqtiwfuron8"]
 
 [ext_resource type="Script" path="res://HUDs/Home.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
-
-[sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("2")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("2")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_axxtm"]
 
 [node name="Home" type="CanvasLayer"]
 script = ExtResource("1")
@@ -36,15 +18,14 @@ offset_right = 66.5
 offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_axxtm")
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("1")
 text = "Just a Roguelike"
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("2")
 text = "Play"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqtbn2dl7psx"]
+
+[ext_resource type="Script" path="res://Characters/NPCs/Tome.gd" id="1_vaik0"]
+
+[node name="Tome" type="Node2D"]
+script = ExtResource("1_vaik0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
