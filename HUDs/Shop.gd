@@ -22,8 +22,12 @@ func _process(delta):
 func _on_item_list_item_selected(index: int) -> void:
 	# make the buy button visible
 	$Control/SplitContainer/VBoxContainer/BuyButton.visible = true
+	$Control/SplitContainer/VBoxContainer/BuyButton.disabled = false
+	$Control/SplitContainer/VBoxContainer/TextureRect/PurchasedLabel.visible = false
+	$Control/SplitContainer/VBoxContainer/TextureRect.self_modulate = Color.WHITE
 	# make sure shop has data
 	if shop_data:
+		print("shop")
 		# choose item for if purchased
 		selected_item = shop_data[index]["name"]
 		selected_element = shop_data[index]["element"]
@@ -44,4 +48,6 @@ func _on_buy_button_pressed() -> void:
 
 func remove_item(name):
 	$Control/SplitContainer/ItemList.remove_item(selected_idx)
-	_on_item_list_item_selected(selected_idx)
+	$Control/SplitContainer/VBoxContainer/BuyButton.disabled = true
+	$Control/SplitContainer/VBoxContainer/TextureRect/PurchasedLabel.visible = true
+	$Control/SplitContainer/VBoxContainer/TextureRect.self_modulate = Color.DIM_GRAY

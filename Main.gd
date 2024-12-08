@@ -178,6 +178,10 @@ func _change_skills(idx, newSkill):
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
 
 func _unlock_skill(name, element, price):
+	# check if player already has that spell
+	if($Player.unlockedSkills.has(name)):
+		print("already has: " + name)
+		return
 	# check if player has enough xp for the transaction, then add it to the players spells
 	match element:
 		"sunder":
