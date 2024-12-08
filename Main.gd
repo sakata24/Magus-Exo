@@ -20,7 +20,6 @@ func _ready():
 	# connect hud to player
 	$HUD.init($Player.health,$Player.maxHealth,str($Player.xp), str($Player.currentXpThreshold),str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
 	$Player.connect("gained_xp", Callable($HUD, "_set_xp"))
-	$Player.connect("level_up", Callable(self, "_leveled_up"))
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
@@ -146,9 +145,6 @@ func _add_menu(menu):
 	menus.push_front(menu)
 	menu.visible = true
 
-func _leveled_up(lvl):
-	$HUD.set_lvl(lvl)
-
 func _show_click():
 	$ClickAnimation.global_position = $ClickAnimation.get_global_mouse_position()
 	$ClickAnimation.set_frame(0)
@@ -214,8 +210,7 @@ func _unlock_skill(name, element, price):
 				$Player.wither_xp -= price
 				$Player.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
-				
-	print($Player.unlockedSkills)
+	update_shopkeeper()
 
 # make librarian update inventory based on players unlocked skills
 func update_shopkeeper():

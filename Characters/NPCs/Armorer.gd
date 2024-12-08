@@ -18,10 +18,11 @@ var shop_data = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Shop/SpriteNode/TextureRect.texture = armorerRes[0]
+	$Shop/Control/SplitContainer/LVBoxContainer/HBoxContainer/Title.text = "Skill Shop"
+	$Shop/Control/SplitContainer/LVBoxContainer/HBoxContainer/SpriteNode/TextureRect.texture = armorerRes[0]
 	$Shop.shop_data = self.shop_data
 	for x in shop_data:
-		$Shop/Control/SplitContainer/ItemList.add_item(x["name"])
+		$Shop/Control/SplitContainer/LVBoxContainer/ItemList.add_item(x["name"])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,5 +35,5 @@ func _on_button_pressed():
 func _on_timer_timeout() -> void:
 	if index == armorerRes.size():
 		index = 0
-	$Shop/SpriteNode/TextureRect.texture = armorerRes[index]
+	$Shop/Control/SplitContainer/LVBoxContainer/HBoxContainer/SpriteNode/TextureRect.texture = armorerRes[index]
 	index += 1

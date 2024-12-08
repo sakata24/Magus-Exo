@@ -44,10 +44,46 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_22pmb")
 
-[node name="ItemList" type="ItemList" parent="Control/SplitContainer"]
+[node name="LVBoxContainer" type="VBoxContainer" parent="Control/SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/SplitContainer/LVBoxContainer"]
+layout_mode = 2
+
+[node name="SpriteNode" type="Control" parent="Control/SplitContainer/LVBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/SplitContainer/LVBoxContainer/HBoxContainer/SpriteNode"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Control/SplitContainer/LVBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "text"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Control/SplitContainer/LVBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("2_22pmb")
 same_column_width = true
 
@@ -104,26 +140,5 @@ text = "Select an item on the left"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="SpriteNode" type="Control" parent="."]
-custom_minimum_size = Vector2(50, 150)
-layout_mode = 3
-anchor_top = 0.6
-anchor_right = 0.3
-anchor_bottom = 1.1
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="SpriteNode"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 5
-
-[connection signal="item_selected" from="Control/SplitContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="item_selected" from="Control/SplitContainer/LVBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="Control/SplitContainer/VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]

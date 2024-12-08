@@ -13,8 +13,8 @@ func _physics_process(delta):
 	# make it dash
 	else:
 		if dashing:
-			set_velocity(position.direction_to(lockTarget) * speed * 4.5)
-	move_and_slide()
+			set_velocity(position.direction_to(lockTarget).normalized() * speed * 4.5)
+	move_and_collide(velocity)
 
 # chases the player
 func chase(delta):
@@ -25,7 +25,6 @@ func chase(delta):
 		elif new_velocity.x > 0:
 			$Sprite2D.flip_h = false
 		set_velocity(new_velocity)
-
 	else:
 		attacking = true
 		set_velocity(Vector2.ZERO)

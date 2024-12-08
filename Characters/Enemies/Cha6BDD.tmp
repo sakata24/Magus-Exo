@@ -9,6 +9,7 @@ atlas = ExtResource("3_qc6dx")
 region = Rect2(81, 48, 15, 15)
 
 [node name="Charger" instance=ExtResource("1_aci6j")]
+z_index = 999
 script = ExtResource("1_kvkxl")
 
 [node name="Sprite2D" parent="." index="1"]

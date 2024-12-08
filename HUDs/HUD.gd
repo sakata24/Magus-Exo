@@ -39,8 +39,8 @@ func _set_cd(skill_cds, skill_cds_max):
 	$Skill/Ability4/HBoxContainer/SkillMargin/SkillIcon/ProgressBar.value = skill_cds_max[3]-skill_cds[3]
 
 func _set_ui_size():
-	$Skill.size.y = DisplayServer.window_get_size().y/3
-	$Skill.position.y = DisplayServer.window_get_size().y/2-$Skill.size.y/2
+	$Skill.size.y = get_viewport().get_visible_rect().size.y/3
+	$Skill.position.y = get_viewport().get_visible_rect().size.y/2-$Skill.size.y/2
 	$Skill.position.x = 10
 	$Skill.size.x = $Skill.size.y*0.75
 	var boxSize = ($Skill.size.y-(3*15))/4

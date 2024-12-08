@@ -47,7 +47,7 @@ func _on_buy_button_pressed() -> void:
 
 
 func remove_item(name):
-	$Control/SplitContainer/ItemList.remove_item(selected_idx)
+	$Control/SplitContainer/LVBoxContainer/ItemList.remove_item(selected_idx)
 	$Control/SplitContainer/VBoxContainer/BuyButton.disabled = true
 	$Control/SplitContainer/VBoxContainer/TextureRect/PurchasedLabel.visible = true
 	$Control/SplitContainer/VBoxContainer/TextureRect.self_modulate = Color.DIM_GRAY

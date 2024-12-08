@@ -39,3 +39,9 @@ res://Abilities/Bullet.tscn
 res://Interactables/UpgradeChest.tscn
 res://HUDs/Shop.gd
 res://Main.gd
+res://Characters/NPCs/Librarian.gd
+res://Characters/NPCs/Armorer.gd
+res://Characters/Enemies/Charger.gd
+res://HUDs/DamageNumber.tscn
+res://Characters/Player.gd
+res://HUDs/HUD.gd

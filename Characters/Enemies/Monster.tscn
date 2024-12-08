@@ -38,6 +38,7 @@ shadow_color = Color(0, 0, 0, 0.478431)
 
 [node name="Monster" type="CharacterBody2D"]
 z_index = 9
+z_as_relative = false
 collision_layer = 10
 collision_mask = 45
 motion_mode = 1

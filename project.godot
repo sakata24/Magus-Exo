@@ -35,8 +35,8 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [global_group]
 

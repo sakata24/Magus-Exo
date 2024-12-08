@@ -42,7 +42,6 @@ var spellLoad = preload("res://Abilities/Spell.tscn")
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
 signal gained_xp(curr_xp, xp_threshold)
-signal level_up(level)
 signal moving_to()
 signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)

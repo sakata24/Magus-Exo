@@ -91,6 +91,7 @@ z_index = 100
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_lpuhh")
+disabled = true
 text = "shop"
 
 [node name="Shop" parent="." instance=ExtResource("4_jumf1")]

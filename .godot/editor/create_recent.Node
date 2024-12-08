@@ -1,5 +1,6 @@
 Label
 HBoxContainer
+VBoxContainer
 HSeparator
 TextureRect
 Button
@@ -11,4 +12,3 @@ PointLight2D
 GPUParticles2D
 Line2D
 Timer
-CharacterBody2D
