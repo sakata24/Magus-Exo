@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 
 func update_inventory(unlocked_skills):
 	self.shop_data = []
+	# add items to the shop that are not in unlocked_skills
 	for skill in UniversalSkills.get_skills():
 		if !unlocked_skills.has(skill):
 			shop_data.append(UniversalSkills._get_ability(skill))

@@ -27,6 +27,9 @@ func _ready():
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
+	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_add_menu"))
+	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_give_tome_spells"))
+	$Rooms/Home/Tome/ChangeSpells.connect("equip_skill", Callable(self, "_change_skills"))
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
 	$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
@@ -163,6 +166,7 @@ func _check_death(newHP, maxHP):
 		level = 0
 
 func _change_skills(idx, newSkill):
+	print("update skils")
 	var key
 	match idx:
 		0: key = "Q"
@@ -215,6 +219,9 @@ func _unlock_skill(name, element, price):
 # make librarian update inventory based on players unlocked skills
 func update_shopkeeper():
 	$Rooms/Home/Librarian.update_inventory($Player.get_unlocked_skills())
+
+func _give_tome_spells(menu):
+	$Rooms/Home/Tome/ChangeSpells.init($Player.get_unlocked_skills(), $Player.get_equipped_skills())
 
 func despawn_light():
 	var tween = create_tween()

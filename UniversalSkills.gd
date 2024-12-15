@@ -17,7 +17,10 @@ func _ready():
 
 # returns the skill requested
 func _get_ability(skill):
-	return skillDict[skill]
+	if skillDict.has(skill):
+		return skillDict[skill]
+	else:
+		return null
 
 # make a timer that ticks. ability is a reference, tick is how often
 func start_tick_timer(ability, tick):

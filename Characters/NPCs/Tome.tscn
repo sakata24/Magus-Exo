@@ -1,8 +1,82 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqtbn2dl7psx"]
+[gd_scene load_steps=10 format=3 uid="uid://cqtbn2dl7psx"]
 
 [ext_resource type="Script" path="res://Characters/NPCs/Tome.gd" id="1_vaik0"]
+[ext_resource type="Texture2D" uid="uid://cs8cp06d6ocpq" path="res://Resources/book.png" id="2_wkfyd"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="3_4nhfx"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="4_oh6hq"]
+[ext_resource type="PackedScene" uid="uid://ciors68i7i3jv" path="res://HUDs/ChangeSpells.tscn" id="5_vu0t7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_241pq"]
+atlas = ExtResource("2_wkfyd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gqtxb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_241pq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3vyy"]
+radius = 25.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ohol"]
+font = ExtResource("4_oh6hq")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.784314)
 
 [node name="Tome" type="Node2D"]
 script = ExtResource("1_vaik0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gqtxb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_d3vyy")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -23.0
+offset_right = 52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_4nhfx")
+theme_override_font_sizes/font_size = 8
+text = "Tome of Spells"
+label_settings = SubResource("LabelSettings_2ohol")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_top = 10.0
+offset_right = 28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme = ExtResource("3_4nhfx")
+text = "Change"
+
+[node name="ChangeSpells" parent="." instance=ExtResource("5_vu0t7")]
+visible = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

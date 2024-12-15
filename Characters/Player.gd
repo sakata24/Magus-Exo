@@ -117,6 +117,9 @@ func initSkills():
 func get_unlocked_skills():
 	return unlockedSkills
 
+func get_equipped_skills():
+	return equippedSkills
+
 # handles right clicks
 func _unhandled_input(event):
 	if event.is_action_pressed('R-Click'):

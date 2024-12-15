@@ -29,13 +29,13 @@ stretch_mode = 4
 script = ExtResource("2_lam5i")
 
 [node name="Label" type="Label" parent="."]
-texture_filter = 2
+texture_filter = 1
 layout_mode = 1
 offset_right = 24.0
 offset_bottom = 45.0
 theme = ExtResource("3_trpis")
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "Q"
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]

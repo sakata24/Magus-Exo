@@ -75,20 +75,13 @@ grow_vertical = 0
 text = "Armorer"
 label_settings = SubResource("LabelSettings_2ohol")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="Button" type="Button" parent="."]
+visible = false
+z_index = 100
 offset_left = -20.0
 offset_top = 10.0
 offset_right = 22.0
 offset_bottom = 30.0
-grow_horizontal = 2
-
-[node name="Button" type="Button" parent="HBoxContainer"]
-visible = false
-z_index = 100
-layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_lpuhh")
 disabled = true
@@ -103,5 +96,5 @@ autostart = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="SpriteTimer" to="." method="_on_timer_timeout"]

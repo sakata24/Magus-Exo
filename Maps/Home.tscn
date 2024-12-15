@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://cbiw1tglncahn"]
+[gd_scene load_steps=10 format=4 uid="uid://cbiw1tglncahn"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_8kufv"]
 [ext_resource type="Script" path="res://Maps/Home.gd" id="1_ns77l"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_20c0y"]
 [ext_resource type="PackedScene" uid="uid://dx6qgbly3aoao" path="res://Characters/NPCs/Armorer.tscn" id="4_8hjcu"]
 [ext_resource type="PackedScene" uid="uid://ceqvkhki38wwr" path="res://Characters/NPCs/Librarian.tscn" id="5_hlh4u"]
+[ext_resource type="PackedScene" uid="uid://cqtbn2dl7psx" path="res://Characters/NPCs/Tome.tscn" id="6_fw0ow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxbls"]
 radius = 30.0
@@ -62,6 +63,9 @@ position = Vector2(55, 140)
 
 [node name="Librarian" parent="." instance=ExtResource("5_hlh4u")]
 position = Vector2(280, 140)
+
+[node name="Tome" parent="." instance=ExtResource("6_fw0ow")]
+position = Vector2(281, 226)
 
 [connection signal="area_entered" from="LadderArea" to="." method="_on_ladder_area_area_entered"]
 [connection signal="body_entered" from="LadderArea" to="." method="_on_ladder_area_body_entered"]
