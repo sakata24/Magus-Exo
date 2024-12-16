@@ -33,10 +33,11 @@ func init(init_owned, init_equipped):
 	load_equipped_ability(ability4, "R: ", equipped_skills[3])
 	owned_list.clear()
 	for x in owned_skills:
-		var iconTexture = load(ART_PATH+x+".png")
-		if !iconTexture:
-			iconTexture = load("res://Resources/icon.png")
-		owned_list.add_item(x, iconTexture)
+		if !equipped_skills.has(x):
+			var iconTexture = load(ART_PATH+x+".png")
+			if !iconTexture:
+				iconTexture = load("res://Resources/icon.png")
+			owned_list.add_item(x, iconTexture)
 
 # sets an ability icon and string when loading menu
 func load_equipped_ability(ability_var: MarginContainer, keypress: String, ability_name: String):

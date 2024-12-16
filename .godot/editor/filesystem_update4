@@ -29,4 +29,3 @@ res://Abilities/Bullet.tscn
 res://Interactables/UpgradeChest.tscn
 res://Resources/hud_elements/SkillIcon.tscn
 res://HUDs/change_spells.gd
-res://Main.gd
