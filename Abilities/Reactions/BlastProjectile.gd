@@ -14,5 +14,5 @@ func _physics_process(delta):
 		# check collisions
 	if collision and collision.get_collider().get_name() != "Player":
 		if collision.get_collider().is_in_group("monsters"):
-			collision.get_collider()._hit(dmg, Color("#ffffff"))
+			collision.get_collider()._hit(dmg, "entropy", "sunder")
 		queue_free()

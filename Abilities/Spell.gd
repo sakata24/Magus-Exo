@@ -45,7 +45,7 @@ func _on_SpellBody_body_entered(body):
 			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
-			body._hit(dmg, $Texture.color)
+			body._hit(dmg, element, element)
 
 func _on_area_entered(area):
 	if area.name == "SpellBody":

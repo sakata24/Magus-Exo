@@ -60,7 +60,7 @@ func _physics_process(delta):
 			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(self, collision.get_collider())
 		elif collision.get_collider().is_in_group("monsters"):
-			collision.get_collider()._hit(dmg, $Texture.color)
+			collision.get_collider()._hit(dmg, element, element)
 			UniversalSkills.perform_despawn(self, collision.get_collider())
 		UniversalSkills.perform_despawn(self, null)
 

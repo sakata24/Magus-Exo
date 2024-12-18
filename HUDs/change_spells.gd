@@ -45,6 +45,7 @@ func load_equipped_ability(ability_var: MarginContainer, keypress: String, abili
 	ability_var.get_node("HBoxContainer/SkillName").set_text(keypress + ability_name)
 
 func update_ui():
+	# update the left side (equipped spells)
 	ability1.get_node("Body").color = Color("00000064")
 	ability2.get_node("Body").color = Color("00000064")
 	ability3.get_node("Body").color = Color("00000064")
@@ -58,34 +59,28 @@ func update_ui():
 func _on_ability_1_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("I've been clicked D: 1")
 			selected_item = ABILITY1
 			update_ui()
 
 func _on_ability_2_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("I've been clicked D: 2")
 			selected_item = ABILITY2
 			update_ui()
 
 func _on_ability_3_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("I've been clicked D: 3")
 			selected_item = ABILITY3
 			update_ui()
 
 func _on_ability_4_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("I've been clicked D:4 ")
 			selected_item = ABILITY4
 			update_ui()
 
 func _on_equip_skill_pressed() -> void:
-	print(selected_item != 9999)
-	print(owned_list.is_anything_selected())
 	if(owned_list.is_anything_selected() and (selected_item != 9999)):
 		# add the skill to be removed to the owned list
 		if !owned_skills.has(equipped_skills[selected_item]):

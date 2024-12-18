@@ -1,6 +1,9 @@
+Label
+TextureRect
+ColorRect
+DirectionalLight2D
 Button
 ItemList
-Label
 VBoxContainer
 HBoxContainer
 Control
@@ -9,6 +12,3 @@ CollisionShape2D
 Area2D
 AnimatedSprite2D
 Sprite2D
-HSeparator
-TextureRect
-Polygon2D

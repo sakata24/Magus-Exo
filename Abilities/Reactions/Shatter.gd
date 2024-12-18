@@ -20,4 +20,4 @@ func _on_timer_timeout():
 
 func _on_body_entered(body):
 	if body.is_in_group("monsters"):
-		body._hit(dmg, myParent.get_node("Texture").color)
+		body._hit(dmg, "sunder", "construct")

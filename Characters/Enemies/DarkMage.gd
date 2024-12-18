@@ -45,30 +45,39 @@ func _spawn_crystals():
 		inst.connect("destroyed_crystal", _on_crystal_destroyed)
 
 # hit by something
-func _hit(dmg_to_take, dmg_color):
+func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
 	if invincible:
 		var dmgNum = damageNumber.instantiate()
-		dmgNum.modulate = dmg_color
+		var dmg_color_1 = Color.WHITE
+		var dmg_color_2 = Color.WHITE
+		match dmg_type_1:
+			"sunder": dmg_color_1 = Color("#7a0002")
+			"entropy": dmg_color_1 = Color("#ffd966")
+			"growth": dmg_color_1 = Color("#36c72c")
+			"construct": dmg_color_1 = Color("#663c33")
+			"flow": dmg_color_1 = Color("#82b1ff")
+			"wither": dmg_color_1 = Color("#591b82")
+		match dmg_type_2:
+			"sunder": dmg_color_2 = Color("#7a0002")
+			"entropy": dmg_color_2 = Color("#ffd966")
+			"growth": dmg_color_2 = Color("#36c72c")
+			"construct": dmg_color_2 = Color("#663c33")
+			"flow": dmg_color_2 = Color("#82b1ff")
+			"wither": dmg_color_2 = Color("#591b82")
+		dmgNum.set_colors(dmg_color_1, dmg_color_2)
 		get_parent().add_child(dmgNum)
 		dmgNum.set_value_and_pos(self.global_position, "Immune")
 		emit_signal("health_changed", health, true)
 	else:
 		if (stage == 1 && health-dmg_to_take <= maxHealth/2):
-			var dmgNum = damageNumber.instantiate()
-			dmgNum.modulate = dmg_color
-			get_parent().add_child(dmgNum)
-			dmgNum.set_value_and_pos(self.global_position, health-maxHealth/2)
+			super(dmg_to_take, dmg_type_1, dmg_type_2)
 			invincible = true
 			emit_signal("health_changed", maxHealth/2, true)
 			$CannonTimer.stop()
 			stage += 1
 			begin_stage()
 		else:
-			health -= dmg_to_take
-			var dmgNum = damageNumber.instantiate()
-			dmgNum.modulate = dmg_color
-			get_parent().add_child(dmgNum)
-			dmgNum.set_value_and_pos(self.global_position, dmg_to_take)
+			super(dmg_to_take, dmg_type_1, dmg_type_2)
 			emit_signal("health_changed", health, false)
 
 

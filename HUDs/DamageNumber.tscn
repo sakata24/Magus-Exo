@@ -1,16 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://btw5y36cr8p0b"]
+[gd_scene load_steps=8 format=3 uid="uid://btw5y36cr8p0b"]
 
 [ext_resource type="Script" path="res://HUDs/DamageNumber.gd" id="1_0qs7g"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="2_4yha6"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_fiak4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6wi43"]
+font_size = 8
+font_color = Color(1, 1, 1, 0)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qwbw"]
 line_spacing = 2.0
 font = ExtResource("2_4yha6")
-font_size = 9
-font_color = Color(0.654902, 0.654902, 0.654902, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_color = Color(0, 0, 0, 0.607843)
+font_size = 8
+
+[sub_resource type="Gradient" id="Gradient_iywhp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_63apx"]
+gradient = SubResource("Gradient_iywhp")
+fill_from = Vector2(0, 1)
 
 [node name="DamageNumber" type="Node2D"]
 z_index = 999
@@ -18,19 +27,41 @@ z_as_relative = false
 texture_filter = 1
 script = ExtResource("1_0qs7g")
 
+[node name="Outline" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_fiak4")
+text = "text"
+label_settings = SubResource("LabelSettings_6wi43")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DmgText" type="Label" parent="."]
+clip_children = 2
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "text"
 label_settings = SubResource("LabelSettings_5qwbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="DmgText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_63apx")
+expand_mode = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

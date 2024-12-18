@@ -35,6 +35,7 @@ func _ready():
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 	update_shopkeeper()
 
+# called every time a player goes thru the door
 func _load_level():
 	# inc difficulty when loading
 	level += 1
@@ -49,6 +50,8 @@ func _load_level():
 		init_boss_room()
 	else:
 		init_rooms()
+	# save the state of the game every level to be persisted
+	CustomResourceLoader.save_game()
 
 func init_boss_room():
 	var new_room = boss_level.instantiate()
@@ -127,7 +130,7 @@ func init_rooms():
 		monster.health *= level
 		monster.myDmg *= level
 		monster.baseDmg *= level
-		monster.connect("giveXp", Callable($Player, "gain_xp"))
+		monster.connect("giveXp ", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !dead:

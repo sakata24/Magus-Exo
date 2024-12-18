@@ -9,4 +9,4 @@ func _ready():
 func _process(delta):
 	for body in get_overlapping_bodies():
 		if body.is_in_group("monsters") and ((body.health * 10) <= (body.maxHealth) and body.health > 0):
-			body._hit(999, Color(255, 255, 255))
+			body._hit(999, "construct", "wither")

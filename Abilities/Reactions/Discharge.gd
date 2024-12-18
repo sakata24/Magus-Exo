@@ -22,4 +22,4 @@ func _process(delta):
 func _on_attack_timer_timeout():
 	for body in get_overlapping_bodies():
 		if body.is_in_group("monsters"):
-			body._hit(5 + floor(get_parent().dmg/6), Color("#ffffff"))
+			body._hit(5 + floor(get_parent().dmg/6), "entropy", "construct")
