@@ -127,13 +127,22 @@ theme_override_font_sizes/font_size = 16
 text = "Buy"
 
 [node name="Price" type="Label" parent="Control/SplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 8
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
+[node name="OwnedCurrency" type="Label" parent="Control/SplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
 [node name="Description" type="Label" parent="Control/SplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 6
 text = "Select an item on the left"

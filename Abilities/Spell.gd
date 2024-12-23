@@ -10,6 +10,7 @@ var cooldown = 0.1
 var size = 1
 var element
 var canReact
+var spellCaster
 
 const CAST_RANGE = 500
 
@@ -31,7 +32,9 @@ func init(skillDict, castTarget, caster):
 	elif element == "wither":
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
+	spellCaster = caster
 	self.position = castTarget
+	
 	# perform operation on spawn
 	UniversalSkills.perform_spawn(self, castTarget, caster)
 
@@ -45,7 +48,7 @@ func _on_SpellBody_body_entered(body):
 			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
-			body._hit(dmg, element, element)
+			body._hit(dmg, element, element, spellCaster)
 
 func _on_area_entered(area):
 	if area.name == "SpellBody":

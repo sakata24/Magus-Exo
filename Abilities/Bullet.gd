@@ -9,6 +9,7 @@ var cooldown = 0.1
 var canReact = true
 var size = 1
 var element
+var spellCaster
 
 # constructs the bullet
 func init(skillDict, castTarget, caster):
@@ -47,6 +48,8 @@ func init(skillDict, castTarget, caster):
 	# start timer
 	$TimeoutTimer.wait_time = timeout
 	$TimeoutTimer.start()
+	# keep a reference to the caster
+	spellCaster = caster
 	# perform operation on spawn
 	UniversalSkills.perform_spawn(self, castTarget, caster)
 
@@ -60,9 +63,10 @@ func _physics_process(delta):
 			set_collision_mask_value(3, false)
 			UniversalSkills.perform_reaction(self, collision.get_collider())
 		elif collision.get_collider().is_in_group("monsters"):
-			collision.get_collider()._hit(dmg, element, element)
+			collision.get_collider()._hit(dmg, element, element, spellCaster)
 			UniversalSkills.perform_despawn(self, collision.get_collider())
-		UniversalSkills.perform_despawn(self, null)
+		else:
+			UniversalSkills.perform_despawn(self, null)
 
 # if end of timeout, perform action (usually start lifetime timer)
 func _on_TimeoutTimer_timeout():

@@ -3,8 +3,9 @@ extends CharacterBody2D
 var speed = 0
 var dmg = 0
 var center
+var spellCaster
 
-func init(init_speed, init_dmg, init_center):
+func init(init_speed, init_dmg, init_center, caster):
 	speed = init_speed
 	dmg = init_dmg
 	center = init_center
@@ -14,5 +15,5 @@ func _physics_process(delta):
 		# check collisions
 	if collision and collision.get_collider().get_name() != "Player":
 		if collision.get_collider().is_in_group("monsters"):
-			collision.get_collider()._hit(dmg, "entropy", "sunder")
+			collision.get_collider()._hit(dmg, "entropy", "sunder", spellCaster)
 		queue_free()

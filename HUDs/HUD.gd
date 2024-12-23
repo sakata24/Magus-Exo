@@ -6,9 +6,8 @@ func _ready():
 	_set_ui_size()
 	_hide_ability_names()
 
-func init(health, max_health, xp, max_xp, skill1, skill2, skill3, skill4):
+func init(health, max_health, skill1, skill2, skill3, skill4):
 	_set_health(health, max_health)
-	_set_xp(xp,max_xp)
 	set_floor(0)
 	_set_skills(skill1,skill2,skill3,skill4)
 
@@ -18,9 +17,6 @@ func _set_health(new_HP, max_HP):
 
 func _set_dash_cd(dash_cd, dash_cd_max):
 	$Dash/ProgressBar.set_size(Vector2((4*hudScale)-(dash_cd*(4*hudScale)/dash_cd_max),(0.05*hudScale)))
-
-func _set_xp(xp, max_xp):
-	$EXPLabel.text = ("EXP: " + str(xp) + "\nNEXT LVL: " + str(max_xp))
 
 func _set_skills(one,two,three,four):
 	$Skill/Ability1/HBoxContainer/SkillName.text = one

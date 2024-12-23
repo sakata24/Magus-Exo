@@ -25,7 +25,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.1,
 			"type": "spell",
-			"price": 0,
+			"price": 25,
 			"description": "Shatters the very fabric of space in a large area, dealing high damage"
 		},
 		"charge": {
@@ -51,7 +51,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 1.0,
 			"type": "spell",
-			"price": 0,
+			"price": 25,
 			"description": "Summons an indiscriminate storm that has special properties depending on the amount of targets in the area"
 		},
 		"cell": {
@@ -64,7 +64,7 @@ var all_skills = {
 			"speed": 0.6,
 			"timeout": 0.1,
 			"type": "bullet",
-			"price": 0,
+			"price": 15,
 			"description": "A growing cell that increases in damage and size"
 		},
 		"vine": {
@@ -77,18 +77,18 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.1,
 			"type": "spell",
-			"price": 0,
+			"price": 10,
 			"description": "Conjures a thorny vine that pierces and instantly damages enemies"
 		},
 		"rock": {
 			"name": "rock",
-			"cooldown": 1.3,
+			"cooldown": 3,
 			"dmg": 1.5,
 			"element": "construct",
-			"lifetime": 0.75,
+			"lifetime": 1,
 			"size": 2.5,
-			"speed": 0.5,
-			"timeout": 0.75,
+			"speed": 0.3,
+			"timeout": 1,
 			"type": "bullet",
 			"price": 0,
 			"description": "A rock, suitable for reactions"
@@ -103,7 +103,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 0.5,
 			"type": "spell",
-			"price": 0,
+			"price": 25,
 			"description": "Opens a fissure in the ground, dealing constant damage to targets whom walk into it"
 		},
 		"fountain": {
@@ -129,7 +129,7 @@ var all_skills = {
 			"speed": 1.0,
 			"timeout": 0.5,
 			"type": "bullet",
-			"price": 0,
+			"price": 25,
 			"description": "A projectile that shoves enemies on contact"
 		},
 		"suspend": {
@@ -142,7 +142,7 @@ var all_skills = {
 			"speed": 0.0,
 			"timeout": 3.0,
 			"type": "spell",
-			"price": 0,
+			"price": 15,
 			"description": "Fills the area with decay, dealing damage constantly to targets"
 		},
 		"decay": {
@@ -155,7 +155,7 @@ var all_skills = {
 			"speed": 0.8,
 			"timeout": 0.5,
 			"type": "bullet",
-			"price": 0,
+			"price": 10,
 			"description": "Fires a bolt of decay that slows a target hit"
 		}
 	}

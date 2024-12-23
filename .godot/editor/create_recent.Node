@@ -1,6 +1,6 @@
+Label
 CollisionShape2D
 TileMapLayer
-Label
 TextureRect
 ColorRect
 DirectionalLight2D

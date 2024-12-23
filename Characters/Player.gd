@@ -41,15 +41,11 @@ var projectileLoad = preload("res://Abilities/Bullet.tscn")
 var spellLoad = preload("res://Abilities/Spell.tscn")
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
-signal gained_xp(curr_xp, xp_threshold)
 signal moving_to()
 signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)
 signal cooling_dash(dash_cd, dash_cd_max)
 signal player_hit(newHP, maxHP)
-
-# constants
-const XPTHRESHOLDS = [5, 10, 15, 20, 25, 30, 40, 60]
 
 # instance variable for player HP
 var health = 25
@@ -66,7 +62,6 @@ var movement = Vector2()
 var castTarget = Vector2()
 
 # instance variables for XP handling
-var currentXpThreshold = XPTHRESHOLDS[0]
 var lvl = 0
 var xp = 0
 
@@ -297,15 +292,16 @@ func _on_multi_cast_timer_timeout():
 		skillRef = null
 
 
-func gain_xp(amount):
-	xp += amount
-	if xp >= currentXpThreshold:
-		lvl += 1
-		emit_signal("level_up", lvl)
-		$DashTimer.wait_time *= 0.85
-		# increment currentXpThreshold to the next
-		currentXpThreshold = XPTHRESHOLDS[XPTHRESHOLDS.find(currentXpThreshold) + 1]
-	emit_signal("gained_xp", xp, currentXpThreshold)
+func gain_xp(amount, elements):
+	print("i ran")
+	for element in elements:
+		match element:
+			"sunder": sunder_xp += amount
+			"entropy": entropy_xp += amount
+			"construct": construct_xp += amount
+			"growth": growth_xp += amount
+			"flow": flow_xp += amount
+			"wither": wither_xp += amount
 
 func hit(damage):
 	health -= damage

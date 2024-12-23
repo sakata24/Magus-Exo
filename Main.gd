@@ -13,13 +13,13 @@ var MAP_SIZE = 2 # sqrt of room amt
 var dead = false
 var menus = []
 var level = 0
+var boss_level_multiple = 5 # default floor multiple boss spawns on
 
 # room hex: 25131a
 
 func _ready():
 	# connect hud to player
-	$HUD.init($Player.health,$Player.maxHealth,str($Player.xp), str($Player.currentXpThreshold),str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
-	$Player.connect("gained_xp", Callable($HUD, "_set_xp"))
+	$HUD.init($Player.health,$Player.maxHealth,str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
@@ -34,6 +34,8 @@ func _ready():
 	$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 	update_shopkeeper()
+	if Settings.dev_mode:
+		boss_level_multiple = 2
 
 # called every time a player goes thru the door
 func _load_level():
@@ -46,7 +48,7 @@ func _load_level():
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
 	# init rooms
-	if level % 5 == 0:
+	if level % boss_level_multiple == 0:
 		init_boss_room()
 	else:
 		init_rooms()
@@ -130,7 +132,7 @@ func init_rooms():
 		monster.health *= level
 		monster.myDmg *= level
 		monster.baseDmg *= level
-		monster.connect("give_xp ", Callable($Player, "gain_xp"))
+		monster.connect("give_xp", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !dead:
@@ -221,7 +223,7 @@ func _unlock_skill(name, element, price):
 
 # make librarian update inventory based on players unlocked skills
 func update_shopkeeper():
-	$Rooms/Home/Librarian.update_inventory($Player.get_unlocked_skills())
+	$Rooms/Home/Librarian.update_inventory($Player.get_unlocked_skills(), {"sunder xp": $Player.sunder_xp, "entropy xp": $Player.entropy_xp, "construct xp": $Player.construct_xp, "growth xp": $Player.growth_xp, "flow xp": $Player.flow_xp, "wither xp": $Player.wither_xp})
 
 func _give_tome_spells(menu):
 	$Rooms/Home/Tome/ChangeSpells.init($Player.get_unlocked_skills(), $Player.get_equipped_skills())

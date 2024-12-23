@@ -9,7 +9,7 @@ func init(sunderParent, entropyParent):
 	self.position = sunderParent.position
 	dmg = sunderParent.dmg + entropyParent.dmg
 	for n in range(1, 9):
-		get_node(str("Projectile", n)).init(450, dmg, self)
+		get_node(str("Projectile", n)).init(450, dmg, self, sunderParent.spellCaster)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

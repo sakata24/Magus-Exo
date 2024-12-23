@@ -23,16 +23,19 @@ func _get_ability(skill):
 		return null
 
 # make a timer that ticks. ability is a reference, tick is how often
-func start_tick_timer(ability, tick):
+func start_tick_timer(ability, tick, my_lambda: Callable):
 	var timer = Timer.new()
 	timer.wait_time = tick
 	ability.add_child(timer)
 	while true:
+		#timer.start()
+		#ability.set_collision_mask_value(2, true)
+		#await timer.timeout
+		#timer.start()
+		#ability.set_collision_mask_value(2, false)
+		#await timer.timeout
 		timer.start()
-		ability.set_collision_mask_value(2, true)
-		await timer.timeout
-		timer.start()
-		ability.set_collision_mask_value(2, false)
+		my_lambda.call(ability)
 		await timer.timeout
 	timer.queue_free()
 
@@ -77,8 +80,7 @@ func perform_spawn(ability, pos, caster):
 		"crack":
 			pass
 		"suspend":
-			# make it tick
-			start_tick_timer(ability, 0.13)
+			pass
 		"storm":
 			pass
 		_:
@@ -150,7 +152,7 @@ func perform_reaction(collider, collided):
 	elif collided.is_in_group("enemy_skills"):
 		collider.react()
 		return
-	
+	print("reaction " + collider.element + " " + collided.element)
 	# pause timers if reaction so it may complete
 	collided.get_node("TimeoutTimer").paused = true
 	collided.get_node("LifetimeTimer").paused = true
@@ -223,7 +225,7 @@ func perform_reaction(collider, collided):
 			# VINE: Transform type of spell to growth
 			collided.element = "growth"
 			collided.canReact = true
-			collided.get_node("Texture").color = Color("#70ad47")
+			collided.modulate = Color("#70ad47")
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
 			collided.get_node("TimeoutTimer").paused = false
@@ -232,7 +234,27 @@ func perform_reaction(collider, collided):
 			# VINE: Transform type of spell to growth
 			collider.element = "growth"
 			collider.canReact = true
-			collider.get_node("Texture").color = Color("#70ad47")
+			collider.modulate = Color("#70ad47")
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+		"flow" + "sunder":
+			# BREAK: Slowly grow the flow spell in size
+			var break_lambda = func(flow_spell_obj):
+				flow_spell_obj.scale.x += 0.1
+				flow_spell_obj.scale.y += 0.1
+			start_tick_timer(collider, 0.1, break_lambda)
+			collider.get_node("TimeoutTimer").paused = false
+			collider.get_node("LifetimeTimer").paused = false
+			collided.get_node("TimeoutTimer").paused = false
+			collided.get_node("LifetimeTimer").paused = false
+		"sunder" + "flow":
+			# BREAK: Slowly grow the flow spell in size
+			var break_lambda = func(flow_spell_obj):
+				flow_spell_obj.scale.x += 0.1
+				flow_spell_obj.scale.y += 0.1
+			start_tick_timer(collided, 0.1, break_lambda)
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
 			collided.get_node("TimeoutTimer").paused = false

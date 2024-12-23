@@ -110,17 +110,6 @@ offset_bottom = 6.0
 grow_horizontal = 2
 color = Color(0.698039, 1, 0.996078, 1)
 
-[node name="EXPLabel" type="Label" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -23.0
-offset_right = 140.0
-grow_vertical = 0
-theme = ExtResource("2_2uc2n")
-text = "EXP: 0/10"
-
 [node name="FloorLabel" type="Label" parent="."]
 offset_left = 5.0
 offset_right = 125.0

@@ -41,5 +41,16 @@ res://Maps/Map3.tscn
 res://Maps/Map.tscn
 res://Maps/Exit.tscn
 res://Maps/MapBoss.tscn
+res://Abilities/Fissure.tscn
+res://HUDs/SkillMenu.tscn
+res://HUDs/Shop.tscn
+res://Characters/NPCs/Librarian.gd
 res://Main.gd
-res://Characters/Enemies/Charger.gd
+res://HUDs/Shop.gd
+res://Characters/Enemies/BarrierCrystal.tscn
+res://Characters/Enemies/BarrierCrystal.gd
+res://Characters/Enemies/Monster.gd
+res://Settings.gd
+res://UniversalSkills.gd
+res://Abilities/Suspend.tscn
+res://Abilities/Suspend.gd

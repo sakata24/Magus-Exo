@@ -72,7 +72,7 @@ func chase(delta):
 		$AttackTimer.start()
 
 # hit by something
-func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
+func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 	# reduce my hp
 	health -= dmg_to_take
 	# set the element to give player xp for
@@ -107,6 +107,11 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
 	dmgNum.set_colors(dmg_color_1, dmg_color_2)
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(self.global_position, dmg_to_take)
+	# aggro on the caster
+	if caster and caster.name == "Player":
+		aggro = true
+		player = caster
+		$PathTimer.start()
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):

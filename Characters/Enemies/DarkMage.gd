@@ -23,9 +23,9 @@ func _ready():
 	_spawn_crystals()
 	call_deferred("_set_player")
 
+# override so i dont move
 func _physics_process(delta: float) -> void:
 	pass
-
 
 func _set_player():
 	player = get_parent().get_parent().get_parent().get_node("Player")
@@ -45,7 +45,7 @@ func _spawn_crystals():
 		inst.connect("destroyed_crystal", _on_crystal_destroyed)
 
 # hit by something
-func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
+func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 	if invincible:
 		var dmgNum = damageNumber.instantiate()
 		var dmg_color_1 = Color.WHITE
@@ -70,14 +70,14 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
 		emit_signal("health_changed", health, true)
 	else:
 		if (stage == 1 && health-dmg_to_take <= maxHealth/2):
-			super(dmg_to_take, dmg_type_1, dmg_type_2)
+			super(dmg_to_take, dmg_type_1, dmg_type_2, caster)
 			invincible = true
 			emit_signal("health_changed", maxHealth/2, true)
 			$CannonTimer.stop()
 			stage += 1
 			begin_stage()
 		else:
-			super(dmg_to_take, dmg_type_1, dmg_type_2)
+			super(dmg_to_take, dmg_type_1, dmg_type_2, caster)
 			emit_signal("health_changed", health, false)
 
 
