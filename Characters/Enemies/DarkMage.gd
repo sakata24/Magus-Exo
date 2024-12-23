@@ -83,7 +83,7 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
 
 # when i die
 func die():
-	emit_signal("giveXp", bestowedXp)
+	emit_signal("give_xp", bestowedXp)
 	var drop
 	match randi_range(0, 2):
 		0: 

@@ -6,45 +6,55 @@ var canHit = true
 
 # make the monster move
 func _physics_process(delta):
-	# make it rotate around and chase
-	if aggro and not attacking and not dashing and canMove:
-		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.5)
-		chase(delta)
-	# make it dash
-	else:
-		if dashing:
-			set_velocity(position.direction_to(lockTarget).normalized() * speed * 4.5)
-	move_and_collide(velocity)
+	if canMove:
+		if aggro and not attacking and not dashing:
+			# if far, chase
+			if global_position.distance_to(player.global_position) > 70:
+				chase(delta)
+			# else charge up dash
+			else:
+				chargeDash(delta)
+		# make it dash
+		else:
+			if dashing:
+				dash(delta)
+		move_and_slide()
 
 # chases the player
 func chase(delta):
-	if global_position.distance_to(player.global_position) > 70:
-		var new_velocity = to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed
-		if new_velocity.x < 0:
-			$Sprite2D.flip_h = true
-		elif new_velocity.x > 0:
-			$Sprite2D.flip_h = false
-		set_velocity(new_velocity)
+	var new_velocity = to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed
+	if new_velocity.x < 0:
+		$Sprite2D.flip_h = true
+	elif new_velocity.x > 0:
+		$Sprite2D.flip_h = false
+	set_velocity(new_velocity)
+		
+
+# charges up the dash with a timer
+func chargeDash(delta):
+	attacking = true
+	set_velocity(Vector2.ZERO)
+	# target PAST the player
+	lockTarget = player.global_position - ((self.global_position - player.global_position).normalized()) * 1000
+	if self.global_position.x - lockTarget.x > 0:
+		$Sprite2D.flip_h = true
 	else:
-		attacking = true
-		set_velocity(Vector2.ZERO)
-		# target PAST the player
-		lockTarget = player.global_position - ((self.global_position - player.global_position) * speed * 4.5)
-		if self.global_position.x - lockTarget.x > 0:
-			$Sprite2D.flip_h = true
-		else:
-			$Sprite2D.flip_h = false
-		$DamageArea.look_at(lockTarget)
-		$DamageArea.visible = true
-		$AttackTimer.start()
+		$Sprite2D.flip_h = false
+	$DamageArea.look_at(lockTarget)
+	$DamageArea.visible = true
+	$AttackTimer.start()
+	
+func dash(delta):
+	var new_velocity = to_local(lockTarget).normalized() * speed * 4.5
+	set_velocity(new_velocity)
 
 func _on_attack_timer_timeout():
 	dashing = true
 	$DamageArea.visible = false
 	$DashTimer.start()
 
-
 func _on_dash_timer_timeout():
+	set_velocity(Vector2.ZERO)
 	dashing = false
 	attacking = false
 

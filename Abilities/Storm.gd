@@ -25,7 +25,7 @@ func _on_TimeoutTimer_timeout():
 				array.push_back(body)
 		if not array.is_empty():
 			var enemy = array[randi() % array.size()]
-			enemy._hit(floor(dmg/(array.size()+1)), $Texture.color)
+			enemy._hit(floor(dmg/(array.size()+1)), "entropy", "construct")
 			$TimeoutTimer.wait_time = (0.9/(array.size()+1))
 	# Only start after changing wait time
 	$TimeoutTimer.start()

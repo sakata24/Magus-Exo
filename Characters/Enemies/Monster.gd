@@ -12,7 +12,7 @@ var speed = 50
 # base speed for ref
 var baseSpeed = 50
 # my health
-var health = 100
+@export var health = 100
 # damage
 var myDmg = 2
 # base dmg for ref
@@ -24,11 +24,13 @@ var bestowedXp = 1
 # am i attacking
 var attacking = false
 # can i move
-var canMove = true
+@export var canMove = true
 # can i drop upgrades
 var droppable = true
+# last damage hit with
+var lastElementsHitBy = []
 
-signal giveXp(xp)
+signal give_xp(xp, elements)
 
 func _ready():
 	pass
@@ -71,6 +73,14 @@ func chase(delta):
 
 # hit by something
 func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
+	# reduce my hp
+	health -= dmg_to_take
+	# set the element to give player xp for
+	if dmg_type_1 == dmg_type_2:
+		lastElementsHitBy = [dmg_type_1]
+	else:
+		lastElementsHitBy = [dmg_type_1, dmg_type_2]
+	## create the dmg numbers ##
 	#Sunder: #7a0002
 	#Entropy: #ffd966
 	#Growth: #36c72c
@@ -93,12 +103,10 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2):
 		"construct": dmg_color_2 = Color("#663c33")
 		"flow": dmg_color_2 = Color("#82b1ff")
 		"wither": dmg_color_2 = Color("#591b82")
-	health -= dmg_to_take
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.set_colors(dmg_color_1, dmg_color_2)
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(self.global_position, dmg_to_take)
-	
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):
@@ -110,7 +118,6 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 
 # when i die
 func die():
-	emit_signal("giveXp", bestowedXp)
 	if droppable:
 		var drop
 		match randi_range(0, 2):
@@ -121,6 +128,8 @@ func die():
 		if drop != null:
 			drop.position = position
 			get_parent().add_child(drop)
+	# give the player xp
+	emit_signal("give_xp", bestowedXp, lastElementsHitBy)
 	queue_free()
 
 func _on_attack_timer_timeout():

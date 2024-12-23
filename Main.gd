@@ -80,48 +80,48 @@ func init_rooms():
 			newRoom.position = Vector2(position.x + (496.0 * i), position.y + (496.0 * j))
 			
 			# block off edges of map
-			var tilemap = newRoom.get_node("NavigationRegion2D/TileMap")
-			var tileset = tilemap.get_tileset()
+			var tilemap = newRoom.get_node("NavigationRegion2D/Layer0")
+			var tileset = tilemap.tile_set
 			# top
 			if j == 0:
 				for n in range(0, 31):
 					if n == 13:
-						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(0, 3))
+						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(0, 3), 0)
 					elif 13 < n and n < 17:
-						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(1, 0))
+						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(1, 0), 0)
 					elif n == 17:
-						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(5, 0))
+						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(5, 0), 0)
 					else:
-						tilemap.set_cell(0, Vector2i(n, -1), 0, Vector2i(8, 7))
+						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(8, 7), 0)
 			# left
 			if i == 0:
 				for n in range(0, 31):
 					if 12 < n and n < 17:
-						tilemap.set_cell(0, Vector2i(-1, n), 0, Vector2i(0, 1))
+						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(0, 1), 0)
 					elif n == 17:
-						tilemap.set_cell(0, Vector2i(-1, n), 0, Vector2i(0, 4))
+						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(0, 4), 0)
 					else:
-						tilemap.set_cell(0, Vector2i(-1, n), 0, Vector2i(8, 7))
+						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(8, 7), 0)
 			# bottom
 			if j == MAP_SIZE-1:
 				for n in range(0, 31):
 					if n == 13:
-						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(0, 4))
+						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(0, 4), 0)
 					elif 13 < n and n < 17:
-						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(1, 4))
+						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(1, 4), 0)
 					elif n == 17:
-						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(5, 4))
+						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(5, 4), 0)
 					else:
-						tilemap.set_cell(0, Vector2i(n, 31), 0, Vector2i(8, 7))
+						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(8, 7), 0)
 			# right
 			if i == MAP_SIZE-1:
 				for n in range(0, 31):
 					if 12 < n and n < 17:
-						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(5, 1))
+						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 1), 0)
 					elif n == 17:
-						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(5, 4))
+						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 4), 0)
 					else:
-						tilemap.set_cell(0, Vector2i(31, n), 0, Vector2i(8, 7))
+						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(8, 7), 0)
 			$Rooms.add_child(newRoom)
 	# fetch group of monsters on the map and connect their giveXp signals to player
 	var monsters = get_tree().get_nodes_in_group("monsters")
@@ -130,7 +130,7 @@ func init_rooms():
 		monster.health *= level
 		monster.myDmg *= level
 		monster.baseDmg *= level
-		monster.connect("giveXp ", Callable($Player, "gain_xp"))
+		monster.connect("give_xp ", Callable($Player, "gain_xp"))
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !dead:
