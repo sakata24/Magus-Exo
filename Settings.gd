@@ -1,3 +1,3 @@
 extends Node
 
-var dev_mode = true
+var dev_mode = false

@@ -37,6 +37,7 @@ gdscript/warnings/integer_division=0
 
 window/size/mode=2
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [global_group]
 

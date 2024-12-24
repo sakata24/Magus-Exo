@@ -72,7 +72,7 @@ var upgradesChosen = []
 var equippedSkills = ["bolt", "charge", "rock", "fountain"]
 
 # player's unlocked skills
-var unlockedSkills = ["bolt", "charge", "rock", "fountain"]
+var unlockedSkills = ["bolt", "charge", "rock", "fountain", "vine", "suspend"]
 
 var skillReady = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
