@@ -135,6 +135,7 @@ size_flags_vertical = 3
 
 [node name="Body" type="ColorRect" parent="Skill/Ability1"]
 layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.392157)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability1"]
@@ -175,6 +176,7 @@ size_flags_vertical = 3
 
 [node name="Body" type="ColorRect" parent="Skill/Ability2"]
 layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.392157)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability2"]
@@ -214,6 +216,7 @@ size_flags_vertical = 3
 
 [node name="Body" type="ColorRect" parent="Skill/Ability3"]
 layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.392157)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability3"]
@@ -253,6 +256,7 @@ size_flags_vertical = 3
 
 [node name="Body" type="ColorRect" parent="Skill/Ability4"]
 layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.392157)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability4"]

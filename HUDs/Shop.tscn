@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
 
 [node name="Shop" type="CanvasLayer" groups=["windows"]]
+layer = 2
 script = ExtResource("1_3qepl")
 
 [node name="ScreenDimmer" type="ColorRect" parent="."]

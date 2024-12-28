@@ -30,6 +30,7 @@ font = ExtResource("3_w5m8w")
 font_size = 32
 
 [node name="Menu" type="CanvasLayer" groups=["windows"]]
+layer = 2
 script = ExtResource("1")
 
 [node name="BackgroundDimmer" type="ColorRect" parent="."]

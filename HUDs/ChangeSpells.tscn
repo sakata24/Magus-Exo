@@ -17,6 +17,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ChangeSpells" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_ux4n7")
 
 [node name="ScreenDimmer" type="ColorRect" parent="."]
