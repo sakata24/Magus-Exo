@@ -24,4 +24,9 @@ func set_colors(color_1: Color, color_2: Color):
 	var colors = PackedColorArray()
 	colors.append(color_1)
 	colors.append(color_2)
-	$DmgText/TextureRect.texture.gradient.colors = colors
+	var gradient = GradientTexture2D.new()
+	gradient.gradient = Gradient.new()
+	gradient.fill_from = Vector2(0, 1)
+	gradient.fill_to = Vector2(1, 0)
+	gradient.gradient.colors = colors
+	$DmgText/TextureRect.texture = gradient
