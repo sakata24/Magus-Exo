@@ -309,7 +309,7 @@ func hit(damage):
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = Color(255, 0, 0)
 	get_parent().add_child(dmgNum)
-	dmgNum.set_value_and_pos(self.global_position, damage)
+	dmgNum.set_value_and_pos(damage, self.global_position)
 
 func _on_dash_timer_timeout():
 	canDash = true

@@ -106,7 +106,7 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.set_colors(dmg_color_1, dmg_color_2)
 	get_parent().add_child(dmgNum)
-	dmgNum.set_value_and_pos(self.global_position, dmg_to_take)
+	dmgNum.set_value_and_pos(dmg_to_take, self.global_position)
 	# aggro on the caster
 	if caster and caster.name == "Player":
 		aggro = true

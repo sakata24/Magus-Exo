@@ -9,7 +9,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func set_value_and_pos(pos, dmg):
+func set_value_and_pos(dmg, pos):
 	self.global_position = pos
 	$DmgText.text = str(dmg)
 	$Outline.text = str(dmg)

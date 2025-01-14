@@ -66,7 +66,7 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 			"wither": dmg_color_2 = Color("#591b82")
 		dmgNum.set_colors(dmg_color_1, dmg_color_2)
 		get_parent().add_child(dmgNum)
-		dmgNum.set_value_and_pos(self.global_position, "Immune")
+		dmgNum.set_value_and_pos("Immune", self.global_position)
 		emit_signal("health_changed", health, true)
 	else:
 		if (stage == 1 && health-dmg_to_take <= maxHealth/2):
