@@ -8,8 +8,9 @@ var lifetime = 1.0
 var cooldown = 0.1
 var canReact = true
 var size = 1
+var reaction_priority = 0
 var element
-var spellCaster
+var spell_caster
 
 # constructs the bullet
 func init(skillDict, castTarget, caster):
@@ -21,10 +22,7 @@ func init(skillDict, castTarget, caster):
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
-	if element == "sunder":
-		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.sunderSpriteRes)
-		$Texture.color = Color("#c00000")
-	elif element == "entropy":
+	if element == "entropy":
 		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.entropySpriteRes)
 		$Texture.color = Color("#ffd966")
 	elif element == "construct":
@@ -49,24 +47,13 @@ func init(skillDict, castTarget, caster):
 	$TimeoutTimer.wait_time = timeout
 	$TimeoutTimer.start()
 	# keep a reference to the caster
-	spellCaster = caster
+	spell_caster = caster
 	# perform operation on spawn
 	UniversalSkills.perform_spawn(self, castTarget, caster)
 
 # handles movement of bullet
 func _physics_process(delta):
-	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
-	# check collisions
-	if collision and collision.get_collider().get_name() != "Player":
-		if collision.get_collider().is_in_group("skills"):
-			set_collision_layer_value(3, false)
-			set_collision_mask_value(3, false)
-			UniversalSkills.perform_reaction(self, collision.get_collider())
-		elif collision.get_collider().is_in_group("monsters"):
-			collision.get_collider()._hit(dmg, element, element, spellCaster)
-			UniversalSkills.perform_despawn(self, collision.get_collider())
-		else:
-			UniversalSkills.perform_despawn(self, null)
+	pass
 
 # if end of timeout, perform action (usually start lifetime timer)
 func _on_TimeoutTimer_timeout():
@@ -75,6 +62,9 @@ func _on_TimeoutTimer_timeout():
 
 func _on_LifetimeTimer_timeout():
 	UniversalSkills.perform_despawn(self, null)
+
+func despawn():
+	pass
 
 func _delete():
 	queue_free()

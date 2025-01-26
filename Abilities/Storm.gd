@@ -1,4 +1,6 @@
-extends Spell
+class_name StormSpell extends Spell
+
+var EntropyAbility = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

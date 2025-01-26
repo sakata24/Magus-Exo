@@ -8,6 +8,7 @@ var timeout = 1
 var lifetime = 1
 var cooldown = 0.1
 var size = 1
+var reaction_priority = 0
 var element
 var canReact
 var spellCaster
@@ -36,7 +37,7 @@ func init(skillDict, castTarget, caster):
 	self.position = castTarget
 	
 	# perform operation on spawn
-	UniversalSkills.perform_spawn(self, castTarget, caster)
+	SkillDataHandler.perform_spawn(self, castTarget, caster)
 
 func _ready():
 	pass
@@ -46,19 +47,16 @@ func _on_SpellBody_body_entered(body):
 		if body.is_in_group("skills"):
 			set_collision_layer_value(3, false)
 			set_collision_mask_value(3, false)
-			UniversalSkills.perform_reaction(body, self)
+			SkillDataHandler.perform_reaction(body, self)
 		if body.is_in_group("monsters"):
 			body._hit(dmg, element, element, spellCaster)
 
 func _on_area_entered(area):
-	if area.name == "SpellBody":
-		set_collision_layer_value(3, false)
-		set_collision_mask_value(3, false)
-		UniversalSkills.perform_reaction(area, self)
+	print("reaction not implemented yet!")
 
 func _on_TimeoutTimer_timeout():
 	$LifetimeTimer.start()
-	UniversalSkills.perform_timeout(self)
+	SkillDataHandler.perform_timeout(self)
 
 func _on_LifetimeTimer_timeout():
-	UniversalSkills.perform_despawn(self, null)
+	SkillDataHandler.perform_despawn(self, null)

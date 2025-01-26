@@ -1,3 +1,5 @@
+# This script is solely responsible for holding and returning data of specific spellsSkillDataHandler
+
 extends Node
 
 var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
@@ -14,12 +16,12 @@ var reactionText = preload("res://HUDs/ReactionText.tscn")
 
 var skillDict = {}
 
+# ready function runs code to grab the data
 func _ready():
-	skillDict = PlayerSkills.all_skills["skills"]
-	pass
+	skillDict = PlayerSkills.ALL_SKILLS["skills"]
 
-# returns the skill requested
-func _get_ability(skill):
+# returns a dictionary of the skill requested
+func get_ability(skill):
 	if skillDict.has(skill):
 		return skillDict[skill]
 	else:

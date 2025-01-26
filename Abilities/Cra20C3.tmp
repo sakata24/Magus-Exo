@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://k5ic6d1vjwes"]
+
+[ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/Spell.tscn" id="1_v4cxy"]
+[ext_resource type="Script" path="res://Abilities/Crack.gd" id="2_gjfgh"]
+[ext_resource type="Texture2D" uid="uid://bd5ueeluvlpi8" path="res://Resources/abilities/crack-sprite-v2.png" id="3_g7whp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edl3u"]
+atlas = ExtResource("3_g7whp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3uti"]
+atlas = ExtResource("3_g7whp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5yfr"]
+atlas = ExtResource("3_g7whp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljiny"]
+atlas = ExtResource("3_g7whp")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm2us"]
+atlas = ExtResource("3_g7whp")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w808v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edl3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3uti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5yfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljiny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm2us")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="SpellBody" instance=ExtResource("1_v4cxy")]
+script = ExtResource("2_gjfgh")
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+polygon = PackedVector2Array(-10, -40, 10, -40, 30, -30, 40, -10, 40, 10, 30, 30, 10, 40, -10, 40, -30, 30, -40, 10, -40, -10, -30, -30)
+
+[node name="TimeoutTimer" parent="." index="1"]
+wait_time = 0.1
+autostart = true
+
+[node name="LifetimeTimer" parent="." index="2"]
+wait_time = 0.5
+autostart = true
+
+[node name="Texture" parent="." index="3"]
+visible = false
+
+[node name="AnimatedSprite2D" parent="." index="4"]
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_w808v")
+autoplay = "default"

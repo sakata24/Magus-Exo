@@ -1,6 +1,8 @@
+# This script is solely responsible for holding the data related to unique spells
+
 extends Node
 
-var all_skills = {
+var ALL_SKILLS = {
 	"skills": {
 		"bolt": {
 			"name": "bolt",
