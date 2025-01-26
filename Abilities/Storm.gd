@@ -16,7 +16,7 @@ func _on_SpellBody_body_entered(body):
 		if body.is_in_group("skills"):
 			set_collision_layer_value(3, false)
 			set_collision_mask_value(3, false)
-			UniversalSkills.perform_reaction(body, self)
+			SkillDataHandler.perform_reaction(body, self)
 
 func _on_TimeoutTimer_timeout():
 	# Tick dmg every 0.5 initially, depending on amt of bodies in circle tick differently

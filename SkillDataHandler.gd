@@ -21,7 +21,7 @@ func _ready():
 	skillDict = PlayerSkills.ALL_SKILLS["skills"]
 
 # returns a dictionary of the skill requested
-func get_ability(skill):
+func _get_ability(skill):
 	if skillDict.has(skill):
 		return skillDict[skill]
 	else:

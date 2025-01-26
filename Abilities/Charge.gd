@@ -1,11 +1,11 @@
-class_name BoltBullet extends Bullet
+class_name ChargeBullet extends Bullet
 
 # grab the ability functions on load
-@onready var SunderAbility = preload("res://Abilities/BaseAbilityScripts/SunderAbility.gd").new()
+@onready var EntropyAbility = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
 
 # Initial creation of object on load.
 func init(skillDict, castTarget, caster):
-	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.boltSpriteRes)
+	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.chargeSpriteRes)
 	super.init(skillDict, castTarget, caster)
 
 # physics process is run every frame
@@ -34,7 +34,7 @@ func handle_reaction(reactant: Node2D):
 	# Disable own collision with other spells to not react.
 	set_collision_layer_value(3, false)
 	set_collision_mask_value(3, false)
-	SunderAbility.create_new_reaction(self, reactant)
+	EntropyAbility.create_new_reaction(self, reactant)
 
 # Handles collision when enemy is hit.
 func handle_enemy_collision(enemy: Node2D):
@@ -44,3 +44,8 @@ func handle_enemy_collision(enemy: Node2D):
 # Handles all other collisions not implemented (like a wall)
 func handle_other_collision(collider):
 	despawn()
+
+func _on_growth_timer_timeout() -> void:
+	speed = 1.4 * 300
+	dmg = floor(dmg * 1.5)
+	scale = scale * 1.5

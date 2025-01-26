@@ -22,10 +22,7 @@ func init(skillDict, castTarget, caster):
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
-	if element == "entropy":
-		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.entropySpriteRes)
-		$Texture.color = Color("#ffd966")
-	elif element == "construct":
+	if element == "construct":
 		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.constructSpriteRes)
 		$Texture.color = Color("#833c0c")
 	elif element == "growth":
@@ -43,13 +40,10 @@ func init(skillDict, castTarget, caster):
 	$AnimatedSprite2D.play()
 	$LifetimeTimer.wait_time = lifetime
 	scale *= size
-	# start timer
-	$TimeoutTimer.wait_time = timeout
-	$TimeoutTimer.start()
 	# keep a reference to the caster
 	spell_caster = caster
 	# perform operation on spawn
-	UniversalSkills.perform_spawn(self, castTarget, caster)
+	SkillDataHandler.perform_spawn(self, castTarget, caster)
 
 # handles movement of bullet
 func _physics_process(delta):
@@ -58,13 +52,13 @@ func _physics_process(delta):
 # if end of timeout, perform action (usually start lifetime timer)
 func _on_TimeoutTimer_timeout():
 	$LifetimeTimer.start()
-	UniversalSkills.perform_timeout(self)
+	SkillDataHandler.perform_timeout(self)
 
 func _on_LifetimeTimer_timeout():
-	UniversalSkills.perform_despawn(self, null)
+	SkillDataHandler.perform_despawn(self, null)
 
 func despawn():
-	pass
+	queue_free()
 
 func _delete():
 	queue_free()

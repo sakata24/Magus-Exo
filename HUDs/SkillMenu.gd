@@ -11,7 +11,7 @@ var dict
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var file = FileAccess.open("res://Resources/abilitysheet.txt", FileAccess.READ)
-	dict = UniversalSkills.get_skills()
+	dict = SkillDataHandler.get_skills()
 #	print_dictionary()
 	file.close()
 	$Control/HBoxContainer/Right/RightContainer/EquipMargin/EquippedAbilities/Ability1/Label.text = "Q"
@@ -37,11 +37,11 @@ func _draw_icons():
 
 func print_dictionary():
 	for n in dict:
-		print(UniversalSkills._get_ability(n))
+		print(SkillDataHandler._get_ability(n))
 
 func _select_skill(skill:SkillIcon):
 	Details.get_node("PhotoContainer/DetailIcon").texture = skill.texture
-	var skillInfo = UniversalSkills._get_ability(skill.spell)
+	var skillInfo = SkillDataHandler._get_ability(skill.spell)
 	Details.get_node("name/Value").text = skillInfo.name
 	Details.get_node("cooldown/Value").text = str(skillInfo.cooldown)
 	Details.get_node("dmg/Value").text = str(skillInfo.dmg)
@@ -55,7 +55,7 @@ func _select_skill(skill:SkillIcon):
 
 func _equip_skill(skill:SkillIcon):
 	#Check if already equipped -> remove
-	var skillInfo = UniversalSkills._get_ability(skill.spell)
+	var skillInfo = SkillDataHandler._get_ability(skill.spell)
 	for n in EquipContainer.get_children():
 		if n.spell == skillInfo.name:
 			n.empty()

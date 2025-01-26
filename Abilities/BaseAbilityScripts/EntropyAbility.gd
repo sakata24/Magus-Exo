@@ -1,9 +1,14 @@
 # Contains functions related to a Sunder ability.
 # All Sunder abilities should preload this resource.
 
-extends Resource
+class_name EntropyAbility extends BaseTypeAbility
 
-# Creates a new reaction.
-# The "source" should have a higher priority than "reactant"
-func create_new_reaction(source: Node2D, reactant: Node2D):
-	pass
+# returns a scene based on the type of reaction
+func get_reaction_scene(reactant_element: String) -> Node2D:
+	match reactant_element:
+		"sunder": return SkillSceneHandler.get_scene_by_name("blast")
+		"growth": return SkillSceneHandler.get_scene_by_name("burst")
+		"construct": return SkillSceneHandler.get_scene_by_name("shatter")
+		"flow": return SkillSceneHandler.get_scene_by_name("break")
+		"wither": return SkillSceneHandler.get_scene_by_name("singularity")
+		_: return null

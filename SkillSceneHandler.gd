@@ -27,4 +27,4 @@ func get_scene_by_name(name: String) -> Node2D:
 		# abilities
 		"crack": return crackScene.instantiate()
 		"storm": return stormScene.instantiate()
-	return null
+		_: return null

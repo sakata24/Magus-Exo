@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://wjvjs36qeiw8"]
+
+[ext_resource type="PackedScene" uid="uid://berj1ws78vo1g" path="res://Abilities/Bullet.tscn" id="1_5etax"]
+[ext_resource type="Script" path="res://Abilities/Charge.gd" id="2_42sja"]
+
+[node name="BulletBody" instance=ExtResource("1_5etax")]
+script = ExtResource("2_42sja")
+
+[node name="GrowthTimer" type="Timer" parent="." index="4"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
