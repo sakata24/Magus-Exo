@@ -6,7 +6,7 @@ var dmg = 10
 var timeout = 1.0
 var lifetime = 1.0
 var cooldown = 0.1
-var canReact = true
+var can_react = true
 var size = 1
 var reaction_priority = 0
 var element
@@ -22,13 +22,7 @@ func init(skillDict, castTarget, caster):
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
-	if element == "construct":
-		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.constructSpriteRes)
-		$Texture.color = Color("#833c0c")
-	elif element == "growth":
-		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.growthSpriteRes)
-		$Texture.color = Color("#70ad47")
-	elif element == "flow":
+	if element == "flow":
 		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.flowSpriteRes)
 		$Texture.color = Color("#9bc2e6")
 	elif element == "wither":

@@ -165,9 +165,7 @@ func perform_reaction(collider, collided):
 		return
 	print("reaction " + collider.element + " " + collided.element)
 	# pause timers if reaction so it may complete
-	collided.get_node("TimeoutTimer").paused = true
 	collided.get_node("LifetimeTimer").paused = true
-	collider.get_node("TimeoutTimer").paused = true
 	collider.get_node("LifetimeTimer").paused = true
 	#Sunder: #7a0002
 	#Entropy: #ffd966
@@ -247,7 +245,7 @@ func perform_reaction(collider, collided):
 		"growth" + "construct":
 			# OVERGROWTH: Transform type of spell to growth
 			collided.element = "growth"
-			collided.canReact = true
+			collided.can_react = true
 			collided.modulate = Color("#70ad47")
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false
@@ -257,7 +255,7 @@ func perform_reaction(collider, collided):
 		"construct" + "growth":
 			# OVERGROWTH: Transform type of spell to growth
 			collider.element = "growth"
-			collider.canReact = true
+			collider.can_react = true
 			collider.modulate = Color("#70ad47")
 			collider.get_node("TimeoutTimer").paused = false
 			collider.get_node("LifetimeTimer").paused = false

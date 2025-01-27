@@ -1,4 +1,4 @@
-extends Reaction
+class_name BlastReaction extends Reaction
 
 var dmg
 var parents = {}

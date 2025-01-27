@@ -1,4 +1,4 @@
-extends Area2D
+class_name SingularityReaction extends AreaReaction
 
 var parent
 const base_sphere_radius = 64

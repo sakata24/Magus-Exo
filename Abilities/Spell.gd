@@ -10,7 +10,7 @@ var cooldown = 0.1
 var size = 1
 var reaction_priority = 0
 var element
-var canReact
+var can_react
 var spellCaster
 
 const CAST_RANGE = 500

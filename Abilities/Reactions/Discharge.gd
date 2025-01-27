@@ -1,4 +1,4 @@
-extends Area2D
+class_name DischargeReaction extends AreaReaction
 
 const base_sphere_radius = 64
 # Called when the node enters the scene tree for the first time.

@@ -1,4 +1,4 @@
-extends Area2D
+class_name SicknessReaction extends AreaReaction
 
 var debuffedEnemies
 

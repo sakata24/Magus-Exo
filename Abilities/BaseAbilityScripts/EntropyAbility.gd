@@ -1,5 +1,5 @@
-# Contains functions related to a Sunder ability.
-# All Sunder abilities should preload this resource.
+# Contains functions related to a Entropy ability.
+# All Entropy abilities should preload this resource.
 
 class_name EntropyAbility extends BaseTypeAbility
 
@@ -7,8 +7,8 @@ class_name EntropyAbility extends BaseTypeAbility
 func get_reaction_scene(reactant_element: String) -> Node2D:
 	match reactant_element:
 		"sunder": return SkillSceneHandler.get_scene_by_name("blast")
-		"growth": return SkillSceneHandler.get_scene_by_name("burst")
-		"construct": return SkillSceneHandler.get_scene_by_name("shatter")
-		"flow": return SkillSceneHandler.get_scene_by_name("break")
-		"wither": return SkillSceneHandler.get_scene_by_name("singularity")
+		"construct": return SkillSceneHandler.get_scene_by_name("discharge")
+		"growth": return SkillSceneHandler.get_scene_by_name("multiply")
+		"flow": return SkillSceneHandler.get_scene_by_name("fork")
+		"wither": return SkillSceneHandler.get_scene_by_name("sickness")
 		_: return null

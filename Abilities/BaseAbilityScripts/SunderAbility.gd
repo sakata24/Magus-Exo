@@ -7,8 +7,8 @@ class_name SunderAbility extends BaseTypeAbility
 func get_reaction_scene(reactant_element: String) -> Node2D:
 	match reactant_element:
 		"entropy": return SkillSceneHandler.get_scene_by_name("blast")
-		"growth": return SkillSceneHandler.get_scene_by_name("burst")
 		"construct": return SkillSceneHandler.get_scene_by_name("shatter")
+		"growth": return SkillSceneHandler.get_scene_by_name("burst")
 		"flow": return SkillSceneHandler.get_scene_by_name("break")
 		"wither": return SkillSceneHandler.get_scene_by_name("singularity")
 		_: return null
