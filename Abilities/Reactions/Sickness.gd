@@ -19,7 +19,7 @@ func _on_tick_timer_timeout():
 			if body.is_in_group("monsters"):
 				var rand = randi_range(0, 2)
 				if rand == 0:
-					body.canMove = false
+					body.can_move = false
 				elif rand == 1:
 					body.speed *= 0.5
 				elif rand == 2:
@@ -30,7 +30,7 @@ func _on_debuff_timer_timeout():
 	if debuffedEnemies != null:
 		for body in debuffedEnemies:
 			if body != null and body.is_in_group("monsters"):
-				body.canMove = true
+				body.can_move = true
 				body.speed = body.baseSpeed
 				body.myDmg = body.baseDmg
 
@@ -39,7 +39,7 @@ func _on_lifetime_timer_timeout():
 	if debuffedEnemies != null:
 		for body in debuffedEnemies:
 			if body != null and body.is_in_group("monsters"):
-				body.canMove = true
+				body.can_move = true
 				body.speed = body.baseSpeed
 				body.myDmg = body.baseDmg
 	queue_free()

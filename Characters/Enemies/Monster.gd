@@ -24,7 +24,7 @@ var bestowedXp = 1
 # am i attacking
 var attacking = false
 # can i move
-@export var canMove = true
+@export var can_move = true
 # can i drop upgrades
 var droppable = true
 # last damage hit with
@@ -40,7 +40,7 @@ func init():
 
 # handle internal processes
 func _process(delta):
-	if !canMove:
+	if !can_move:
 		$StatusLabel.visible = true
 	else:
 		$StatusLabel.visible = false
@@ -49,7 +49,7 @@ func _process(delta):
 
 # make the monster move
 func _physics_process(delta):
-	if aggro and not attacking and canMove:
+	if aggro and not attacking and can_move:
 		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
 		chase(delta)
 	move_and_slide()

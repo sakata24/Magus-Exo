@@ -10,10 +10,11 @@ func _ready():
 # call after entering scene tree
 func init(reaction_components: Dictionary):
 	parents = reaction_components
-	# reparent myself to not despawn when parents react and destroy themselves
-	reparent(reaction_components["source"].get_parent(), true)
-	dmg = reaction_components["source"].dmg + reaction_components["reactant"].dmg
-	init_projectiles(reaction_components["source"])
+	# reparent myself to main to not despawn when parents react and destroy themselves
+	reparent(parents["source"].get_parent(), true)
+	dmg = parents["source"].dmg + parents["reactant"].dmg
+	# set projectile location
+	init_projectiles(parents["source"])
 	# destroy my parents after getting all their data
 	destroy_parents()
 

@@ -8,7 +8,9 @@ func create_new_reaction(spell_1: Node2D, spell_2: Node2D):
 	var reaction_components = get_reaction_source_and_reactant(spell_1, spell_2)
 	var reaction_scene = get_reaction_scene(spell_2.element)
 	if reaction_scene:
+		# set as the child
 		reaction_components["source"].add_child(reaction_scene)
+		# after entering tree things and if need info from both spells reacting
 		reaction_scene.init(reaction_components)
 
 # determine the source and reactant

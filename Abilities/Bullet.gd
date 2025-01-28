@@ -22,10 +22,7 @@ func init(skillDict, castTarget, caster):
 	timeout *= skillDict["timeout"]
 	lifetime *= skillDict["lifetime"]
 	element = skillDict["element"]
-	if element == "flow":
-		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.flowSpriteRes)
-		$Texture.color = Color("#9bc2e6")
-	elif element == "wither":
+	if element == "wither":
 		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.witherSpriteRes)
 		$Texture.color = Color("#7030a0")
 	add_to_group("skills")
@@ -39,15 +36,43 @@ func init(skillDict, castTarget, caster):
 	# perform operation on spawn
 	SkillDataHandler.perform_spawn(self, castTarget, caster)
 
-# handles movement of bullet
+# run every frame
 func _physics_process(delta):
-	pass
+	var collision_data = handle_movement(delta)
+	if(collision_data):
+		handle_collision(collision_data)
 
-# if end of timeout, perform action (usually start lifetime timer)
-func _on_TimeoutTimer_timeout():
-	$LifetimeTimer.start()
-	SkillDataHandler.perform_timeout(self)
+# handles movement of bullet. Standard is a constant speed in a straight line.
+func handle_movement(delta) -> KinematicCollision2D:
+	return self.move_and_collide(get_velocity().normalized() * delta * speed)
 
+# handles collision data. Standard is differentiate between skills, monsters, and other.
+func handle_collision(collision_data: KinematicCollision2D):
+	var collider = collision_data.get_collider()
+	if collider.get_name() != "Player":
+		if collider.is_in_group("skills"):
+			handle_reaction(collider)
+		elif collider.is_in_group("monsters"):
+			handle_enemy_collision(collider)
+		else:
+			handle_other_collision(collider)
+
+# Handles reaction data. MUST BE OVERWRITTEN OR THE SPELL DOES NO REACTION
+func handle_reaction(reactant: Node2D):
+	# Disable own collision with other spells to not react.
+	set_collision_layer_value(3, false)
+	set_collision_mask_value(3, false)
+
+# Handles collision when enemy is hit.
+func handle_enemy_collision(enemy: Node2D):
+	enemy._hit(self.dmg, self.element, self.element, self.spell_caster)
+	despawn()
+
+# Handles all other collisions not implemented (like a wall)
+func handle_other_collision(collider):
+	despawn()
+
+# end of bullet lifetime
 func _on_LifetimeTimer_timeout():
 	SkillDataHandler.perform_despawn(self, null)
 

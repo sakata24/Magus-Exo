@@ -14,6 +14,7 @@ var boltScene = preload("res://Abilities/Bolt.tscn")
 var chargeScene = preload("res://Abilities/Charge.tscn")
 var rockScene = preload("res://Abilities/Rock.tscn")
 var cellScene = preload("res://Abilities/Cell.tscn")
+var displaceScene = preload("res://Abilities/Displace.tscn")
 
 @export var sunder_dmg_boost = 1.0
 @export var sunder_extra_casts = 0
@@ -252,6 +253,7 @@ func cast_ability(skill):
 			"charge": projectile = chargeScene.instantiate()
 			"rock": projectile = rockScene.instantiate()
 			"cell": projectile = cellScene.instantiate()
+			"displace": projectile = displaceScene.instantiate()
 			_: projectile = crackScene.instantiate()
 		# spawn the projectile and initialize it
 		get_parent().add_child(projectile)

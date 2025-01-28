@@ -125,7 +125,7 @@ func perform_despawn(ability, target):
 		match ability.abilityID:
 			"displace":
 				# remove target's ability to move and force their velocity to the bullet's
-				target.canMove = false
+				target.can_move = false
 				target.velocity = ability.get_velocity() * 100
 				ability.queue_free()
 				var timer = Timer.new()
@@ -133,7 +133,7 @@ func perform_despawn(ability, target):
 				target.add_child(timer)
 				timer.start()
 				await timer.timeout
-				target.canMove = true
+				target.can_move = true
 				target.velocity = Vector2.ZERO
 			"decay":
 				target.speed *= 0.5
@@ -174,94 +174,6 @@ func perform_reaction(collider, collided):
 	#Flow: #82b1ff
 	#Wither: #591b82
 	match collider.element + collided.element:
-		"sunder" + "entropy":
-			# BLAST: Spawn projectiles and radiate them outwards
-			var blast = blastScene.instantiate()
-			blast.init(collider, collided)
-			collided.add_sibling(blast)
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("blast!", collided, Color("#7a0002"), Color("#ffd966"))
-		"entropy" + "sunder":
-			# BLAST: Spawn projectiles and radiate them outwards
-			var blast = blastScene.instantiate()
-			blast.init(collider, collided)
-			collided.add_sibling(blast)
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("blast!", collided, Color("#7a0002"), Color("#ffd966"))
-		"entropy" + "construct":
-			# DISCHARGE: Spawns an area DOT on the construct spell
-			var discharge = dischargeScene.instantiate()
-			collided.add_child(discharge)
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("discharge!", collided, Color("#ffd966"), Color("#663c33"))
-		"construct" + "entropy":
-			# DISCHARGE: Spawns an area DOT on the construct spell
-			var discharge = dischargeScene.instantiate()
-			collider.add_child(discharge)
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("discharge!", collider, Color("#ffd966"), Color("#663c33"))
-		"construct" + "sunder":
-			# SHATTER: Disable construct ability and create an explosion
-			var shatter = shatterScene.instantiate()
-			shatter.myParent = collider
-			shatter.dmg = collided.dmg + collider.dmg
-			collider.scale = Vector2(1,1)
-			collider.add_child(shatter)
-			collider.get_node("CollisionPolygon2D").disabled = true
-			collider.get_node("Texture").visible = false
-			collider.speed = collided.speed * 0.2
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("shatter!", collider, Color("#7a0002"), Color("#663c33"))
-		"sunder" + "construct":
-			# SHATTER: Disable construct ability and create an explosion
-			var shatter = shatterScene.instantiate()
-			shatter.myParent = collided
-			shatter.dmg = collider.dmg + collider.dmg
-			collided.scale = Vector2(1,1)
-			collided.add_child(shatter)
-			collided.get_node("CollisionPolygon2D").disabled = true
-			collided.get_node("Texture").visible = false
-			collided.speed = collided.speed * 0.2
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("shatter!", collided, Color("#7a0002"), Color("#663c33"))
-		"growth" + "construct":
-			# OVERGROWTH: Transform type of spell to growth
-			collided.element = "growth"
-			collided.can_react = true
-			collided.modulate = Color("#70ad47")
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("overgrowth!", collided, Color("#36c72c"), Color("#663c33"))
-		"construct" + "growth":
-			# OVERGROWTH: Transform type of spell to growth
-			collider.element = "growth"
-			collider.can_react = true
-			collider.modulate = Color("#70ad47")
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("overgrowth!", collider, Color("#36c72c"), Color("#663c33"))
 		"flow" + "sunder":
 			# BREAK: Slowly grow the flow spell in size
 			var break_lambda = func(flow_spell_obj):
