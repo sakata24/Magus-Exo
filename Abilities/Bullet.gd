@@ -13,28 +13,33 @@ var element
 var spell_caster
 
 # constructs the bullet
-func init(skillDict, castTarget, caster):
-	# set variables
-	abilityID = skillDict["name"]
-	speed = skillDict["speed"] * speed
-	size *= skillDict["size"]
-	dmg *= skillDict["dmg"]
-	timeout *= skillDict["timeout"]
-	lifetime *= skillDict["lifetime"]
-	element = skillDict["element"]
-	if element == "wither":
-		$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.witherSpriteRes)
-		$Texture.color = Color("#7030a0")
+func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
+	# set instance variables
+	abilityID = skill_dict["name"]
+	speed = skill_dict["speed"] * speed
+	size *= skill_dict["size"]
+	dmg *= skill_dict["dmg"]
+	timeout *= skill_dict["timeout"]
+	lifetime *= skill_dict["lifetime"]
+	element = skill_dict["element"]
+	setup_bullet(cast_target, caster)
+	# perform operation on spawn
+	SkillDataHandler.perform_spawn(self, cast_target, caster)
+
+# sets up relevant variables
+func setup_bullet(cast_target: Vector2, caster: Node2D):
+	# add it to skill group
 	add_to_group("skills")
-	look_at(castTarget)
+	# aim the projectile to look
+	look_at(cast_target)
 	# play the anim
 	$AnimatedSprite2D.play()
+	# set the lifetime of the bullet
 	$LifetimeTimer.wait_time = lifetime
+	# set the bullet size
 	scale *= size
 	# keep a reference to the caster
 	spell_caster = caster
-	# perform operation on spawn
-	SkillDataHandler.perform_spawn(self, castTarget, caster)
 
 # run every frame
 func _physics_process(delta):

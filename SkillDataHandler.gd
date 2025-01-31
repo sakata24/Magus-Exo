@@ -33,12 +33,6 @@ func start_tick_timer(ability, tick, my_lambda: Callable):
 	timer.wait_time = tick
 	ability.add_child(timer)
 	while true:
-		#timer.start()
-		#ability.set_collision_mask_value(2, true)
-		#await timer.timeout
-		#timer.start()
-		#ability.set_collision_mask_value(2, false)
-		#await timer.timeout
 		timer.start()
 		my_lambda.call(ability)
 		await timer.timeout
@@ -64,32 +58,6 @@ func perform_spawn(ability, pos, caster):
 			ability.lifetime *= caster.wither_lifetime_boost
 			ability.get_node("LifetimeTimer").wait_time *= caster.wither_lifetime_boost
 			ability.scale *= caster.construct_size_boost
-	match ability.abilityID:
-		"cell":
-			# Timer that ticks every .05 and grows
-			var timer = Timer.new()
-			timer.wait_time = 0.05
-			ability.add_child(timer)
-			
-			timer.start()
-			while true:
-				ability.scale += Vector2(0.2, 0.2)
-				ability.dmg += 1
-				await timer.timeout
-				timer.start()
-			timer.queue_free()
-		"vine":
-			pass
-		"fountain":
-			ability.set_collision_mask_value(2, false)
-		"crack":
-			pass
-		"suspend":
-			pass
-		"storm":
-			pass
-		_:
-			pass
 
 # helper method to create spells cast from char
 func clamp_vector(vector, clamp_origin, clamp_length):

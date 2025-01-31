@@ -7,10 +7,6 @@ func _ready():
 	cooldown = 1.3
 	set_collision_mask_value(2, false)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func _on_TimeoutTimer_timeout():
+func _on_timeout_timer_timeout() -> void:
 	set_collision_mask_value(2, true)
 	$AnimatedSprite2D.animation = "hit"

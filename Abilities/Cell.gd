@@ -4,9 +4,9 @@ class_name CellBullet extends Bullet
 @onready var GrowthAbility = preload("res://Abilities/BaseAbilityScripts/GrowthAbility.gd").new()
 
 # Initial creation of object on load.
-func init(skillDict, castTarget, caster):
+func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.cellSpriteRes)
-	super.init(skillDict, castTarget, caster)
+	super.init(skill_dict, cast_target, caster)
 
 # Increases the scale of this ability
 func increase_scale(growth_float: float):

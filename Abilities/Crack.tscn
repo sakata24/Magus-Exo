@@ -53,18 +53,18 @@ script = ExtResource("2_gjfgh")
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-10, -40, 10, -40, 30, -30, 40, -10, 40, 10, 30, 30, 10, 40, -10, 40, -30, 30, -40, 10, -40, -10, -30, -30)
 
-[node name="TimeoutTimer" parent="." index="1"]
-wait_time = 0.1
-autostart = true
-
-[node name="LifetimeTimer" parent="." index="2"]
+[node name="LifetimeTimer" parent="." index="1"]
 wait_time = 0.5
 autostart = true
 
-[node name="Texture" parent="." index="3"]
+[node name="Texture" parent="." index="2"]
 visible = false
 
-[node name="AnimatedSprite2D" parent="." index="4"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_w808v")
 autoplay = "default"
+
+[node name="TimeoutTimer" type="Timer" parent="." index="4"]
+
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]

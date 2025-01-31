@@ -10,13 +10,11 @@ script = ExtResource("2_ptot3")
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-50, -12, 50, -12, 50, 12, -50, 12)
 
-[node name="TimeoutTimer" parent="." index="1"]
-wait_time = 0.3
-autostart = true
-
-[node name="LifetimeTimer" parent="." index="2"]
+[node name="LifetimeTimer" parent="." index="1"]
 wait_time = 4.5
 autostart = true
+
+[node name="TickTimer" type="Timer" parent="." index="2"]
 
 [node name="Texture" parent="." index="3"]
 visible = false
@@ -26,3 +24,5 @@ polygon = PackedVector2Array(-50, -12, 50, -12, 50, 12, -50, 12)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_7kq0c")
 autoplay = "default"
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

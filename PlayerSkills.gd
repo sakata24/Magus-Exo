@@ -74,7 +74,7 @@ var ALL_SKILLS = {
 			"cooldown": 2.0,
 			"dmg": 1.1,
 			"element": "growth",
-			"lifetime": 0.1,
+			"lifetime": 2.0,
 			"size": 5.0,
 			"speed": 0.0,
 			"timeout": 0.1,

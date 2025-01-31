@@ -1,4 +1,5 @@
 Timer
+CPUParticles2D
 CollisionShape2D
 Label
 TileMapLayer
@@ -11,4 +12,3 @@ VBoxContainer
 HBoxContainer
 Control
 CanvasLayer
-Area2D

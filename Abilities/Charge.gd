@@ -4,9 +4,9 @@ class_name ChargeBullet extends Bullet
 @onready var EntropyAbility = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
 
 # Initial creation of object on load.
-func init(skillDict, castTarget, caster):
+func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.chargeSpriteRes)
-	super.init(skillDict, castTarget, caster)
+	super.init(skill_dict, cast_target, caster)
 
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
