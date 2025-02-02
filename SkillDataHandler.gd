@@ -91,18 +91,6 @@ func perform_timeout(ability):
 func perform_despawn(ability, target):
 	if target != null:
 		match ability.abilityID:
-			"displace":
-				# remove target's ability to move and force their velocity to the bullet's
-				target.can_move = false
-				target.velocity = ability.get_velocity() * 100
-				ability.queue_free()
-				var timer = Timer.new()
-				timer.wait_time = 0.5
-				target.add_child(timer)
-				timer.start()
-				await timer.timeout
-				target.can_move = true
-				target.velocity = Vector2.ZERO
 			"decay":
 				target.speed *= 0.5
 				ability.queue_free()
@@ -136,54 +124,12 @@ func perform_reaction(collider, collided):
 	collided.get_node("LifetimeTimer").paused = true
 	collider.get_node("LifetimeTimer").paused = true
 	#Sunder: #7a0002
-	#Entropy: #ffd966
+	#Entropy: #7a0002
 	#Growth: #36c72c
 	#Construct: #663c33
 	#Flow: #82b1ff
 	#Wither: #591b82
 	match collider.element + collided.element:
-		"flow" + "sunder":
-			# BREAK: Slowly grow the flow spell in size
-			var break_lambda = func(flow_spell_obj):
-				flow_spell_obj.scale.x += 0.1
-				flow_spell_obj.scale.y += 0.1
-			start_tick_timer(collider, 0.1, break_lambda)
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("break!", collider, Color("#7a0002"), Color("#82b1ff"))
-		"sunder" + "flow":
-			# BREAK: Slowly grow the flow spell in size
-			var break_lambda = func(flow_spell_obj):
-				flow_spell_obj.scale.x += 0.1
-				flow_spell_obj.scale.y += 0.1
-			start_tick_timer(collided, 0.1, break_lambda)
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("break!", collider, Color("#7a0002"), Color("#82b1ff"))
-		"sunder" + "wither":
-			# SINGULARITY: Suck in enemies to center
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			var singularity = singularityScene.instantiate()
-			singularity.parent = collided
-			collided.add_child(singularity)
-			spawn_reaction_name("singularity!", collided, Color("#7a0002"), Color("#591b82"))
-		"wither" + "sunder":
-			# SINGULARITY: Suck in enemies to center
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			var singularity = singularityScene.instantiate()
-			singularity.parent = collider
-			collider.add_child(singularity)
-			spawn_reaction_name("singularity!", collider, Color("#7a0002"), Color("#591b82"))
 		"wither" + "entropy":
 			# SICKNESS: Random debuff in a large AOE
 			collided.get_node("TimeoutTimer").paused = false

@@ -1,7 +1,7 @@
 class_name CellBullet extends Bullet
 
 # grab the ability functions on load
-@onready var GrowthAbility = preload("res://Abilities/BaseAbilityScripts/GrowthAbility.gd").new()
+@onready var GrowthAbilityLoad = preload("res://Abilities/BaseAbilityScripts/GrowthAbility.gd").new()
 
 # Initial creation of object on load.
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
@@ -19,7 +19,7 @@ func increase_dmg(growth_dmg: int):
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	GrowthAbility.create_new_reaction(self, reactant)
+	GrowthAbilityLoad.create_new_reaction(self, reactant)
 
 # Called every time the growth timer is triggered
 func _on_growth_timer_timeout() -> void:

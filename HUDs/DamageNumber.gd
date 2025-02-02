@@ -1,5 +1,6 @@
-extends Node2D
+# reaction text/dmg number
 
+class_name PopupText extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

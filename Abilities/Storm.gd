@@ -1,10 +1,10 @@
 class_name StormSpell extends Spell
 
-var EntropyAbility = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
+var EntropyAbilityLoad = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
 
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	EntropyAbility.create_new_reaction(self, reactant)
+	EntropyAbilityLoad.create_new_reaction(self, reactant)
 
 # damage enemies in radius
 func _on_timeout_timer_timeout():

@@ -7,3 +7,6 @@ class_name AreaReaction extends Area2D
 
 func init(reaction_components: Dictionary):
 	ReactionScript.init(reaction_components)
+
+func spawn_reaction_name(name: String, origin_spell: Node2D, dmg_color_1: Color, dmg_color_2: Color):
+	ReactionScript.spawn_reaction_name(name, origin_spell, dmg_color_1, dmg_color_2)

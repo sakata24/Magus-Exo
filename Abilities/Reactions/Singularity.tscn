@@ -8,33 +8,33 @@ offsets = PackedFloat32Array(0, 0.511848, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.25098, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m2fpl"]
+radius = 32.0
 
 [node name="Singularity" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_7dx8e")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-
 [node name="DragTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture_filter = 1
 amount = 15
-lifetime = 2.5
+lifetime = 0.8
 preprocess = 0.5
 local_coords = true
 texture = ExtResource("2_4a0ul")
 emission_shape = 2
-emission_sphere_radius = 64.0
+emission_sphere_radius = 32.0
 particle_flag_align_y = true
 spread = 180.0
 gravity = Vector2(0, 0)
-radial_accel_min = -8.0
-radial_accel_max = -8.0
-scale_amount_min = 0.2
-scale_amount_max = 0.3
+radial_accel_min = -25.0
+radial_accel_max = -25.0
+scale_amount_min = 0.4
+scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_y0pj4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

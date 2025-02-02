@@ -15,6 +15,7 @@ func create_new_reaction(spell_1: Node2D, spell_2: Node2D):
 
 # determine the source and reactant
 func get_reaction_source_and_reactant(source: Node2D, reactant: Node2D) -> Dictionary:
+	# higher priority means the reaction sticks to it more often
 	if source.reaction_priority > reactant.reaction_priority:
 		return {"source": source, "reactant": reactant}
 	else: 

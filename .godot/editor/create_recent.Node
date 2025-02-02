@@ -1,5 +1,9 @@
-Timer
+GPUParticles2D
 CPUParticles2D
+Polygon2D
+Node2D
+Timer
+Node
 CollisionShape2D
 Label
 TileMapLayer
@@ -9,6 +13,3 @@ DirectionalLight2D
 Button
 ItemList
 VBoxContainer
-HBoxContainer
-Control
-CanvasLayer

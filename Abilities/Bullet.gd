@@ -22,6 +22,7 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	timeout *= skill_dict["timeout"]
 	lifetime *= skill_dict["lifetime"]
 	element = skill_dict["element"]
+	reaction_priority = skill_dict["priority"]
 	setup_bullet(cast_target, caster)
 	# perform operation on spawn
 	SkillDataHandler.perform_spawn(self, cast_target, caster)

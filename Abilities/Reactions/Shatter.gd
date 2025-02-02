@@ -1,13 +1,13 @@
 class_name ShatterReaction extends AreaReaction
 
-var myParent
+var my_parent
 var dmg = 0
 var max_size = Vector2(2, 2)
 
 # Called when the node enters the scene tree for the first time.
 func init(reaction_components: Dictionary):
-	myParent = reaction_components["source"]
-	dmg = myParent.dmg
+	my_parent = reaction_components["source"]
+	dmg = my_parent.dmg
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,9 +29,9 @@ func increase_scale(growth_float: float):
 
 # clear if longer than .2 s
 func _on_timer_timeout():
-	myParent.queue_free()
+	my_parent.queue_free()
 
-# on dmg time out increase the scale and do damage
+# on dmg time out increase the scale, move to parent, and do damage
 func _on_dmg_timer_timeout() -> void:
 	reset_modulate_alpha()
 	increase_scale(0.4)
@@ -45,7 +45,7 @@ func damage_overlapping_bodies():
 
 # will damage an enemy
 func damage_enemy(enemy):
-	enemy._hit(dmg, "sunder", "construct", myParent.spell_caster)
+	enemy._hit(dmg, "sunder", "construct", my_parent.spell_caster)
 
 # on body enter
 func _on_body_entered(body: Node2D) -> void:

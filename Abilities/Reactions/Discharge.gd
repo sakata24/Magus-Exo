@@ -8,13 +8,16 @@ func _ready():
 	set_discharge_size()
 	init_particles()
 
+func init(reaction_components: Dictionary):
+	spawn_reaction_name("discharge!", get_parent(), Color("#ffd966"), Color("#663c33"))
+
 # calculate and set the discharge reaction size
 func set_discharge_size():
 	# loop thru parent collision polygon vectors and use the furthest to calculate discharge radius
-	var furthest_distance_from_circle
+	var furthest_distance_from_center
 	for point in get_parent().get_node("CollisionPolygon2D").polygon:
-		furthest_distance_from_circle = max(abs(point.x - self.position.x), abs(point.y - self.position.y))
-	$CollisionShape2D.shape.radius = furthest_distance_from_circle + BASE_DISCHARGE_RADIUS
+		furthest_distance_from_center = max(abs(point.x - self.position.x), abs(point.y - self.position.y))
+	$CollisionShape2D.shape.radius = furthest_distance_from_center + BASE_DISCHARGE_RADIUS
 
 # ready up the particle generator for the discharge reaction
 func init_particles():

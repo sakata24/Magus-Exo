@@ -16,13 +16,14 @@ var spell_caster
 const CAST_RANGE = 500
 
 # constructs the bullet
-func init(skillDict, cast_target, caster):
+func init(skill_dict, cast_target, caster):
 	# set variables
-	abilityID = skillDict["name"]
-	element = skillDict["element"]
-	size *= skillDict["size"]
-	dmg *= skillDict["dmg"]
-	lifetime *= skillDict["lifetime"]
+	abilityID = skill_dict["name"]
+	element = skill_dict["element"]
+	size *= skill_dict["size"]
+	dmg *= skill_dict["dmg"]
+	lifetime *= skill_dict["lifetime"]
+	reaction_priority = skill_dict["priority"]
 	spell_caster = caster
 	setup_spell(cast_target)
 	# perform operation on spawn

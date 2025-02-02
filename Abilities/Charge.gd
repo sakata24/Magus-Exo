@@ -1,7 +1,7 @@
 class_name ChargeBullet extends Bullet
 
 # grab the ability functions on load
-@onready var EntropyAbility = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
+@onready var EntropyAbilityLoad = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
 
 # Initial creation of object on load.
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
@@ -11,7 +11,7 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	EntropyAbility.create_new_reaction(self, reactant)
+	EntropyAbilityLoad.create_new_reaction(self, reactant)
 
 func _on_growth_timer_timeout() -> void:
 	speed = 1.4 * 300

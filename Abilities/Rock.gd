@@ -1,7 +1,7 @@
 class_name RockBullet extends Bullet
 
 # grab the ability functions on load
-@onready var ConstructAbility = preload("res://Abilities/BaseAbilityScripts/ConstructAbility.gd").new()
+@onready var ConstructAbilityLoad = preload("res://Abilities/BaseAbilityScripts/ConstructAbility.gd").new()
 
 # Initial creation of object on load.
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
@@ -11,4 +11,4 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	ConstructAbility.create_new_reaction(self, reactant)
+	ConstructAbilityLoad.create_new_reaction(self, reactant)

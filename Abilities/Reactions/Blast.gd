@@ -15,6 +15,8 @@ func init(reaction_components: Dictionary):
 	dmg = parents["source"].dmg + parents["reactant"].dmg
 	# set projectile location
 	init_projectiles(parents["source"])
+	# spawn reaction name
+	spawn_reaction_name("blast!", self, Color("#7a0002"), Color("#7a0002"))
 	# destroy my parents after getting all their data
 	destroy_parents()
 
