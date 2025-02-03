@@ -1,22 +1,13 @@
-extends Spell
+class_name StormSpell extends Spell
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	dmg = 20
-	cooldown = 2.5
+var EntropyAbilityLoad = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func handle_reaction(reactant: Node2D):
+	super(reactant)
+	EntropyAbilityLoad.create_new_reaction(self, reactant)
 
-func _on_SpellBody_body_entered(body):
-	if body.name != "Player":
-		if body.is_in_group("skills"):
-			set_collision_layer_value(3, false)
-			set_collision_mask_value(3, false)
-			UniversalSkills.perform_reaction(body, self)
-
-func _on_TimeoutTimer_timeout():
+# damage enemies in radius
+func _on_timeout_timer_timeout():
 	# Tick dmg every 0.5 initially, depending on amt of bodies in circle tick differently
 	if self.has_overlapping_bodies():
 		var array = []
@@ -25,7 +16,11 @@ func _on_TimeoutTimer_timeout():
 				array.push_back(body)
 		if not array.is_empty():
 			var enemy = array[randi() % array.size()]
-			enemy._hit(floor(dmg/(array.size()+1)), "entropy", "construct", spellCaster)
+			handle_enemy_interaction(enemy)
 			$TimeoutTimer.wait_time = (0.9/(array.size()+1))
 	# Only start after changing wait time
 	$TimeoutTimer.start()
+
+# ignore things entering this spell
+func _on_SpellBody_body_entered(body):
+	pass

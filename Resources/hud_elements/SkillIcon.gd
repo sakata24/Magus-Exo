@@ -24,7 +24,7 @@ func _process(delta):
 func init(spl:String, text = ""):
 	spell = spl
 	$Label.text = text
-	$ProgressBar.max_value = UniversalSkills._get_ability(spl)["cooldown"]
+	$ProgressBar.max_value = SkillDataHandler._get_ability(spl)["cooldown"]
 	_get_icon()
 
 
@@ -36,7 +36,7 @@ func _get_icon():
 
 func set_icon(spl:String, lab = $Label.text):
 	spell = spl
-	$ProgressBar.max_value = 10*UniversalSkills._get_ability(spl)["cooldown"]
+	$ProgressBar.max_value = 10*SkillDataHandler._get_ability(spl)["cooldown"]
 	$Label.text = lab
 	_get_icon()
 

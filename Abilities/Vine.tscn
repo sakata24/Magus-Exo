@@ -10,18 +10,14 @@ script = ExtResource("2_cns7i")
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-100, 2, -100, -2, 100, -2, 100, 2)
 
-[node name="TimeoutTimer" parent="." index="1"]
-wait_time = 0.1
+[node name="LifetimeTimer" parent="." index="1"]
+wait_time = 2.0
 autostart = true
 
-[node name="LifetimeTimer" parent="." index="2"]
-wait_time = 0.1
-autostart = true
-
-[node name="Texture" parent="." index="3"]
+[node name="Texture" parent="." index="2"]
 visible = false
 polygon = PackedVector2Array(-100, 2, -100, -2, 100, -2, 100, 2)
 
-[node name="AnimatedSprite2D" parent="." index="4"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 rotation = 3.14159
 sprite_frames = ExtResource("3_hup53")

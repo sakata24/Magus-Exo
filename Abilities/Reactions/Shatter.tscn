@@ -1,24 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpw4fwdf5q47y"]
+[gd_scene load_steps=4 format=3 uid="uid://bpw4fwdf5q47y"]
 
 [ext_resource type="Script" path="res://Abilities/Reactions/Shatter.gd" id="1_6aelp"]
 [ext_resource type="Texture2D" uid="uid://b6ep7weogfsrh" path="res://Resources/abilities/shatter-sprite.png" id="2_kj5lm"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tklnu"]
+radius = 36.0
+
 [node name="Shatter" type="Area2D"]
-scale = Vector2(1e-05, 1e-05)
+scale = Vector2(0.4, 0.4)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_6aelp")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(36, -36, 48, -12, 48, 12, 36, 36, 12, 48, -12, 48, -36, 36, -48, 12, -48, -12, -36, -36, -12, -48, 12, -48)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tklnu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_kj5lm")
 
+[node name="DmgTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 1.1
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DmgTimer" to="." method="_on_dmg_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

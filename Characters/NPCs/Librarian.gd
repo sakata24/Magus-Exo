@@ -21,10 +21,10 @@ func _process(delta: float) -> void:
 func update_inventory(unlocked_skills, player_xp):
 	self.shop_data = []
 	# add items to the shop that are not in unlocked_skills
-	for skill in UniversalSkills.get_skills():
+	for skill in SkillDataHandler.get_skills():
 		if !unlocked_skills.has(skill):
 			# redefine a dictionary with the information needed to peddle spells since this is the librarian
-			shop_data.append({"name" : UniversalSkills._get_ability(skill)["name"], "currency": UniversalSkills._get_ability(skill)["element"] + " xp", "price": UniversalSkills._get_ability(skill)["price"], "description": UniversalSkills._get_ability(skill)["description"]})
+			shop_data.append({"name" : SkillDataHandler._get_ability(skill)["name"], "currency": SkillDataHandler._get_ability(skill)["element"] + " xp", "price": SkillDataHandler._get_ability(skill)["price"], "description": SkillDataHandler._get_ability(skill)["description"]})
 	$Shop.shop_data = self.shop_data
 	# Remove all items
 	$Shop/Control/SplitContainer/LVBoxContainer/ItemList.clear()

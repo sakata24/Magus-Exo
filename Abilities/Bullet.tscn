@@ -21,11 +21,7 @@ texture_filter = 1
 scale = Vector2(0.5, 0.5)
 autoplay = "default"
 
-[node name="TimeoutTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="LifetimeTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="TimeoutTimer" to="." method="_on_TimeoutTimer_timeout"]
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]

@@ -10,6 +10,13 @@ var fountainScene = preload("res://Abilities/Fountain.tscn")
 var suspendScene = preload("res://Abilities/Suspend.tscn")
 var dashScene = preload("res://Abilities/Dash.tscn")
 
+var boltScene = preload("res://Abilities/Bolt.tscn")
+var chargeScene = preload("res://Abilities/Charge.tscn")
+var rockScene = preload("res://Abilities/Rock.tscn")
+var cellScene = preload("res://Abilities/Cell.tscn")
+var displaceScene = preload("res://Abilities/Displace.tscn")
+var decayScene = preload("res://Abilities/Decay.tscn")
+
 @export var sunder_dmg_boost = 1.0
 @export var sunder_extra_casts = 0
 var remainingCasts = 0
@@ -100,10 +107,10 @@ func _ready():
 	initSkills()
 
 func initSkills():
-	skillCD[0] = UniversalSkills.skillDict[equippedSkills[0]]["cooldown"] * 10
-	skillCD[1] = UniversalSkills.skillDict[equippedSkills[1]]["cooldown"] * 10
-	skillCD[2] = UniversalSkills.skillDict[equippedSkills[2]]["cooldown"] * 10
-	skillCD[3] = UniversalSkills.skillDict[equippedSkills[3]]["cooldown"] * 10
+	skillCD[0] = SkillDataHandler.skillDict[equippedSkills[0]]["cooldown"] * 10
+	skillCD[1] = SkillDataHandler.skillDict[equippedSkills[1]]["cooldown"] * 10
+	skillCD[2] = SkillDataHandler.skillDict[equippedSkills[2]]["cooldown"] * 10
+	skillCD[3] = SkillDataHandler.skillDict[equippedSkills[3]]["cooldown"] * 10
 	skillTimer[0] = skillCD[0]
 	skillTimer[1] = skillCD[1]
 	skillTimer[2] = skillCD[2]
@@ -231,7 +238,7 @@ func movementHelper(delta):
 # This function handles skill casting
 func cast_ability(skill):
 	# obtain reference to the ability dict
-	var ability = UniversalSkills._get_ability(skill)
+	var ability = SkillDataHandler._get_ability(skill)
 	canCast = false
 	castTarget = get_global_mouse_position()
 	speed = 0
@@ -241,7 +248,15 @@ func cast_ability(skill):
 	canCast = true
 	if ability["type"] == "bullet":
 		# load the projectile
-		var projectile = projectileLoad.instantiate()
+		var projectile
+		match skill:
+			"bolt": projectile = boltScene.instantiate()
+			"charge": projectile = chargeScene.instantiate()
+			"rock": projectile = rockScene.instantiate()
+			"cell": projectile = cellScene.instantiate()
+			"displace": projectile = displaceScene.instantiate()
+			"decay": projectile = decayScene.instantiate()
+			_: projectile = crackScene.instantiate()
 		# spawn the projectile and initialize it
 		get_parent().add_child(projectile)
 		projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
@@ -270,7 +285,7 @@ func cast_ability(skill):
 
 func _on_multi_cast_timer_timeout():
 	if remainingCasts > 0:
-		var ability = UniversalSkills._get_ability(skillRef)
+		var ability = SkillDataHandler._get_ability(skillRef)
 		if ability["type"] == "bullet":
 			# load the projectile
 			var projectile = projectileLoad.instantiate()
@@ -327,7 +342,7 @@ func upgrade(upgrade_int):
 		8: 
 			flow_cooldown_reduction *= 0.9
 			for i in range(0, 4):
-				if UniversalSkills.skillDict[equippedSkills[i]]["element"] == "flow":
+				if SkillDataHandler.skillDict[equippedSkills[i]]["element"] == "flow":
 					skillCD[i] *= flow_cooldown_reduction
 					skillTimer[i] = skillCD[i]
 		9: flow_size_boost += 0.1

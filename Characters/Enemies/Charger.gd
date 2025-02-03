@@ -6,7 +6,7 @@ var canHit = true
 
 # make the monster move
 func _physics_process(delta):
-	if canMove:
+	if can_move:
 		if aggro and not attacking and not dashing:
 			# if far, chase
 			if global_position.distance_to(player.global_position) > 70:

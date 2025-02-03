@@ -74,27 +74,22 @@ script = ExtResource("2_kh6hv")
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-10, -40, 10, -40, 30, -30, 40, -10, 40, 10, 30, 30, 10, 40, -10, 40, -30, 30, -40, 10, -40, -10, -30, -30)
 
-[node name="TimeoutTimer" parent="." index="1"]
-wait_time = 0.13
-one_shot = false
-autostart = true
-
-[node name="LifetimeTimer" parent="." index="2"]
+[node name="LifetimeTimer" parent="." index="1"]
 wait_time = 5.0
 autostart = true
 
-[node name="Texture" parent="." index="3"]
+[node name="Texture" parent="." index="2"]
 visible = false
 polygon = PackedVector2Array(-10, -40, 10, -40, 30, -30, 40, -10, 40, 10, 30, 30, 10, 40, -10, 40, -30, 30, -40, 10, -40, -10, -30, -30)
 
-[node name="AnimatedSprite2D" parent="." index="4"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 modulate = Color(1, 1, 1, 0.517647)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_7hxpl")
 autoplay = "default"
 frame_progress = 0.625702
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="5"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4"]
 amount = 15
 lifetime = 2.0
 emission_shape = 2
@@ -104,3 +99,6 @@ scale_amount_max = 1.4
 scale_amount_curve = SubResource("Curve_7647b")
 color = Color(0.678352, 0.000346638, 0.678347, 1)
 color_ramp = SubResource("Gradient_ejkfu")
+
+[node name="TickTimer" type="Timer" parent="." index="5"]
+wait_time = 0.13

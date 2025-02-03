@@ -18,10 +18,11 @@ config/icon="res://Resources/icon.png"
 
 [autoload]
 
-UniversalSkills="*res://UniversalSkills.gd"
+SkillDataHandler="*res://SkillDataHandler.gd"
 CustomResourceLoader="*res://CustomResourceLoader.gd"
 PlayerSkills="*res://PlayerSkills.gd"
 Settings="*res://Settings.gd"
+SkillSceneHandler="*res://SkillSceneHandler.gd"
 
 [debug]
 

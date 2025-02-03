@@ -4,7 +4,7 @@ signal skill_changed(idx, newSkill)
 
 func _ready():
 	if Settings.dev_mode:
-		var skillDict = UniversalSkills.get_skills()
+		var skillDict = SkillDataHandler.get_skills()
 		for skill in skillDict:
 			if skill:
 				$VBoxContainer2/OptionButton.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)

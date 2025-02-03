@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb3m6y7ipqqe4"]
+
+[ext_resource type="Script" path="res://Abilities/Reactions/Extend.gd" id="1_kjajx"]
+
+[node name="Extend" type="Node2D"]
+script = ExtResource("1_kjajx")

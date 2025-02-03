@@ -1,5 +1,6 @@
-extends Node2D
+# reaction text/dmg number
 
+class_name PopupText extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,14 +10,14 @@ func _ready():
 func _process(delta):
 	pass
 
-func set_value_and_pos(dmg, pos):
+func set_value_and_pos(dmg, pos: Vector2):
 	self.global_position = pos
 	$DmgText.text = str(dmg)
 	$Outline.text = str(dmg)
 	var tween = get_tree().create_tween()
 	var end_pos = Vector2(randf_range(-7, 7), -10) + pos
 	tween.tween_property(self, "global_position", end_pos, 0.9)
-
+	
 func _on_timer_timeout():
 	self.queue_free()
 

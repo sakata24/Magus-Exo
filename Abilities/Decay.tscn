@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://chk8d8ojhgd64"]
+
+[ext_resource type="PackedScene" uid="uid://berj1ws78vo1g" path="res://Abilities/Bullet.tscn" id="1_p2g3i"]
+[ext_resource type="Script" path="res://Abilities/Decay.gd" id="2_1bo86"]
+
+[node name="BulletBody" instance=ExtResource("1_p2g3i")]
+script = ExtResource("2_1bo86")
