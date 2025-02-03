@@ -1,10 +1,10 @@
+Node
 GPUParticles2D
 CollisionShape2D
 CPUParticles2D
 Polygon2D
 Node2D
 Timer
-Node
 Label
 TileMapLayer
 TextureRect

@@ -19,7 +19,7 @@ var boss_level_multiple = 5 # default floor multiple boss spawns on
 
 func _ready():
 	# connect hud to player
-	$HUD.init($Player.health,$Player.maxHealth,str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
+	$HUD.init($Player.health,$Player.max_health,str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
@@ -141,7 +141,7 @@ func _unhandled_input(event):
 			menus.push_front($Menu)
 			$Menu.visible = true
 			# pass along the xp from player to the menu
-			$Menu.update_exp_count($Player.sunder_xp, $Player.entropy_xp, $Player.construct_xp, $Player.growth_xp, $Player.flow_xp, $Player.wither_xp)
+			$Menu.update_exp_count(PersistentData.sunder_xp, PersistentData.entropy_xp, PersistentData.construct_xp, PersistentData.growth_xp, PersistentData.flow_xp, PersistentData.wither_xp)
 			get_tree().paused = true
 		# if menu is open, close it
 		else:
@@ -179,54 +179,54 @@ func _change_skills(idx, newSkill):
 		2: key = "E"
 		3: key = "R"
 	$Player.equippedSkills[idx] = newSkill
-	$Player.initSkills()
+	$Player.init_skill_cooldowns()
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
 
 func _unlock_skill(name, element, price):
 	# check if player already has that spell
-	if($Player.unlockedSkills.has(name)):
+	if(PersistentData.get_unlocked_skills().has(name)):
 		print("already has: " + name)
 		return
 	# check if player has enough xp for the transaction, then add it to the players spells
 	match element:
 		"sunder":
-			if $Player.sunder_xp >= price:
-				$Player.sunder_xp -= price
-				$Player.unlockedSkills.append(name)
+			if PersistentData.sunder_xp >= price:
+				PersistentData.sunder_xp -= price
+				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
 		"entropy":
-			if $Player.entropy_xp >= price:
-				$Player.entropy_xp -= price
-				$Player.unlockedSkills.append(name)
+			if PersistentData.entropy_xp >= price:
+				PersistentData.entropy_xp -= price
+				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
 		"construct":
-			if $Player.construct_xp >= price:
-				$Player.construct_xp -= price
-				$Player.unlockedSkills.append(name)
+			if PersistentData.construct_xp >= price:
+				PersistentData.construct_xp -= price
+				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
 		"growth":
-			if $Player.growth_xp >= price:
-				$Player.growth_xp -= price
-				$Player.unlockedSkills.append(name)
+			if PersistentData.growth_xp >= price:
+				PersistentData.growth_xp -= price
+				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
 		"flow":
-			if $Player.flow_xp >= price:
-				$Player.flow_xp -= price
-				$Player.unlockedSkills.append(name)
+			if PersistentData.flow_xp >= price:
+				PersistentData.flow_xp -= price
+				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
 		"wither":
-			if $Player.wither_xp >= price:
-				$Player.wither_xp -= price
-				$Player.unlockedSkills.append(name)
+			if PersistentData.wither_xp >= price:
+				PersistentData.wither_xp -= price
+				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
 	update_shopkeeper()
 
 # make librarian update inventory based on players unlocked skills
 func update_shopkeeper():
-	$Rooms/Home/Librarian.update_inventory($Player.get_unlocked_skills(), {"sunder xp": $Player.sunder_xp, "entropy xp": $Player.entropy_xp, "construct xp": $Player.construct_xp, "growth xp": $Player.growth_xp, "flow xp": $Player.flow_xp, "wither xp": $Player.wither_xp})
+	$Rooms/Home/Librarian.update_inventory(PersistentData.get_unlocked_skills(), {"sunder xp": PersistentData.sunder_xp, "entropy xp": PersistentData.entropy_xp, "construct xp": PersistentData.construct_xp, "growth xp": PersistentData.growth_xp, "flow xp": PersistentData.flow_xp, "wither xp": PersistentData.wither_xp})
 
 func _give_tome_spells(menu):
-	$Rooms/Home/Tome/ChangeSpells.init($Player.get_unlocked_skills(), $Player.get_equipped_skills())
+	$Rooms/Home/Tome/ChangeSpells.init(PersistentData.get_unlocked_skills(), $Player.get_equipped_skills())
 
 func despawn_light():
 	var tween = create_tween()

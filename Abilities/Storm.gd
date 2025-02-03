@@ -22,5 +22,8 @@ func _on_timeout_timer_timeout():
 	$TimeoutTimer.start()
 
 # ignore things entering this spell
-func _on_SpellBody_body_entered(body):
-	pass
+func _on_SpellBody_body_entered(body: CharacterBody2D):
+	if body.is_in_group("skills"):
+		handle_reaction(body)
+	else:
+		pass
