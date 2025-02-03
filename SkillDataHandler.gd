@@ -130,46 +130,6 @@ func perform_reaction(collider, collided):
 	#Flow: #82b1ff
 	#Wither: #591b82
 	match collider.element + collided.element:
-		"wither" + "entropy":
-			# SICKNESS: Random debuff in a large AOE
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			var sickness = sicknessScene.instantiate()
-			sickness.position = collided.position
-			sickness.scale = collided.scale
-			collided.add_sibling(sickness)
-			spawn_reaction_name("sickness!", collided, Color("#ffd966"), Color("#591b82"))
-		"entropy" + "wither":
-			# SICKNESS: Random debuff in a large AOE
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			var sickness = sicknessScene.instantiate()
-			sickness.position = collided.position
-			sickness.scale = collided.scale
-			collided.add_sibling(sickness)
-			spawn_reaction_name("sickness!", collided, Color("#ffd966"), Color("#591b82"))
-		"construct" + "wither":
-			# EXTINCTION: Execute enemies
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			var extinction = extinctionScene.instantiate()
-			collided.add_child(extinction)
-			spawn_reaction_name("extinction!", collided, Color("#663c33"), Color("#591b82"))
-		"wither" + "construct":
-			# EXTINCTION: Execute enemies
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			var extinction = extinctionScene.instantiate()
-			collider.add_child(extinction)
-			spawn_reaction_name("extinction!", collided, Color("#663c33"), Color("#591b82"))
 		"wither" + "growth":
 			# EXTEND: Greatly increase lifetime of both spells
 			collided.get_node("LifetimeTimer").wait_time = collided.get_node("LifetimeTimer").wait_time * 1.5
@@ -188,24 +148,6 @@ func perform_reaction(collider, collided):
 			collided.get_node("TimeoutTimer").start()
 			collider.get_node("TimeoutTimer").start()
 			spawn_reaction_name("extend!", collided, Color("#36c72c"), Color("#591b82"))
-		"flow" + "wither":
-			# SWARM: Increase size of flow but decrease lifetime
-			collider.scale *= 1.75
-			collider.get_node("LifetimeTimer").wait_time *= 0.75
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("swarm!", collided, Color("#82b1ff"), Color("#591b82"))
-		"wither" + "flow":
-			# SWARM: Increase size of flow but decrease lifetime
-			collided.scale *= 1.75
-			collided.get_node("LifetimeTimer").wait_time *= 0.75
-			collided.get_node("TimeoutTimer").paused = false
-			collided.get_node("LifetimeTimer").paused = false
-			collider.get_node("TimeoutTimer").paused = false
-			collider.get_node("LifetimeTimer").paused = false
-			spawn_reaction_name("swarm!", collided, Color("#82b1ff"), Color("#591b82"))
 		_:
 			collided.get_node("TimeoutTimer").paused = false
 			collided.get_node("LifetimeTimer").paused = false

@@ -11,6 +11,7 @@ var dischargeScene = preload("res://Abilities/Reactions/Discharge.tscn")
 var sicknessScene = preload("res://Abilities/Reactions/Sickness.tscn")
 var overgrowthScene = preload("res://Abilities/Reactions/Overgrowth.tscn")
 var breakScene = preload("res://Abilities/Reactions/Break.tscn")
+var extendScene = preload("res://Abilities/Reactions/Extend.tscn")
 
 # preloaded abilities
 var crackScene = preload("res://Abilities/Crack.tscn")
@@ -28,6 +29,7 @@ func get_scene_by_name(name: String) -> Node2D:
 		"sickness": return sicknessScene.instantiate()
 		"overgrowth": return overgrowthScene.instantiate()
 		"break": return breakScene.instantiate()
+		"extend": return extendScene.instantiate()
 		# abilities
 		"crack": return crackScene.instantiate()
 		"storm": return stormScene.instantiate()

@@ -3,10 +3,10 @@ class_name SingularityReaction extends AreaReaction
 var my_parent
 const BASE_SINGULARITY_RADIUS = 32
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func init(reaction_components: Dictionary):
 	set_singularity_size()
 	init_particles()
+	spawn_reaction_name("singularity!", get_parent(), Color("#7a0002"), Color("#591b82"))
 
 # calculate and set the size of the singularity reaction
 func set_singularity_size():

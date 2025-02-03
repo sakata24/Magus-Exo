@@ -8,6 +8,7 @@ var max_size = Vector2(2, 2)
 func init(reaction_components: Dictionary):
 	my_parent = reaction_components["source"]
 	dmg = my_parent.dmg
+	spawn_reaction_name("shatter!", reaction_components["reactant"], Color("#663c33"), Color("#7a0002"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

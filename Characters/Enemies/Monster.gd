@@ -52,6 +52,8 @@ func _physics_process(delta):
 	if aggro and not attacking and can_move:
 		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
 		chase(delta)
+	else:
+		set_velocity(Vector2.ZERO)
 	move_and_slide()
 
 # chases the player

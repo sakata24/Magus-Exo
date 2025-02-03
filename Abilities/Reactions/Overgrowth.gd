@@ -1,10 +1,13 @@
-extends Reaction
+class_name OvergrowthReaction extends Reaction
 
 func init(reaction_components: Dictionary):
 	if reaction_components["source"].element == "construct":
 		set_construct_to_growth(reaction_components["source"])
+		spawn_reaction_name("overgrowth!", reaction_components["source"], Color("#663c33"), Color("#36c72c"))
 	else:
 		set_construct_to_growth(reaction_components["reactant"])
+		spawn_reaction_name("overgrowth!", reaction_components["reactant"], Color("#663c33"), Color("#36c72c"))
+	
 
 # sets the construct spell that generated this reaction to growth.
 # also reset the reaction or the spell doesnt make sense to set to growth

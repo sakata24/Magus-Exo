@@ -2,44 +2,40 @@ class_name SicknessReaction extends AreaReaction
 
 var debuffedEnemies
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+# called after creation and add_child
+func init(reaction_components: Dictionary):
+	spawn_reaction_name("sickness!", get_parent(), Color("#ffd966"), Color("#591b82"))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+# every tick add debuff
 func _on_tick_timer_timeout():
-	$Polygon2D.modulate.a = 0.5
 	if has_overlapping_bodies():
-		debuffedEnemies = get_overlapping_bodies()
-		for body in debuffedEnemies:
-			if body.is_in_group("monsters"):
-				var rand = randi_range(0, 2)
-				if rand == 0:
-					body.can_move = false
-				elif rand == 1:
-					body.speed *= 0.5
-				elif rand == 2:
-					body.myDmg *= 0.5
-		$DebuffTimer.start()
+		remove_debuffs_from_debuffed_enemies()
+		debuff_enemies_in_radius()
 
-func _on_debuff_timer_timeout():
-	if debuffedEnemies != null:
-		for body in debuffedEnemies:
-			if body != null and body.is_in_group("monsters"):
-				body.can_move = true
-				body.speed = body.baseSpeed
-				body.myDmg = body.baseDmg
-
-
+# when this effect is done, cleanse
 func _on_lifetime_timer_timeout():
+	remove_debuffs_from_debuffed_enemies()
+	queue_free()
+
+# cleanse
+func remove_debuffs_from_debuffed_enemies():
 	if debuffedEnemies != null:
 		for body in debuffedEnemies:
 			if body != null and body.is_in_group("monsters"):
 				body.can_move = true
 				body.speed = body.baseSpeed
 				body.myDmg = body.baseDmg
-	queue_free()
+
+# apply random debuff
+func debuff_enemies_in_radius():
+	debuffedEnemies = get_overlapping_bodies()
+	for body: Monster in debuffedEnemies:
+		if body.is_in_group("monsters"):
+			var rand = randi_range(0, 2)
+			if rand == 0:
+				body.can_move = false
+				body.velocity
+			elif rand == 1:
+				body.speed *= 0.5
+			elif rand == 2:
+				body.myDmg *= 0.5
