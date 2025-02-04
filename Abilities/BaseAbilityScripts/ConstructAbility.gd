@@ -12,3 +12,7 @@ func get_reaction_scene(reactant_element: String) -> Node2D:
 		"flow": return SkillSceneHandler.get_scene_by_name("justice")
 		"wither": return SkillSceneHandler.get_scene_by_name("extinction")
 		_: return null
+
+func set_run_buffs(this: Node2D, caster: Node2D):
+	if caster.current_run_data.construct_ignore_walls and this.element == "construct":
+		this.set_collision_mask_value(6, false)

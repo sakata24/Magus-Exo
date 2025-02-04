@@ -1,7 +1,7 @@
 # Class responsible for handling reactions of a "type"
 # Meant to act as an interface for <type>Ability.gd
 
-class_name BaseTypeAbility extends Resource
+class_name BaseTypeAbility extends Node
 
 # Creates a new reaction.
 func create_new_reaction(spell_1: Node2D, spell_2: Node2D):
@@ -25,3 +25,9 @@ func get_reaction_source_and_reactant(source: Node2D, reactant: Node2D) -> Dicti
 func get_reaction_scene(reactant_element: String) -> Node2D:
 	print("reaction not implemented!")
 	return null
+
+func init(this: Node2D, caster: Node2D):
+	set_run_buffs(this, caster)
+
+func set_run_buffs(this: Node2D, caster: Node2D):
+	pass

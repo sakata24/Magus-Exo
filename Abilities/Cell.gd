@@ -25,3 +25,4 @@ func handle_reaction(reactant: Node2D):
 func _on_growth_timer_timeout() -> void:
 	increase_scale(0.2)
 	increase_dmg(1)
+	

@@ -26,7 +26,7 @@ func _ready():
 	$Player.connect("player_hit", Callable(self, "_check_death"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
-	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
+	$Rooms/Home.connect("load_level", Callable(self, "_load_levels"))
 	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_add_menu"))
 	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_give_tome_spells"))
 	$Rooms/Home/Tome/ChangeSpells.connect("equip_skill", Callable(self, "_change_skills"))
@@ -38,7 +38,7 @@ func _ready():
 		boss_level_multiple = 2
 
 # called every time a player goes thru the door
-func _load_level():
+func _load_levels():
 	# inc difficulty when loading
 	level += 1
 	$HUD.set_floor(level)
@@ -82,8 +82,7 @@ func init_rooms():
 			newRoom.position = Vector2(position.x + (496.0 * i), position.y + (496.0 * j))
 			
 			# block off edges of map
-			var tilemap = newRoom.get_node("NavigationRegion2D/Layer0")
-			var tileset = tilemap.tile_set
+			var tilemap: TileMapLayer = newRoom.get_node("NavigationRegion2D/Layer0")
 			# top
 			if j == 0:
 				for n in range(0, 31):
@@ -154,7 +153,7 @@ func _add_menu(menu):
 	menu.visible = true
 
 func _show_click():
-	$ClickAnimation.global_position = $ClickAnimation.get_global_mouse_position()
+	$ClickAnimation.global_position = get_global_mouse_position()
 	$ClickAnimation.set_frame(0)
 	$ClickAnimation.visible = true
 	$ClickAnimation.play()

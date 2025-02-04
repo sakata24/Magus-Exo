@@ -12,7 +12,7 @@ var reaction_priority = 0
 var element
 var spell_caster
 
-# constructs the bullet
+## constructs the bullet
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	# set instance variables
 	abilityID = skill_dict["name"]
@@ -35,12 +35,16 @@ func setup_bullet(cast_target: Vector2, caster: Node2D):
 	look_at(cast_target)
 	# play the anim
 	$AnimatedSprite2D.play()
-	# set the lifetime of the bullet
+	# set the lifetime of the bullet and start it
 	$LifetimeTimer.wait_time = lifetime
+	$LifetimeTimer.start()
 	# set the bullet size
 	scale *= size
 	# keep a reference to the caster
 	spell_caster = caster
+	#if skill_data["type"] == "bullet":
+		#instantiated_skill.position = $ProjectilePivot/ProjectileSpawnPos.global_position
+		#instantiated_skill.velocity = (cast_target - instantiated_skill.position).normalized()
 
 # run every frame
 func _physics_process(delta):
@@ -80,7 +84,7 @@ func handle_other_collision(collider):
 
 # end of bullet lifetime
 func _on_LifetimeTimer_timeout():
-	SkillDataHandler.perform_despawn(self, null)
+	despawn()
 
 func despawn():
 	queue_free()

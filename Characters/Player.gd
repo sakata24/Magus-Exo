@@ -1,22 +1,20 @@
 class_name Player extends CharacterBody2D
 
-var stormScene = preload("res://Abilities/Storm.tscn")
-var crackScene = preload("res://Abilities/Crack.tscn")
-var vineScene = preload("res://Abilities/Vine.tscn")
-var fissureScene = preload("res://Abilities/Fissure.tscn")
-var fountainScene = preload("res://Abilities/Fountain.tscn")
-var suspendScene = preload("res://Abilities/Suspend.tscn")
+var stormScene = load("res://Abilities/Storm.tscn")
+var crackScene = load("res://Abilities/Crack.tscn")
+var vineScene = load("res://Abilities/Vine.tscn")
+var fissureScene = load("res://Abilities/Fissure.tscn")
+var fountainScene = load("res://Abilities/Fountain.tscn")
+var suspendScene = load("res://Abilities/Suspend.tscn")
 
-var boltScene = preload("res://Abilities/Bolt.tscn")
-var chargeScene = preload("res://Abilities/Charge.tscn")
-var rockScene = preload("res://Abilities/Rock.tscn")
-var cellScene = preload("res://Abilities/Cell.tscn")
-var displaceScene = preload("res://Abilities/Displace.tscn")
-var decayScene = preload("res://Abilities/Decay.tscn")
+var boltScene = load("res://Abilities/Bolt.tscn")
+var chargeScene = load("res://Abilities/Charge.tscn")
+var rockScene = load("res://Abilities/Rock.tscn")
+var cellScene = load("res://Abilities/Cell.tscn")
+var displaceScene = load("res://Abilities/Displace.tscn")
+var decayScene = load("res://Abilities/Decay.tscn")
 
-var dashScene = preload("res://Abilities/Dash.tscn")
-
-@onready var current_run_data = preload("res://Characters/RunData.gd").new()
+var dashScene = load("res://Abilities/Dash.tscn")
 
 var remaining_casts = 0
 var skill_ref = null
@@ -41,7 +39,7 @@ var dashing = false
 var move_dir
 var move_target = Vector2()
 var movement = Vector2()
-var castTarget = Vector2()
+var cast_target = Vector2()
 
 # to be changed when the player obtains a new skill
 var upgradesChosen = []
@@ -60,12 +58,16 @@ var canDash = true
 var dashIFrames = 0
 # can cast an ability
 var canCast = true
+# current run data
+var current_run_data: RunData
 
 # on ready
 func _ready():
 	# Make the player look right
 	move_target = Vector2(self.position.x, 10000.0)
 	init_skill_cooldowns()
+	# start a new run of buffs
+	current_run_data = RunData.new()
 	
 func init_skill_cooldowns():
 	# set the cooldowns
@@ -127,35 +129,44 @@ func handle_dash_event():
 	dashing = true
 	# execute the dash
 	move_target = get_global_mouse_position()
-	# instantiate the dash
-	var dashAnim = dashScene.instantiate()
-	# place the dash animation
-	var offset = (move_target - self.global_position).normalized() * 34
-	dashAnim.position = self.global_position + offset
-	# aim the dash anim at the dash mouse
-	dashAnim.look_at(get_global_mouse_position())
-	# spawn the anim
-	get_parent().add_child(dashAnim)
+	handle_dash_animation()
 	# re-enable enemy collision
 	set_collision_mask_value(4, true)
 
+func handle_dash_animation():
+	# instantiate the dash anim
+	var dash_anim = dashScene.instantiate()
+	# place the dash animation
+	var offset = (move_target - self.global_position).normalized() * 34
+	dash_anim.position = self.global_position + offset
+	# aim the dash anim at the dash mouse
+	dash_anim.look_at(get_global_mouse_position())
+	# spawn the anim
+	get_parent().add_child(dash_anim)
+
 func _process(delta):
+	process_animation()
+
+func process_animation():
+	# get current animation frames
+	var frame = $AnimatedSprite2D.get_frame()
+	var progress = $AnimatedSprite2D.get_frame_progress()
+	# determine which type of anim
 	if moving:
-		var frame = $AnimatedSprite2D.get_frame()
-		var progress = $AnimatedSprite2D.get_frame_progress()
 		$AnimatedSprite2D.set_animation("walk")
-		$AnimatedSprite2D.set_frame_and_progress(frame, progress)
 	else:
-		var frame = $AnimatedSprite2D.get_frame()
-		var progress = $AnimatedSprite2D.get_frame_progress()
 		$AnimatedSprite2D.set_animation("idle")
-		$AnimatedSprite2D.set_frame_and_progress(frame, progress)
+	# play animation
+	$AnimatedSprite2D.set_frame_and_progress(frame, progress)
 
 func _physics_process(delta):
-	$ProjectilePivot.look_at(castTarget)
+	$ProjectilePivot.look_at(cast_target)
 	emit_signal("cooling_down", skillTimer, skillCD)
 	emit_signal("cooling_dash", $DashTimer.time_left, $DashTimer.wait_time)
-	movementHelper(delta)
+	handle_movement(delta)
+	check_and_set_skill_timers()
+
+func check_and_set_skill_timers():
 	if skillTimer[0] >= skillCD[0]:
 		skillReady[0] = true
 	else:
@@ -176,8 +187,7 @@ func _physics_process(delta):
 	else:
 		skillTimer[3] += 1
 
-func movementHelper(delta):
-	
+func handle_movement(delta):
 	if dashing and canDash:
 		var offset = (move_target - self.global_position).normalized() * 58
 		move_and_collide(offset)
@@ -200,6 +210,9 @@ func movementHelper(delta):
 		movement = velocity
 	else:
 		moving = false
+	choose_sprite_direction()
+
+func choose_sprite_direction():
 	if movement.x < 0:
 		$AnimatedSprite2D.flip_h = true
 		$Shadow.scale.x = -1
@@ -208,51 +221,46 @@ func movementHelper(delta):
 		$Shadow.scale.x = 1
 
 # This function handles skill casting
-func cast_ability(skill):
+func cast_ability(skill_name: String):
 	# obtain reference to the ability dict
-	var ability = SkillDataHandler._get_ability(skill)
+	var skill_data = SkillDataHandler._get_ability(skill_name)
+	# cannot cast for a short period
 	canCast = false
-	castTarget = get_global_mouse_position()
+	# get cast target
+	cast_target = get_global_mouse_position()
+	# stop moving
 	speed = 0
 	moving = false
+	# start a timer
 	$CastTimer.start()
 	await $CastTimer.timeout
+	spawn_ability(skill_data)
+
+func spawn_ability(skill_data: Dictionary):
 	canCast = true
-	if ability["type"] == "bullet":
-		# load the projectile
-		var projectile
-		match skill:
-			"bolt": projectile = boltScene.instantiate()
-			"charge": projectile = chargeScene.instantiate()
-			"rock": projectile = rockScene.instantiate()
-			"cell": projectile = cellScene.instantiate()
-			"displace": projectile = displaceScene.instantiate()
-			"decay": projectile = decayScene.instantiate()
-			_: projectile = crackScene.instantiate()
-		# spawn the projectile and initialize it
-		get_parent().add_child(projectile)
-		projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
-		projectile.init(ability, castTarget, self)
-		# calculates the projectiles direction
-		projectile.velocity = (castTarget - projectile.position).normalized()
-		if current_run_data.construct_ignore_walls and current_run_data.projectile.element == "construct":
-			projectile.set_collision_mask_value(6, false)
-	elif ability["type"] == "spell":
-		var spell
-		match skill:
-			"crack": spell = crackScene.instantiate()
-			"storm": spell = stormScene.instantiate()
-			"fissure": spell = fissureScene.instantiate()
-			"vine": spell = vineScene.instantiate()
-			"fountain": spell = fountainScene.instantiate()
-			"suspend": spell = suspendScene.instantiate()
-			_: crackScene.instantiate()
-		# spawn the spell and initialize it
-		get_parent().add_child(spell)
-		spell.init(ability, castTarget, self)
-	if ability["element"] == "sunder" and current_run_data.sunder_extra_casts > 0:
+	var instantiated_skill: Node2D
+	match skill_data["name"]:
+		"bolt": instantiated_skill = boltScene.instantiate()
+		"charge": instantiated_skill = chargeScene.instantiate()
+		"rock": instantiated_skill = rockScene.instantiate()
+		"cell": instantiated_skill = cellScene.instantiate()
+		"displace": instantiated_skill = displaceScene.instantiate()
+		"decay": instantiated_skill = decayScene.instantiate()
+		"crack": instantiated_skill = crackScene.instantiate()
+		"storm": instantiated_skill = stormScene.instantiate()
+		"fissure": instantiated_skill = fissureScene.instantiate()
+		"vine": instantiated_skill = vineScene.instantiate()
+		"fountain": instantiated_skill = fountainScene.instantiate()
+		"suspend": instantiated_skill = suspendScene.instantiate()
+		_: instantiated_skill = crackScene.instantiate()
+	# spawn the projectile and initialize it
+	get_parent().add_child(instantiated_skill)
+	# init after creation
+	instantiated_skill.init(skill_data, cast_target, self)
+	
+	if skill_data["element"] == "sunder" and current_run_data.sunder_extra_casts > 0:
 		remaining_casts = current_run_data.sunder_extra_casts
-		skill_ref = skill
+		skill_ref = skill_data["name"]
 		$MultiCastTimer.start()
 
 func _on_multi_cast_timer_timeout():
@@ -264,15 +272,15 @@ func _on_multi_cast_timer_timeout():
 			# spawn the projectile and initialize it
 			get_parent().add_child(projectile)
 			projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
-			projectile.init(ability, castTarget, self)
+			projectile.init(ability, cast_target, self)
 			# calculates the projectiles direction
-			projectile.velocity = (castTarget - projectile.position).normalized()
+			projectile.velocity = (cast_target - projectile.position).normalized()
 		elif ability["type"] == "spell":
 			# load the spell
 			var spell = crackScene.instantiate()
 			# spawn the spell and initialize it
 			get_parent().add_child(spell)
-			spell.init(ability, castTarget, self)
+			spell.init(ability, cast_target, self)
 		remaining_casts -= 1
 		$MultiCastTimer.start()
 	else:
@@ -314,7 +322,7 @@ func upgrade(upgrade_int):
 		8: 
 			current_run_data.flow_cooldown_reduction *= 0.9
 			for i in range(0, 4):
-				if SkillDataHandler.skillDict[equippedSkills[i]]["element"] == "flow":
+				if SkillDataHandler.skill_dict[equippedSkills[i]]["element"] == "flow":
 					skillCD[i] *= current_run_data.flow_cooldown_reduction
 					skillTimer[i] = skillCD[i]
 		9: current_run_data.flow_size_boost += 0.1

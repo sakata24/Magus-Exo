@@ -5,3 +5,4 @@
 
 [node name="BulletBody" instance=ExtResource("1_xy0mb")]
 script = ExtResource("2_ywddw")
+test = 0
