@@ -4,6 +4,7 @@ class_name CrackSpell extends Spell
 
 func init(skill_dict, cast_target, caster):
 	super(skill_dict, cast_target, caster)
+	self.global_position = caster.global_position
 
 func handle_reaction(area):
 	super(area)

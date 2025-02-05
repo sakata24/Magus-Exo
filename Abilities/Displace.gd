@@ -16,7 +16,7 @@ func handle_reaction(reactant: Node2D):
 # Handles collision when enemy is hit.
 func handle_enemy_collision(enemy: Node2D):
 	enemy.can_move = false
-	enemy.velocity = self.get_velocity() * 100
+	enemy.velocity = self.velocity * 100
 	enemy._hit(self.dmg, self.element, self.element, self.spell_caster)
 	attach_and_await_stun_timer(0.5, enemy)
 	despawn()
