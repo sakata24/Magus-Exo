@@ -14,7 +14,7 @@ var baseSpeed = 50
 # my health
 @export var health = 100
 # damage
-var myDmg = 2
+var my_dmg = 2
 # base dmg for ref
 var baseDmg = 2
 # max health
@@ -52,8 +52,6 @@ func _physics_process(delta):
 	if aggro and not attacking and can_move:
 		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
 		chase(delta)
-	else:
-		set_velocity(Vector2.ZERO)
 	move_and_slide()
 
 # chases the player
@@ -82,31 +80,8 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 		lastElementsHitBy = [dmg_type_1]
 	else:
 		lastElementsHitBy = [dmg_type_1, dmg_type_2]
-	## create the dmg numbers ##
-	#Sunder: #7a0002
-	#Entropy: #ffd966
-	#Growth: #36c72c
-	#Construct: #663c33
-	#Flow: #82b1ff
-	#Wither: #591b82
-	var dmg_color_1 = Color.WHITE
-	var dmg_color_2 = Color.WHITE
-	match dmg_type_1:
-		"sunder": dmg_color_1 = Color("#7a0002")
-		"entropy": dmg_color_1 = Color("#ffd966")
-		"growth": dmg_color_1 = Color("#36c72c")
-		"construct": dmg_color_1 = Color("#663c33")
-		"flow": dmg_color_1 = Color("#82b1ff")
-		"wither": dmg_color_1 = Color("#591b82")
-	match dmg_type_2:
-		"sunder": dmg_color_2 = Color("#7a0002")
-		"entropy": dmg_color_2 = Color("#ffd966")
-		"growth": dmg_color_2 = Color("#36c72c")
-		"construct": dmg_color_2 = Color("#663c33")
-		"flow": dmg_color_2 = Color("#82b1ff")
-		"wither": dmg_color_2 = Color("#591b82")
 	var dmgNum = damageNumber.instantiate()
-	dmgNum.set_colors(dmg_color_1, dmg_color_2)
+	dmgNum.set_colors(AbilityColor.get_color_by_string(dmg_type_1), AbilityColor.get_color_by_string(dmg_type_2))
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(dmg_to_take, self.global_position)
 	# aggro on the caster
@@ -114,6 +89,8 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 		aggro = true
 		player = caster
 		$PathTimer.start()
+
+#func spawn_dmg_numbers
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):
@@ -142,7 +119,7 @@ func die():
 func _on_attack_timer_timeout():
 	for body in $DamageArea.get_overlapping_bodies():
 		if body.name == "Player":
-			body.hit(myDmg)
+			body.hit(my_dmg)
 	attacking = false
 	$DamageArea/Indicator.visible = false
 

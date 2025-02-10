@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://07i35sgciyj0"]
+[gd_scene load_steps=4 format=3 uid="uid://6wsalq0imix6"]
 
-[ext_resource type="PackedScene" uid="uid://berj1ws78vo1g" path="res://Abilities/Bullet.tscn" id="1_xy0mb"]
-[ext_resource type="Script" path="res://Abilities/Bolt.gd" id="2_ywddw"]
+[ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_j1gvw"]
+[ext_resource type="SpriteFrames" uid="uid://f3jcneg45fc7" path="res://Abilities/Animations/BoltSprite.tres" id="2_r7e67"]
+[ext_resource type="Script" path="res://Abilities/AbilityScripts/Bolt.gd" id="2_ywddw"]
 
-[node name="BulletBody" instance=ExtResource("1_xy0mb")]
+[node name="AbilityBody" instance=ExtResource("1_j1gvw")]
 script = ExtResource("2_ywddw")
+
+[node name="Texture" parent="." index="2"]
+visible = false
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_r7e67")

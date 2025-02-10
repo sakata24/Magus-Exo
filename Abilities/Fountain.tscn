@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://m50qcfm1r50t"]
 
-[ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/Spell.tscn" id="1_83eyt"]
-[ext_resource type="Script" path="res://Abilities/Fountain.gd" id="2_a4523"]
+[ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_83eyt"]
+[ext_resource type="Script" path="res://Abilities/AbilityScripts/Fountain.gd" id="2_a4523"]
 [ext_resource type="SpriteFrames" uid="uid://bh3g6addnd6jh" path="res://Abilities/Animations/Spells/FountainSprite.tres" id="3_dgs32"]
 
 [node name="SpellBody" instance=ExtResource("1_83eyt")]

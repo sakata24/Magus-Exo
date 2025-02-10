@@ -10,3 +10,10 @@ func init(reaction_components: Dictionary):
 
 func spawn_reaction_name(name: String, origin_spell: Node2D, dmg_color_1: Color, dmg_color_2: Color):
 	ReactionScript.spawn_reaction_name(name, origin_spell, dmg_color_1, dmg_color_2)
+
+# returns a radius of the furthest collision point from the center of the parent
+func get_parent_bounding_radius() -> int:
+	var furthest_distance_from_center
+	for point in get_parent().get_node("CollisionPolygon2D").polygon:
+		furthest_distance_from_center = max(abs(point.x - self.position.x), abs(point.y - self.position.y))
+	return furthest_distance_from_center

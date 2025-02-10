@@ -1,7 +1,4 @@
-class_name FissureSpell extends Spell
-
-# grab the ability functions on load
-@onready var ConstructAbilityLoad = preload("res://Abilities/BaseAbilityScripts/ConstructAbility.gd").new()
+class_name FissureAbility extends ConstructAbility
 
 func init(skill_dict, cast_target, caster):
 	super(skill_dict, cast_target, caster)
@@ -15,7 +12,7 @@ func set_angle_and_position(cast_target: Vector2, caster_position: Vector2):
 
 func handle_reaction(area):
 	super(area)
-	ConstructAbilityLoad.create_new_reaction(area, self)
+	create_new_reaction(area, self)
 
 # tick timer timeout = 
 func _on_tick_timer_timeout() -> void:

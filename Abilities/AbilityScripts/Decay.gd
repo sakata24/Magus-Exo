@@ -1,17 +1,15 @@
-class_name DecayBullet extends Bullet
-
-# grab the ability functions on load
-@onready var WitherAbilityLoad = preload("res://Abilities/BaseAbilityScripts/WitherAbility.gd").new()
+class_name DecayAbility extends WitherAbility
 
 # Initial creation of object on load.
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.decaySpriteRes)
+	myModifiers.append(CollisionDespawnModifier.new())
 	super.init(skill_dict, cast_target, caster)
 
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	WitherAbilityLoad.create_new_reaction(self, reactant)
+	create_new_reaction(self, reactant)
 
 func handle_enemy_collision(enemy: Node2D):
 	enemy.speed *= 0.5

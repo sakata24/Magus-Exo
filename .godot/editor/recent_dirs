@@ -1,7 +1,11 @@
-res://
+res://Abilities/AbilityScripts
 res://Abilities
-C:/Users/tksak/Documents/Exports
+res://
 res://Resources
+res://Characters
+res://Abilities/SpawnBehavior
+res://Abilities/BaseAbilityScripts
+C:/Users/tksak/Documents/Exports
 res://Resources/abilities/enemy
 res://Resources/hud_elements
 res://HUDs/Selection

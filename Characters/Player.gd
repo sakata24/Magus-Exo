@@ -1,25 +1,13 @@
 class_name Player extends CharacterBody2D
 
-var stormScene = load("res://Abilities/Storm.tscn")
-var crackScene = load("res://Abilities/Crack.tscn")
-var vineScene = load("res://Abilities/Vine.tscn")
-var fissureScene = load("res://Abilities/Fissure.tscn")
-var fountainScene = load("res://Abilities/Fountain.tscn")
-var suspendScene = load("res://Abilities/Suspend.tscn")
-
-var boltScene = load("res://Abilities/Bolt.tscn")
-var chargeScene = load("res://Abilities/Charge.tscn")
-var rockScene = load("res://Abilities/Rock.tscn")
-var cellScene = load("res://Abilities/Cell.tscn")
-var displaceScene = load("res://Abilities/Displace.tscn")
-var decayScene = load("res://Abilities/Decay.tscn")
-
 var dashScene = load("res://Abilities/Dash.tscn")
 
 var remaining_casts = 0
-var skill_ref = null
+var ability_ref = null
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
+
+@onready var focus = $ProjectilePivot/ProjectileSpawnPos
 
 signal moving_to()
 signal dashing_()
@@ -58,16 +46,14 @@ var canDash = true
 var dashIFrames = 0
 # can cast an ability
 var canCast = true
-# current run data
-var current_run_data: RunData
+# current run data every run reinstantiated
+@onready var current_run_data: PlayerRunData = PlayerRunData.new()
 
 # on ready
 func _ready():
 	# Make the player look right
 	move_target = Vector2(self.position.x, 10000.0)
 	init_skill_cooldowns()
-	# start a new run of buffs
-	current_run_data = RunData.new()
 	
 func init_skill_cooldowns():
 	# set the cooldowns
@@ -95,25 +81,14 @@ func _unhandled_input(event):
 	if event.is_action_pressed('Space') and canDash:
 		handle_dash_event()
 	
-	if event.is_action_pressed('Q') and skillReady[0]:
-		cast_ability(equippedSkills[0])
-		skillReady[0] = false
-		skillTimer[0] = 0
-			
-	if event.is_action_pressed('W') and skillReady[1]:
-		cast_ability(equippedSkills[1])
-		skillReady[1] = false
-		skillTimer[1] = 0
-			
-	if event.is_action_pressed('E') and skillReady[2]:
-		cast_ability(equippedSkills[2])
-		skillReady[2] = false
-		skillTimer[2] = 0
-			
-	if event.is_action_pressed('R') and skillReady[3]:
-		cast_ability(equippedSkills[3])
-		skillReady[3] = false
-		skillTimer[3] = 0
+	if event.is_action_pressed('Q'):
+		cast_ability(0)
+	if event.is_action_pressed('W'):
+		cast_ability(1)
+	if event.is_action_pressed('E'):
+		cast_ability(2)
+	if event.is_action_pressed('R'):
+		cast_ability(3)
 
 func handle_move_event():
 	moving = true
@@ -221,9 +196,15 @@ func choose_sprite_direction():
 		$Shadow.scale.x = 1
 
 # This function handles skill casting
-func cast_ability(skill_name: String):
+func cast_ability(slot_num: int):
+	# check if ready
+	if not skillReady[slot_num]:
+		return
+	# start cooldowns
+	skillReady[slot_num] = false
+	skillTimer[slot_num] = 0
 	# obtain reference to the ability dict
-	var skill_data = SkillDataHandler._get_ability(skill_name)
+	var ability_name: String = equippedSkills[slot_num]
 	# cannot cast for a short period
 	canCast = false
 	# get cast target
@@ -234,69 +215,39 @@ func cast_ability(skill_name: String):
 	# start a timer
 	$CastTimer.start()
 	await $CastTimer.timeout
-	spawn_ability(skill_data)
+	spawn_ability(ability_name)
 
-func spawn_ability(skill_data: Dictionary):
+func spawn_ability(ability_name: String):
 	canCast = true
-	var instantiated_skill: Node2D
-	match skill_data["name"]:
-		"bolt": instantiated_skill = boltScene.instantiate()
-		"charge": instantiated_skill = chargeScene.instantiate()
-		"rock": instantiated_skill = rockScene.instantiate()
-		"cell": instantiated_skill = cellScene.instantiate()
-		"displace": instantiated_skill = displaceScene.instantiate()
-		"decay": instantiated_skill = decayScene.instantiate()
-		"crack": instantiated_skill = crackScene.instantiate()
-		"storm": instantiated_skill = stormScene.instantiate()
-		"fissure": instantiated_skill = fissureScene.instantiate()
-		"vine": instantiated_skill = vineScene.instantiate()
-		"fountain": instantiated_skill = fountainScene.instantiate()
-		"suspend": instantiated_skill = suspendScene.instantiate()
-		_: instantiated_skill = crackScene.instantiate()
+	var instantiated_ability: BaseTypeAbility = SkillSceneHandler.get_scene_by_name(ability_name)
 	# spawn the projectile and initialize it
-	get_parent().add_child(instantiated_skill)
+	get_parent().add_child(instantiated_ability)
 	# init after creation
-	instantiated_skill.init(skill_data, cast_target, self)
-	
-	if skill_data["element"] == "sunder" and current_run_data.sunder_extra_casts > 0:
+	instantiated_ability.init(SkillDataHandler._get_ability(ability_name), cast_target, self)
+	# apply player's run buffs after creation
+	apply_run_buffs(instantiated_ability)
+
+# applys the player's run buffs
+func apply_run_buffs(ability: BaseTypeAbility):
+	# numbers can be handled by the spell
+	current_run_data.apply_run_buffs(ability)
+	# player handles multicast
+	if ability.element == "sunder" and current_run_data.sunder_extra_casts > 0:
 		remaining_casts = current_run_data.sunder_extra_casts
-		skill_ref = skill_data["name"]
+		ability_ref = ability.name
 		$MultiCastTimer.start()
 
 func _on_multi_cast_timer_timeout():
 	if remaining_casts > 0:
-		var ability = SkillDataHandler._get_ability(skill_ref)
-		if ability["type"] == "bullet":
-			# load the projectile
-			var projectile = boltScene.instantiate()
-			# spawn the projectile and initialize it
-			get_parent().add_child(projectile)
-			projectile.position = $ProjectilePivot/ProjectileSpawnPos.global_position
-			projectile.init(ability, cast_target, self)
-			# calculates the projectiles direction
-			projectile.velocity = (cast_target - projectile.position).normalized()
-		elif ability["type"] == "spell":
-			# load the spell
-			var spell = crackScene.instantiate()
-			# spawn the spell and initialize it
-			get_parent().add_child(spell)
-			spell.init(ability, cast_target, self)
+		spawn_ability(ability_ref)
 		remaining_casts -= 1
 		$MultiCastTimer.start()
 	else:
-		skill_ref = null
+		ability_ref = null
 
-
-func gain_xp(amount, elements):
-	print("i ran")
+func gain_xp(amount: int, elements: Array[String]):
 	for element in elements:
-		match element:
-			"sunder": PersistentData.sunder_xp += amount
-			"entropy": PersistentData.entropy_xp += amount
-			"construct": PersistentData.construct_xp += amount
-			"growth": PersistentData.growth_xp += amount
-			"flow": PersistentData.flow_xp += amount
-			"wither": PersistentData.wither_xp += amount
+		PersistentData.increase_xp(amount, element)
 
 func hit(damage):
 	health -= damage

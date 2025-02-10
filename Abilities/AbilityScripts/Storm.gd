@@ -1,10 +1,8 @@
-class_name StormSpell extends Spell
-
-var EntropyAbilityLoad = preload("res://Abilities/BaseAbilityScripts/EntropyAbility.gd").new()
+class_name StormAbility extends EntropyAbility
 
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	EntropyAbilityLoad.create_new_reaction(self, reactant)
+	create_new_reaction(self, reactant)
 
 # damage enemies in radius
 func _on_timeout_timer_timeout():
@@ -21,8 +19,8 @@ func _on_timeout_timer_timeout():
 	# Only start after changing wait time
 	$TimeoutTimer.start()
 
-# ignore things entering this spell
-func _on_SpellBody_body_entered(body: CharacterBody2D):
+# ignore things entering this Ability
+func _on_SpellBody_body_entered(body):
 	if body.is_in_group("skills"):
 		handle_reaction(body)
 	else:

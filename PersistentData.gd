@@ -31,6 +31,16 @@ func get_xp_counts() -> Dictionary:
 func get_unlocked_skills():
 	return unlocked_skills
 
+# increase the xp gained by value given
+func increase_xp(value: int, element: String):
+	match element:
+		"sunder": sunder_xp += value
+		"entropy": entropy_xp += value
+		"construct": construct_xp += value
+		"growth": growth_xp += value
+		"flow": flow_xp += value
+		"wither": wither_xp += value
+
 # save function
 func save():
 	var save_skills = []

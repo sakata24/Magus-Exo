@@ -1,22 +1,20 @@
-class_name DisplaceBullet extends Bullet
-
-# grab the ability functions on load
-@onready var FlowAbilityLoad = preload("res://Abilities/BaseAbilityScripts/FlowAbility.gd").new()
+class_name DisplaceAbility extends FlowAbility
 
 # Initial creation of object on load.
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.displaceSpriteRes)
+	myModifiers.append(CollisionDespawnModifier.new())
 	super.init(skill_dict, cast_target, caster)
 
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	FlowAbilityLoad.create_new_reaction(self, reactant)
+	create_new_reaction(self, reactant)
 
 # Handles collision when enemy is hit.
-func handle_enemy_collision(enemy: Node2D):
+func handle_enemy_interaction(enemy: Node2D):
 	enemy.can_move = false
-	enemy.velocity = self.velocity * 100
+	enemy.velocity = velocity.normalized() * 100
 	enemy._hit(self.dmg, self.element, self.element, self.spell_caster)
 	attach_and_await_stun_timer(0.5, enemy)
 	despawn()

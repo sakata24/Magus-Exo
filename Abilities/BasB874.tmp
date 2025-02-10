@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnisb47qe61bq"]
 
-[ext_resource type="Script" path="res://Abilities/Spell.gd" id="1"]
+[ext_resource type="Script" path="res://Abilities/BaseAbilityScripts/BaseTypeAbility.gd" id="1_tonm5"]
 
-[node name="SpellBody" type="Area2D"]
+[node name="AbilityBody" type="Area2D"]
 process_mode = 1
 collision_layer = 4
 collision_mask = 22
-script = ExtResource("1")
+script = ExtResource("1_tonm5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, -4, 1, -4, 3, -3, 4, -1, 4, 1, 3, 3, 1, 4, -1, 4, -3, 3, -4, 1, -4, -1, -3, -3)

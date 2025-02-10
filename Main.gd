@@ -129,7 +129,7 @@ func init_rooms():
 	for monster in monsters:
 		monster.maxHealth *= level
 		monster.health *= level
-		monster.myDmg *= level
+		monster.my_dmg *= level
 		monster.baseDmg *= level
 		monster.connect("give_xp", Callable($Player, "gain_xp"))
 

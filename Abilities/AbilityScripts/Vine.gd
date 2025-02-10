@@ -1,6 +1,4 @@
-class_name VineSpell extends Spell
-
-var GrowthAbilityLoad = preload("res://Abilities/BaseAbilityScripts/GrowthAbility.gd").new()
+class_name VineSpell extends GrowthAbility
 
 func init(skill_dict, cast_target, caster):
 	super(skill_dict, cast_target, caster)
@@ -19,4 +17,4 @@ func _physics_process(delta: float) -> void:
 # handles reactions
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	GrowthAbilityLoad.create_new_reaction(self, reactant)
+	create_new_reaction(self, reactant)

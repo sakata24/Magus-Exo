@@ -14,6 +14,7 @@ var ALL_SKILLS = {
 			"speed": 1.0,
 			"timeout": 1.0,
 			"movement": "bullet",
+			"spawn": "focus",
 			"price": 0,
 			"priority": 0,
 			"description": "A particle of destruction launched in a direction"
@@ -28,6 +29,7 @@ var ALL_SKILLS = {
 			"speed": 0.0,
 			"timeout": 0.1,
 			"movement": "still",
+			"spawn": "cursor",
 			"price": 25,
 			"priority": 3,
 			"description": "Shatters the very fabric of space in a large area, dealing high damage"
@@ -37,11 +39,12 @@ var ALL_SKILLS = {
 			"cooldown": 2.5,
 			"dmg": 1.0,
 			"element": "entropy",
-			"lifetime": 0.5,
+			"lifetime": 1.5,
 			"size": 1.3,
 			"speed": 0.1,
 			"timeout": 0.8,
 			"movement": "bullet",
+			"spawn": "focus",
 			"price": 0,
 			"priority": 4,
 			"description": "A bolt of pure energy that gets increased damage after a charge up"
@@ -56,6 +59,7 @@ var ALL_SKILLS = {
 			"speed": 0.0,
 			"timeout": 1.0,
 			"movement": "still",
+			"spawn": "cursor",
 			"price": 25,
 			"priority": 10,
 			"description": "Summons an indiscriminate storm that has special properties depending on the amount of targets in the area"
@@ -70,6 +74,7 @@ var ALL_SKILLS = {
 			"speed": 0.6,
 			"timeout": 0.1,
 			"movement": "bullet",
+			"spawn": "focus",
 			"price": 15,
 			"priority": 10,
 			"description": "A growing cell that increases in damage and size"
@@ -84,6 +89,7 @@ var ALL_SKILLS = {
 			"speed": 0.0,
 			"timeout": 0.1,
 			"movement": "still",
+			"spawn": "clamp",
 			"price": 10,
 			"priority": 5,
 			"description": "Conjures a thorny vine that pierces and instantly damages enemies"
@@ -98,6 +104,7 @@ var ALL_SKILLS = {
 			"speed": 0.3,
 			"timeout": 1,
 			"movement": "bullet",
+			"spawn": "focus",
 			"price": 0,
 			"priority": 9,
 			"description": "A rock, suitable for reactions"
@@ -112,6 +119,7 @@ var ALL_SKILLS = {
 			"speed": 0.0,
 			"timeout": 0.5,
 			"movement": "still",
+			"spawn": "clamp",
 			"price": 25,
 			"priority": 10,
 			"description": "Opens a fissure in the ground, dealing constant damage to targets whom walk into it"
@@ -126,6 +134,7 @@ var ALL_SKILLS = {
 			"speed": 0.0,
 			"timeout": 0.5,
 			"movement": "still",
+			"spawn": "cursor",
 			"price": 0,
 			"priority": 5,
 			"description": "A burst of energy damaging all targets inside after a delay"
@@ -140,6 +149,7 @@ var ALL_SKILLS = {
 			"speed": 1.0,
 			"timeout": 0.5,
 			"movement": "bullet",
+			"spawn": "focus",
 			"price": 25,
 			"priority": 2,
 			"description": "A projectile that shoves enemies on contact"
@@ -154,6 +164,7 @@ var ALL_SKILLS = {
 			"speed": 0.0,
 			"timeout": 3.0,
 			"movement": "still",
+			"spawn": "cursor",
 			"price": 15,
 			"priority": 10,
 			"description": "Fills the area with decay, dealing damage constantly to targets"
@@ -168,6 +179,7 @@ var ALL_SKILLS = {
 			"speed": 0.8,
 			"timeout": 0.5,
 			"movement": "bullet",
+			"spawn": "focus",
 			"price": 10,
 			"priority": 0,
 			"description": "Fires a bolt of decay that slows a target hit"

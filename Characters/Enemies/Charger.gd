@@ -18,7 +18,7 @@ func _physics_process(delta):
 		else:
 			if dashing:
 				dash(delta)
-		move_and_slide()
+	move_and_slide()
 
 # chases the player
 func chase(delta):
@@ -60,4 +60,4 @@ func _on_dash_timer_timeout():
 
 func _on_damage_area_body_entered(body):
 	if body.name == "Player":
-			body.hit(myDmg)
+			body.hit(my_dmg)

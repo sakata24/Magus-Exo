@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://f48mrsgk84bq"]
+[gd_scene load_steps=4 format=3 uid="uid://b4eyysn7cgefr"]
 
-[ext_resource type="PackedScene" uid="uid://berj1ws78vo1g" path="res://Abilities/Bullet.tscn" id="1_07smm"]
-[ext_resource type="Script" path="res://Abilities/Cell.gd" id="2_um5x5"]
+[ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_r0l3y"]
+[ext_resource type="SpriteFrames" uid="uid://w5hxxf6gbbmr" path="res://Abilities/Animations/CellSprite.tres" id="2_taewv"]
+[ext_resource type="Script" path="res://Abilities/AbilityScripts/Cell.gd" id="2_um5x5"]
 
-[node name="BulletBody" instance=ExtResource("1_07smm")]
+[node name="AbilityBody" instance=ExtResource("1_r0l3y")]
 script = ExtResource("2_um5x5")
 
-[node name="GrowthTimer" type="Timer" parent="." index="4"]
-wait_time = 0.05
-autostart = true
+[node name="Texture" parent="." index="2"]
+visible = false
 
-[connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_taewv")

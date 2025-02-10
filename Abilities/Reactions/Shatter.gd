@@ -3,12 +3,17 @@ class_name ShatterReaction extends AreaReaction
 var my_parent
 var dmg = 0
 var max_size = Vector2(2, 2)
+var BASE_SHATTER_RADIUS = 32
 
 # Called when the node enters the scene tree for the first time.
 func init(reaction_components: Dictionary):
 	my_parent = reaction_components["source"]
 	dmg = my_parent.dmg
 	spawn_reaction_name("shatter!", reaction_components["reactant"], Color("#663c33"), Color("#7a0002"))
+
+func set_shatter_size():
+	# loop thru parent collision polygon vectors and use the furthest to calculate discharge radius
+	$CollisionShape2D.shape.radius = get_parent_bounding_radius() + BASE_SHATTER_RADIUS
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

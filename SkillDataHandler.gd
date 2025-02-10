@@ -30,27 +30,6 @@ func _get_ability(skill: String):
 func get_skills():
 	return skill_dict
 
-# performs action of ability on spawn
-func perform_spawn(ability, pos, caster):
-	match ability.element:
-		"sunder":
-			ability.dmg = floor(ability.dmg * caster.current_run_data.sunder_dmg_boost)
-		"entropy":
-			ability.speed *= caster.current_run_data.entropy_speed_boost
-			if randf_range(0, 1) < caster.current_run_data.entropy_crit_chance:
-				ability.dmg = floor(ability.dmg * 1.75)
-		"construct":
-			ability.scale *= caster.current_run_data.construct_size_boost
-		"growth":
-			ability.lifetime *= caster.current_run_data.growth_lifetime_boost
-			ability.get_node("LifetimeTimer").wait_time *= caster.current_run_data.growth_lifetime_boost
-		"flow":
-			ability.scale *= caster.current_run_data.flow_size_boost
-		"wither":
-			ability.lifetime *= caster.current_run_data.wither_lifetime_boost
-			ability.get_node("LifetimeTimer").wait_time *= caster.current_run_data.wither_lifetime_boost
-			ability.scale *= caster.current_run_data.construct_size_boost
-
 func perform_reaction(collider, collided):
 	#TO CHECK ENEMY SPELLS (specifically VolitileSpike)
 	if collider.is_in_group("enemy_skills"):

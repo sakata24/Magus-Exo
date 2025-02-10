@@ -1,11 +1,11 @@
 extends Node
 
-var boltSpriteRes = preload("res://Abilities/Animations/SunderSprite.tres")
-var chargeSpriteRes = preload("res://Abilities/Animations/EntropySprite.tres")
-var rockSpriteRes = preload("res://Abilities/Animations/ConstructSprite.tres")
-var cellSpriteRes = preload("res://Abilities/Animations/GrowthSprite.tres")
-var displaceSpriteRes = preload("res://Abilities/Animations/FlowSprite.tres")
-var decaySpriteRes = preload("res://Abilities/Animations/WitherSprite.tres")
+var boltSpriteRes = preload("res://Abilities/Animations/BoltSprite.tres")
+var chargeSpriteRes = preload("res://Abilities/Animations/ChargeSprite.tres")
+var rockSpriteRes = preload("res://Abilities/Animations/RockSprite.tres")
+var cellSpriteRes = preload("res://Abilities/Animations/CellSprite.tres")
+var displaceSpriteRes = preload("res://Abilities/Animations/DisplaceSprite.tres")
+var decaySpriteRes = preload("res://Abilities/Animations/DecaySprite.tres")
 var fountainSpriteRes = preload("res://Abilities/Animations/Spells/FountainSprite.tres")
 var crackSpriteRes = preload("res://Abilities/Animations/Spells/CrackSprite.tres")
 var stormSpriteRes = preload("res://Abilities/Animations/Spells/StormSprite.tres")
