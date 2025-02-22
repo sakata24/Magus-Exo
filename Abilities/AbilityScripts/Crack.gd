@@ -4,9 +4,10 @@ func init(skill_dict, cast_target, caster):
 	super(skill_dict, cast_target, caster)
 	self.global_position = caster.global_position
 
-func handle_reaction(area):
-	super(area)
-	create_new_reaction(area, self)
+# Handles the reaction effects.
+func handle_reaction(reactant: Node2D):
+	super(reactant)
+	create_new_reaction(reactant)
 
 func _on_timeout_timer_timeout() -> void:
 	self.set_collision_mask_value(2, false)

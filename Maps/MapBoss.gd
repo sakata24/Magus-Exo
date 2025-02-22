@@ -3,7 +3,7 @@ extends Node2D
 @export var SPAWN_ENEMIES : bool
 @export var MAX_ENEMIES : int = 8
 
-@onready var Mon = preload("res://Characters/Enemies/Monster.tscn")
+@onready var Mon = preload("res://Characters/Enemies/Monster/Monster.tscn")
 
 var player
 

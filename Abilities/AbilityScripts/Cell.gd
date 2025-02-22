@@ -17,7 +17,7 @@ func increase_dmg(growth_dmg: int):
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	create_new_reaction(self, reactant)
+	create_new_reaction(reactant)
 
 # Called every time the growth timer is triggered
 func _on_growth_timer_timeout() -> void:

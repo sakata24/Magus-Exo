@@ -14,7 +14,7 @@ func set_angle_and_position(cast_target: Vector2, caster_position: Vector2):
 func _physics_process(delta: float) -> void:
 	set_angle_and_position(get_global_mouse_position(), self.spell_caster.global_position)
 
-# handles reactions
+# Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	create_new_reaction(self, reactant)
+	create_new_reaction(reactant)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://bh7gauqubpono"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_fm67d"]
-[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="2_cpryj"]
+[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster/Monster.tscn" id="2_cpryj"]
 [ext_resource type="PackedScene" uid="uid://dfp0saptduhg3" path="res://Characters/Enemies/Charger.tscn" id="3_xjroh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_afho0"]

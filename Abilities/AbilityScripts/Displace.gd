@@ -9,8 +9,7 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	create_new_reaction(self, reactant)
-
+	create_new_reaction(reactant)
 # Handles collision when enemy is hit.
 func handle_enemy_interaction(enemy: Node2D):
 	enemy.can_move = false

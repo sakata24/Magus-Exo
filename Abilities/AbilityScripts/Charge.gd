@@ -9,7 +9,7 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	create_new_reaction(self, reactant)
+	create_new_reaction(reactant)
 
 func _on_growth_timer_timeout() -> void:
 	speed = 1.4 * 300

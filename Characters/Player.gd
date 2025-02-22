@@ -198,7 +198,7 @@ func choose_sprite_direction():
 # This function handles skill casting
 func cast_ability(slot_num: int):
 	# check if ready
-	if not skillReady[slot_num]:
+	if (not skillReady[slot_num]) or (not $CastTimer.is_stopped()):
 		return
 	# start cooldowns
 	skillReady[slot_num] = false

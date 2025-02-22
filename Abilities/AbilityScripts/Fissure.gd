@@ -10,9 +10,10 @@ func set_angle_and_position(cast_target: Vector2, caster_position: Vector2):
 	self.position = caster_position + offset
 	self.look_at(cast_target)
 
-func handle_reaction(area):
-	super(area)
-	create_new_reaction(area, self)
+# Handles the reaction effects.
+func handle_reaction(reactant: Node2D):
+	super(reactant)
+	create_new_reaction(reactant)
 
 # tick timer timeout = 
 func _on_tick_timer_timeout() -> void:

@@ -105,6 +105,7 @@ one_shot = true
 
 [node name="CastTimer" type="Timer" parent="."]
 wait_time = 0.15
+one_shot = true
 
 [node name="MultiCastTimer" type="Timer" parent="."]
 wait_time = 0.08

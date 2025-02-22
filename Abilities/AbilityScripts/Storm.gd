@@ -1,8 +1,9 @@
 class_name StormAbility extends EntropyAbility
 
+# Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)
-	create_new_reaction(self, reactant)
+	create_new_reaction(reactant)
 
 # damage enemies in radius
 func _on_timeout_timer_timeout():
