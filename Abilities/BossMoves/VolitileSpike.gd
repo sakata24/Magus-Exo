@@ -1,4 +1,4 @@
-extends Bullet
+extends BaseTypeAbility
 
 @onready var Rain = preload("res://Abilities/BossMoves/IcathianRain.tscn")
 
@@ -11,9 +11,9 @@ func _ready() -> void:
 	timeout = 1
 	lifetime = 10
 	$LifetimeTimer.wait_time = lifetime
-	size = 4
-	scale *= size
+	scale *= 4
 	$LifetimeTimer.start()
+	myMovement = Movement.get_movement_object_by_name("bullet")
 
 func set_player(p : Player, pos : Vector2):
 	player = p
@@ -22,17 +22,7 @@ func set_player(p : Player, pos : Vector2):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
-	# check collisions
-	if collision:
-		if collision.get_collider().is_in_group("skills"):
-			set_collision_layer_value(3, false)
-			set_collision_mask_value(3, false)
-			react()
-		elif collision.get_collider() is Player:
-			collision.get_collider().hit(dmg)
-			_delete()
-
+	handle_movement(delta)
 
 func react():
 	print("MAKE IT RAIN")
@@ -47,7 +37,7 @@ func react():
 		spike.add_to_group("enemy_skills")
 		spike.add_to_group("skills")
 		spike.velocity = (pos - global_position).normalized()
-	_delete()
+	queue_free()
 	pass
 
 

@@ -1,4 +1,4 @@
-extends Monster
+extends Enemy
 
 signal destroyed_crystal
 

@@ -1,4 +1,4 @@
-extends Bullet
+extends BaseTypeAbility
 
 var player : Player
 
@@ -8,8 +8,7 @@ func _ready() -> void:
 	dmg = 1
 	timeout = 1
 	lifetime = 6
-	size = 1
-	scale *= size
+	scale *= 1
 	$LifetimeTimer.wait_time = lifetime
 	$LifetimeTimer.start()
 
@@ -20,12 +19,7 @@ func set_player(p : Player, origin : Vector2, rotate : float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
-	# check collisions
-	if collision:
-		if collision.get_collider() is Player:
-			collision.get_collider().hit(dmg)
-			_delete()
+	handle_movement(delta)
 
 func _turn():
 	var tween = create_tween()

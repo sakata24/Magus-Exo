@@ -1,39 +1,37 @@
-class_name Monster extends CharacterBody2D
+class_name Monster extends Enemy
 
-var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 var upgradeDrop = preload("res://Interactables/UpgradeChest.tscn")
 
 # am i mad
 var aggro = false
 # reference to chase the player
 var player = CharacterBody2D
-# how fast i move
-var speed = 50
-# base speed for ref
-var baseSpeed = 50
-# my health
-@export var health = 100
 # damage
 var my_dmg = 2
 # base dmg for ref
 var baseDmg = 2
-# max health
-var maxHealth = 100
 # exp i give
 var bestowedXp = 1
 # am i attacking
 var attacking = false
 # can i move
-@export var can_move = true
+var can_move = true
 # can i drop upgrades
 var droppable = true
-# last damage hit with
-var lastElementsHitBy = []
+# where i want to move
+var move_target
+# range at which i attack
+var attack_range = 19
+# how long to show indicator before attacking
+var attack_timer_time = 0.9
 
 signal give_xp(xp, elements)
 
 func _ready():
-	pass
+	speed = 50
+	baseSpeed = 50
+	health = 100
+	maxHealth = 100
 
 func init():
 	pass
@@ -49,27 +47,9 @@ func _process(delta):
 
 # make the monster move
 func _physics_process(delta):
-	if aggro and not attacking and can_move:
-		#self.rotation = lerp_angle(self.rotation, self.global_position.angle_to_point(player.position), 0.1)
-		chase(delta)
+	# set move target
+	move_target = $NavigationAgent2D.get_next_path_position()
 	move_and_slide()
-
-# chases the player
-func chase(delta):
-	if global_position.distance_to(player.global_position) > 19:
-		var new_velocity = to_local($NavigationAgent2D.get_next_path_position()).normalized() * speed
-		if new_velocity.x < 0:
-			$Sprite2D.flip_h = true
-		elif new_velocity.x > 0:
-			$Sprite2D.flip_h = false
-		set_velocity(new_velocity)
-		
-	else:
-		set_velocity(Vector2.ZERO)
-		attacking = true
-		$DamageArea/Indicator.visible = true
-		$DamageArea.look_at(player.position)
-		$AttackTimer.start()
 
 # hit by something
 func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
@@ -85,12 +65,10 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(dmg_to_take, self.global_position)
 	# aggro on the caster
-	if caster and caster.name == "Player":
-		aggro = true
-		player = caster
-		$PathTimer.start()
-
-#func spawn_dmg_numbers
+	#if caster and caster.name == "Player":
+		#aggro = true
+		#player = caster
+		#$PathTimer.start()
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):
@@ -98,6 +76,8 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 		if body.name == "Player":
 			aggro = true
 			player = body
+			$StateMachine/Chase.chase_target = body
+			$StateMachine/Attacking.chase_target = body
 			$PathTimer.start()
 
 # when i die

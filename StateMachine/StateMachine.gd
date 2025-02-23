@@ -1,8 +1,10 @@
-extends Node
+class_name StateMachine extends Node
 
 @export var initial_state: State
 
+# current state
 var current_state: State
+# the states in the state machine
 var states: Dictionary = {}
 
 # Ready function called when node loaded
@@ -25,10 +27,10 @@ func _process(delta: float) -> void:
 # called every physics frame
 func _physics_process(delta: float) -> void:
 	if current_state:
-		current_state.physics_udpate(delta)
+		current_state.physics_update(delta)
 
 # handles chaning the child transition
-func on_child_transition(state, new_state_name):
+func on_child_transition(state: State, new_state_name: String):
 	# check current state
 	if state != current_state:
 		return

@@ -48,23 +48,7 @@ func _spawn_crystals():
 func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 	if invincible:
 		var dmgNum = damageNumber.instantiate()
-		var dmg_color_1 = Color.WHITE
-		var dmg_color_2 = Color.WHITE
-		match dmg_type_1:
-			"sunder": dmg_color_1 = Color("#7a0002")
-			"entropy": dmg_color_1 = Color("#ffd966")
-			"growth": dmg_color_1 = Color("#36c72c")
-			"construct": dmg_color_1 = Color("#663c33")
-			"flow": dmg_color_1 = Color("#82b1ff")
-			"wither": dmg_color_1 = Color("#591b82")
-		match dmg_type_2:
-			"sunder": dmg_color_2 = Color("#7a0002")
-			"entropy": dmg_color_2 = Color("#ffd966")
-			"growth": dmg_color_2 = Color("#36c72c")
-			"construct": dmg_color_2 = Color("#663c33")
-			"flow": dmg_color_2 = Color("#82b1ff")
-			"wither": dmg_color_2 = Color("#591b82")
-		dmgNum.set_colors(dmg_color_1, dmg_color_2)
+		dmgNum.set_colors(AbilityColor.get_color_by_string(dmg_type_1), AbilityColor.get_color_by_string(dmg_type_2))
 		get_parent().add_child(dmgNum)
 		dmgNum.set_value_and_pos("Immune", self.global_position)
 		emit_signal("health_changed", health, true)

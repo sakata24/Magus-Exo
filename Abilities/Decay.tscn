@@ -12,3 +12,4 @@ visible = false
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("2_ep70m")
+autoplay = "default"

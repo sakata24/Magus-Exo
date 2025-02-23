@@ -11,7 +11,7 @@ func handle_reaction(reactant: Node2D):
 	super(reactant)
 	create_new_reaction(reactant)
 
-func _on_growth_timer_timeout() -> void:
+func _on_charge_timer_timeout() -> void:
 	speed = 1.4 * 300
 	dmg = floor(dmg * 1.5)
 	scale = scale * 1.5

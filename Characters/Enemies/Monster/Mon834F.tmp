@@ -84,6 +84,10 @@ visible = false
 color = Color(1, 0, 0, 0.509804)
 polygon = PackedVector2Array(6, -14, 19, -18, 24, -8, 25, 0, 24, 8, 19, 18, 6, 14, 10, 7, 11, 0, 10, -7)
 
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
 [node name="PathTimer" type="Timer" parent="."]
 wait_time = 0.4
 
@@ -105,23 +109,24 @@ offset_bottom = 40.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_8alai")
-initial_state = NodePath("Idle")
+initial_state = NodePath("MonsterIdleState")
 
-[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+[node name="MonsterChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
 script = ExtResource("5_3nu2b")
 monster = NodePath("../..")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+[node name="MonsterIdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
 script = ExtResource("6_y0a0h")
 monster = NodePath("../..")
 
-[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+[node name="MonsterStunnedState" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
 script = ExtResource("7_r742e")
 monster = NodePath("../..")
 
-[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+[node name="MonsterAttackingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
 script = ExtResource("8_fcqrr")
 monster = NodePath("../..")
 
 [connection signal="body_entered" from="AggroRange" to="." method="_on_AggroRange_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

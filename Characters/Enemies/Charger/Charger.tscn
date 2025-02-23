@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfp0saptduhg3"]
+[gd_scene load_steps=15 format=3 uid="uid://dfp0saptduhg3"]
 
-[ext_resource type="Script" path="res://Characters/Enemies/Charger.gd" id="1_kvkxl"]
+[ext_resource type="Script" path="res://Characters/Enemies/Charger/Charger.gd" id="1_kvkxl"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_of601"]
 [ext_resource type="Texture2D" uid="uid://cryka57a5ond" path="res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="3_qc6dx"]
+[ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="4_wl535"]
+[ext_resource type="Script" path="res://Characters/Enemies/Monster/MonsterStates/MonsterChaseState.gd" id="6_grddu"]
+[ext_resource type="Script" path="res://Characters/Enemies/Monster/MonsterStates/MonsterIdleState.gd" id="7_4x83e"]
+[ext_resource type="Script" path="res://Characters/Enemies/Charger/ChargerStates/ChargerAttackingState.gd" id="7_pdqrh"]
+[ext_resource type="Script" path="res://Characters/Enemies/Charger/ChargerStates/ChargerDashingState.gd" id="8_0ba1v"]
+[ext_resource type="Script" path="res://Characters/Enemies/Monster/MonsterStates/MonsterStunnedState.gd" id="8_nam1u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fpaif"]
 animations = [{
@@ -65,36 +71,30 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("2")
 
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="DamageArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
 position = Vector2(1, 0)
 polygon = PackedVector2Array(-10, -9, -1, -11, 8, -9, 9, 0, 8, 9, -1, 11, -10, 9, -11, 0)
 
-[node name="Indicator" type="Polygon2D" parent="DamageArea"]
+[node name="Indicator" type="Node2D" parent="DamageArea"]
+visible = false
+
+[node name="Indicator" type="Polygon2D" parent="DamageArea/Indicator"]
 position = Vector2(-1, 0)
 color = Color(1, 0, 0, 0.509804)
 polygon = PackedVector2Array(12, -5, 24, -7, 29, 0, 24, 7, 12, 5, 14, 0)
 
-[node name="Indicator2" type="Polygon2D" parent="DamageArea"]
+[node name="Indicator2" type="Polygon2D" parent="DamageArea/Indicator"]
 position = Vector2(15, 0)
 color = Color(1, 0, 0, 0.313726)
 polygon = PackedVector2Array(11, -8, 23, -9, 29, 0, 23, 9, 11, 8, 17, 0)
 
-[node name="Indicator3" type="Polygon2D" parent="DamageArea"]
+[node name="Indicator3" type="Polygon2D" parent="DamageArea/Indicator"]
 position = Vector2(37, 0)
 color = Color(1, 0, 0, 0.196078)
 polygon = PackedVector2Array(5, -9, 18, -8, 23, 0, 18, 8, 5, 9, 11, 0)
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.9
-one_shot = true
 
 [node name="PathTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -115,8 +115,30 @@ label_settings = SubResource("LabelSettings_5y84s")
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_wl535")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+script = ExtResource("7_4x83e")
+monster = NodePath("../..")
+
+[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+script = ExtResource("8_nam1u")
+monster = NodePath("../..")
+
+[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+script = ExtResource("7_pdqrh")
+monster = NodePath("../..")
+
+[node name="Dashing" type="Node" parent="StateMachine" node_paths=PackedStringArray("charger")]
+script = ExtResource("8_0ba1v")
+charger = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+script = ExtResource("6_grddu")
+monster = NodePath("../..")
+
 [connection signal="body_entered" from="AggroRange" to="." method="_on_AggroRange_body_entered"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
