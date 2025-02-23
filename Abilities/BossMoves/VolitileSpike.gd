@@ -6,6 +6,8 @@ var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reaction_priority = 999
+	can_react = true
 	speed = 50
 	dmg = 50
 	timeout = 1

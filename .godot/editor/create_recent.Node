@@ -1,3 +1,10 @@
+Label
+Area2D
+DarkMageIcathianRainState
+DarkMageInvincibleState
+DarkMageIdleState
+State
+StateMachine
 Timer
 MonsterChaseState
 ChargerDashingState
@@ -6,10 +13,3 @@ Node2D
 MonsterStunnedState
 MonsterIdleState
 MonsterAttackingState
-StateMachine
-CollisionShape2D
-CharacterBody2D
-Node
-GPUParticles2D
-CPUParticles2D
-Polygon2D

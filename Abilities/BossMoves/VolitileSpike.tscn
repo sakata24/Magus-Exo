@@ -136,7 +136,7 @@ damping_max = 10.0
 scale_max = 3.0
 color_ramp = SubResource("GradientTexture1D_4sskp")
 
-[node name="BulletBody" type="CharacterBody2D"]
+[node name="BulletBody" type="Area2D"]
 process_mode = 1
 collision_layer = 16
 collision_mask = 5
@@ -145,10 +145,6 @@ script = ExtResource("1_dk85w")
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 rotation = 1.5708
 polygon = PackedVector2Array(-3.61999e-06, -1, 3, 0.999989, 2.00003, 6.99999, -1.99997, 7.00001, -3, 1.00001)
-
-[node name="TimeoutTimer" type="Timer" parent="."]
-one_shot = true
-autostart = true
 
 [node name="LifetimeTimer" type="Timer" parent="."]
 one_shot = true
