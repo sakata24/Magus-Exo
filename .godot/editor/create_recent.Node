@@ -1,5 +1,5 @@
-Label
 Area2D
+Label
 DarkMageIcathianRainState
 DarkMageInvincibleState
 DarkMageIdleState
@@ -12,4 +12,3 @@ ChargerAttackingState
 Node2D
 MonsterStunnedState
 MonsterIdleState
-MonsterAttackingState

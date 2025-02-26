@@ -79,5 +79,4 @@ func surround_player_with_minions():
 		inst.droppable = false
 		inst.global_position.x = player_pos.x + cos(rad) * 50
 		inst.global_position.y = player_pos.y + sin(rad) * 50
-		inst.add_to_group("monsters")
 		get_parent().call_deferred("add_child", inst)

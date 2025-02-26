@@ -32,6 +32,7 @@ func _ready():
 	baseSpeed = 50
 	health = 100
 	maxHealth = 100
+	add_to_group("monsters")
 
 func init():
 	pass

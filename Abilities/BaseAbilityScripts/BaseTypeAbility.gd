@@ -7,7 +7,7 @@ var myMovement: Movement
 var mySpawnBehavior: SpawnBehavior
 var myModifiers = []
 
-var abilityID = 0
+var abilityID = ""
 var speed = 300
 var velocity = Vector2.ZERO
 var dmg = 10

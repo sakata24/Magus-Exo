@@ -1,6 +1,6 @@
 class_name DarkMageIcathianRainState extends State
 
-@onready var Spike = load("res://Abilities/BossMoves/VolitileSpike.tscn")
+@onready var Spike = load("res://Abilities/BossMoves/VolatileSpike.tscn")
 @onready var Cannon = load("res://Abilities/BossMoves/Cannon.tscn")
 
 @export var DarkMage: Monster 
@@ -40,12 +40,10 @@ func exit():
 
 func _on_spike_timer_timeout():
 	# load the projectile
-	var projectile = Spike.instantiate()
+	var projectile: BaseTypeAbility = Spike.instantiate()
 	# spawn the projectile and initialize it
 	projectile.set_player(DarkMage.player, DarkMage.global_position)
 	get_parent().add_child(projectile)
-	projectile.add_to_group("skills")
-	projectile.add_to_group("enemy_skills")
 	# calculates the projectiles direction
 	projectile.velocity = (DarkMage.player.global_position - projectile.position).normalized()
 

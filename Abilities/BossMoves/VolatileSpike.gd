@@ -1,4 +1,4 @@
-extends BaseTypeAbility
+class_name VolatileSpike extends BaseTypeAbility
 
 @onready var Rain = preload("res://Abilities/BossMoves/IcathianRain.tscn")
 
@@ -6,6 +6,7 @@ var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	abilityID = "VolatileSpike"
 	reaction_priority = 999
 	can_react = true
 	speed = 50
@@ -16,6 +17,8 @@ func _ready() -> void:
 	scale *= 4
 	$LifetimeTimer.start()
 	myMovement = Movement.get_movement_object_by_name("bullet")
+	add_to_group("enemy_skills")
+	add_to_group("skills")
 
 func set_player(p : Player, pos : Vector2):
 	player = p
@@ -26,22 +29,20 @@ func set_player(p : Player, pos : Vector2):
 func _physics_process(delta):
 	handle_movement(delta)
 
-func react():
+func handle_reaction(reactant: BaseTypeAbility):
 	print("MAKE IT RAIN")
 	for i in 9:
-		var spike = Rain.instantiate()
+		var spike: IcathianRainAbility = Rain.instantiate()
 		var rad = deg_to_rad(360/9 * i)
 		var pos = Vector2(0,0)
 		pos.x = global_position.x + cos(rad)
 		pos.y = global_position.y + sin(rad)
-		spike.set_player(player, global_position, rad)
 		get_parent().get_parent().add_child(spike)
+		spike.set_player(player, global_position, rad)
 		spike.add_to_group("enemy_skills")
 		spike.add_to_group("skills")
 		spike.velocity = (pos - global_position).normalized()
 	queue_free()
-	pass
-
 
 func _on_LifetimeTimer_timeout():
 	queue_free()

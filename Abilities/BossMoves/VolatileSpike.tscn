@@ -1,66 +1,66 @@
 [gd_scene load_steps=22 format=3 uid="uid://foe6afgvwd6q"]
 
-[ext_resource type="Script" path="res://Abilities/BossMoves/VolitileSpike.gd" id="1_dk85w"]
-[ext_resource type="Texture2D" uid="uid://cex5hwm8nv0v" path="res://Resources/abilities/enemy/volatile-spike-sprite.png" id="2_eovlg"]
+[ext_resource type="Script" path="res://Abilities/BossMoves/VolatileSpike.gd" id="1_wnclj"]
+[ext_resource type="Texture2D" uid="uid://cex5hwm8nv0v" path="res://Resources/abilities/enemy/volatile-spike-sprite.png" id="2_b6olq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vf6qq"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3rux"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ygs71"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6m6d"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohmse"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8ny7"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lo5y"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apsym"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_buyx6"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r2rc6"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8d2su"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5tvj3"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oalf8"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5whre"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3fse"]
-atlas = ExtResource("2_eovlg")
+atlas = ExtResource("2_b6olq")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yn2fi"]
@@ -140,7 +140,7 @@ color_ramp = SubResource("GradientTexture1D_4sskp")
 process_mode = 1
 collision_layer = 16
 collision_mask = 5
-script = ExtResource("1_dk85w")
+script = ExtResource("1_wnclj")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 rotation = 1.5708
@@ -164,4 +164,5 @@ position = Vector2(-4, 0)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_65heq")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]
