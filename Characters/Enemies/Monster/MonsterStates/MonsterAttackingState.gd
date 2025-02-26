@@ -27,4 +27,7 @@ func show_damage_area():
 	monster.get_node("DamageArea").look_at(chase_target.position)
 
 func on_attack_timer_timeout():
+	for entity: PhysicsBody2D in monster.get_node("DamageArea").get_overlapping_bodies():
+		if entity and !entity.is_in_group("monsters"):
+			entity.hit(monster.my_dmg)
 	Transitioned.emit(self, "Chase")

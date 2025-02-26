@@ -96,12 +96,5 @@ func die():
 	emit_signal("give_xp", bestowedXp, lastElementsHitBy)
 	queue_free()
 
-func _on_attack_timer_timeout():
-	for body in $DamageArea.get_overlapping_bodies():
-		if body.name == "Player":
-			body.hit(my_dmg)
-	attacking = false
-	$DamageArea/Indicator.visible = false
-
 func _on_path_timer_timeout():
 	$NavigationAgent2D.target_position = player.global_position

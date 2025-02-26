@@ -75,8 +75,9 @@ func surround_player_with_minions():
 		#Spawn Minions around the player
 	for i in (5):
 		var rad = deg_to_rad(360/(5) * i - 45)
-		var inst = Minion.instantiate()
+		var inst: Enemy = Minion.instantiate()
 		inst.droppable = false
 		inst.global_position.x = player_pos.x + cos(rad) * 50
 		inst.global_position.y = player_pos.y + sin(rad) * 50
+		inst.add_to_group("monsters")
 		get_parent().call_deferred("add_child", inst)

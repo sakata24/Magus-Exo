@@ -238,7 +238,7 @@ func apply_run_buffs(ability: BaseTypeAbility):
 		$MultiCastTimer.start()
 
 func _on_multi_cast_timer_timeout():
-	if remaining_casts > 0:
+	if remaining_casts > 0 and ability_ref:
 		spawn_ability(ability_ref)
 		remaining_casts -= 1
 		$MultiCastTimer.start()
