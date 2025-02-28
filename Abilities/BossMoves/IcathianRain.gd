@@ -1,15 +1,18 @@
-extends Bullet
+class_name IcathianRainAbility extends BaseTypeAbility
 
 var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	abilityID = "IcathianRain"
 	speed = 50
 	dmg = 1
 	timeout = 1
 	lifetime = 6
-	size = 1
-	scale *= size
+	scale *= 1
+	reaction_priority = 999
+	element = "dark"
+	myMovement = Movement.get_movement_object_by_name("bullet")
 	$LifetimeTimer.wait_time = lifetime
 	$LifetimeTimer.start()
 
@@ -20,23 +23,22 @@ func set_player(p : Player, origin : Vector2, rotate : float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var collision = move_and_collide(get_velocity().normalized() * delta * speed)
-	# check collisions
-	if collision:
-		if collision.get_collider() is Player:
-			collision.get_collider().hit(dmg)
-			_delete()
+	handle_movement(delta)
 
 func _turn():
 	var tween = create_tween()
-	tween.tween_property(self, "rotation", position.angle_to_point(player.global_position), 0.5)
+	tween.tween_property(self, "rotation", global_position.angle_to_point(player.global_position), 0.5)
 	#Can't figure out how to tween look at so yeah
 	#look_at(player.global_position)
 	tween.tween_property(self, "speed", 200, 1).set_ease(Tween.EASE_IN)
-	tween.parallel().tween_property(self, "velocity", (player.global_position-position).normalized(), 1)
+	tween.parallel().tween_property(self, "velocity", (player.global_position - global_position).normalized(), 1)
 	$Line2D.started = true
 
-func react():
+func _on_body_entered(body: PhysicsBody2D):
+	if body.is_in_group("players"):
+		body.hit(dmg)
+
+func handle_reaction(spell: BaseTypeAbility):
 	pass
 
 func _on_turn_timer_timeout() -> void:

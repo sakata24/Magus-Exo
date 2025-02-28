@@ -23,6 +23,7 @@ CustomResourceLoader="*res://CustomResourceLoader.gd"
 PlayerSkills="*res://PlayerSkills.gd"
 Settings="*res://Settings.gd"
 SkillSceneHandler="*res://SkillSceneHandler.gd"
+PersistentData="*res://PersistentData.gd"
 
 [debug]
 

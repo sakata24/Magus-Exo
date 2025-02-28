@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://di2bsquxtilta"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_qj7ni"]
-[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="2_mp8ow"]
+[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster/Monster.tscn" id="2_mp8ow"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7iv10"]
 vertices = PackedVector2Array(378, 330, 390, 330, 438, 438, 330, 438, 330, 390, 390, 234, 496, 234, 495, 262, 390, 262, 234, 106, 234, -1, 262, 0, 262, 106, 330, 106, 330, 58, 438, 58, 438, 166, 390, 166, 438, 330, 378, 166, 330, 118, 330, 166, 166, 118, 166, 106, 166, 166, 118, 166, 118, 330, 166, 330, 166, 378, 330, 378, 330, 330, 262, 390, 262, 496, 234, 496, 234, 390, 166, 390, 166, 438, 58, 438, 58, 330, 106, 330, 106, 262, -2, 262, -2, 234, 106, 234, 106, 166, 58, 166, 58, 58, 166, 58)

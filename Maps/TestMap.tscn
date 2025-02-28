@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://cqnyfmwtete0j"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_kaexc"]
-[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="3_s3p2j"]
+[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster/Monster.tscn" id="3_s3p2j"]
 
 [node name="TestMap" type="Node2D"]
 

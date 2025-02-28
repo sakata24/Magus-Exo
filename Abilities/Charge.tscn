@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://wjvjs36qeiw8"]
+[gd_scene load_steps=4 format=3 uid="uid://7rvqd8favk01"]
 
-[ext_resource type="PackedScene" uid="uid://berj1ws78vo1g" path="res://Abilities/Bullet.tscn" id="1_5etax"]
-[ext_resource type="Script" path="res://Abilities/Charge.gd" id="2_42sja"]
+[ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_844lo"]
+[ext_resource type="SpriteFrames" uid="uid://bo4qe5bist8cv" path="res://Abilities/Animations/ChargeSprite.tres" id="2_4be8l"]
+[ext_resource type="Script" path="res://Abilities/AbilityScripts/Charge.gd" id="2_42sja"]
 
-[node name="BulletBody" instance=ExtResource("1_5etax")]
+[node name="AbilityBody" instance=ExtResource("1_844lo")]
 script = ExtResource("2_42sja")
 
-[node name="GrowthTimer" type="Timer" parent="." index="4"]
+[node name="Texture" parent="." index="2"]
+visible = false
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("2_4be8l")
+autoplay = "default"
+
+[node name="ChargeTimer" type="Timer" parent="." index="4"]
+wait_time = 0.7
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]

@@ -1,14 +1,15 @@
 extends Node
 
-var boltSpriteRes = preload("res://Abilities/Animations/SunderSprite.tres")
-var chargeSpriteRes = preload("res://Abilities/Animations/EntropySprite.tres")
-var rockSpriteRes = preload("res://Abilities/Animations/ConstructSprite.tres")
-var cellSpriteRes = preload("res://Abilities/Animations/GrowthSprite.tres")
-var displaceSpriteRes = preload("res://Abilities/Animations/FlowSprite.tres")
-var decaySpriteRes = preload("res://Abilities/Animations/WitherSprite.tres")
+var boltSpriteRes = preload("res://Abilities/Animations/BoltSprite.tres")
+var chargeSpriteRes = preload("res://Abilities/Animations/ChargeSprite.tres")
+var rockSpriteRes = preload("res://Abilities/Animations/RockSprite.tres")
+var cellSpriteRes = preload("res://Abilities/Animations/CellSprite.tres")
+var displaceSpriteRes = preload("res://Abilities/Animations/DisplaceSprite.tres")
+var decaySpriteRes = preload("res://Abilities/Animations/DecaySprite.tres")
 var fountainSpriteRes = preload("res://Abilities/Animations/Spells/FountainSprite.tres")
 var crackSpriteRes = preload("res://Abilities/Animations/Spells/CrackSprite.tres")
 var stormSpriteRes = preload("res://Abilities/Animations/Spells/StormSprite.tres")
+
 var sunder_xp = 0
 var entropy_xp = 0
 var construct_xp = 0
@@ -24,11 +25,6 @@ func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
-		# Check the node is an instanced scene so it can be instanced again during load.
-		if node.scene_file_path.is_empty():
-			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
-			continue
-
 		# Check the node has a save function.
 		if !node.has_method("save"):
 			print("persistent node '%s' is missing a save() function, skipped" % node.name)
@@ -58,12 +54,13 @@ func load_game():
 
 	# Get the data from the JSON object
 	var node_data = json.get_data()
-	sunder_xp = node_data["sunder_xp"]
-	entropy_xp = node_data["entropy_xp"]
-	construct_xp = node_data["construct_xp"]
-	growth_xp = node_data["growth_xp"]
-	flow_xp = node_data["flow_xp"]
-	wither_xp = node_data["wither_xp"]
+	if node_data:
+		sunder_xp = node_data["sunder_xp"]
+		entropy_xp = node_data["entropy_xp"]
+		construct_xp = node_data["construct_xp"]
+		growth_xp = node_data["growth_xp"]
+		flow_xp = node_data["flow_xp"]
+		wither_xp = node_data["wither_xp"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

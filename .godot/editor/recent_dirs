@@ -1,7 +1,12 @@
+res://Characters/Enemies/StandardStates
+res://Abilities/AbilityScripts
 res://Abilities
 res://
-C:/Users/tksak/Documents/Exports
 res://Resources
+res://Characters
+res://Abilities/SpawnBehavior
+res://Abilities/BaseAbilityScripts
+C:/Users/tksak/Documents/Exports
 res://Resources/abilities/enemy
 res://Resources/hud_elements
 res://HUDs/Selection

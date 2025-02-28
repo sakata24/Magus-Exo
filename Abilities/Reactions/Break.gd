@@ -5,7 +5,7 @@ func init(reaction_components: Dictionary):
 	if reaction_components["source"].element != "flow":
 		reparent(reaction_components["reactant"], false)
 	# spawn reaction name
-	spawn_reaction_name("blast!", get_parent(), Color("#7a0002"), Color("#82b1ff"))
+	spawn_reaction_name("break!", get_parent(), Color("#7a0002"), Color("#82b1ff"))
 
 # make my parent grow in size
 func _on_tick_timer_timeout() -> void:

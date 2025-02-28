@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=4 uid="uid://d3ijipo5rvv8c"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="2_irw1c"]
-[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dfp0saptduhg3" path="res://Characters/Enemies/Charger.tscn" id="4_ynbhv"]
+[ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster/Monster.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dfp0saptduhg3" path="res://Characters/Enemies/Charger/Charger.tscn" id="4_ynbhv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y6dut"]
 vertices = PackedVector2Array(255, 318, 273, 320, 65, 320, 129, 318, 302, 112, -47, 112, 255, 94, 273, 94, -47, 94, 273, 206, 255, 208, -47, 206, 129, 208, 303, 94, 65, 350, 47, 351, 47, 320, -65, 112, -190, 112, -189, 94, -65, 94, 273, -82, 255, -64, 65, -82, -15, -64, -15, 0, -47, 0, -161, 320, -161, 206, -65, 206, -65, 0, -145, 0, -145, -98, -15, -98, -15, -82, 47, -82, 47, -143, 65, -143)
