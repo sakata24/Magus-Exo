@@ -53,7 +53,7 @@ func handle_movement(delta):
 	myMovement.move_to(self, velocity.normalized() * delta * speed)
 
 # on collision
-func _on_SpellBody_body_entered(body):
+func _on_body_entered(body: PhysicsBody2D):
 	if body.name != "Player":
 		if body.is_in_group("monsters"):
 			handle_enemy_interaction(body)
@@ -121,12 +121,13 @@ func despawn():
 
 # Creates a new reaction.
 func create_new_reaction(other: Node2D):
-	var reaction_scene = get_reaction_scene(other.element)
-	if reaction_scene:
-		# set as the child
-		self.add_child(reaction_scene)
-		# after entering tree things and if need info from both spells reacting
-		reaction_scene.init({"source": self, "reactant": other})
+	if other:
+		var reaction_scene = get_reaction_scene(other.element)
+		if reaction_scene:
+			# set as the child
+			self.add_child(reaction_scene)
+			# after entering tree things and if need info from both spells reacting
+			reaction_scene.init({"source": self, "reactant": other})
 
 # FUNCTION TO BE OVERLOADED
 func get_reaction_scene(reactant_element: String) -> Node2D:

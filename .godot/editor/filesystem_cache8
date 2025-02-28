@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1740541318
+::res://::1740711610
 CustomResourceLoader.gd::GDScript::-1::1739166709::0::1::::<>Node<>::
-default_env.tres::Environment::5025068929242938522::1740541327::0::1::::<><>::
+default_env.tres::Environment::5025068929242938522::1740556716::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1734938611::0::1::::<><>::
 logo.png::CompressedTexture2D::2390665468671566958::1729218358::1740539249::1::::<><>::
 Main.gd::GDScript::-1::1740299409::0::1::::<>Node2D<>::
@@ -15,9 +15,9 @@ SkillDataHandler.gd::GDScript::-1::1739152264::0::1::::<>Node<>::
 SkillSceneHandler.gd::GDScript::-1::1739165539::0::1::::<>Node<>::
 User.gd::GDScript::-1::1727224375::0::1::::<>Resource<>::
 User.tres::Resource::5266089146134736886::1727224375::0::1::::<><>::res://User.gd
-::res://Abilities/::1740541178
+::res://Abilities/::1740556537
 BaseTypeAbility.tscn::PackedScene::3316486938028157650::1740540001::0::1::::<><>::res://Abilities/BaseAbilityScripts/BaseTypeAbility.gd
-Bolt.tscn::PackedScene::2222363972858895565::1740541178::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/BaseTypeAbility.tscn<>uid://f3jcneg45fc7::::res://Abilities/Animations/BoltSprite.tres<>res://Abilities/AbilityScripts/Bolt.gd
+Bolt.tscn::PackedScene::2222363972858895565::1740556537::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/BaseTypeAbility.tscn<>uid://f3jcneg45fc7::::res://Abilities/Animations/BoltSprite.tres<>res://Abilities/AbilityScripts/Bolt.gd
 Cell.tscn::PackedScene::4431655694051998811::1740300340::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/BaseTypeAbility.tscn<>uid://w5hxxf6gbbmr::::res://Abilities/Animations/CellSprite.tres<>res://Abilities/AbilityScripts/Cell.gd
 Charge.tscn::PackedScene::2282441256563237660::1740300339::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/BaseTypeAbility.tscn<>uid://bo4qe5bist8cv::::res://Abilities/Animations/ChargeSprite.tres<>res://Abilities/AbilityScripts/Charge.gd
 Crack.tscn::PackedScene::764310710600089738::1740300333::0::1::::<><>::uid://bnisb47qe61bq::::res://Abilities/BaseTypeAbility.tscn<>res://Abilities/AbilityScripts/Crack.gd<>uid://bd5ueeluvlpi8::::res://Resources/abilities/crack-sprite-v2.png
@@ -56,22 +56,22 @@ FissureSprite.tres::SpriteFrames::145329412306204634::1740539262::0::1::::<><>::
 FountainSprite.tres::SpriteFrames::2935964832628897981::1740539262::0::1::::<><>::uid://ca7i15a2ejxt4::::res://Resources/abilities/fountain-sprite.png
 StormSprite.tres::SpriteFrames::813877913652123257::1740539262::0::1::::<><>::uid://bliqyqpe6sp25::::res://Resources/abilities/storm-sprite.png
 VineSprite.tres::SpriteFrames::3984187279356664563::1740539262::0::1::::<><>::uid://b7d28s67m5xxs::::res://Resources/abilities/vine-sprite.png
-::res://Abilities/BaseAbilityScripts/::1740541177
-BaseTypeAbility.gd::GDScript::-1::1740541177::0::1::::BaseTypeAbility<>Area2D<>::
+::res://Abilities/BaseAbilityScripts/::1740550315
+BaseTypeAbility.gd::GDScript::-1::1740550315::0::1::::BaseTypeAbility<>Area2D<>::
 ConstructAbility.gd::GDScript::-1::1738904510::0::1::::ConstructAbility<>BaseTypeAbility<>::
 EntropyAbility.gd::GDScript::-1::1737934476::0::1::::EntropyAbility<>BaseTypeAbility<>::
 FlowAbility.gd::GDScript::-1::1737934427::0::1::::FlowAbility<>BaseTypeAbility<>::
 GrowthAbility.gd::GDScript::-1::1737959676::0::1::::GrowthAbility<>BaseTypeAbility<>::
 SunderAbility.gd::GDScript::-1::1737934365::0::1::::SunderAbility<>BaseTypeAbility<>::
 WitherAbility.gd::GDScript::-1::1737934334::0::1::::WitherAbility<>BaseTypeAbility<>::
-::res://Abilities/BossMoves/::1740541318
+::res://Abilities/BossMoves/::1740556716
 Cannon.gd::GDScript::-1::1729218358::0::1::::<>Node2D<>::
 Cannon.tscn::PackedScene::1109669767729768833::1740300334::0::1::::<><>::res://Abilities/BossMoves/Cannon.gd<>uid://c4kix7dbt6nxq::::res://Resources/abilities/wither-sprite.png
-IcathianRain.gd::GDScript::-1::1740299881::0::1::::<>BaseTypeAbility<>::
-IcathianRain.tscn::PackedScene::5036839862790351816::1740541299::0::1::::<><>::res://Abilities/BossMoves/IcathianRain.gd<>res://Abilities/BossMoves/trail.gd<>uid://dwu6nmx68uonm::::res://Resources/abilities/enemy/icathian-rain-sprite.png
-trail.gd::GDScript::-1::1729218358::0::1::::Trail<>Line2D<>::
-VolatileSpike.tscn::PackedScene::380143742354683322::1740541327::0::1::::<><>::res://Abilities/BossMoves/VolitileSpike.gd<>uid://cex5hwm8nv0v::::res://Resources/abilities/enemy/volatile-spike-sprite.png
-VolitileSpike.gd::GDScript::-1::1740541299::0::1::::VolatileSpike<>BaseTypeAbility<>::
+IcathianRain.gd::GDScript::-1::1740555940::0::1::::IcathianRainAbility<>BaseTypeAbility<>::
+IcathianRain.tscn::PackedScene::5036839862790351816::1740556716::0::1::::<><>::res://Abilities/BossMoves/IcathianRain.gd<>res://Abilities/BossMoves/trail.gd<>uid://dwu6nmx68uonm::::res://Resources/abilities/enemy/icathian-rain-sprite.png
+trail.gd::GDScript::-1::1740556536::0::1::::Trail<>Line2D<>::
+VolatileSpike.gd::GDScript::-1::1740554509::0::1::::VolatileSpike<>BaseTypeAbility<>::
+VolatileSpike.tscn::PackedScene::380143742354683322::1740556537::0::1::::<><>::res://Abilities/BossMoves/VolatileSpike.gd<>uid://cex5hwm8nv0v::::res://Resources/abilities/enemy/volatile-spike-sprite.png
 ::res://Abilities/Modifiers/::1739149353
 CollisionDespawnModifier.gd::GDScript::-1::1739149353::0::1::::CollisionDespawnModifier<>Modifier<>::
 Modifier.gd::GDScript::-1::1738901821::0::1::::Modifier<>Node<>::
@@ -112,17 +112,17 @@ Player.gd::GDScript::-1::1740539794::0::1::::Player<>CharacterBody2D<>::
 Player.tscn::PackedScene::2375017932172747198::1740300336::0::1::::<><>::res://Characters/Player.gd<>uid://e73ivebdym3s::::res://Resources/player-sprite.png<>uid://dh3jx4vydfqin::::res://Resources/WhiteCircle.png
 PlayerRunData.gd::GDScript::-1::1739152339::0::1::::PlayerRunData<>Resource<>::
 RunData.tres::Resource/RunData::4678421860250500330::1739151939::0::1::::<><>::res://Characters/PlayerRunData.gd
-::res://Characters/Enemies/::1740541177
+::res://Characters/Enemies/::1740556537
 Enemy.gd::GDScript::-1::1740292297::0::1::::Enemy<>CharacterBody2D<>::
-Enemy.tscn::PackedScene::5875512722836627001::1740541177::0::1::::<><>::res://Characters/Enemies/Enemy.gd<>res://StateMachine/StateMachine.gd
+Enemy.tscn::PackedScene::5875512722836627001::1740556537::0::1::::<><>::res://Characters/Enemies/Enemy.gd<>res://StateMachine/StateMachine.gd
 ::res://Characters/Enemies/Bosses/::1740539153
-::res://Characters/Enemies/Bosses/DarkMage/::1740541178
+::res://Characters/Enemies/Bosses/DarkMage/::1740556537
 BarrierCrystal.gd::GDScript::-1::1740539150::0::1::::<>Enemy<>::
-BarrierCrystal.tscn::PackedScene::8782895300178725234::1740541177::0::1::::<><>::res://Characters/Enemies/Bosses/DarkMage/BarrierCrystal.gd<>uid://dlte838cyvcj::::res://Resources/Crystal.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
+BarrierCrystal.tscn::PackedScene::8782895300178725234::1740556537::0::1::::<><>::res://Characters/Enemies/Bosses/DarkMage/BarrierCrystal.gd<>uid://dlte838cyvcj::::res://Resources/Crystal.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
 DarkMage.gd::GDScript::-1::1740539914::0::1::::<>Monster<>::
-DarkMage.tscn::PackedScene::8999413122152294462::1740541178::0::1::::<><>::res://StateMachine/StateMachine.gd<>res://Characters/Enemies/Bosses/DarkMage/DarkMage.gd<>uid://b2dekgtow3y6x::::res://Resources/enemies/dark-mage.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf<>res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/DarkMageIdleState.gd<>res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/DarkMageInvincibleState.gd<>res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/DarkMageAttackState.gd
-::res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/::1740540828
-DarkMageAttackState.gd::GDScript::-1::1740540828::0::1::::DarkMageIcathianRainState<>State<>::
+DarkMage.tscn::PackedScene::8999413122152294462::1740556537::0::1::::<><>::res://StateMachine/StateMachine.gd<>res://Characters/Enemies/Bosses/DarkMage/DarkMage.gd<>uid://b2dekgtow3y6x::::res://Resources/enemies/dark-mage.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf<>res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/DarkMageIdleState.gd<>res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/DarkMageInvincibleState.gd<>res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/DarkMageAttackState.gd
+::res://Characters/Enemies/Bosses/DarkMage/DarkMageStates/::1740541621
+DarkMageAttackState.gd::GDScript::-1::1740541621::0::1::::DarkMageIcathianRainState<>State<>::
 DarkMageIdleState.gd::GDScript::-1::1740539150::0::1::::DarkMageIdleState<>State<>::
 DarkMageInvincibleState.gd::GDScript::-1::1740539150::0::1::::DarkMageInvincibleState<>State<>::
 ::res://Characters/Enemies/Charger/::1740300334
@@ -131,9 +131,9 @@ Charger.tscn::PackedScene::7542722028729954164::1740300334::0::1::::<><>::res://
 ::res://Characters/Enemies/Charger/ChargerStates/::1740297484
 ChargerAttackingState.gd::GDScript::-1::1740297236::0::1::::ChargerAttackingState<>MonsterAttackingState<>::
 ChargerDashingState.gd::GDScript::-1::1740297484::0::1::::ChargerDashingState<>State<>::
-::res://Characters/Enemies/Monster/::1740541177
+::res://Characters/Enemies/Monster/::1740556537
 Monster.gd::GDScript::-1::1740539898::0::1::::Monster<>Enemy<>::
-Monster.tscn::PackedScene::6830158330018226717::1740541177::0::1::::<><>::res://Characters/Enemies/Monster/Monster.gd<>uid://cryka57a5ond::::res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf<>res://StateMachine/StateMachine.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterChaseState.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterIdleState.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterStunnedState.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterAttackingState.gd
+Monster.tscn::PackedScene::6830158330018226717::1740556537::0::1::::<><>::res://Characters/Enemies/Monster/Monster.gd<>uid://cryka57a5ond::::res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf<>res://StateMachine/StateMachine.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterChaseState.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterIdleState.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterStunnedState.gd<>res://Characters/Enemies/Monster/MonsterStates/MonsterAttackingState.gd
 ::res://Characters/Enemies/Monster/MonsterStates/::1740539714
 MonsterAttackingState.gd::GDScript::-1::1740539714::0::1::::MonsterAttackingState<>State<>::
 MonsterChaseState.gd::GDScript::-1::1740299954::0::1::::MonsterChaseState<>State<>::
@@ -147,7 +147,7 @@ Librarian.tscn::PackedScene::5087920084304151965::1740300333::0::1::::<><>::res:
 NPC.gd::GDScript::-1::1733988462::0::1::::<>Node2D<>::
 Tome.gd::GDScript::-1::1733988462::0::1::::<>Node2D<>::
 Tome.tscn::PackedScene::174563864663041671::1740300333::0::1::::<><>::res://Characters/NPCs/Tome.gd<>uid://cs8cp06d6ocpq::::res://Resources/book.png<>uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf<>uid://ciors68i7i3jv::::res://HUDs/ChangeSpells.tscn
-::res://HUDs/::1740541178
+::res://HUDs/::1740556537
 ChangeSpells.tscn::PackedScene::5364319417823609527::1740300334::0::1::::<><>::uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme<>res://HUDs/change_spells.gd<>uid://jb02v63no31m::::res://Resources/hud_elements/SkillIcon.tscn
 change_spells.gd::GDScript::-1::1734317970::0::1::::<>CanvasLayer<>::
 DamageNumber.gd::GDScript::-1::1738483001::0::1::::PopupText<>Node2D<>::
@@ -157,7 +157,7 @@ Death.tscn::PackedScene::5846557605374079316::1740300337::0::1::::<><>::res://HU
 Home.gd::GDScript::-1::1727224375::0::1::::<>CanvasLayer<>::
 Home.tscn::PackedScene::4916289288811870075::1740300332::0::1::::<><>::res://HUDs/Home.gd<>uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme
 HUD.gd::GDScript::-1::1740539150::0::1::::<>CanvasLayer<>::
-HUD.tscn::PackedScene::2311452770686110239::1740541178::0::1::::<><>::res://HUDs/HUD.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf<>uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme<>uid://jb02v63no31m::::res://Resources/hud_elements/SkillIcon.tscn<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
+HUD.tscn::PackedScene::2311452770686110239::1740556537::0::1::::<><>::res://HUDs/HUD.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf<>uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme<>uid://jb02v63no31m::::res://Resources/hud_elements/SkillIcon.tscn<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf
 Menu.gd::GDScript::-1::1737879509::0::1::::<>CanvasLayer<>::
 Menu.tscn::PackedScene::9190739167361806799::1740300333::0::1::::<><>::res://HUDs/Menu.gd<>uid://o7m3yeirq5vk::::res://Resources/fonts/KiriFont.ttf<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf<>uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme
 ReactionText.tscn::PackedScene::452790460665203727::1740300337::0::1::::<><>::res://HUDs/DamageNumber.gd<>uid://bngt8jkm3fvb1::::res://Resources/hud_elements/default.theme<>uid://wige0wqmw7c7::::res://Resources/fonts/Early GameBoy.ttf

@@ -53,6 +53,7 @@ var canCast = true
 func _ready():
 	# Make the player look right
 	move_target = Vector2(self.position.x, 10000.0)
+	self.add_to_group("players")
 	init_skill_cooldowns()
 	
 func init_skill_cooldowns():

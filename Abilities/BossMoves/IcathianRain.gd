@@ -10,6 +10,8 @@ func _ready() -> void:
 	timeout = 1
 	lifetime = 6
 	scale *= 1
+	reaction_priority = 999
+	element = "dark"
 	myMovement = Movement.get_movement_object_by_name("bullet")
 	$LifetimeTimer.wait_time = lifetime
 	$LifetimeTimer.start()
@@ -31,6 +33,10 @@ func _turn():
 	tween.tween_property(self, "speed", 200, 1).set_ease(Tween.EASE_IN)
 	tween.parallel().tween_property(self, "velocity", (player.global_position - global_position).normalized(), 1)
 	$Line2D.started = true
+
+func _on_body_entered(body: PhysicsBody2D):
+	if body.is_in_group("players"):
+		body.hit(dmg)
 
 func handle_reaction(spell: BaseTypeAbility):
 	pass
