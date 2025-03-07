@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b87627nrcya2c"]
 
-[ext_resource type="Script" path="res://HUDs/Shop.gd" id="1_3qepl"]
+[ext_resource type="Script" uid="uid://cfjn1120750p4" path="res://HUDs/Shop.gd" id="1_3qepl"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
 
 [node name="Shop" type="CanvasLayer" groups=["windows"]]

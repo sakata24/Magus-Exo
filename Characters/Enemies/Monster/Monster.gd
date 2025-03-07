@@ -7,7 +7,7 @@ var aggro = false
 # reference to chase the player
 var player = CharacterBody2D
 # damage
-var my_dmg = 2
+var my_dmg: int = 2
 # base dmg for ref
 var baseDmg = 2
 # exp i give

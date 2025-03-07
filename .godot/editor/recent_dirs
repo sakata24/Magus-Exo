@@ -1,8 +1,8 @@
-res://Characters/Enemies/StandardStates
+res://Resources/abilities
+res://Resources
 res://Abilities/AbilityScripts
 res://Abilities
 res://
-res://Resources
 res://Characters
 res://Abilities/SpawnBehavior
 res://Abilities/BaseAbilityScripts
@@ -11,7 +11,6 @@ res://Resources/abilities/enemy
 res://Resources/hud_elements
 res://HUDs/Selection
 res://Resources/npc
-res://Resources/abilities
 res://HUDs/Icons
 res://Abilities/Animations/Spells
 res://Abilities/Animations

@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdx05qsaongnb"]
 
-[ext_resource type="Script" path="res://Abilities/Reactions/Discharge.gd" id="1_7oqkg"]
+[ext_resource type="Script" uid="uid://dpmjngg8cghaw" path="res://Abilities/Reactions/Discharge.gd" id="1_7oqkg"]
 [ext_resource type="Texture2D" uid="uid://c8j5bxm1ytgd4" path="res://Resources/abilities/discharge-particle-sprite.png" id="2_6bpwe"]
 
 [sub_resource type="Curve" id="Curve_ty3yy"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.313808, 1.38462), 10.8807, 10.8807, 0, 0, Vector2(0.502092, 2), 0.0, 0.0, 0, 0, Vector2(0.702929, 1.45055), -10.0678, -10.0678, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
 

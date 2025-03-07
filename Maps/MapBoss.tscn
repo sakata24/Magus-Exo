@@ -1,9 +1,8 @@
 [gd_scene load_steps=6 format=4 uid="uid://c1u0k02nfhygq"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_oomlo"]
-[ext_resource type="Script" path="res://Maps/MapBoss.gd" id="1_vx3fa"]
+[ext_resource type="Script" uid="uid://coe42sdcqxy1m" path="res://Maps/MapBoss.gd" id="1_vx3fa"]
 [ext_resource type="PackedScene" uid="uid://d1hnawkho7eos" path="res://Characters/Enemies/Bosses/DarkMage/DarkMage.tscn" id="3_l0kxp"]
-
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1vbm6"]
 vertices = PackedVector2Array(470, 470, 26, 470, 26, 26, 470, 26)

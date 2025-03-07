@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dxulnknqlsd2f"]
 
 [ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_jgk6h"]
-[ext_resource type="Script" path="res://Abilities/AbilityScripts/Storm.gd" id="2_q3syg"]
+[ext_resource type="Script" uid="uid://w8iq7xsyl5ve" path="res://Abilities/AbilityScripts/Storm.gd" id="2_q3syg"]
 [ext_resource type="Texture2D" uid="uid://53kcs6futbat" path="res://Resources/abilities/storm-sprite-v2.png" id="3_h2ddf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ki2b1"]

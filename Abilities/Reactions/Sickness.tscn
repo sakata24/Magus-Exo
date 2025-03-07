@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://mtfmebe5a6fp"]
 
-[ext_resource type="Script" path="res://Abilities/Reactions/Sickness.gd" id="1_07cfe"]
+[ext_resource type="Script" uid="uid://dqsu0f2jk3f1a" path="res://Abilities/Reactions/Sickness.gd" id="1_07cfe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n5vtr"]
 radius = 48.0
@@ -12,6 +12,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 48.0
 emission_ring_inner_radius = 24.0
+emission_ring_cone_angle = 90.0
 angle_min = 1.07288e-05
 angle_max = 1.07288e-05
 spread = 0.0

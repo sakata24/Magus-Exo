@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://cbiw1tglncahn"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_8kufv"]
-[ext_resource type="Script" path="res://Maps/Home.gd" id="1_ns77l"]
+[ext_resource type="Script" uid="uid://0a1jr1ppxssi" path="res://Maps/Home.gd" id="1_ns77l"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_20c0y"]
 [ext_resource type="PackedScene" uid="uid://dx6qgbly3aoao" path="res://Characters/NPCs/Armorer.tscn" id="4_8hjcu"]
 [ext_resource type="PackedScene" uid="uid://ceqvkhki38wwr" path="res://Characters/NPCs/Librarian.tscn" id="5_hlh4u"]

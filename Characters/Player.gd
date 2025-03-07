@@ -46,6 +46,8 @@ var canDash = true
 var dashIFrames = 0
 # can cast an ability
 var canCast = true
+# is casting
+var casting = false
 # current run data every run reinstantiated
 @onready var current_run_data: PlayerRunData = PlayerRunData.new()
 
@@ -74,72 +76,10 @@ func get_unlocked_skills():
 func get_equipped_skills():
 	return equippedSkills
 
-# handles all inputs
-func _unhandled_input(event):
-	if event.is_action_pressed('R-Click'):
-		handle_move_event()
-	
-	if event.is_action_pressed('Space') and canDash:
-		handle_dash_event()
-	
-	if event.is_action_pressed('Q'):
-		cast_ability(0)
-	if event.is_action_pressed('W'):
-		cast_ability(1)
-	if event.is_action_pressed('E'):
-		cast_ability(2)
-	if event.is_action_pressed('R'):
-		cast_ability(3)
-
-func handle_move_event():
-	moving = true
-	move_target = get_global_mouse_position()
-	emit_signal("moving_to")
-
-func handle_dash_event():
-	# disable enemy collision
-	set_collision_mask_value(4, false)
-	# start the cooldown
-	$DashTimer.start()
-	# toggle the dash variable
-	dashing = true
-	# execute the dash
-	move_target = get_global_mouse_position()
-	handle_dash_animation()
-	# re-enable enemy collision
-	set_collision_mask_value(4, true)
-
-func handle_dash_animation():
-	# instantiate the dash anim
-	var dash_anim = dashScene.instantiate()
-	# place the dash animation
-	var offset = (move_target - self.global_position).normalized() * 34
-	dash_anim.position = self.global_position + offset
-	# aim the dash anim at the dash mouse
-	dash_anim.look_at(get_global_mouse_position())
-	# spawn the anim
-	get_parent().add_child(dash_anim)
-
-func _process(delta):
-	process_animation()
-
-func process_animation():
-	# get current animation frames
-	var frame = $AnimatedSprite2D.get_frame()
-	var progress = $AnimatedSprite2D.get_frame_progress()
-	# determine which type of anim
-	if moving:
-		$AnimatedSprite2D.set_animation("walk")
-	else:
-		$AnimatedSprite2D.set_animation("idle")
-	# play animation
-	$AnimatedSprite2D.set_frame_and_progress(frame, progress)
-
 func _physics_process(delta):
 	$ProjectilePivot.look_at(cast_target)
 	emit_signal("cooling_down", skillTimer, skillCD)
 	emit_signal("cooling_dash", $DashTimer.time_left, $DashTimer.wait_time)
-	handle_movement(delta)
 	check_and_set_skill_timers()
 
 func check_and_set_skill_timers():
@@ -163,31 +103,6 @@ func check_and_set_skill_timers():
 	else:
 		skillTimer[3] += 1
 
-func handle_movement(delta):
-	if dashing and canDash:
-		var offset = (move_target - self.global_position).normalized() * 58
-		move_and_collide(offset)
-		dashing = false
-		canDash = false
-	# if moving continue, if not stop moving
-	elif not moving:
-		speed = 0
-	else:
-		speed = max_speed
-	
-	# calculates movement and direction
-	movement = position.direction_to(move_target) * speed
-	move_dir = rad_to_deg(move_target.angle_to_point(position))
-	
-	# do we need to move more or not
-	if position.distance_to(move_target) > 1:
-		set_velocity(movement)
-		move_and_slide()
-		movement = velocity
-	else:
-		moving = false
-	choose_sprite_direction()
-
 func choose_sprite_direction():
 	if movement.x < 0:
 		$AnimatedSprite2D.flip_h = true
@@ -197,10 +112,12 @@ func choose_sprite_direction():
 		$Shadow.scale.x = 1
 
 # This function handles skill casting
-func cast_ability(slot_num: int):
+func cast_ability(slot_num: int) -> bool:
 	# check if ready
 	if (not skillReady[slot_num]) or (not $CastTimer.is_stopped()):
-		return
+		return false
+	# casting
+	casting = true
 	# start cooldowns
 	skillReady[slot_num] = false
 	skillTimer[slot_num] = 0
@@ -216,7 +133,9 @@ func cast_ability(slot_num: int):
 	# start a timer
 	$CastTimer.start()
 	await $CastTimer.timeout
+	canCast = true
 	spawn_ability(ability_name)
+	return true
 
 func spawn_ability(ability_name: String):
 	canCast = true
@@ -257,9 +176,6 @@ func hit(damage):
 	dmgNum.modulate = Color(255, 0, 0)
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(damage, self.global_position)
-
-func _on_dash_timer_timeout():
-	canDash = true
 
 func upgrade(upgrade_int):
 	match upgrade_int:
