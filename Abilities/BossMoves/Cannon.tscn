@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://p2sdmnec2uhl"]
 
-[ext_resource type="Script" path="res://Abilities/BossMoves/Cannon.gd" id="1_vlhfd"]
+[ext_resource type="Script" uid="uid://1qhissxc3k5n" path="res://Abilities/BossMoves/Cannon.gd" id="1_vlhfd"]
 [ext_resource type="Texture2D" uid="uid://c4kix7dbt6nxq" path="res://Resources/abilities/wither-sprite.png" id="2_4gkk4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q58be"]

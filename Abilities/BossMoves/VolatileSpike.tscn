@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://foe6afgvwd6q"]
 
-[ext_resource type="Script" path="res://Abilities/BossMoves/VolatileSpike.gd" id="1_wnclj"]
+[ext_resource type="Script" uid="uid://cmxifhnt7kxao" path="res://Abilities/BossMoves/VolatileSpike.gd" id="1_wnclj"]
 [ext_resource type="Texture2D" uid="uid://cex5hwm8nv0v" path="res://Resources/abilities/enemy/volatile-spike-sprite.png" id="2_b6olq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vf6qq"]

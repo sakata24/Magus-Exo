@@ -1,0 +1,182 @@
+[gd_scene load_steps=5 format=3 uid="uid://bajdt7lxv6eil"]
+
+[ext_resource type="Script" uid="uid://ff5ht1jylom5" path="res://HUDs/SkillCard.gd" id="1_826kd"]
+[ext_resource type="Texture2D" uid="uid://lh1ydjrxwlrk" path="res://Resources/icons/bolt.png" id="1_ha2yh"]
+[ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="2_kiolq"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="3_kiolq"]
+
+[node name="SkillCard" type="MarginContainer"]
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_826kd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderOutside" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="BGColor" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="BorderInside" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="BGColor" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="SpellIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("1_ha2yh")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_kiolq")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("2_kiolq")
+stretch_mode = 4
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_kiolq")
+stretch_mode = 4
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("2_kiolq")
+stretch_mode = 4
+flip_h = true
+flip_v = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="SpellIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("1_ha2yh")
+stretch_mode = 4
+
+[node name="OwnedLabelContainer" type="Control" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/OwnedLabelContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/OwnedLabelContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(75, 19)
+theme = ExtResource("3_kiolq")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "OWNED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillName" type="Label" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme = ExtResource("3_kiolq")
+theme_override_font_sizes/font_size = 10
+text = "Skill Name"
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

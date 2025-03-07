@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1y8hd27dwd4g"]
 
-[ext_resource type="Script" path="res://Abilities/Reactions/Extinction.gd" id="1_jslxu"]
+[ext_resource type="Script" uid="uid://busktd6ffel6k" path="res://Abilities/Reactions/Extinction.gd" id="1_jslxu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qclmb"]
 radius = 32.0
@@ -12,6 +12,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 32.0
 emission_ring_inner_radius = 24.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, -1, 0)
 initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)

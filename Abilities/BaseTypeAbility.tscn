@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnisb47qe61bq"]
 
-[ext_resource type="Script" path="res://Abilities/BaseAbilityScripts/BaseTypeAbility.gd" id="1_tonm5"]
+[ext_resource type="Script" uid="uid://do3qcs36uarq1" path="res://Abilities/BaseAbilityScripts/BaseTypeAbility.gd" id="1_tonm5"]
 
 [node name="AbilityBody" type="Area2D"]
 process_mode = 1
