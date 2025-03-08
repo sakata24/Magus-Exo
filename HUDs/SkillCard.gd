@@ -4,35 +4,44 @@ const ART_PATH = "res://Resources/icons/"
 
 signal selected
 
-var spellName : String
-var spellElement : String
-var spellOwned := false
-var spellDescription : String
+var spellData : Dictionary
 
 func _ready() -> void:
 	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = false
 
 func set_spell_info(n : String, el : String, desc : String):
-	spellName = n
-	spellElement = el
-	spellDescription = desc
+	spellData = {
+		"name" : n,
+		"element" : el,
+		"owned" : false,
+		"description" : desc
+	}
 	_set_ui()
 
 func _set_ui():
-	$VBoxContainer/SkillName.text = spellName
+	$VBoxContainer/SkillName.text = spellData.name
 	
-	var texture = load(ART_PATH+spellName+".png")
+	var texture = load(ART_PATH+spellData.name+".png")
 	if !texture:
 		texture = load("res://Resources/icon.png")
 		
 	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.texture = texture
 
 func set_owned():
-	spellOwned = true
+	spellData.owned = true
 	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = true
 
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("L-Click"):
-		if not spellOwned:
-			emit_signal("selected", spellDescription, $VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.texture)
+		if not spellData.owned:
+			emit_signal("selected", spellData, $VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.texture)
+
+
+func _on_mouse_entered() -> void:
+	if not spellData.owned:
+		$VBoxContainer/MarginContainer/BorderOutside.color = Color(1, 0.82, 0.157)
+
+
+func _on_mouse_exited() -> void:
+	$VBoxContainer/MarginContainer/BorderOutside.color = Color.WHITE

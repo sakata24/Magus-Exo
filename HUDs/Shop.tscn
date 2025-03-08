@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://b87627nrcya2c"]
+[gd_scene load_steps=24 format=3 uid="uid://b87627nrcya2c"]
 
 [ext_resource type="Script" uid="uid://cqenh65lieqe4" path="res://HUDs/Shop.gd" id="1_3qepl"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
 [ext_resource type="Texture2D" uid="uid://dan0j4bwdb37c" path="res://Resources/warlock.png" id="2_e63p4"]
 [ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="2_t715p"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_t715p"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yi03b"]
 viewport_path = NodePath("SubViewport")
@@ -202,7 +203,7 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="ContentContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -211,15 +212,33 @@ texture = SubResource("ViewportTexture_yi03b")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="SpellDescription" type="RichTextLabel" parent="ContentContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="SpellDescription" type="RichTextLabel" parent="ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("3_t715p")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TitleSpellIcon" type="TextureRect" parent="ContentContainer/VBoxContainer/HBoxContainer"]
+[node name="TitleSpellIcon" type="TextureRect" parent="ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
+size_flags_vertical = 3
 expand_mode = 3
 stretch_mode = 4
+
+[node name="CostLabel" type="Label" parent="ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_22pmb")
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -372,12 +391,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/v_separation = 10
 
-[node name="Button" type="Button" parent="ContentContainer/VBoxContainer"]
+[node name="LearnButton" type="Button" parent="ContentContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.1
 theme = ExtResource("2_22pmb")
 theme_override_font_sizes/font_size = 20
+disabled = true
 text = "Learn"
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -395,6 +415,130 @@ libraries = {
 &"": SubResource("AnimationLibrary_b75td")
 }
 
+[node name="Popup" type="Popup" parent="."]
+initial_position = 1
+size = Vector2i(300, 176)
+
+[node name="BorderContainer" type="MarginContainer" parent="Popup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BorderOutside" type="ColorRect" parent="Popup/BorderContainer"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/BorderContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BGColor" type="ColorRect" parent="Popup/BorderContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.590491, 0.365052, 0.22069, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/BorderContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BorderInside" type="ColorRect" parent="Popup/BorderContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/BorderContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="BGColor" type="ColorRect" parent="Popup/BorderContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.592157, 0.364706, 0.219608, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/BorderContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Popup/BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Popup/BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_t715p")
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Popup/BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("2_t715p")
+stretch_mode = 4
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TextureRect" type="TextureRect" parent="Popup/BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_t715p")
+stretch_mode = 4
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="Popup/BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("2_t715p")
+stretch_mode = 4
+flip_h = true
+flip_v = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer"]
+layout_mode = 2
+
+[node name="LearnConfirmLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_t715p")
+bbcode_enabled = true
+text = "[center]Learn spell for 20 xp"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Popup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yes"
+
+[node name="Control" type="Control" parent="Popup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NoButton" type="Button" parent="Popup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No"
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/sunder" to="." method="_on_sunder_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/entropy" to="." method="_on_entropy_toggled"]
@@ -402,3 +546,6 @@ libraries = {
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/construct" to="." method="_on_construct_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/flow" to="." method="_on_flow_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/wither" to="." method="_on_wither_toggled"]
+[connection signal="pressed" from="ContentContainer/VBoxContainer/LearnButton" to="." method="_on_learn_button_pressed"]
+[connection signal="pressed" from="Popup/MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Popup/MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
