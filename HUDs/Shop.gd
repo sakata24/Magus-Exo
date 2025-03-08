@@ -27,43 +27,49 @@ func _ready() -> void:
 
 func _select_spell(data : Dictionary, icon : CompressedTexture2D):
 	selectedSpell = data
+	# If you click an area that is not a spell card, clear the selection
 	if !icon:
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/SpellDescription.text = ""
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/TitleSpellIcon.texture = null
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/CostLabel.text = ""
 		$ContentContainer/VBoxContainer/LearnButton.disabled = true
 	else :
+		# Set the description
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/SpellDescription.text = data.description
+		
+		# Set the icon & cost
 		var expAmount = PersistentData.get_xp_counts().get(data.element + "_xp")
 		var spellCost = PlayerSkills.ALL_SKILLS.skills.get(data.name).get("price")
-		
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/TitleSpellIcon.texture = icon
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/CostLabel.text = "Cost: " + str(spellCost)
-		if (expAmount > spellCost):
+		
+		# Enable/disable the learn button if xp requirements met
+		if (expAmount < spellCost):
 			$ContentContainer/VBoxContainer/LearnButton.disabled = true
 		else:
 			$ContentContainer/VBoxContainer/LearnButton.disabled = false
 		
 
 
-
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("L-Click"):
 		_select_spell({}, null)
 
-
+# When you press on one of the xp value buttons
 func _button_pressed(element: String):
+	# Deselect any other buttons
+	if selectedElement:
+		$ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer.get_node(selectedElement).button_pressed = false
 	selectedElement = element
-	for button in $ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer.get_children():
-		if button.name != element:
-			button.button_pressed = false
 	_sort_spells(element)
 
 
 func _sort_spells(element : String):
+	# Unsort (show everything
 	if element == "":
 		for card in $ContentContainer/VBoxContainer/ScrollContainer/SkillContainer.get_children():
 			card.visible = true
+	# Only show spell cards of selected element
 	else:
 		for card in $ContentContainer/VBoxContainer/ScrollContainer/SkillContainer.get_children():
 			if card.spellData.element == element:
@@ -71,6 +77,7 @@ func _sort_spells(element : String):
 			else:
 				card.visible = false
 
+# Functions for selecting each xp value button for sorting
 func _on_sunder_toggled(toggled_on: bool) -> void:
 	_select_spell({}, null)
 	if toggled_on:
@@ -78,7 +85,6 @@ func _on_sunder_toggled(toggled_on: bool) -> void:
 	else:
 		if selectedElement == "sunder":
 			_sort_spells("")
-
 
 func _on_entropy_toggled(toggled_on: bool) -> void:
 	_select_spell({}, null)
@@ -88,7 +94,6 @@ func _on_entropy_toggled(toggled_on: bool) -> void:
 		if selectedElement == "entropy":
 			_sort_spells("")
 
-
 func _on_growth_toggled(toggled_on: bool) -> void:
 	_select_spell({}, null)
 	if toggled_on:
@@ -96,7 +101,6 @@ func _on_growth_toggled(toggled_on: bool) -> void:
 	else:
 		if selectedElement == "growth":
 			_sort_spells("")
-
 
 func _on_construct_toggled(toggled_on: bool) -> void:
 	_select_spell({}, null)
@@ -106,7 +110,6 @@ func _on_construct_toggled(toggled_on: bool) -> void:
 		if selectedElement == "construct":
 			_sort_spells("")
 
-
 func _on_flow_toggled(toggled_on: bool) -> void:
 	_select_spell({}, null)
 	if toggled_on:
@@ -114,7 +117,6 @@ func _on_flow_toggled(toggled_on: bool) -> void:
 	else:
 		if selectedElement == "flow":
 			_sort_spells("")
-
 
 func _on_wither_toggled(toggled_on: bool) -> void:
 	_select_spell({}, null)
@@ -126,9 +128,10 @@ func _on_wither_toggled(toggled_on: bool) -> void:
 
 
 func _on_learn_button_pressed() -> void:
-	#Set the text
+	# Set the text
 	$Popup/MarginContainer/VBoxContainer/LearnConfirmLabel.text = "[center]Learn [color=" + AbilityColor.get_color_by_string(selectedSpell.element).to_html(false) + "]" + selectedSpell.name + "[/color] for " + str(PlayerSkills.ALL_SKILLS.skills.get(selectedSpell.name).get("price")) + " xp?"
 	
+	# Show the confirmation popup
 	$Popup.visible = true
 
 
@@ -145,3 +148,4 @@ func _on_yes_button_pressed() -> void:
 		if spellCard.spellData == selectedSpell:
 			spellCard.set_owned()
 			break
+	_select_spell({}, null)
