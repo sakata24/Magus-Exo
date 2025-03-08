@@ -12,7 +12,7 @@ func _ready() -> void:
 	#Set EXP values
 	print("Player exp values: " + str(PersistentData.get_xp_counts()))
 	for xpDisplay in $ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer.get_children():
-		var xpValue = PersistentData.get_xp_counts()[xpDisplay.name + "_xp"]
+		var xpValue : int = PersistentData.get_xp_counts()[xpDisplay.name + "_xp"]
 		xpDisplay.text = str(xpValue)
 	
 	#Spawn Spell Cards
@@ -52,11 +52,6 @@ func _on_gui_input(event: InputEvent) -> void:
 		_select_spell({}, null)
 
 
-func _on_xp_button_toggled(toggled_on: bool) -> void:
-	if not toggled_on:
-		_sort_spells("")
-
-
 func _button_pressed(element: String):
 	selectedElement = element
 	for button in $ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer.get_children():
@@ -77,6 +72,7 @@ func _sort_spells(element : String):
 				card.visible = false
 
 func _on_sunder_toggled(toggled_on: bool) -> void:
+	_select_spell({}, null)
 	if toggled_on:
 		_button_pressed("sunder")
 	else:
@@ -85,6 +81,7 @@ func _on_sunder_toggled(toggled_on: bool) -> void:
 
 
 func _on_entropy_toggled(toggled_on: bool) -> void:
+	_select_spell({}, null)
 	if toggled_on:
 		_button_pressed("entropy")
 	else:
@@ -93,6 +90,7 @@ func _on_entropy_toggled(toggled_on: bool) -> void:
 
 
 func _on_growth_toggled(toggled_on: bool) -> void:
+	_select_spell({}, null)
 	if toggled_on:
 		_button_pressed("growth")
 	else:
@@ -101,6 +99,7 @@ func _on_growth_toggled(toggled_on: bool) -> void:
 
 
 func _on_construct_toggled(toggled_on: bool) -> void:
+	_select_spell({}, null)
 	if toggled_on:
 		_button_pressed("construct")
 	else:
@@ -109,6 +108,7 @@ func _on_construct_toggled(toggled_on: bool) -> void:
 
 
 func _on_flow_toggled(toggled_on: bool) -> void:
+	_select_spell({}, null)
 	if toggled_on:
 		_button_pressed("flow")
 	else:
@@ -117,6 +117,7 @@ func _on_flow_toggled(toggled_on: bool) -> void:
 
 
 func _on_wither_toggled(toggled_on: bool) -> void:
+	_select_spell({}, null)
 	if toggled_on:
 		_button_pressed("wither")
 	else:
