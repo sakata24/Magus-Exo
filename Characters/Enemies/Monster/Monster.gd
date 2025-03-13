@@ -21,7 +21,7 @@ var droppable = true
 # where i want to move
 var move_target
 # range at which i attack
-var attack_range = 19
+var attack_range = 29
 # how long to show indicator before attacking
 var attack_timer_time = 0.9
 
