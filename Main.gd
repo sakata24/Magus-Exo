@@ -47,6 +47,7 @@ func _load_level():
 		child.queue_free()
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
+	$Player.move_target = $Player.position
 	# init rooms
 	if level % boss_level_multiple == 0:
 		init_boss_room()

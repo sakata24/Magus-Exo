@@ -166,13 +166,12 @@ shape = SubResource("2")
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
-position = Vector2(1, 0)
-polygon = PackedVector2Array(13, 0, 12, -7, 7, -17, 17, -20, 24, -8, 25, 0, 24, 8, 17, 20, 7, 17, 12, 7)
+polygon = PackedVector2Array(16, -10, 12, -17, 0, -25, 10, -24, 21, -19, 26, -10, 28, 0, 26, 10, 21, 19, 10, 24, 0, 25, 12, 17, 16, 10, 18, 0)
 
 [node name="Indicator" type="Polygon2D" parent="DamageArea"]
 visible = false
 color = Color(1, 0, 0, 0.509804)
-polygon = PackedVector2Array(8, -17, 18, -20, 25, -8, 26, 0, 25, 8, 18, 20, 8, 17, 13, 7, 14, 0, 13, -7)
+polygon = PackedVector2Array(16, -10, 12, -17, 0, -25, 10, -24, 21, -19, 26, -10, 28, 0, 26, 10, 21, 19, 10, 24, 0, 25, 12, 17, 16, 10, 18, 0)
 
 [node name="PathTimer" type="Timer" parent="."]
 wait_time = 0.4
