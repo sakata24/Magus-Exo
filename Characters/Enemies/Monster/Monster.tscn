@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4ktyer38vnk4"]
+[gd_scene load_steps=27 format=3 uid="uid://c4ktyer38vnk4"]
 
 [ext_resource type="Script" uid="uid://dff3bryl7reu0" path="res://Characters/Enemies/Monster/Monster.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cryka57a5ond" path="res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="2_ih4cu"]
@@ -89,6 +89,23 @@ animations = [{
 atlas = ExtResource("2_ih4cu")
 region = Rect2(50, 48, 12, 15)
 
+[sub_resource type="Gradient" id="Gradient_q8gf7"]
+colors = PackedColorArray(1, 1, 1, 0.588235, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rj3aj"]
+gradient = SubResource("Gradient_q8gf7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiitb"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 18.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+gravity = Vector3(0, -50, 0)
+color_ramp = SubResource("GradientTexture1D_rj3aj")
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6r2c4"]
 radius = 9.0
 height = 28.0
@@ -123,6 +140,14 @@ visible = false
 texture_filter = 1
 texture = SubResource("AtlasTexture_8mwhe")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(2, 5)
+amount = 15
+draw_order = 2
+trail_lifetime = 0.5
+trail_sections = 20
+process_material = SubResource("ParticleProcessMaterial_oiitb")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_6r2c4")
 
@@ -145,6 +170,7 @@ position = Vector2(1, 0)
 polygon = PackedVector2Array(13, 0, 12, -7, 7, -17, 17, -20, 24, -8, 25, 0, 24, 8, 17, 20, 7, 17, 12, 7)
 
 [node name="Indicator" type="Polygon2D" parent="DamageArea"]
+visible = false
 color = Color(1, 0, 0, 0.509804)
 polygon = PackedVector2Array(8, -17, 18, -20, 25, -8, 26, 0, 25, 8, 18, 20, 8, 17, 13, 7, 14, 0, 13, -7)
 
