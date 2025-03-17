@@ -8,6 +8,7 @@ var ability_ref = null
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
 @onready var focus = $ProjectilePivot/ProjectileSpawnPos
+@onready var my_cam: PlayerCamera = get_node("Camera2D")
 
 signal moving_to()
 signal dashing_()
@@ -207,3 +208,6 @@ func spawn_light():
 	tween.tween_property(light, "scale", Vector2(1.5,1.5), 2)
 	await tween.finished
 	return true
+
+func shake():
+	my_cam.apply_shake()

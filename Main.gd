@@ -53,6 +53,9 @@ func _load_level():
 		init_boss_room()
 	else:
 		init_rooms()
+	# start audio
+	$AudioStreamPlayer.set_stream(AudioStreamMP3.load_from_file("res://Resources/audio/music/Dungeon_Delving.mp3"))
+	$AudioStreamPlayer.play()
 	# save the state of the game every level to be persisted
 	CustomResourceLoader.save_game()
 

@@ -58,9 +58,9 @@ hframes = 3
 modulate = Color(0.439216, 0.188235, 0.627451, 1)
 emitting = false
 amount = 45
-process_material = SubResource("ParticleProcessMaterial_hfdma")
 one_shot = true
 explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_hfdma")
 
 [node name="DelayTimer" type="Timer" parent="."]
 one_shot = true

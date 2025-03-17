@@ -1,4 +1,4 @@
-extends Monster
+class_name DarkMage extends Monster
 
 @onready var Minion = load("res://Characters/Enemies/Monster/Monster.tscn")
 
@@ -6,9 +6,11 @@ extends Monster
 @export var CRYSTAL_AMOUNT_PER_STAGE : Array = [4, 5]
 
 var invincible_stage = 0
-var invincible := true
+var invincible : bool = true
 var current_crystal_amount : int
 var playable_area : Rect2
+var time: float
+@onready var spell_cast_location: Node2D = $CastLocation
 
 signal health_changed
 
@@ -23,11 +25,14 @@ func _ready():
 
 # override so i dont move
 func _physics_process(delta: float) -> void:
-	pass
+	time += delta
+	position.y += sin(time * 2.5) * 0.25
+	
 
 func _set_player():
-	player = get_parent().get_parent().get_parent().get_node("Player")
-	_connect_to_HUD()
+	if get_tree().get_nodes_in_group("players").size() > 0:
+		player = get_tree().get_nodes_in_group("players")[0]
+		_connect_to_HUD()
 
 func _connect_to_HUD():
 	var HUD = player.get_parent().get_node("HUD")

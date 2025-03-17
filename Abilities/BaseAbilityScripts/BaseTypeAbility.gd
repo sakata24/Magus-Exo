@@ -99,14 +99,15 @@ func handle_other_interaction(thing: Node2D):
 	pass
 
 # Handles reaction interactions with other spells
-func _on_area_entered(area):
-	# make sure spells cant interact twice
-	remove_interactability()
-	# make sure only one spell handles it
-	if area.is_in_group("skills") and self.is_reaction_owner(area):
-		call_deferred("handle_reaction", area)
-	else:
-		return
+func _on_area_entered(area: Area2D):
+	if area.is_in_group("skills"):
+		# make sure spells cant interact twice
+		remove_interactability()
+		# make sure only one spell handles it
+		if area.is_in_group("skills") and self.is_reaction_owner(area):
+			call_deferred("handle_reaction", area)
+		else:
+			return
 
 # makes self un interactable after collision
 func remove_interactability():

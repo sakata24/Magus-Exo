@@ -1,3 +1,4 @@
+Node2D
 GPUParticles2D
 MonsterReelingState
 PlayerMovingState
@@ -12,4 +13,3 @@ Area2D
 Label
 DarkMageIcathianRainState
 DarkMageInvincibleState
-DarkMageIdleState
