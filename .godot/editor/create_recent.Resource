@@ -1,3 +1,4 @@
+AudioStreamMP3
 AbilityColor
 SpawnBehavior
 ImageTexture

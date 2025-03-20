@@ -22,7 +22,7 @@ func enter():
 	handle_dash_animation()
 
 func exit():
-	pass
+	player.set_collision_mask_value(4, true)
 
 func update(delta: float):
 	pass

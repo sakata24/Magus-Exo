@@ -11,11 +11,11 @@ func _ready() -> void:
 	$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
 	$Path2D/MoveTimer/SpawnTimer.start()
 	player = get_parent().get_parent().get_node("Player")
+	$DarkMage.connect("boss_dead", Callable(self, "_show_exit"))
 
 func _process(delta: float) -> void:
 	$Path2D/PathFollow2D.progress_ratio = $Path2D/MoveTimer.time_left/$Path2D/MoveTimer.wait_time
 	$Path2D/PathFollow2D2.progress_ratio = ($Path2D/MoveTimer.wait_time-$Path2D/MoveTimer.time_left)/$Path2D/MoveTimer.wait_time
-
 
 func _on_spawn_timer_timeout() -> void:
 	if SPAWN_ENEMIES and get_tree().get_nodes_in_group("monsters").size() < MAX_ENEMIES:
@@ -32,3 +32,6 @@ func _on_spawn_timer_timeout() -> void:
 		inst2.add_to_group("monsters")
 		$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
 		$Path2D/MoveTimer/SpawnTimer.start()
+
+func _show_exit():
+	$ExitDoor.visible = true

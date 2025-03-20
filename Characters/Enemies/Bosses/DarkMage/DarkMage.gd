@@ -13,11 +13,11 @@ var time: float
 @onready var spell_cast_location: Node2D = $CastLocation
 
 signal health_changed
+signal boss_dead
 
 func _ready():
 	# can i drop upgrades
 	droppable = false
-	health = 500
 	maxHealth = 500
 	add_to_group("monsters")
 	await call_deferred("_set_player")
@@ -35,11 +35,10 @@ func _set_player():
 		_connect_to_HUD()
 
 func _connect_to_HUD():
-	var HUD = player.get_parent().get_node("HUD")
-	connect("health_changed", HUD._on_boss_health_change)
-	HUD.show_boss_bar("Dark Mage", health)
+	var hud: HUD = player.get_parent().get_node("HUD")
+	connect("health_changed", hud._on_boss_health_change)
+	hud.show_boss_bar("Dark Mage", health)
 	emit_signal("health_changed", maxHealth, true)
-
 
 # hit by something
 func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
@@ -63,6 +62,8 @@ func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
 # when i die
 func die():
 	emit_signal("give_xp", bestowedXp)
+	emit_signal("boss_dead")
+	player.get_parent().get_node("HUD").get_node("MarginContainer/BossBar").visible = false # CHANGE THIS AFTER UI REFACTORING 
 	var drop
 	match randi_range(0, 2):
 		0: 

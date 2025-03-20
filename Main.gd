@@ -1,5 +1,7 @@
 extends Node2D
 
+var bgm = preload("res://Resources/audio/music/Dungeon_Delving.mp3")
+
 var map0 = preload("res://Maps/Map.tscn")
 var map1 = preload("res://Maps/Map1.tscn")
 var map2 = preload("res://Maps/Map2.tscn")
@@ -14,6 +16,14 @@ var dead = false
 var menus = []
 var level = 0
 var boss_level_multiple = 5 # default floor multiple boss spawns on
+enum {
+	NONE,
+	NORMAL,
+	BOSS
+}
+var level_type: int = NONE # the type of level
+
+
 
 # room hex: 25131a
 
@@ -34,7 +44,7 @@ func _ready():
 	$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
 	update_shopkeeper()
-	if Settings.dev_mode:
+	if Settings.is_dev_mode:
 		boss_level_multiple = 2
 
 # called every time a player goes thru the door
@@ -45,48 +55,58 @@ func _load_level():
 	# clean rooms node
 	for child in $Rooms.get_children():
 		child.queue_free()
+	# clean monsters group
+	for enemy in get_tree().get_nodes_in_group("monsters"):
+		# remove them from group first, so that generating rooms does not break the game
+		enemy.remove_from_group("monsters")
+		# then free them at the end of the frame
+		enemy.queue_free()
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
 	$Player.move_target = $Player.position
+	var prev_level_type = level_type
 	# init rooms
 	if level % boss_level_multiple == 0:
+		level_type = BOSS
 		init_boss_room()
 	else:
+		level_type = NORMAL
 		init_rooms()
-	# start audio
-	$AudioStreamPlayer.set_stream(AudioStreamMP3.load_from_file("res://Resources/audio/music/Dungeon_Delving.mp3"))
-	$AudioStreamPlayer.play()
+		if prev_level_type != NORMAL:
+			$AudioStreamPlayer.set_stream(bgm)
+			$AudioStreamPlayer.play()
 	# save the state of the game every level to be persisted
 	CustomResourceLoader.save_game()
 
 func init_boss_room():
 	var new_room = boss_level.instantiate()
 	$Rooms.add_child(new_room)
+	new_room.get_node("ExitDoor").connect("load_level", Callable(self, "_load_level"))
 
 func init_rooms():
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
 	for i in range(0,MAP_SIZE):
 		for j in range(0,MAP_SIZE):
-			var newRoom
+			var new_room
 			if Vector2i(0, 0) == Vector2i(i, j):
-				newRoom = spawn.instantiate()
+				new_room = spawn.instantiate()
 			elif exit_room == Vector2i(i, j):
-				newRoom = exit.instantiate()
-				newRoom.connect("load_level", Callable(self, "_load_level"))
+				new_room = exit.instantiate()
+				new_room.get_node("ExitDoor").connect("load_level", Callable(self, "_load_level"))
 			else:
 				var rand = randi_range(0,3);
 				if rand == 0:
-					newRoom = map0.instantiate()
+					new_room = map0.instantiate()
 				elif rand == 1:
-					newRoom = map1.instantiate()
+					new_room = map1.instantiate()
 				elif rand == 2:
-					newRoom = map2.instantiate()
+					new_room = map2.instantiate()
 				else:
-					newRoom = map3.instantiate()
-			newRoom.position = Vector2(position.x + (496.0 * i), position.y + (496.0 * j))
+					new_room = map3.instantiate()
+			new_room.position = Vector2(position.x + (496.0 * i), position.y + (496.0 * j))
 			
 			# block off edges of map
-			var tilemap: TileMapLayer = newRoom.get_node("NavigationRegion2D/Layer0")
+			var tilemap: TileMapLayer = new_room.get_node("NavigationRegion2D/Layer0")
 			# top
 			if j == 0:
 				for n in range(0, 31):
@@ -127,7 +147,7 @@ func init_rooms():
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(8, 7), 0)
-			$Rooms.add_child(newRoom)
+			$Rooms.add_child(new_room)
 	# fetch group of monsters on the map and connect their giveXp signals to player
 	var monsters = get_tree().get_nodes_in_group("monsters")
 	for monster in monsters:

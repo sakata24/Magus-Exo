@@ -3,7 +3,7 @@ extends CanvasLayer
 signal skill_changed(idx, newSkill)
 
 func _ready():
-	if Settings.dev_mode:
+	if Settings.is_dev_mode:
 		var skillDict = SkillDataHandler.get_skills()
 		for skill in skillDict:
 			if skill:
