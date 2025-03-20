@@ -1,7 +1,8 @@
+Node2D
+AudioStreamPlayer2D
 ExitDoor
 Sprite2D
 TileMapLayer
-Node2D
 GPUParticles2D
 MonsterReelingState
 PlayerMovingState
@@ -11,5 +12,3 @@ PlayerCastingState
 StateMachine
 AudioStreamPlayer
 SubViewport
-Timer
-Area2D

@@ -11,7 +11,6 @@ script = ExtResource("2_ptot3")
 polygon = PackedVector2Array(-50, -12, 50, -12, 50, 12, -50, 12)
 
 [node name="LifetimeTimer" parent="." index="1"]
-wait_time = 4.5
 autostart = true
 
 [node name="TickTimer" type="Timer" parent="." index="2"]

@@ -13,6 +13,7 @@ func enter():
 	cast_anim_timer.connect("timeout", _on_cast_anim_timer_timeout)
 	add_child(cast_anim_timer)
 	cast_anim_timer.start()
+	player.velocity = Vector2.ZERO
 
 func physics_update(delta):
 	if Input.is_action_pressed('Space') and player.canDash:

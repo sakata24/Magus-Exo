@@ -5,13 +5,15 @@ extends Node2D
 
 @onready var Mon = preload("res://Characters/Enemies/Monster/Monster.tscn")
 
-var player
+var player: Player
 
 func _ready() -> void:
 	$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
 	$Path2D/MoveTimer/SpawnTimer.start()
-	player = get_parent().get_parent().get_node("Player")
-	$DarkMage.connect("boss_dead", Callable(self, "_show_exit"))
+	player = get_tree().get_nodes_in_group("players")[0]
+	player.global_position = $PlayerSpawnLoc.global_position
+	player.move_target = player.global_position
+	$DarkMage.connect("boss_dead", Callable(self, "_boss_died"))
 
 func _process(delta: float) -> void:
 	$Path2D/PathFollow2D.progress_ratio = $Path2D/MoveTimer.time_left/$Path2D/MoveTimer.wait_time
@@ -33,5 +35,9 @@ func _on_spawn_timer_timeout() -> void:
 		$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
 		$Path2D/MoveTimer/SpawnTimer.start()
 
-func _show_exit():
+func _boss_died():
+	$Path2D/MoveTimer/SpawnTimer.stop()
+	show_exit()
+
+func show_exit():
 	$ExitDoor.visible = true

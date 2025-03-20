@@ -113,8 +113,8 @@ func _on_area_entered(area: Area2D):
 func remove_interactability():
 	set_collision_layer_value(3, false)
 	set_collision_mask_value(3, false)
-
-func _on_LifetimeTimer_timeout():
+	
+func _on_lifetime_timer_timeout() -> void:
 	despawn()
 
 func despawn():

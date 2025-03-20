@@ -1,7 +1,5 @@
 extends Node2D
 
-var bgm = preload("res://Resources/audio/music/Dungeon_Delving.mp3")
-
 var map0 = preload("res://Maps/Map.tscn")
 var map1 = preload("res://Maps/Map1.tscn")
 var map2 = preload("res://Maps/Map2.tscn")
@@ -72,9 +70,7 @@ func _load_level():
 	else:
 		level_type = NORMAL
 		init_rooms()
-		if prev_level_type != NORMAL:
-			$AudioStreamPlayer.set_stream(bgm)
-			$AudioStreamPlayer.play()
+		$AudioStreamPlayer.swap_bgm("default")
 	# save the state of the game every level to be persisted
 	CustomResourceLoader.save_game()
 

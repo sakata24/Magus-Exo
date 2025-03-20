@@ -54,7 +54,6 @@ script = ExtResource("2_q3syg")
 polygon = PackedVector2Array(36, -36, 48, -12, 48, 12, 36, 36, 12, 48, -12, 48, -36, 36, -48, 12, -48, -12, -36, -36, -12, -48, 12, -48)
 
 [node name="LifetimeTimer" parent="." index="1"]
-wait_time = 5.0
 autostart = true
 
 [node name="Texture" parent="." index="2"]

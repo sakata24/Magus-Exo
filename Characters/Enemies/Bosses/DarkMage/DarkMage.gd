@@ -73,6 +73,8 @@ func die():
 	if drop != null:
 		drop.position = position
 		get_parent().add_child(drop)
+	for enemy in get_tree().get_nodes_in_group("monsters"):
+		enemy.queue_free()
 	queue_free()
 
 

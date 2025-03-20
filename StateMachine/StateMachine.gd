@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 
 # handles chaning the child transition
 func on_child_transition(state: State, new_state_name: String):
+	print("leaving state: " + str(state) + " | entering state: " + new_state_name)
 	# check current state
 	if state != current_state:
 		return
