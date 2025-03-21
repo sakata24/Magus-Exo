@@ -39,6 +39,7 @@ func _turn():
 func _on_body_entered(body: PhysicsBody2D):
 	if body.is_in_group("players"):
 		body.hit(dmg)
+		queue_free()
 
 func handle_reaction(spell: BaseTypeAbility):
 	pass

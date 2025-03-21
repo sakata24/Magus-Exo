@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 var dashScene = load("res://Abilities/Dash.tscn")
 
 var remaining_casts = 0
-var ability_ref = null
+var ability_ref: String = ""
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
@@ -155,16 +155,17 @@ func apply_run_buffs(ability: BaseTypeAbility):
 	# player handles multicast
 	if ability.element == "sunder" and current_run_data.sunder_extra_casts > 0:
 		remaining_casts = current_run_data.sunder_extra_casts
-		ability_ref = ability.name
+		ability_ref = ability.abilityID
 		$MultiCastTimer.start()
 
 func _on_multi_cast_timer_timeout():
 	if remaining_casts > 0 and ability_ref:
+		print(ability_ref + "aaaa a a ")
 		spawn_ability(ability_ref)
 		remaining_casts -= 1
 		$MultiCastTimer.start()
 	else:
-		ability_ref = null
+		ability_ref =""
 
 func gain_xp(amount: int, elements: Array[String]):
 	for element in elements:

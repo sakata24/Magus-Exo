@@ -21,17 +21,13 @@ func physics_update(delta: float):
 	if Input.is_action_just_pressed('Space') and player.canDash:
 		Transitioned.emit(self, "Dashing")
 	if player.canCast:
-		if Input.is_action_just_pressed('Q'):
-			player.cast_ability(0)
+		if Input.is_action_just_pressed('Q') and await player.cast_ability(0):
 			Transitioned.emit(self, "Casting")
-		if Input.is_action_just_pressed('W'):
-			player.cast_ability(1)
+		if Input.is_action_just_pressed('W') and await player.cast_ability(1):
 			Transitioned.emit(self, "Casting")
-		if Input.is_action_just_pressed('E'):
-			player.cast_ability(2)
+		if Input.is_action_just_pressed('E') and await player.cast_ability(2):
 			Transitioned.emit(self, "Casting")
-		if Input.is_action_just_pressed('R'):
-			player.cast_ability(3)
+		if Input.is_action_just_pressed('R') and await player.cast_ability(3):
 			Transitioned.emit(self, "Casting")
 
 func handle_move_event():
