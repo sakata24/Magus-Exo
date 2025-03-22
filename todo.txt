@@ -6,6 +6,7 @@
 - BUG [Gameplay]: boss does not scale with level
 - show upgrades chosen
 - tooltips
+- fix vine
 - finish reactions:
 	burst,fork,justice,pursuit,swarm
 

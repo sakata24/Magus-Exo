@@ -78,6 +78,11 @@ func init_boss_room():
 	var new_room = boss_level.instantiate()
 	$Rooms.add_child(new_room)
 	new_room.get_node("ExitDoor").connect("load_level", Callable(self, "_load_level"))
+	for monster in get_tree().get_nodes_in_group("monsters"):
+		monster.maxHealth += level * 100
+		monster.health += level * 100
+		monster.my_dmg *= 1 + (level/10)
+		monster.baseDmg += 1 + (level/10)
 
 func init_rooms():
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
