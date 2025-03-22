@@ -1,0 +1,13 @@
+- settings
+- BUG [UI]: cooldown dash doesnt reflect on UI
+- BUG [Visual?]: particles for singularity show more than usual
+- BUG [Gameplay]: boss should not be able to be moved by singularity
+- BUG [Gameplay]: boss level monsters should not drop upgrades
+- BUG [Gameplay]: boss does not scale with level
+- show upgrades chosen
+- tooltips
+- finish reactions:
+	burst,fork,justice,pursuit,swarm
+
+- gameplay notes -
+- construct dmg scale w size
