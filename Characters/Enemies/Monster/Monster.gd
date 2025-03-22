@@ -25,7 +25,7 @@ var attack_range = 29
 # how long to show indicator before attacking
 var attack_timer_time = 0.9
 
-signal give_xp(xp, elements)
+signal give_xp(xp: int, elements: Array[String])
 
 func _ready():
 	speed = 50
@@ -94,7 +94,8 @@ func die():
 			drop.position = position
 			get_parent().add_child(drop)
 	# give the player xp
-	emit_signal("give_xp", bestowedXp, lastElementsHitBy)
+	give_xp.emit(bestowedXp, lastElementsHitBy)
+	print("bestowing")
 	queue_free()
 
 func _on_path_timer_timeout():

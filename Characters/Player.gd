@@ -168,6 +168,7 @@ func _on_multi_cast_timer_timeout():
 		ability_ref =""
 
 func gain_xp(amount: int, elements: Array[String]):
+	print("gaining xp")
 	for element in elements:
 		PersistentData.increase_xp(amount, element)
 

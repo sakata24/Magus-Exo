@@ -156,7 +156,13 @@ func init_rooms():
 		monster.health *= level
 		monster.my_dmg *= level
 		monster.baseDmg *= level
-		monster.connect("give_xp", Callable($Player, "gain_xp"))
+		monster.connect("give_xp", Callable(self, "gain_xp"))
+		print("connected monster: ", monster)
+
+func gain_xp(amount, elements):
+	print("gaining xp")
+	for element in elements:
+		PersistentData.increase_xp(amount, element)
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !dead:

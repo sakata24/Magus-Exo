@@ -33,6 +33,7 @@ func get_unlocked_skills():
 
 # increase the xp gained by value given
 func increase_xp(value: int, element: String):
+	print("increasing xp")
 	match element:
 		"sunder": sunder_xp += value
 		"entropy": entropy_xp += value
