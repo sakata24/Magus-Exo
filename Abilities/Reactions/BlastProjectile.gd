@@ -9,6 +9,7 @@ func init(init_speed, init_dmg, init_center, caster):
 	speed = init_speed
 	dmg = init_dmg
 	center = init_center
+	spell_caster = caster
 
 # called every frame
 func _physics_process(delta: float):

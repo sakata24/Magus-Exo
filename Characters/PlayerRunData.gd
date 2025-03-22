@@ -1,7 +1,7 @@
 class_name PlayerRunData extends Resource
 
 @export var sunder_dmg_boost = 1.0
-@export var sunder_extra_casts = 1
+@export var sunder_extra_casts = 0
 
 @export var entropy_speed_boost = 1.0
 @export var entropy_crit_chance = 0.0

@@ -154,17 +154,17 @@ func apply_run_buffs(ability: BaseTypeAbility):
 	current_run_data.apply_run_buffs(ability)
 	# player handles multicast
 	if ability.element == "sunder" and current_run_data.sunder_extra_casts > 0:
-		remaining_casts = current_run_data.sunder_extra_casts
+		remaining_casts = current_run_data.sunder_extra_casts 
 		ability_ref = ability.abilityID
 		$MultiCastTimer.start()
 
 func _on_multi_cast_timer_timeout():
 	if remaining_casts > 0 and ability_ref:
-		print(ability_ref + "aaaa a a ")
 		spawn_ability(ability_ref)
 		remaining_casts -= 1
 		$MultiCastTimer.start()
 	else:
+		remaining_casts = 0
 		ability_ref =""
 
 func gain_xp(amount: int, elements: Array[String]):

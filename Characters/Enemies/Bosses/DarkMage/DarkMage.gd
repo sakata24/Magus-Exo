@@ -23,7 +23,7 @@ func _ready():
 	await call_deferred("_set_player")
 	$StateMachine/Idle._go_invincible()
 
-# override so i dont move
+# override so i just chill in the center and float
 func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.25

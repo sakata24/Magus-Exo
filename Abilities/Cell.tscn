@@ -13,3 +13,9 @@ visible = false
 [node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("2_taewv")
 autoplay = "default"
+
+[node name="GrowthTimer" type="Timer" parent="." index="4"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]
