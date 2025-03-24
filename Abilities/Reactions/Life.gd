@@ -1,3 +1,7 @@
+# Life:
+# Creation: growth + entropy
+# spawn 4 larvae that chase the nearest target
+
 class_name LifeReaction extends Reaction
 
 var parents

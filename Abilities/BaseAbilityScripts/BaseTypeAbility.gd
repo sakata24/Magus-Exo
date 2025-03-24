@@ -50,7 +50,7 @@ func _physics_process(delta):
 
 # handles movement of bullet. Standard is a constant speed in a straight line.
 func handle_movement(delta):
-	myMovement.move_to(self, velocity.normalized() * delta * speed)
+	myMovement.apply_movement(self, delta)
 
 # on collision
 func _on_body_entered(body: PhysicsBody2D):
@@ -91,7 +91,7 @@ func get_new_reaction_priority_from_elements() -> int:
 		_: return 0
 
 # Handles collision when enemy is hit. Spells do not typically despawn.
-func handle_enemy_interaction(enemy: Node2D):
+func handle_enemy_interaction(enemy: Enemy):
 	enemy._hit(self.dmg, self.element, self.element, self.spell_caster)
 
 # handles other things like walls

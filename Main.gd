@@ -157,7 +157,6 @@ func init_rooms():
 		monster.my_dmg *= level
 		monster.baseDmg *= level
 		monster.connect("give_xp", Callable(self, "gain_xp"))
-		print("connected monster: ", monster)
 
 func gain_xp(amount, elements):
 	print("gaining xp")

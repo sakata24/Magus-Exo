@@ -1,3 +1,7 @@
+# Blast:
+# Creation: sunder + entropy
+# spawns projectiles that will explode from the source of the reaction
+
 class_name BlastReaction extends Reaction
 
 var dmg

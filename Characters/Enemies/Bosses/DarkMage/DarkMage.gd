@@ -16,6 +16,7 @@ signal health_changed
 signal boss_dead
 
 func _ready():
+	cc_immune = true
 	# can i drop upgrades
 	droppable = false
 	maxHealth = 500
@@ -84,7 +85,7 @@ func surround_player_with_minions():
 	for i in (5):
 		var rad = deg_to_rad(360/(5) * i - 45)
 		var inst: Enemy = Minion.instantiate()
-		inst.droppable = false
 		inst.global_position.x = player_pos.x + cos(rad) * 50
 		inst.global_position.y = player_pos.y + sin(rad) * 50
 		get_parent().call_deferred("add_child", inst)
+		inst.droppable = false

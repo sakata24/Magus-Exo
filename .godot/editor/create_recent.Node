@@ -1,9 +1,10 @@
+NavigationRegion2D
+NavigationAgent2D
 AnimatedSprite2D
 Sprite2D
 Timer
 Node2D
 Node
-NavigationAgent2D
 Polygon2D
 CollisionShape2D
 Area2D
@@ -12,4 +13,3 @@ ExitDoor
 TileMapLayer
 GPUParticles2D
 MonsterReelingState
-PlayerMovingState

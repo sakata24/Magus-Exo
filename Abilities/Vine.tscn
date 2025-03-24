@@ -11,7 +11,6 @@ script = ExtResource("2_cns7i")
 polygon = PackedVector2Array(-100, 2, -100, -2, 100, -2, 100, 2)
 
 [node name="LifetimeTimer" parent="." index="1"]
-wait_time = 2.0
 autostart = true
 
 [node name="Texture" parent="." index="2"]

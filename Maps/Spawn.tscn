@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://ch3yocec6sk0e" path="res://Interactables/UpgradeChest.tscn" id="2_s7opw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1vbm6"]
-vertices = PackedVector2Array(470, 234, 496, 234, 495, 262, 470, 262, 2, 262, 1, 234, 26, 234, 26, 262, 262, 26, 470, 26, 470, 470, 262, 470, 262, 496, 234, 496, 234, 470, 26, 470, 26, 26, 234, 26, 234, -1, 262, -1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 0), PackedInt32Array(3, 10, 11, 6), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(14, 15, 7), PackedInt32Array(6, 16, 17, 0, 3), PackedInt32Array(17, 18, 19, 8), PackedInt32Array(17, 8, 0), PackedInt32Array(6, 11, 14, 7)])
+vertices = PackedVector2Array(474, 230, 495.531, 230, 495.469, 262, 481.859, 262, 262, 496.469, 234, 496.523, 234, 481.859, 262, 481.859, 1.53125, 262, 1.46875, 230, 22, 230, 14.1406, 262, 230, 22, 230, -1.53125, 266, -1.46094, 266, 22, 470, 22, 470, 218, 26, 273.859, 222.141, 470, 474, 218, 470, 273.859, 273.859, 470, 470, 470, 26, 470, 22, 218, 26, 218, 26, 22)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 18, 17, 20, 0, 21, 22), PackedInt32Array(21, 23, 22), PackedInt32Array(19, 24, 18), PackedInt32Array(10, 25, 26, 18), PackedInt32Array(26, 27, 12), PackedInt32Array(0, 3, 21), PackedInt32Array(18, 11, 10), PackedInt32Array(22, 7, 6, 19), PackedInt32Array(12, 15, 18, 26)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-9, -12, 506, -11, 505, 506, -8, 507)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 

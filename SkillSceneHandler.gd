@@ -13,6 +13,7 @@ var overgrowthScene = load("res://Abilities/Reactions/Overgrowth.tscn")
 var breakScene = load("res://Abilities/Reactions/Break.tscn")
 var extendScene = load("res://Abilities/Reactions/Extend.tscn")
 var lifeScene = preload("res://Abilities/Reactions/Life.tscn")
+var pursuitScene = preload("res://Abilities/Reactions/Pursuit.tscn")
 
 # preloaded spells
 var crackScene = preload("res://Abilities/Crack.tscn")
@@ -42,6 +43,7 @@ func get_scene_by_name(name: String) -> Node2D:
 		"break": return breakScene.instantiate()
 		"extend": return extendScene.instantiate()
 		"life": return lifeScene.instantiate()
+		"pursuit": return pursuitScene.instantiate()
 		# abilities
 		"bolt": return boltScene.instantiate()
 		"charge": return chargeScene.instantiate()

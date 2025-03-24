@@ -147,6 +147,11 @@ wait_time = 0.08
 wait_time = 0.15
 one_shot = true
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 2
+avoidance_enabled = true
+debug_enabled = true
+
 [node name="ProjectilePivot" type="Node2D" parent="."]
 rotation = -6.28319
 

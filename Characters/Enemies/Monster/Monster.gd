@@ -28,7 +28,7 @@ var attack_timer_time = 0.9
 signal give_xp(xp: int, elements: Array[String])
 
 func _ready():
-	speed = 50
+	speed = 100
 	baseSpeed = 50
 	health = 100
 	maxHealth = 100
