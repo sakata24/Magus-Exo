@@ -54,21 +54,9 @@ theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
 [node name="BGColor" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2"]
+light_mask = 3
 layout_mode = 2
 color = Color(0.27451, 0.27451, 0.27451, 1)
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="SpellIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/MarginContainer2"]
-layout_mode = 2
-texture = ExtResource("1_ha2yh")
-expand_mode = 5
-stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
@@ -126,6 +114,7 @@ theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
 [node name="SpellIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2"]
+light_mask = 3
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("1_ha2yh")

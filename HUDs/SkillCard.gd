@@ -30,6 +30,9 @@ func _set_ui():
 func set_owned():
 	spellData.owned = true
 	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = true
+	$VBoxContainer/MarginContainer/MarginContainer/BGColor.light_mask = 0
+	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/BGColor.light_mask = 0
+	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.light_mask = 0
 
 
 func _on_gui_input(event: InputEvent) -> void:

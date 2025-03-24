@@ -1,7 +1,10 @@
+VisibleOnScreenNotifier2D
+Timer
+PointLight2D
+Control
 HBoxContainer
 Label
 VBoxContainer
-Control
 RichTextLabel
 Button
 MarginContainer
@@ -10,5 +13,3 @@ TextureRect
 ColorRect
 Container
 HSeparator
-HFlowContainer
-ScrollContainer
