@@ -1,4 +1,4 @@
-extends MarginContainer
+extends CanvasLayer
 
 @onready var SkillCard = preload("res://HUDs/SkillCard.tscn")
 @onready var SkillContainer = $ContentContainer/VBoxContainer/ScrollContainer/SkillContainer

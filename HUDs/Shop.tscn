@@ -106,20 +106,18 @@ point_count = 1
 width = 250
 curve = SubResource("Curve_t715p")
 
-[node name="Shop" type="MarginContainer" groups=["windows"]]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Shop" type="CanvasLayer" groups=["windows"]]
+layer = 0
 script = ExtResource("1_3qepl")
 
 [node name="ScreenDimmer" type="ColorRect" parent="."]
-layout_mode = 2
-color = Color(0, 0, 0, 0.333333)
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.75)
 
 [node name="BorderContainer" type="MarginContainer" parent="."]
-layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
@@ -201,7 +199,8 @@ flip_h = true
 flip_v = true
 
 [node name="ContentContainer" type="MarginContainer" parent="."]
-layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
 theme_override_constants/margin_left = 75
 theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
@@ -240,6 +239,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TitleSpellIcon" type="TextureRect" parent="ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+light_mask = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -268,6 +268,7 @@ theme_override_font_sizes/font_size = 50
 text = "Skill Shop"
 
 [node name="HSeparator" type="HSeparator" parent="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+light_mask = 3
 layout_mode = 2
 theme_override_constants/separation = -1
 
@@ -389,6 +390,7 @@ toggle_mode = true
 text = "10"
 
 [node name="HSeparator" type="HSeparator" parent="ContentContainer/VBoxContainer"]
+light_mask = 3
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -552,7 +554,10 @@ size_flags_horizontal = 3
 text = "No"
 
 [node name="HighlightHolder" type="Control" parent="."]
-layout_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="HighlightHolder"]
@@ -560,8 +565,7 @@ rotation = -1.22173
 rect = Rect2(-400, -5, 800, 10)
 
 [node name="PointLight2D" type="PointLight2D" parent="HighlightHolder/VisibleOnScreenNotifier2D"]
-light_mask = 2
-visibility_layer = 0
+light_mask = 3
 range_item_cull_mask = 2
 shadow_enabled = true
 texture = SubResource("CurveTexture_b75td")
@@ -583,7 +587,6 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/sunder" to="." method="_on_sunder_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/entropy" to="." method="_on_entropy_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/growth" to="." method="_on_growth_toggled"]

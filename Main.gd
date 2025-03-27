@@ -31,9 +31,8 @@ func _ready():
 	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_give_tome_spells"))
 	$Rooms/Home/Tome/ChangeSpells.connect("equip_skill", Callable(self, "_change_skills"))
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
-	$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
+	#$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
-	update_shopkeeper()
 	if Settings.dev_mode:
 		boss_level_multiple = 2
 
@@ -218,11 +217,6 @@ func _unlock_skill(name, element, price):
 				PersistentData.wither_xp -= price
 				PersistentData.unlockedSkills.append(name)
 				$Rooms/Home/Librarian/Shop.remove_item(name)
-	update_shopkeeper()
-
-# make librarian update inventory based on players unlocked skills
-func update_shopkeeper():
-	$Rooms/Home/Librarian.update_inventory(PersistentData.get_unlocked_skills(), {"sunder xp": PersistentData.sunder_xp, "entropy xp": PersistentData.entropy_xp, "construct xp": PersistentData.construct_xp, "growth xp": PersistentData.growth_xp, "flow xp": PersistentData.flow_xp, "wither xp": PersistentData.wither_xp})
 
 func _give_tome_spells(menu):
 	$Rooms/Home/Tome/ChangeSpells.init(PersistentData.get_unlocked_skills(), $Player.get_equipped_skills())

@@ -102,9 +102,11 @@ zoom = Vector2(2, 2)
 position_smoothing_speed = 20.0
 
 [node name="HUD" parent="." instance=ExtResource("4")]
+layer = 0
 
 [node name="Menu" parent="." instance=ExtResource("5")]
 process_mode = 3
+layer = 1
 visible = false
 
 [node name="Selection" parent="." instance=ExtResource("6_7rc56")]
