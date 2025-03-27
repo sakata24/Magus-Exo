@@ -17,11 +17,17 @@ func get_value() -> int:
 func get_types() -> Array:
 	return self.types
 
+func get_type(index: int) -> String:
+	if index > len(self.types) - 1:
+		return ""
+	else:
+		return types[index]
+
 func get_source():
 	return self.source
 
 func has_types() -> bool:
-	if types.len() > 0:
+	if len(self.types) > 0:
 		return true
 	else:
 		return false

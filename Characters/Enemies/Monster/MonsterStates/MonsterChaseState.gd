@@ -7,6 +7,7 @@ var chase_target: CharacterBody2D = null
 func enter():
 	animation.set_animation("idle")
 	animation.play()
+	chase_target = monster.player
 
 func update(delta: float):
 	if monster.velocity.x < 0:

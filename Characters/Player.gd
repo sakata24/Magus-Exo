@@ -172,13 +172,13 @@ func gain_xp(amount: int, elements: Array[String]):
 	for element in elements:
 		PersistentData.increase_xp(amount, element)
 
-func hit(damage):
-	health -= damage
+func hit(damage: DamageObject):
+	health -= damage.get_value()
 	emit_signal("player_hit", health, max_health)
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = Color(255, 0, 0)
 	get_parent().add_child(dmgNum)
-	dmgNum.set_value_and_pos(damage, self.global_position)
+	dmgNum.set_value_and_pos(damage.get_value(), self.global_position)
 
 func upgrade(upgrade_int):
 	match upgrade_int:

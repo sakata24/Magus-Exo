@@ -54,7 +54,9 @@ func handle_reaction(reactant: BaseTypeAbility):
 func _on_body_entered(body: PhysicsBody2D):
 	print(body, "hit w spike")
 	if body.is_in_group("players"):
-		body.hit(dmg)
+		var damage_object = DamageObject.new()
+		damage_object.init(dmg)
+		player.hit(damage_object)
 
 func _on_LifetimeTimer_timeout():
 	queue_free()
