@@ -33,7 +33,7 @@ func _ready():
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
 	#$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
-	if Settings.dev_mode:
+	if Settings.settings_dict["dev_mode"]:
 		boss_level_multiple = 2
 
 # called every time a player goes thru the door

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var SkillCard = preload("res://HUDs/SkillCard.tscn")
 @onready var SkillContainer = $ContentContainer/VBoxContainer/ScrollContainer/SkillContainer
+@onready var ConfirmPopup = preload("res://HUDs/ConfirmationPopup.tscn")
 
 var selectedElement
 var selectedSpell : Dictionary
@@ -52,7 +53,7 @@ func _select_spell(data : Dictionary, icon : CompressedTexture2D):
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/CostLabel.text = "Cost: " + str(spellCost)
 		
 		# Enable/disable the learn button if xp requirements met
-		if (expAmount < spellCost):
+		if (expAmount > spellCost):
 			$ContentContainer/VBoxContainer/LearnButton.disabled = true
 		else:
 			$ContentContainer/VBoxContainer/LearnButton.disabled = false
@@ -136,19 +137,15 @@ func _on_wither_toggled(toggled_on: bool) -> void:
 
 
 func _on_learn_button_pressed() -> void:
+	var inst = ConfirmPopup.instantiate()
 	# Set the text
-	$Popup/MarginContainer/VBoxContainer/LearnConfirmLabel.text = "[center]Learn [color=" + AbilityColor.get_color_by_string(selectedSpell.element).to_html(false) + "]" + selectedSpell.name + "[/color] for " + str(PlayerSkills.ALL_SKILLS.skills.get(selectedSpell.name).get("price")) + " xp?"
+	inst.set_label("[center]Learn [color=" + AbilityColor.get_color_by_string(selectedSpell.element).to_html(false) + "]" + selectedSpell.name + "[/color] for " + str(PlayerSkills.ALL_SKILLS.skills.get(selectedSpell.name).get("price")) + " xp?")
 	
 	# Show the confirmation popup
-	$Popup.visible = true
-
-
-func _on_no_button_pressed() -> void:
-	$Popup.visible = false
-
+	get_parent()._add_menu(inst)
+	inst.connect("accepted", _on_yes_button_pressed)
 
 func _on_yes_button_pressed() -> void:
-	$Popup.visible = false
 	# Subtract xp
 	# Add to learned spells
 	# Change to owned
@@ -164,7 +161,6 @@ func _on_highlight_timer_timeout() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	print("here")
 	set_process(false)
 	$HighlightHolder/VisibleOnScreenNotifier2D.position = Vector2(0,0)
 	$HighlightHolder/HighlightTimer.start(randi_range(3, 7))

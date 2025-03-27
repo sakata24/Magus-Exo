@@ -51,6 +51,8 @@ var canCast = true
 
 # on ready
 func _ready():
+	# Update the equipped skills
+	equippedSkills = PersistentData.get_equipped_skills()
 	# Make the player look right
 	move_target = Vector2(self.position.x, 10000.0)
 	self.add_to_group("players")

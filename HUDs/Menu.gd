@@ -3,19 +3,15 @@ extends CanvasLayer
 signal skill_changed(idx, newSkill)
 
 func _ready():
-	if Settings.dev_mode:
-		var skillDict = SkillDataHandler.get_skills()
-		for skill in skillDict:
-			if skill:
-				$VBoxContainer2/OptionButton.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
-				$VBoxContainer2/OptionButton2.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
-				$VBoxContainer2/OptionButton3.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
-				$VBoxContainer2/OptionButton4.add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+	if Settings.settings_dict["dev_mode"]:
+		var skillDict = PersistentData.get_equipped_skills()
+		for i in skillDict.size():
+			if skillDict[i]:
+				var skill = skillDict[i]
+				get_node("VBoxContainer2/OptionButton" + str(i+1)).add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
 	else:
-		$VBoxContainer2/OptionButton.visible = false
-		$VBoxContainer2/OptionButton2.visible = false
-		$VBoxContainer2/OptionButton3.visible = false
-		$VBoxContainer2/OptionButton4.visible = false
+		for optionButton in $VBoxContainer2.get_children():
+			optionButton.visible = false
 		$Descriptions.visible = false
 
 func _on_QuitButton_pressed():
@@ -23,6 +19,9 @@ func _on_QuitButton_pressed():
 
 func _on_QuitConfirm_confirmed():
 	get_tree().quit()
+
+func _on_settings_button_pressed() -> void:
+	pass # Replace with function body.
 
 func _on_save_button_pressed():
 	get_node("/root/CustomResourceLoader").save_game()

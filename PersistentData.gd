@@ -4,11 +4,12 @@ extends Node
 
 # player's unlocked skills
 var unlocked_skills = ["bolt", "charge", "rock", "fountain"]
+var equipped_skills = ["bolt", "charge", "rock", "fountain"]
 
 # player's XP counts
 var sunder_xp = 0
 var entropy_xp = 0
-var construct_xp = 0
+var construct_xp = 50
 var growth_xp = 0
 var flow_xp = 0
 var wither_xp = 0
@@ -30,6 +31,10 @@ func get_xp_counts() -> Dictionary:
 # return unlocked skills
 func get_unlocked_skills():
 	return unlocked_skills
+
+# return equipped skills
+func get_equipped_skills():
+	return equipped_skills
 
 # increase the xp gained by value given
 func increase_xp(value: int, element: String):

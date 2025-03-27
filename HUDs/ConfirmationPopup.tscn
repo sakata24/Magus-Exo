@@ -1,0 +1,136 @@
+[gd_scene load_steps=4 format=3 uid="uid://cma3ewvp13o2r"]
+
+[ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="1_6rtah"]
+[ext_resource type="Script" uid="uid://cxleb8gchjcn" path="res://HUDs/ConfirmationPopup.gd" id="1_waym6"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="2_waym6"]
+
+[node name="Popup" type="Popup"]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(300, 151)
+visible = true
+script = ExtResource("1_waym6")
+
+[node name="BorderContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BorderOutside" type="ColorRect" parent="BorderContainer"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BorderContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BGColor" type="ColorRect" parent="BorderContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.590491, 0.365052, 0.22069, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BorderContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BorderInside" type="ColorRect" parent="BorderContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BorderContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="BGColor" type="ColorRect" parent="BorderContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.592157, 0.364706, 0.219608, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("1_6rtah")
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("1_6rtah")
+stretch_mode = 4
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TextureRect" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6rtah")
+stretch_mode = 4
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("1_6rtah")
+stretch_mode = 4
+flip_h = true
+flip_v = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LearnConfirmLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_waym6")
+bbcode_enabled = true
+text = "[center]Learn spell for 20 xp"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="YesButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yes"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NoButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
