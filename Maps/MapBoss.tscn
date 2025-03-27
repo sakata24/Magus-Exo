@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://djshger1h1fb5" path="res://Maps/MapElements/ExitDoor.tscn" id="4_u44s8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1vbm6"]
-vertices = PackedVector2Array(470, 22, 470, 470, 273.859, 470, 26, 22, 262, 481.859, 262, 502, 234, 502, 234, 481.859, 222.141, 470, 26, 470)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 3), PackedInt32Array(8, 3, 2, 4, 7)])
+vertices = PackedVector2Array(470, 26, 470, 470, 262, 470, 26, 26, 262, 502, 234, 502, 234, 470, 26, 470)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(3, 2, 6), PackedInt32Array(3, 6, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, 496, -8, 496, 496, 288, 496, 288, 528, 208, 528, 208, 496, 0, 496)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 

@@ -47,7 +47,7 @@ func handle_movement(delta):
 	player.choose_sprite_direction()
 	
 	# do we need to move more or not
-	if player.position.distance_to(player.get_node("NavigationAgent2D").target_position) > 10:
+	if player.position.distance_to(player.get_node("NavigationAgent2D").get_next_path_position()) > 5:
 		player.set_velocity(player.movement)
 		player.move_and_slide()
 		player.movement = player.velocity

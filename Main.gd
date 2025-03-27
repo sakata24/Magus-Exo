@@ -54,11 +54,6 @@ func _load_level():
 	for child in $Rooms.get_children():
 		child.queue_free()
 	# clean monsters group
-	for enemy in get_tree().get_nodes_in_group("monsters"):
-		# remove them from group first, so that generating rooms does not break the game
-		enemy.remove_from_group("monsters")
-		# then free them at the end of the frame
-		enemy.queue_free()
 	$Player.position = Vector2i(250, 250)
 	$Player.moving = false
 	$Player.move_target = $Player.position
@@ -73,6 +68,18 @@ func _load_level():
 		$AudioStreamPlayer.swap_bgm("default")
 	# save the state of the game every level to be persisted
 	CustomResourceLoader.save_game()
+
+func cleanup_previous_level():
+	for enemy in get_tree().get_nodes_in_group("monsters"):
+		# remove them from group first, so that generating rooms does not break the game
+		enemy.remove_from_group("monsters")
+		# then free them at the end of the frame
+		enemy.queue_free()
+	for spell in get_tree().get_nodes_in_group("skills"):
+		# remove them from group first, so that generating rooms does not break the game
+		spell.remove_from_group("monsters")
+		# then free them at the end of the frame
+		spell.queue_free()
 
 func init_boss_room():
 	var new_room = boss_level.instantiate()
@@ -111,40 +118,40 @@ func init_rooms():
 			# top
 			if j == 0:
 				for n in range(0, 31):
-					if n == 13:
+					if n == 12:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(0, 3), 0)
-					elif 13 < n and n < 17:
+					elif 12 < n and n < 18:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(1, 0), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(5, 0), 0)
 					else:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(8, 7), 0)
 			# left
 			if i == 0:
 				for n in range(0, 31):
-					if 12 < n and n < 17:
+					if 11 < n and n < 18:
 						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(0, 1), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(0, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(8, 7), 0)
 			# bottom
 			if j == MAP_SIZE-1:
 				for n in range(0, 31):
-					if n == 13:
+					if n == 12:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(0, 4), 0)
-					elif 13 < n and n < 17:
+					elif 12 < n and n < 18:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(1, 4), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(5, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(8, 7), 0)
 			# right
 			if i == MAP_SIZE-1:
 				for n in range(0, 31):
-					if 12 < n and n < 17:
+					if 11 < n and n < 18:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 1), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(8, 7), 0)

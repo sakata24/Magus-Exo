@@ -9,11 +9,14 @@ var player: Player
 
 func _ready() -> void:
 	$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
-	$Path2D/MoveTimer/SpawnTimer.start()
 	player = get_tree().get_nodes_in_group("players")[0]
 	player.global_position = $PlayerSpawnLoc.global_position
 	player.move_target = player.global_position
 	$DarkMage.connect("boss_dead", Callable(self, "_boss_died"))
+	player.my_cam.global_position = $DarkMage.global_position
+	var tween = create_tween()
+	tween.connect("finished", _on_tween_finished)
+	tween.tween_property(player.my_cam, "global_position", player.global_position, 2)
 
 func _process(delta: float) -> void:
 	$Path2D/PathFollow2D.progress_ratio = $Path2D/MoveTimer.time_left/$Path2D/MoveTimer.wait_time
@@ -41,3 +44,7 @@ func _boss_died():
 
 func show_exit():
 	$ExitDoor.visible = true
+
+func _on_tween_finished() -> void:
+	player.my_cam.global_position = player.global_position
+	$Path2D/MoveTimer/SpawnTimer.start()

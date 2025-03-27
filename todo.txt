@@ -7,7 +7,6 @@
 - [UI] show upgrades chosen
 - [UI] tooltips
 - [???] screen shrink on boss
-- [Gameplay] tune up pathfinding
 - [Gameplay] finish reactions:
 	burst,fork,justice,swarm
 	burst: ?

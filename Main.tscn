@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=20 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" uid="uid://bsujmysejgy4k" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cbiw1tglncahn" path="res://Maps/Home.tscn" id="2_oh4kf"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d14papl6dxsqu" path="res://HUDs/Selection.tscn" id="6_7rc56"]
 [ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
 [ext_resource type="PackedScene" uid="uid://cpkd7jx2ts1lw" path="res://HUDs/Death.tscn" id="6_m4you"]
+[ext_resource type="AudioStream" uid="uid://bb15t6j533uux" path="res://Resources/audio/music/Dungeon_Delving.mp3" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://bwry02qor847m" path="res://BGMPlayer.gd" id="10_wkp8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cr0tb"]
@@ -129,6 +130,7 @@ position = Vector2(168, 104)
 color = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_20pc6")
 volume_db = -5.0
 script = ExtResource("10_wkp8b")
 

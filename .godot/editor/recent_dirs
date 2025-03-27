@@ -1,3 +1,4 @@
+res://Characters
 C:/Users/tksak/Documents/Exports/3.23.0
 C:/Users/tksak/OneDrive/Documents/GitHub/JustAnRPG
 res://Resources/abilities
@@ -12,7 +13,6 @@ res://
 res://Resources/abilities/enemy
 res://Abilities/AbilityScripts
 res://Abilities
-res://Characters
 res://Abilities/SpawnBehavior
 res://Abilities/BaseAbilityScripts
 res://Resources/hud_elements
@@ -20,4 +20,3 @@ res://HUDs/Selection
 res://Resources/npc
 res://HUDs/Icons
 res://Abilities/Animations/Spells
-res://Abilities/Animations

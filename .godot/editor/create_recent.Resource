@@ -1,7 +1,7 @@
+Resource
 AudioStreamMP3
 AbilityColor
 SpawnBehavior
 ImageTexture
 AtlasTexture
 SpriteFrames
-Resource
