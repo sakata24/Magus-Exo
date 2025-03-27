@@ -211,21 +211,21 @@ theme_override_constants/margin_left = 50
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="WindowType" type="HBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer"]
+[node name="MasterVolume" type="HBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/WindowType"]
+[node name="Label" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume"]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/WindowType"]
+[node name="HSlider" type="HSlider" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 value = 100.0
 
-[node name="Label2" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/WindowType"]
+[node name="Value" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "100"
@@ -253,4 +253,9 @@ theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Apply"
 
-[connection signal="item_selected" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/WindowType/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/WindowType/OptionButton" to="." method="_on_window_option_button_item_selected"]
+[connection signal="item_selected" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/Resolution/OptionButton" to="." method="_on_resolution_option_button_item_selected"]
+[connection signal="drag_ended" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume/HSlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="value_changed" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="ContentContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="ContentContainer/VBoxContainer/HBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]

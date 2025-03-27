@@ -10,12 +10,12 @@ var fountainSpriteRes = preload("res://Abilities/Animations/Spells/FountainSprit
 var crackSpriteRes = preload("res://Abilities/Animations/Spells/CrackSprite.tres")
 var stormSpriteRes = preload("res://Abilities/Animations/Spells/StormSprite.tres")
 
-var sunder_xp = 0
-var entropy_xp = 0
-var construct_xp = 0
-var growth_xp = 0
-var flow_xp = 0
-var wither_xp = 0
+var sunder_xp := 0
+var entropy_xp := 0
+var construct_xp := 0
+var growth_xp := 0
+var flow_xp := 0
+var wither_xp := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,12 +55,12 @@ func load_game():
 	# Get the data from the JSON object
 	var node_data = json.get_data()
 	if node_data:
-		sunder_xp = node_data["sunder_xp"]
-		entropy_xp = node_data["entropy_xp"]
-		construct_xp = node_data["construct_xp"]
-		growth_xp = node_data["growth_xp"]
-		flow_xp = node_data["flow_xp"]
-		wither_xp = node_data["wither_xp"]
+		sunder_xp = int(node_data["sunder_xp"])
+		entropy_xp = int(node_data["entropy_xp"])
+		construct_xp = int(node_data["construct_xp"])
+		growth_xp = int(node_data["growth_xp"])
+		flow_xp = int(node_data["flow_xp"])
+		wither_xp = int(node_data["wither_xp"])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

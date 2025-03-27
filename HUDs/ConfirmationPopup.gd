@@ -2,8 +2,13 @@ extends Popup
 
 signal accepted
 
+func _ready() -> void:
+	size.y = 0
+
 func set_label(text : String):
-	$MarginContainer/VBoxContainer/LearnConfirmLabel.text = "[center]" + text
+	$MarginContainer/VBoxContainer/LearnConfirmLabel.text = text
+	print(text)
+	size.y = 0
 
 
 func _on_yes_button_pressed() -> void:

@@ -37,7 +37,7 @@ script = ExtResource("1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.75)
+color = Color(0, 0, 0, 0.9)
 
 [node name="MenuLabel" type="Label" parent="."]
 anchors_preset = 5
@@ -54,6 +54,7 @@ label_settings = SubResource("LabelSettings_0pibi")
 horizontal_alignment = 3
 
 [node name="QuitConfirm" type="ConfirmationDialog" parent="."]
+initial_position = 1
 dialog_text = "Exit the game?"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

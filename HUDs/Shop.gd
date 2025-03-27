@@ -146,9 +146,11 @@ func _on_learn_button_pressed() -> void:
 	inst.connect("accepted", _on_yes_button_pressed)
 
 func _on_yes_button_pressed() -> void:
+	# TO DO ------------
 	# Subtract xp
 	# Add to learned spells
-	# Change to owned
+	# ------------------
+	
 	for spellCard in SkillContainer.get_children():
 		if spellCard.spellData == selectedSpell:
 			spellCard.set_owned()

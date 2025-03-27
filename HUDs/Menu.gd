@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var SettingMenu = preload("res://HUDs/Settings.tscn")
+
 signal skill_changed(idx, newSkill)
 
 func _ready():
@@ -21,7 +23,7 @@ func _on_QuitConfirm_confirmed():
 	get_tree().quit()
 
 func _on_settings_button_pressed() -> void:
-	pass # Replace with function body.
+	get_parent()._add_menu(SettingMenu.instantiate())
 
 func _on_save_button_pressed():
 	get_node("/root/CustomResourceLoader").save_game()

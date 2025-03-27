@@ -6,9 +6,13 @@
 
 [node name="Popup" type="Popup"]
 auto_translate_mode = 1
-initial_position = 1
-size = Vector2i(300, 151)
+initial_position = 2
+size = Vector2i(300, 204)
 visible = true
+min_size = Vector2i(300, 0)
+max_size = Vector2i(32768, 250)
+content_scale_mode = 1
+content_scale_stretch = 1
 script = ExtResource("1_waym6")
 
 [node name="BorderContainer" type="MarginContainer" parent="."]
@@ -111,8 +115,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("2_waym6")
 bbcode_enabled = true
-text = "[center]Learn spell for 20 xp"
+text = "Learn spell for 20 xp"
 fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
