@@ -9,6 +9,7 @@ var debuffedEnemies
 # called after creation and add_child
 func init(reaction_components: Dictionary):
 	spawn_reaction_name("sickness!", get_parent(), Color("#ffd966"), Color("#591b82"))
+	super(reaction_components)
 
 # every tick add debuff
 func _on_tick_timer_timeout():

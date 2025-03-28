@@ -12,6 +12,7 @@ func _ready():
 
 func init(reaction_components: Dictionary):
 	spawn_reaction_name("extinction!", get_parent(), Color("#663c33"), Color("#591b82"))
+	super(reaction_components)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

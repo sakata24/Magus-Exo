@@ -3,4 +3,12 @@
 [ext_resource type="Script" uid="uid://cku8lyeheo4iq" path="res://Abilities/Reactions/Swarm.gd" id="1_3f17e"]
 
 [node name="Swarm" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_3f17e")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

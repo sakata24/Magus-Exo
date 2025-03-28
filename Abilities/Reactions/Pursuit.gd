@@ -13,6 +13,7 @@ func init(reaction_components: Dictionary):
 		reaction_components["reactant"].myMovement = Movement.get_movement_object_by_name("homing")
 	apply_buff_to_spell(reaction_components["reactant"])
 	apply_buff_to_spell(reaction_components["source"])
+	super(reaction_components)
 
 func apply_buff_to_spell(spell: BaseTypeAbility):
 	# validate it is homing, then auto assign a target and increase its dmg

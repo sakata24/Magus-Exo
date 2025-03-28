@@ -1,14 +1,14 @@
+Timer
+Sprite2D
 CollisionShape2D
 Area2D
 GPUParticles2D
-Timer
 Trail
 Camera2D
 Player
 NavigationRegion2D
 NavigationAgent2D
 AnimatedSprite2D
-Sprite2D
 Node2D
 Node
 Polygon2D

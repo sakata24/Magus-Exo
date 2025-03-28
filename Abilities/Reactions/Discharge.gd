@@ -14,6 +14,7 @@ func _ready():
 
 func init(reaction_components: Dictionary):
 	spawn_reaction_name("discharge!", get_parent(), Color("#ffd966"), Color("#663c33"))
+	super(reaction_components)
 
 # calculate and set the discharge reaction size
 func set_discharge_size():

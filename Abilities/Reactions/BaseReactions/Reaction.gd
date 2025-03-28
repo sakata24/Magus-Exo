@@ -2,8 +2,10 @@ class_name Reaction extends Node2D
 
 var reactionText = preload("res://HUDs/ReactionText.tscn")
 
+var caster = null
+
 func init(reaction_components: Dictionary):
-	pass
+	caster = reaction_components["source"].spell_caster
 
 func spawn_reaction_name(name: String, origin_spell: Node2D, dmg_color_1: Color, dmg_color_2: Color):
 	var reactionText = reactionText.instantiate()
