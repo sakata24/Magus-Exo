@@ -20,12 +20,12 @@ enum {
 @onready var owned_list = $Control/VBoxContainer/HBoxContainer/OwnedAbilities/ItemList
 
 func _ready() -> void:
-	pass
+	init()
 
 # initialize the UI
-func init(init_owned, init_equipped):
-	owned_skills = init_owned
-	equipped_skills = init_equipped
+func init():
+	owned_skills = PersistentData.get_unlocked_skills()
+	equipped_skills = PersistentData.get_equipped_skills()
 	selected_item = 9999
 	load_equipped_ability(ability1, "Q: ", equipped_skills[0])
 	load_equipped_ability(ability2, "W: ", equipped_skills[1])
@@ -88,5 +88,5 @@ func _on_equip_skill_pressed() -> void:
 		# add the skill to be equipped to replace the one in that slot
 		equipped_skills[selected_item] = owned_list.get_item_text(owned_list.get_selected_items()[0])
 		emit_signal("equip_skill", selected_item, owned_list.get_item_text(owned_list.get_selected_items()[0]))
-		init(owned_skills, equipped_skills)
+		init()
 		update_ui()

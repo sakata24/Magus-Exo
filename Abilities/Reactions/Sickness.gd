@@ -38,7 +38,6 @@ func debuff_enemies_in_radius():
 			var rand = randi_range(0, 2)
 			if rand == 0:
 				body.can_move = false
-				body.velocity
 			elif rand == 1:
 				body.speed *= 0.5
 			elif rand == 2:

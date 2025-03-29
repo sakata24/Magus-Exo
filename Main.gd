@@ -28,11 +28,9 @@ func _ready():
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	$Rooms/Home.connect("load_level", Callable(self, "_load_level"))
 	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_add_menu"))
-	$Rooms/Home/Tome.connect("button_pressed", Callable(self, "_give_tome_spells"))
-	$Rooms/Home/Tome/ChangeSpells.connect("equip_skill", Callable(self, "_change_skills"))
 	$Rooms/Home/Librarian.connect("button_pressed", Callable(self, "_add_menu"))
-	#$Rooms/Home/Librarian/Shop.connect("purchased", Callable(self, "_unlock_skill"))
 	$Rooms/Home/Armorer.connect("button_pressed", Callable(self, "_add_menu"))
+	$AudioStreamPlayer.play()
 	if Settings.settings_dict["dev_mode"]:
 		boss_level_multiple = 2
 
@@ -67,7 +65,7 @@ func init_rooms():
 				newRoom = spawn.instantiate()
 			elif exit_room == Vector2i(i, j):
 				newRoom = exit.instantiate()
-				newRoom.connect("load_level", Callable(self, "_load_level"))
+				newRoom.get_node("ExitDoor").connect("load_level", Callable(self, "_load_level"))
 			else:
 				var rand = randi_range(0,3);
 				if rand == 0:
@@ -179,47 +177,6 @@ func _change_skills(idx, newSkill):
 	$Player.equippedSkills[idx] = newSkill
 	$Player.init_skill_cooldowns()
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
-
-func _unlock_skill(name, element, price):
-	# check if player already has that spell
-	if(PersistentData.get_unlocked_skills().has(name)):
-		print("already has: " + name)
-		return
-	# check if player has enough xp for the transaction, then add it to the players spells
-	match element:
-		"sunder":
-			if PersistentData.sunder_xp >= price:
-				PersistentData.sunder_xp -= price
-				PersistentData.unlockedSkills.append(name)
-				$Rooms/Home/Librarian/Shop.remove_item(name)
-		"entropy":
-			if PersistentData.entropy_xp >= price:
-				PersistentData.entropy_xp -= price
-				PersistentData.unlockedSkills.append(name)
-				$Rooms/Home/Librarian/Shop.remove_item(name)
-		"construct":
-			if PersistentData.construct_xp >= price:
-				PersistentData.construct_xp -= price
-				PersistentData.unlockedSkills.append(name)
-				$Rooms/Home/Librarian/Shop.remove_item(name)
-		"growth":
-			if PersistentData.growth_xp >= price:
-				PersistentData.growth_xp -= price
-				PersistentData.unlockedSkills.append(name)
-				$Rooms/Home/Librarian/Shop.remove_item(name)
-		"flow":
-			if PersistentData.flow_xp >= price:
-				PersistentData.flow_xp -= price
-				PersistentData.unlockedSkills.append(name)
-				$Rooms/Home/Librarian/Shop.remove_item(name)
-		"wither":
-			if PersistentData.wither_xp >= price:
-				PersistentData.wither_xp -= price
-				PersistentData.unlockedSkills.append(name)
-				$Rooms/Home/Librarian/Shop.remove_item(name)
-
-func _give_tome_spells(menu):
-	$Rooms/Home/Tome/ChangeSpells.init(PersistentData.get_unlocked_skills(), $Player.get_equipped_skills())
 
 func despawn_light():
 	var tween = create_tween()

@@ -7,10 +7,22 @@ signal skill_changed(idx, newSkill)
 func _ready():
 	if Settings.settings_dict["dev_mode"]:
 		var skillDict = PersistentData.get_equipped_skills()
-		for i in skillDict.size():
-			if skillDict[i]:
-				var skill = skillDict[i]
-				get_node("VBoxContainer2/OptionButton" + str(i+1)).add_icon_item(load("res://Resources/icons/" + skill + ".png"), skill)
+		# Load skills in drop down menu
+		for k in PlayerSkills.ALL_SKILLS["skills"]:
+			$VBoxContainer2/OptionButton1.add_icon_item(load("res://Resources/icons/" + k + ".png"), k)
+			$VBoxContainer2/OptionButton2.add_icon_item(load("res://Resources/icons/" + k + ".png"), k)
+			$VBoxContainer2/OptionButton3.add_icon_item(load("res://Resources/icons/" + k + ".png"), k)
+			$VBoxContainer2/OptionButton4.add_icon_item(load("res://Resources/icons/" + k + ".png"), k)
+		# Show equipped skill
+		for i in $VBoxContainer2/OptionButton1.item_count:
+			if $VBoxContainer2/OptionButton1.get_item_text(i) == skillDict[0]:
+				$VBoxContainer2/OptionButton1.selected = i
+			if $VBoxContainer2/OptionButton2.get_item_text(i) == skillDict[1]:
+				$VBoxContainer2/OptionButton2.selected = i
+			if $VBoxContainer2/OptionButton3.get_item_text(i) == skillDict[2]:
+				$VBoxContainer2/OptionButton3.selected = i
+			if $VBoxContainer2/OptionButton4.get_item_text(i) == skillDict[3]:
+				$VBoxContainer2/OptionButton4.selected = i
 	else:
 		for optionButton in $VBoxContainer2.get_children():
 			optionButton.visible = false

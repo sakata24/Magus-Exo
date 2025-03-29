@@ -30,14 +30,13 @@ font = ExtResource("3_w5m8w")
 font_size = 32
 
 [node name="Menu" type="CanvasLayer" groups=["windows"]]
-layer = 2
 script = ExtResource("1")
 
 [node name="BackgroundDimmer" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.392157)
+color = Color(0, 0, 0, 0.8)
 
 [node name="MenuLabel" type="Label" parent="."]
 anchors_preset = 5
@@ -54,6 +53,7 @@ label_settings = SubResource("LabelSettings_0pibi")
 horizontal_alignment = 3
 
 [node name="QuitConfirm" type="ConfirmationDialog" parent="."]
+initial_position = 1
 dialog_text = "Exit the game?"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -73,6 +73,11 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_w5m8w")
 text = "QUIT"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w5m8w")
+text = "Settings"
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -110,7 +115,7 @@ offset_right = 55.0
 offset_bottom = 46.0
 grow_vertical = 2
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer2"]
+[node name="OptionButton1" type="OptionButton" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_w5m8w")
 
@@ -187,8 +192,9 @@ horizontal_alignment = 2
 
 [connection signal="confirmed" from="QuitConfirm" to="." method="_on_QuitConfirm_confirmed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer2/OptionButton1" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton2" to="." method="_on_option_button_2_item_selected"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton3" to="." method="_on_option_button_3_item_selected"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton4" to="." method="_on_option_button_4_item_selected"]
