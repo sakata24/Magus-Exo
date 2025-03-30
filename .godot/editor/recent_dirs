@@ -1,3 +1,5 @@
+res://Resources/enemies
+C:/Users/tksak/Documents/Exports/3.28.0
 res://Characters
 C:/Users/tksak/Documents/Exports/3.23.0
 C:/Users/tksak/OneDrive/Documents/GitHub/JustAnRPG
@@ -7,7 +9,6 @@ C:/Users/tksak/Documents/Exports/3.20.0
 C:/Users/tksak/Documents/Exports
 res://Resources/audio/resource
 res://Resources/2D Pixel Dungeon Asset Pack/character and tileset
-res://Resources/enemies
 res://Resources
 res://
 res://Resources/abilities/enemy
@@ -19,4 +20,3 @@ res://Resources/hud_elements
 res://HUDs/Selection
 res://Resources/npc
 res://HUDs/Icons
-res://Abilities/Animations/Spells

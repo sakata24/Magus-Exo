@@ -11,9 +11,9 @@ func enter():
 
 func update(delta: float):
 	if monster.velocity.x < 0:
-		animation.flip_h = false
-	elif monster.velocity.x > 0:
 		animation.flip_h = true
+	elif monster.velocity.x > 0:
+		animation.flip_h = false
 
 func physics_update(delta: float):
 	if !chase_target:
@@ -25,6 +25,6 @@ func physics_update(delta: float):
 		Transitioned.emit(self, "Attacking")
 		return
 	if monster.global_position.distance_to(chase_target.global_position) > monster.attack_range:
-		var new_velocity = monster.to_local(monster.move_target).normalized() * monster.speed
+		var new_velocity = monster.global_position.direction_to(monster.move_target) * monster.speed
 		monster.velocity = new_velocity
 		return
