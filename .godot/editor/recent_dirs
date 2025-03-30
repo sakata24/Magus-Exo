@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 res://HUDs
+=======
+res://Resources/enemies
+C:/Users/tksak/Documents/Exports/3.28.0
+res://Characters
+C:/Users/tksak/Documents/Exports/3.23.0
+C:/Users/tksak/OneDrive/Documents/GitHub/JustAnRPG
+res://Resources/abilities
+C:/Users/tksak/OneDrive/Documents/GitHub/JustAnRPG/Resources
+C:/Users/tksak/Documents/Exports/3.20.0
+C:/Users/tksak/Documents/Exports
+res://Resources/audio/resource
+res://Resources/2D Pixel Dungeon Asset Pack/character and tileset
+res://Resources
+>>>>>>> main
 res://
 res://Resources
 res://Resources/npc
@@ -13,9 +28,12 @@ res://Resources/hud_elements
 res://HUDs/Selection
 res://Resources/abilities
 res://HUDs/Icons
+<<<<<<< HEAD
 res://Abilities/Animations/Spells
 res://Abilities/Animations
 C:/Users/tksak/Documents
 res://Maps
 res://Resources/2D Pixel Dungeon Asset Pack/character and tileset
 res://Characters/Enemies
+=======
+>>>>>>> main
