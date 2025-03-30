@@ -42,21 +42,21 @@ func _connect_to_HUD():
 	emit_signal("health_changed", maxHealth, true)
 
 # hit by something
-func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
+func _hit(damage: DamageObject):
 	if invincible:
 		# Spawn "Immune" damage number
 		var dmgNum = damageNumber.instantiate()
-		dmgNum.set_colors(AbilityColor.get_color_by_string(dmg_type_1), AbilityColor.get_color_by_string(dmg_type_2))
+		dmgNum.set_colors(AbilityColor.get_color_by_string(damage.get_type(0)), AbilityColor.get_color_by_string(damage.get_type(1)))
 		get_parent().add_child(dmgNum)
 		dmgNum.set_value_and_pos("Immune", self.global_position)
 		# Update UI
 		emit_signal("health_changed", health, true)
 	else: #Hitting the half health threshold
-		if (invincible_stage == 0 && health-dmg_to_take <= maxHealth/2):
-			super(dmg_to_take, dmg_type_1, dmg_type_2, caster)
+		if (invincible_stage == 0 && health-damage.get_value() <= maxHealth/2):
+			super(damage)
 			$StateMachine/Attack.go_invincible()
 		else:
-			super(dmg_to_take, dmg_type_1, dmg_type_2, caster)
+			super(damage)
 			emit_signal("health_changed", health, false)
 
 

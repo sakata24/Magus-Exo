@@ -39,5 +39,7 @@ func find_target():
 
 func _on_body_entered(body) -> void:
 	if body.is_in_group("monsters"):
-		body._hit(dmg, "growth", "entropy", spell_caster)
+		var damage_object = DamageObject.new()
+		damage_object.init(dmg, ["growth", "entropy"], spell_caster)
+		body._hit(damage_object)
 		queue_free()

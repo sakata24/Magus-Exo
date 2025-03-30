@@ -35,5 +35,7 @@ func on_attack_timer_timeout():
 	animation.play()
 	for entity: PhysicsBody2D in monster.get_node("DamageArea").get_overlapping_bodies():
 		if entity and !entity.is_in_group("monsters"):
-			entity.hit(monster.my_dmg)
+			var damage_object = DamageObject.new()
+			damage_object.init(monster.my_dmg)
+			entity.hit(damage_object)
 	Transitioned.emit(self, "Reeling")

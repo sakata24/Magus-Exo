@@ -11,6 +11,7 @@ func init(reaction_components: Dictionary):
 	set_singularity_size()
 	init_particles()
 	spawn_reaction_name("singularity!", get_parent(), Color("#7a0002"), Color("#591b82"))
+	super(reaction_components)
 
 # calculate and set the size of the singularity reaction
 func set_singularity_size():

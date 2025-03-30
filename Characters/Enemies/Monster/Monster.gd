@@ -53,23 +53,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 # hit by something
-func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
-	# reduce my hp
-	health -= dmg_to_take
-	# set the element to give player xp for
-	if dmg_type_1 == dmg_type_2:
-		lastElementsHitBy = [dmg_type_1]
-	else:
-		lastElementsHitBy = [dmg_type_1, dmg_type_2]
-	var dmgNum = damageNumber.instantiate()
-	dmgNum.set_colors(AbilityColor.get_color_by_string(dmg_type_1), AbilityColor.get_color_by_string(dmg_type_2))
-	get_parent().add_child(dmgNum)
-	dmgNum.set_value_and_pos(dmg_to_take, self.global_position)
+func _hit(damage: DamageObject):
+	super(damage)
 	# aggro on the caster
-	#if caster and caster.name == "Player":
-		#aggro = true
-		#player = caster
-		#$PathTimer.start()
+	if damage.has_source() and damage.get_source() is Player:
+		aggro = true
+		player = damage.get_source()
+		$PathTimer.start()
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):

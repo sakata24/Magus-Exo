@@ -14,6 +14,7 @@ func _ready():
 
 func init(reaction_components: Dictionary):
 	spawn_reaction_name("discharge!", get_parent(), Color("#ffd966"), Color("#663c33"))
+	super(reaction_components)
 
 # calculate and set the discharge reaction size
 func set_discharge_size():
@@ -31,4 +32,6 @@ func init_particles():
 func _on_attack_timer_timeout():
 	for body in get_overlapping_bodies():
 		if body.is_in_group("monsters"):
-			body._hit(5 + floor(get_parent().dmg/6), "entropy", "construct", get_parent().spell_caster)
+			var damage_object = DamageObject.new()
+			damage_object.init(5 + floor(get_parent().dmg/6), ["entropy", "construct"], get_parent().spell_caster)
+			body._hit(damage_object)

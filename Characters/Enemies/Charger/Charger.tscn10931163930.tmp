@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfp0saptduhg3"]
+[gd_scene load_steps=16 format=3 uid="uid://dfp0saptduhg3"]
 
 [ext_resource type="Script" uid="uid://ev5mkcvdufn3" path="res://Characters/Enemies/Charger/Charger.gd" id="1_kvkxl"]
 [ext_resource type="Texture2D" uid="uid://dmxm2tc7fa5iq" path="res://Resources/enemies/charger.png" id="2_vyloo"]
@@ -10,67 +10,35 @@
 [ext_resource type="Script" uid="uid://cv4souy4l8cjd" path="res://Characters/Enemies/Charger/ChargerStates/ChargerDashingState.gd" id="8_0ba1v"]
 [ext_resource type="Script" uid="uid://dy3ivdu5piffg" path="res://Characters/Enemies/Monster/MonsterStates/MonsterStunnedState.gd" id="8_nam1u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyloo"]
-atlas = ExtResource("2_vyloo")
-region = Rect2(0, 32, 48, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tubmy"]
 atlas = ExtResource("2_vyloo")
-region = Rect2(48, 32, 48, 32)
+region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dweg"]
 atlas = ExtResource("2_vyloo")
 region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_456cm"]
-atlas = ExtResource("2_vyloo")
-region = Rect2(48, 0, 48, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_fpaif"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vyloo")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tubmy")
 }],
 "loop": true,
 "name": &"dashing",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0dweg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_456cm")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 2.0
+"speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_vyloo"]
-colors = PackedColorArray(1, 1, 1, 0.588235, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rj3aj"]
-gradient = SubResource("Gradient_vyloo")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tubmy"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 18.0
-angle_min = 1.07288e-05
-angle_max = 1.07288e-05
-gravity = Vector3(0, -50, 0)
-color_ramp = SubResource("GradientTexture1D_rj3aj")
-turbulence_enabled = true
-turbulence_noise_strength = 20.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vyloo"]
-radius = 7.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vyloo"]
+size = Vector2(35, 6)
 
 [sub_resource type="CircleShape2D" id="2"]
 radius = 75.0
@@ -95,27 +63,17 @@ script = ExtResource("1_kvkxl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fpaif")
 animation = &"idle"
-autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(-7, 0)
-amount = 15
-draw_order = 2
-trail_lifetime = 0.5
-trail_sections = 20
-process_material = SubResource("ParticleProcessMaterial_tubmy")
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 0)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_vyloo")
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_vyloo")
 
 [node name="AggroRange" type="Area2D" parent="."]
 collision_layer = 0

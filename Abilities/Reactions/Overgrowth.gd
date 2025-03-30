@@ -11,6 +11,7 @@ func init(reaction_components: Dictionary):
 	else:
 		set_construct_to_growth(reaction_components["reactant"])
 		spawn_reaction_name("overgrowth!", reaction_components["reactant"], Color("#663c33"), Color("#36c72c"))
+	super(reaction_components)
 	
 
 # sets the construct spell that generated this reaction to growth.

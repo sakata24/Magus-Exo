@@ -18,16 +18,16 @@ func _physics_process(delta: float) -> void:
 	pass
 
 # hit by something
-func _hit(dmg_to_take, dmg_type_1, dmg_type_2, caster):
+func _hit(damage: DamageObject):
 	if not invincible:
 		# Reduce my hp
-		health -= dmg_to_take
+		health -= damage.get_value()
 		
 		# Spawn damage number
 		var dmgNum = damageNumber.instantiate()
-		dmgNum.set_colors(AbilityColor.get_color_by_string(dmg_type_1), AbilityColor.get_color_by_string(dmg_type_2))
+		dmgNum.set_colors(AbilityColor.get_color_by_string(damage.get_type(0)), AbilityColor.get_color_by_string(damage.get_type(1)))
 		get_parent().add_child(dmgNum)
-		dmgNum.set_value_and_pos(dmg_to_take, self.global_position)
+		dmgNum.set_value_and_pos(damage.get_value(), self.global_position)
 		
 		if health <= 0:
 			die()

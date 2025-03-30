@@ -10,6 +10,7 @@ func init(reaction_components: Dictionary):
 		reparent(reaction_components["reactant"], false)
 	# spawn reaction name
 	spawn_reaction_name("break!", get_parent(), Color("#7a0002"), Color("#82b1ff"))
+	super(reaction_components)
 
 # make my parent grow in size
 func _on_tick_timer_timeout() -> void:

@@ -7,12 +7,12 @@
 - [UI] show upgrades chosen
 - [UI] tooltips
 - [???] screen shrink on boss
+- [Gameplay][UI] armorer
 - [Gameplay] finish reactions:
-	burst,fork,justice,swarm
+	burst,fork,justice
 	burst: ?
 	fork: split the fork spell into two
 	justice: emit a circle that pushes enemies back
-	swarm: create a storm of "bugs" that chase the nearest enemy
 
 - gameplay notes -
 - construct dmg scale w size
