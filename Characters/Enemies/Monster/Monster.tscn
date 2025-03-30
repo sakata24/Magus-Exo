@@ -11,25 +11,25 @@
 [ext_resource type="Script" uid="uid://b5v3orwbephnj" path="res://Characters/Enemies/Monster/MonsterStates/MonsterAttackingState.gd" id="8_fcqrr"]
 [ext_resource type="Script" uid="uid://b67wslm8oirdo" path="res://Characters/Enemies/Monster/MonsterStates/MonsterReelingState.gd" id="10_6r2c4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ue8vv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8gf7"]
 atlas = ExtResource("2_ue8vv")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj3aj"]
 atlas = ExtResource("2_ue8vv")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oiitb"]
 atlas = ExtResource("2_ue8vv")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lljtl"]
-atlas = ExtResource("2_ue8vv")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6s48r"]
 atlas = ExtResource("2_ue8vv")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lljtl"]
+atlas = ExtResource("2_ue8vv")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6r2c4"]
 atlas = ExtResource("2_ue8vv")
@@ -39,15 +39,15 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("2_ue8vv")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q8gf7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi2vu"]
 atlas = ExtResource("2_ue8vv")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fpaif"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ue8vv")
+"texture": SubResource("AtlasTexture_q8gf7")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rj3aj")
@@ -61,10 +61,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lljtl")
+"texture": SubResource("AtlasTexture_6s48r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6s48r")
+"texture": SubResource("AtlasTexture_lljtl")
 }],
 "loop": true,
 "name": &"idle",
@@ -78,7 +78,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jfj5b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q8gf7")
+"texture": SubResource("AtlasTexture_mi2vu")
 }],
 "loop": false,
 "name": &"windup",
@@ -92,7 +92,7 @@ region = Rect2(50, 48, 12, 15)
 [sub_resource type="Gradient" id="Gradient_q8gf7"]
 colors = PackedColorArray(1, 1, 1, 0.588235, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rj3aj"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6r2c4"]
 gradient = SubResource("Gradient_q8gf7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oiitb"]
@@ -102,12 +102,12 @@ emission_sphere_radius = 18.0
 angle_min = 1.07288e-05
 angle_max = 1.07288e-05
 gravity = Vector3(0, -50, 0)
-color_ramp = SubResource("GradientTexture1D_rj3aj")
+color_ramp = SubResource("GradientTexture1D_6r2c4")
 turbulence_enabled = true
 turbulence_noise_strength = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6r2c4"]
-radius = 9.0
+radius = 8.0
 height = 28.0
 
 [sub_resource type="CircleShape2D" id="2"]
@@ -132,7 +132,7 @@ script = ExtResource("1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fpaif")
-animation = &"idle"
+animation = &"windup"
 autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

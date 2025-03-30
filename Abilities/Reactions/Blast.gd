@@ -23,6 +23,7 @@ func init(reaction_components: Dictionary):
 	spawn_reaction_name("blast!", self, Color("#7a0002"), Color("#7a0002"))
 	# destroy my parents after getting all their data
 	destroy_parents()
+	super(reaction_components)
 
 # initializes all blast projectiles
 func init_projectiles(source: Node2D):

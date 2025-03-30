@@ -2,18 +2,6 @@
 
 extends Node
 
-var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
-var singularityScene = preload("res://Abilities/Reactions/Singularity.tscn")
-var extinctionScene = preload("res://Abilities/Reactions/Extinction.tscn")
-var blastScene = preload("res://Abilities/Reactions/Blast.tscn")
-var dischargeScene = preload("res://Abilities/Reactions/Discharge.tscn")
-var sicknessScene = preload("res://Abilities/Reactions/Sickness.tscn")
-
-var crackScene = preload("res://Abilities/Crack.tscn")
-var stormScene = preload("res://Abilities/Storm.tscn")
-
-var reactionText = preload("res://HUDs/ReactionText.tscn")
-
 var skill_dict = {}
 
 # ready function runs code to grab the data

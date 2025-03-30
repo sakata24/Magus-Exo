@@ -22,10 +22,10 @@ autostart = true
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 texture_filter = 1
 amount = 15
+texture = ExtResource("2_4a0ul")
 lifetime = 0.8
 preprocess = 0.5
 local_coords = true
-texture = ExtResource("2_4a0ul")
 emission_shape = 2
 emission_sphere_radius = 32.0
 particle_flag_align_y = true

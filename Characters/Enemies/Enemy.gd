@@ -15,3 +15,16 @@ var maxHealth = 1
 var lastElementsHitBy = []
 # cc immune?
 var cc_immune: bool = false
+
+func _hit(damage: DamageObject):
+	# reduce my hp
+	health -= damage.get_value()
+	# set the element to give player xp for
+	if damage.get_types()[0] == damage.get_types()[1]:
+		lastElementsHitBy = [damage.get_type(0)]
+	else:
+		lastElementsHitBy = [damage.get_type(0), damage.get_type(1)]
+	var dmgNum = damageNumber.instantiate()
+	dmgNum.set_colors(AbilityColor.get_color_by_string(damage.get_type(0)), AbilityColor.get_color_by_string(damage.get_type(1)))
+	get_parent().add_child(dmgNum)
+	dmgNum.set_value_and_pos(damage.get_value(), self.global_position)

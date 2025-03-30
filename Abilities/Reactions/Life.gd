@@ -17,6 +17,7 @@ func init(reaction_components: Dictionary):
 	spawn_reaction_name("life!", self, AbilityColor.GROWTH, AbilityColor.ENTROPY)
 	for child: LifeLarvae in $LifeLarvaeList.get_children():
 		child.init(dmg, parents["source"].spell_caster)
+	super(reaction_components)
 
 func _on_lifetime_timer_timeout() -> void:
 	queue_free()

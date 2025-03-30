@@ -13,7 +13,9 @@ func handle_reaction(reactant: Node2D):
 	
 # Handles collision when enemy is hit.
 func handle_enemy_interaction(enemy: Enemy):
-	enemy._hit(self.dmg, self.element, self.element, self.spell_caster)
+	var damage_object = DamageObject.new()
+	damage_object.init(self.dmg, [self.element, self.element], self.spell_caster)
+	enemy._hit(damage_object)
 	if not enemy.cc_immune:
 		if enemy is Monster:
 			enemy.can_move = false

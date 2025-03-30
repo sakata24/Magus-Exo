@@ -29,7 +29,9 @@ func _explode():
 	$Projectile.visible = false
 	$GPUParticles2D.emitting = true
 	if player != null:
-		player.hit(3)
+		var damage_object = DamageObject.new()
+		damage_object.init(3)
+		player.hit(damage_object)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
