@@ -6,6 +6,8 @@ signal selected
 
 var spellData : Dictionary
 
+var equipped = -1
+
 func _ready() -> void:
 	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = false
 
@@ -35,6 +37,7 @@ func set_owned():
 	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.light_mask = 0
 
 func set_equipped(key : int):
+	equipped = key
 	var keyBind
 	match key:
 		0:
@@ -52,6 +55,7 @@ func set_equipped(key : int):
 	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.light_mask = 0
 
 func set_unequipped():
+	equipped = -1
 	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = false
 	$VBoxContainer/MarginContainer/MarginContainer/BGColor.light_mask = 2
 	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/BGColor.light_mask = 2
@@ -59,12 +63,12 @@ func set_unequipped():
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("L-Click"):
-		if not spellData.owned:
-			emit_signal("selected", spellData, $VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.texture)
+		if not spellData.owned && (equipped < 0):
+			emit_signal("selected", self, $VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.texture)
 
 
 func _on_mouse_entered() -> void:
-	if not spellData.owned:
+	if not spellData.owned && (equipped < 0):
 		$VBoxContainer/MarginContainer/BorderOutside.color = Color(1, 0.82, 0.157)
 
 

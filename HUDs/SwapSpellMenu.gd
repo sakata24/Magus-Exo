@@ -30,8 +30,19 @@ func _ready() -> void:
 		HeaderSkillCards[i].connect("selected", _select_equip_slot)
 		HeaderSkillCards[i].set_ui(playerEquippedSkills[i])
 
-func _swap_spell():
-	pass
+func _swap_spell(spell:Control, texture):
+	if selectedEquipSlot < 0:
+		return
+	var playerEquippedSkills : Array = PersistentData.get_equipped_skills()
+	if not playerEquippedSkills.has(spell.spellData.name):
+		# De-equip the current slot
+		for i in SkillContainer.get_children():
+			if i.equipped == selectedEquipSlot:
+				i.set_unequipped()
+		spell.set_equipped(selectedEquipSlot)
+		PersistentData.equipped_skills[selectedEquipSlot] = spell.spellData.name
+		HeaderSkillCards[selectedEquipSlot].set_ui(spell.spellData.name)
+		
 
 func _select_equip_slot(idx : int):
 	selectedEquipSlot = idx
