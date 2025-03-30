@@ -22,6 +22,17 @@ func _ready():
 	growth_xp = get_node("/root/CustomResourceLoader").growth_xp
 	flow_xp = get_node("/root/CustomResourceLoader").flow_xp
 	wither_xp = get_node("/root/CustomResourceLoader").wither_xp
+	
+	var eq_skills = get_node("/root/CustomResourceLoader").equipped_skills
+	if eq_skills.size() != 0:
+		equipped_skills.clear()
+		for e in eq_skills:
+			equipped_skills.append(e.get("name"))
+	var unlk_skills = get_node("/root/CustomResourceLoader").unlocked_skills
+	if unlk_skills.size()!= 0:
+		unlocked_skills.clear()
+		for u in get_node("/root/CustomResourceLoader").unlocked_skills:
+			unlocked_skills.append(u.get("name"))
 	add_to_group("Persist")
 
 # return a dictionary of all xp counts
@@ -49,9 +60,15 @@ func increase_xp(value: int, element: String):
 
 # save function
 func save():
+	# Convert unlocked skills to JSON format
 	var save_skills = []
 	for skill in unlocked_skills:
 		save_skills.append({"name": skill})
+	# Convert equipped skills to JSON format
+	var save_equipped_skills = []
+	for skill in equipped_skills:
+		save_equipped_skills.append({"name": skill})
+	# Create the 
 	var save_dict = {
 		"sunder_xp": sunder_xp,
 		"entropy_xp": entropy_xp,
@@ -59,6 +76,7 @@ func save():
 		"growth_xp": growth_xp,
 		"flow_xp": flow_xp,
 		"wither_xp": wither_xp,
-		"skills": save_skills
+		"unlocked_skills": save_skills,
+		"equipped_skills": save_equipped_skills
 	}
 	return save_dict

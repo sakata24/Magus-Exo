@@ -29,21 +29,22 @@ func _ready() -> void:
 			inst.set_owned()
 
 
-func _select_spell(data : Dictionary, icon : CompressedTexture2D):
-	selectedSpell = data
+func _select_spell(spell : Control, icon : CompressedTexture2D):
 	# If you click an area that is not a spell card, clear the selection
 	if !icon:
+		selectedSpell = {}
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/SpellDescription.text = ""
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/TitleSpellIcon.texture = null
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/CostLabel.text = ""
 		$ContentContainer/VBoxContainer/LearnButton.disabled = true
 	else :
+		selectedSpell = spell.spellData
 		# Set the description
-		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/SpellDescription.text = data.description
+		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/SpellDescription.text = selectedSpell.description
 		
 		# Set the icon & cost
-		var expAmount = PersistentData.get_xp_counts().get(data.element + "_xp")
-		var spellCost = PlayerSkills.ALL_SKILLS.skills.get(data.name).get("price")
+		var expAmount = PersistentData.get_xp_counts().get(selectedSpell.element + "_xp")
+		var spellCost = PlayerSkills.ALL_SKILLS.skills.get(selectedSpell.name).get("price")
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/TitleSpellIcon.texture = icon
 		$ContentContainer/VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2/CostLabel.text = "Cost: " + str(spellCost)
 		
@@ -57,7 +58,7 @@ func _select_spell(data : Dictionary, icon : CompressedTexture2D):
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("L-Click"):
-		_select_spell({}, null)
+		_select_spell(null, null)
 
 # When you press on one of the xp value buttons
 func _button_pressed(element: String):
@@ -83,7 +84,7 @@ func _sort_spells(element : String):
 
 # Functions for selecting each xp value button for sorting
 func _on_sunder_toggled(toggled_on: bool) -> void:
-	_select_spell({}, null)
+	_select_spell(null, null)
 	if toggled_on:
 		_button_pressed("sunder")
 	else:
@@ -91,7 +92,7 @@ func _on_sunder_toggled(toggled_on: bool) -> void:
 			_sort_spells("")
 
 func _on_entropy_toggled(toggled_on: bool) -> void:
-	_select_spell({}, null)
+	_select_spell(null, null)
 	if toggled_on:
 		_button_pressed("entropy")
 	else:
@@ -99,7 +100,7 @@ func _on_entropy_toggled(toggled_on: bool) -> void:
 			_sort_spells("")
 
 func _on_growth_toggled(toggled_on: bool) -> void:
-	_select_spell({}, null)
+	_select_spell(null, null)
 	if toggled_on:
 		_button_pressed("growth")
 	else:
@@ -107,7 +108,7 @@ func _on_growth_toggled(toggled_on: bool) -> void:
 			_sort_spells("")
 
 func _on_construct_toggled(toggled_on: bool) -> void:
-	_select_spell({}, null)
+	_select_spell(null, null)
 	if toggled_on:
 		_button_pressed("construct")
 	else:
@@ -115,7 +116,7 @@ func _on_construct_toggled(toggled_on: bool) -> void:
 			_sort_spells("")
 
 func _on_flow_toggled(toggled_on: bool) -> void:
-	_select_spell({}, null)
+	_select_spell(null, null)
 	if toggled_on:
 		_button_pressed("flow")
 	else:
@@ -123,7 +124,7 @@ func _on_flow_toggled(toggled_on: bool) -> void:
 			_sort_spells("")
 
 func _on_wither_toggled(toggled_on: bool) -> void:
-	_select_spell({}, null)
+	_select_spell(null, null)
 	if toggled_on:
 		_button_pressed("wither")
 	else:
@@ -143,11 +144,13 @@ func _on_learn_button_pressed() -> void:
 func _on_yes_button_pressed() -> void:
 	# TO DO ------------
 	# Subtract xp
-	# Add to learned spells
 	# ------------------
+	
+	PersistentData.unlocked_skills.append(selectedSpell.name)
 	
 	for spellCard in SkillContainer.get_children():
 		if spellCard.spellData == selectedSpell:
 			spellCard.set_owned()
 			break
-	_select_spell({}, null)
+	_select_spell(null, null)
+	PersistentData.save()

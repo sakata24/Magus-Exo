@@ -16,6 +16,8 @@ var construct_xp := 0
 var growth_xp := 0
 var flow_xp := 0
 var wither_xp := 0
+var unlocked_skills : Array
+var equipped_skills : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,6 +63,8 @@ func load_game():
 		growth_xp = int(node_data["growth_xp"])
 		flow_xp = int(node_data["flow_xp"])
 		wither_xp = int(node_data["wither_xp"])
+		unlocked_skills = node_data["unlocked_skills"]
+		equipped_skills = node_data["equipped_skills"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

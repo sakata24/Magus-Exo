@@ -41,7 +41,7 @@ func _on_save_button_pressed():
 	get_node("/root/CustomResourceLoader").save_game()
 
 func _on_option_button_item_selected(index):
-	emit_signal("skill_changed", 0, $VBoxContainer2/OptionButton.get_item_text(index))
+	emit_signal("skill_changed", 0, $VBoxContainer2/OptionButton1.get_item_text(index))
 
 func _on_option_button_2_item_selected(index):
 	emit_signal("skill_changed", 1, $VBoxContainer2/OptionButton2.get_item_text(index))
