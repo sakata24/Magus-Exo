@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://b87627nrcya2c"]
+[gd_scene load_steps=24 format=3 uid="uid://b87627nrcya2c"]
 
-[ext_resource type="Script" uid="uid://cqenh65lieqe4" path="res://HUDs/Shop.gd" id="1_3qepl"]
+[ext_resource type="Script" uid="uid://cfjn1120750p4" path="res://HUDs/Shop.gd" id="1_3qepl"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
 [ext_resource type="Texture2D" uid="uid://dan0j4bwdb37c" path="res://Resources/warlock.png" id="2_e63p4"]
-[ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="2_t715p"]
+[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/BaseMenuUI.tscn" id="2_t715p"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_t715p"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yi03b"]
@@ -98,109 +98,18 @@ _data = {
 &"ShopKeeperAnimation": SubResource("Animation_3a5f4")
 }
 
-[sub_resource type="Curve" id="Curve_t715p"]
-_data = [Vector2(0.116667, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveTexture" id="CurveTexture_b75td"]
-width = 250
-curve = SubResource("Curve_t715p")
-
 [node name="Shop" type="CanvasLayer" groups=["windows"]]
 layer = 0
 script = ExtResource("1_3qepl")
 
-[node name="ScreenDimmer" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 0.8)
-
-[node name="BorderContainer" type="MarginContainer" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="BorderOutside" type="ColorRect" parent="BorderContainer"]
-light_mask = 3
-layout_mode = 2
-color = Color(0.27451, 0.27451, 0.27451, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="BorderContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BGColor" type="ColorRect" parent="BorderContainer/MarginContainer"]
-layout_mode = 2
-color = Color(0.27451, 0, 0.156863, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="BorderContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BorderInside" type="ColorRect" parent="BorderContainer/MarginContainer/MarginContainer"]
-light_mask = 3
-layout_mode = 2
-color = Color(0.27451, 0.27451, 0.27451, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="BorderContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="BGColor" type="ColorRect" parent="BorderContainer/MarginContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-color = Color(0.27451, 0, 0.156863, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("2_t715p")
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 10
-texture = ExtResource("2_t715p")
-stretch_mode = 4
-flip_v = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="TextureRect" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_t715p")
-stretch_mode = 4
-flip_h = true
-
-[node name="TextureRect2" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-texture = ExtResource("2_t715p")
-stretch_mode = 4
-flip_h = true
-flip_v = true
+[node name="Menu" parent="." instance=ExtResource("2_t715p")]
 
 [node name="ContentContainer" type="MarginContainer" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 75
 theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
@@ -429,41 +338,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_b75td")
 }
 
-[node name="HighlightHolder" type="Control" parent="."]
-z_index = 2
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-mouse_filter = 2
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="HighlightHolder"]
-rotation = -1.22173
-rect = Rect2(-400, -5, 800, 10)
-
-[node name="PointLight2D" type="PointLight2D" parent="HighlightHolder/VisibleOnScreenNotifier2D"]
-light_mask = 3
-range_item_cull_mask = 2
-shadow_enabled = true
-texture = SubResource("CurveTexture_b75td")
-texture_scale = 5.0
-height = 5.0
-
-[node name="PointLight2D2" type="PointLight2D" parent="HighlightHolder/VisibleOnScreenNotifier2D"]
-light_mask = 2
-visibility_layer = 0
-position = Vector2(-20, -20)
-range_item_cull_mask = 2
-shadow_enabled = true
-texture = SubResource("CurveTexture_b75td")
-texture_scale = 10.0
-height = 5.0
-
-[node name="HighlightTimer" type="Timer" parent="HighlightHolder"]
-wait_time = 3.0
-one_shot = true
-autostart = true
-
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/sunder" to="." method="_on_sunder_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/entropy" to="." method="_on_entropy_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/growth" to="." method="_on_growth_toggled"]
@@ -471,5 +345,3 @@ autostart = true
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/flow" to="." method="_on_flow_toggled"]
 [connection signal="toggled" from="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExpContainer/wither" to="." method="_on_wither_toggled"]
 [connection signal="pressed" from="ContentContainer/VBoxContainer/LearnButton" to="." method="_on_learn_button_pressed"]
-[connection signal="screen_exited" from="HighlightHolder/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="timeout" from="HighlightHolder/HighlightTimer" to="." method="_on_highlight_timer_timeout"]

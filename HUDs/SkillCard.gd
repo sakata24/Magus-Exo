@@ -34,6 +34,28 @@ func set_owned():
 	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/BGColor.light_mask = 0
 	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.light_mask = 0
 
+func set_equipped(key : int):
+	var keyBind
+	match key:
+		0:
+			keyBind = "Q"
+		1:
+			keyBind = "W"
+		2:
+			keyBind = "E"
+		3: 
+			keyBind = "R"
+	$VBoxContainer/MarginContainer/OwnedLabelContainer/Label.text = keyBind
+	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = true
+	$VBoxContainer/MarginContainer/MarginContainer/BGColor.light_mask = 0
+	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/BGColor.light_mask = 0
+	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.light_mask = 0
+
+func set_unequipped():
+	$VBoxContainer/MarginContainer/OwnedLabelContainer.visible = false
+	$VBoxContainer/MarginContainer/MarginContainer/BGColor.light_mask = 2
+	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/BGColor.light_mask = 2
+	$VBoxContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer/MarginContainer2/SpellIcon.light_mask = 2
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("L-Click"):

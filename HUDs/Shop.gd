@@ -10,7 +10,6 @@ var selectedSpell : Dictionary
 const highlightSpeed := 500
 
 func _ready() -> void:
-	set_process(false)
 	$SubViewport/AnimationPlayer.play("ShopKeeperAnimation")
 	
 	#Set EXP values
@@ -28,10 +27,6 @@ func _ready() -> void:
 		inst.connect("selected", _select_spell)
 		if playerUnlockedSkills.has(skill.name):
 			inst.set_owned()
-
-func _process(delta: float) -> void:
-	$HighlightHolder/VisibleOnScreenNotifier2D.position.x += delta * highlightSpeed
-	$HighlightHolder/VisibleOnScreenNotifier2D.position.y += delta * highlightSpeed
 
 
 func _select_spell(data : Dictionary, icon : CompressedTexture2D):
@@ -156,13 +151,3 @@ func _on_yes_button_pressed() -> void:
 			spellCard.set_owned()
 			break
 	_select_spell({}, null)
-
-
-func _on_highlight_timer_timeout() -> void:
-	set_process(true)
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	set_process(false)
-	$HighlightHolder/VisibleOnScreenNotifier2D.position = Vector2(0,0)
-	$HighlightHolder/HighlightTimer.start(randi_range(3, 7))
