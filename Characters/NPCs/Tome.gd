@@ -1,4 +1,4 @@
-extends "res://Characters/NPCs/NPC.gd"
+class_name TomeNPC extends NPC
 
 @onready var ChangeSpellMenu = preload("res://HUDs/ChangeSpells.tscn")
 

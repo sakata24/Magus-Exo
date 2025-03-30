@@ -1,4 +1,4 @@
-extends Node2D
+class_name NPC extends Node2D
 
 signal button_pressed(shop_data)
 

@@ -1,4 +1,4 @@
-extends "res://Characters/NPCs/NPC.gd"
+class_name ArmorerNPC extends NPC
 
 var armorerRes = [preload("res://Resources/npc/armorer-0.tres"), preload("res://Resources/npc/armorer-1.tres")]
 var index = 0

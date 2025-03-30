@@ -1,4 +1,4 @@
-extends "res://Characters/NPCs/NPC.gd"
+class_name LibrarianNPC extends NPC
 
 var librarianRes = [preload("res://Resources/npc/librarian-0.tres"), preload("res://Resources/npc/librarian-1.tres")]
 var Shop = preload("res://HUDs/Shop.tscn")

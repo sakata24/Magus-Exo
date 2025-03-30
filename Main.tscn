@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=21 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" uid="uid://bsujmysejgy4k" path="res://Main.gd" id="1"]
+[ext_resource type="Script" uid="uid://n3gij2h648i7" path="res://LevelHandler.gd" id="2_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://cbiw1tglncahn" path="res://Maps/Home.tscn" id="2_oh4kf"]
 [ext_resource type="PackedScene" uid="uid://83qg0j5exfyc" path="res://Characters/Player.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
@@ -89,12 +90,13 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.145098, 0.0745098, 0.101961, 1)
 
-[node name="Rooms" type="Node2D" parent="."]
+[node name="LevelHandler" type="Node2D" parent="."]
 process_mode = 1
 z_index = -100
 z_as_relative = false
+script = ExtResource("2_5vvyt")
 
-[node name="Home" parent="Rooms" instance=ExtResource("2_oh4kf")]
+[node name="Home" parent="LevelHandler" instance=ExtResource("2_oh4kf")]
 
 [node name="Player" parent="." groups=["Persist"] instance=ExtResource("3")]
 process_mode = 1
