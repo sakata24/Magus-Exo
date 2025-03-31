@@ -5,7 +5,7 @@
 [node name="AbilityBody" type="Area2D"]
 process_mode = 1
 collision_layer = 4
-collision_mask = 22
+collision_mask = 54
 script = ExtResource("1_tonm5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

@@ -2,7 +2,6 @@ class_name ChargeAbility extends EntropyAbility
 
 # Initial creation of object on load.
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
-	$AnimatedSprite2D.set_sprite_frames(CustomResourceLoader.chargeSpriteRes)
 	myModifiers.append(CollisionDespawnModifier.new())
 	super.init(skill_dict, cast_target, caster)
 

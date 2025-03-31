@@ -42,7 +42,7 @@ func _load_level():
 	else:
 		init_rooms()
 	# save the state of the game every level to be persisted
-	CustomResourceLoader.save_game()
+	CustomResourceLoader.new().save_game()
 
 func reset_boss_level_array():
 	available_boss_levels = boss_levels

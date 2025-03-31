@@ -38,7 +38,7 @@ func _on_settings_button_pressed() -> void:
 	get_parent()._add_menu(SettingMenu.instantiate())
 
 func _on_save_button_pressed():
-	get_node("/root/CustomResourceLoader").save_game()
+	CustomResourceLoader.save_game()
 
 func _on_option_button_item_selected(index):
 	emit_signal("skill_changed", 0, $VBoxContainer2/OptionButton1.get_item_text(index))

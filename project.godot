@@ -20,9 +20,9 @@ config/icon="res://Resources/icon.png"
 
 Settings="*res://Settings.gd"
 SkillDataHandler="*res://SkillDataHandler.gd"
-CustomResourceLoader="*res://CustomResourceLoader.gd"
 PlayerSkills="*res://PlayerSkills.gd"
 SkillSceneHandler="*res://SkillSceneHandler.gd"
+CustomResourceLoader="*res://CustomResourceLoader.gd"
 PersistentData="*res://PersistentData.gd"
 
 [debug]
