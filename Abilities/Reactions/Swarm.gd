@@ -15,6 +15,7 @@ var parents
 func _ready():
 	# start tracking target
 	find_target()
+	spawn_reaction_name("swarm!", parents["reactant"], Color("#82b1ff"), Color("#591b82"))
 
 # assign instance variables
 func init(reaction_components: Dictionary):
@@ -24,7 +25,6 @@ func init(reaction_components: Dictionary):
 	reparent(parents["source"].get_parent(), true)
 	# spawn the correct amt of particles
 	spawn_n_swarm_particles(10 + parents["source"].dmg/2)
-	spawn_reaction_name("swarm!", reaction_components["reactant"], Color("#82b1ff"), Color("#591b82"))
 	super(reaction_components)
 
 func _physics_process(delta: float) -> void:

@@ -9,12 +9,71 @@
 - [???] screen shrink on boss
 - [Gameplay][UI] armorer
 - [Gameplay] finish reactions:
-	burst,fork,justice
+	burst,fork
 	burst: ?
 	fork: split the fork spell into two
-	justice: emit a circle that pushes enemies back
 
 - gameplay notes -
 - construct dmg scale w size
 
 - laa boss -
+
+-- jake boss --
+Mirror Theme - 2 phases
+
+Look:
+	Dodecahedron with an eye in it
+
+Map:
+	Boss in middle on start
+	3 places for the boss to be located
+	Mirrors part of the map
+	17 locations that a mirror could spawn
+
+Phases:
+	1:
+		Trigger: 
+			Enter boss room
+		Actions:
+			Gain Shield
+		Attacks:
+			Normal projectiles
+			Spawn mirror randomly and despawn another mirror
+	2:
+		Trigger:
+			50% HP
+		Buffs:
+			projectiles bounce 1 more time
+			reflective shield increases projectile speed
+		Actions:
+			Gain Shield
+			Spawn a chunk of mirrors
+		Attacks:
+			Normal projectiles
+			Laser
+			Spawn mirror randomly and despawn another mirror
+	
+Attacks:
+	Photon Bullet (Normal projectiles/missiles):
+		- diamonds
+		- cone shot towards player
+		- 3-5 in a spread
+		- bounce twice on mirrors
+	Photon Lance (Charge-up Laser):
+		- bounce off mirrors
+		- bounce twice
+
+Abilities:
+	Fractal Barrier (Shield):
+		- Reflects projectiles
+		- can be broken by artifact
+	Hall of Versailles (Mirrors):
+		- reflects boss attacks
+		- 3 player size
+		- one special mirror will spawn a clone of player projectiles that hit it and increase spawned projectiles by 1
+		- these mirrors change locations every once in a while
+	Parallax (Blink):
+		- teleport to a different location
+
+Player Interaction:
+	Find an item on the floor that will break the shield upon next attack

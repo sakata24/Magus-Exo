@@ -15,6 +15,7 @@ var extendScene = load("res://Abilities/Reactions/Extend.tscn")
 var lifeScene = preload("res://Abilities/Reactions/Life.tscn")
 var pursuitScene = preload("res://Abilities/Reactions/Pursuit.tscn")
 var swarmScene = preload("res://Abilities/Reactions/Swarm.tscn")
+var justiceScene = preload("res://Abilities/Reactions/Justice.tscn")
 
 # preloaded spells
 var crackScene = preload("res://Abilities/Crack.tscn")
@@ -46,6 +47,7 @@ func get_scene_by_name(name: String) -> Node2D:
 		"life": return lifeScene.instantiate()
 		"pursuit": return pursuitScene.instantiate()
 		"swarm": return swarmScene.instantiate()
+		"justice": return justiceScene.instantiate()
 		# abilities
 		"bolt": return boltScene.instantiate()
 		"charge": return chargeScene.instantiate()

@@ -36,13 +36,13 @@ func _load_level():
 	player.moving = false
 	# init rooms
 	if current_level % boss_level_multiple == 0:
-		if available_boss_levels.size <= 0:
+		if available_boss_levels.size() <= 0:
 			reset_boss_level_array()
 		init_boss_room()
 	else:
 		init_rooms()
 	# save the state of the game every level to be persisted
-	CustomResourceLoader.new().save_game()
+	CustomResourceLoader.save_game()
 
 func reset_boss_level_array():
 	available_boss_levels = boss_levels

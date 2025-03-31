@@ -19,11 +19,11 @@ func handle_enemy_interaction(enemy: Enemy):
 		if enemy is Monster:
 			enemy.can_move = false
 		enemy.velocity = velocity.normalized() * 100
-		attach_and_await_stun_timer(0.5, enemy)
+		attach_stun_timer(0.5, enemy)
 	despawn()
 
 # create a timer and add to unstun the enemy
-func attach_and_await_stun_timer(wait_time: float, enemy: Node2D):
+func attach_stun_timer(wait_time: float, enemy: Node2D):
 	var timer = Timer.new()
 	timer.wait_time = wait_time
 	# add the function to be run on timeout

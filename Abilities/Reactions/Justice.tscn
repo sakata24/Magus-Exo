@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd5tbtikl0flw"]
+
+[ext_resource type="Script" uid="uid://dah5g1yagk2fi" path="res://Abilities/Reactions/Justice.gd" id="1_ac5s2"]
+[ext_resource type="Shader" uid="uid://d1wa4eo5u5q7r" path="res://Abilities/Reactions/Justice.gdshader" id="2_2ohnt"]
+[ext_resource type="Texture2D" uid="uid://s37lx0ggxkqq" path="res://Resources/abilities/justice.png" id="3_tc4cj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tc4cj"]
+resource_local_to_scene = true
+shader = ExtResource("2_2ohnt")
+shader_parameter/color = Vector4(0, 0, 0, 0)
+shader_parameter/flashState = 0.0
+
+[node name="Justice" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ac5s2")
+metadata/_custom_type_script = "uid://4xdsroefmwd8"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-54, 27, 0, 34, 55, 28, 67, 0, 60, -25, 0, -42, -60, -25, -68, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tc4cj")
+position = Vector2(-6, -35)
+scale = Vector2(2, 2)
+texture = ExtResource("3_tc4cj")
