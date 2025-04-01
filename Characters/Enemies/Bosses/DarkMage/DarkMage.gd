@@ -1,4 +1,4 @@
-class_name DarkMage extends Monster
+class_name DarkMage extends Boss
 
 @onready var Minion = load("res://Characters/Enemies/Monster/Monster.tscn")
 
@@ -22,24 +22,13 @@ func _ready():
 	maxHealth = 500
 	add_to_group("monsters")
 	await call_deferred("_set_player")
+	_connect_to_HUD("Umbrae, Fractured Mage")
 	$StateMachine/Idle._go_invincible()
 
 # override so i just chill in the center and float
 func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.25
-	
-
-func _set_player():
-	if get_tree().get_nodes_in_group("players").size() > 0:
-		player = get_tree().get_nodes_in_group("players")[0]
-		_connect_to_HUD()
-
-func _connect_to_HUD():
-	var hud: HUD = player.get_parent().get_node("HUD")
-	connect("health_changed", hud._on_boss_health_change)
-	hud.show_boss_bar("Dark Mage", health)
-	emit_signal("health_changed", maxHealth, true)
 
 # hit by something
 func _hit(damage: DamageObject):

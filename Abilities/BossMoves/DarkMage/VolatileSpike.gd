@@ -1,6 +1,6 @@
 class_name VolatileSpike extends BaseTypeAbility
 
-@onready var Rain = preload("res://Abilities/BossMoves/IcathianRain.tscn")
+@onready var Rain = preload("res://Abilities/BossMoves/DarkMage/IcathianRain.tscn")
 
 var player : Player
 
@@ -52,7 +52,6 @@ func handle_reaction(reactant: BaseTypeAbility):
 	queue_free()
 
 func _on_body_entered(body: PhysicsBody2D):
-	print(body, "hit w spike")
 	if body.is_in_group("players"):
 		var damage_object = DamageObject.new()
 		damage_object.init(dmg)

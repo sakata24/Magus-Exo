@@ -16,9 +16,8 @@
 - gameplay notes -
 - construct dmg scale w size
 
-- laa boss -
-
 -- jake boss --
+Photonis, the Luminous Eye
 Mirror Theme - 2 phases
 
 Look:
@@ -77,3 +76,52 @@ Abilities:
 
 Player Interaction:
 	Find an item on the floor that will break the shield upon next attack
+
+
+- laa boss -
+The Stage Master
+Puppet/hands theme
+
+Look:
+	Gloved hand on puppet strings
+
+Map:
+	Theater/Stage
+
+Phases:
+	"Acts" Transitions between acts
+	1:
+		Trigger:
+			enter boss room
+		Buffs:
+		Actions:
+		Attacks:
+	2:
+		Trigger:
+			66% hp
+		Buffs:
+		Actions:
+		Attacks:
+	3:
+		Trigger:
+			33% hp
+		Buffs:
+		Actions:
+		Attacks:
+
+Attacks:
+	Drop Item
+	- Drops a random item:
+		- Diagonal/Plus Bomb
+		- Cloud of Healing/Toxin
+	Audience Attack
+	- Tomato bomb AOE
+	Stage Hazard
+	- Random AOE falling object stage
+
+Abilities:
+	Immune:
+		immune until it drops an item when it then can be attacked
+
+Player Interaction:
+	Causing reactions increases audience score, and therefore player dmg

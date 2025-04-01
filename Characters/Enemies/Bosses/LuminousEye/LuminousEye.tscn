@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8jqmlexm3xmx"]
+
+[ext_resource type="Script" uid="uid://osdbgkudblyl" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEye.gd" id="1_3bp5x"]
+[ext_resource type="Texture2D" uid="uid://b2dekgtow3y6x" path="res://Resources/enemies/dark-mage.png" id="2_75xhx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61uwt"]
+radius = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdlju"]
+atlas = ExtResource("2_75xhx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16udp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdlju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LuminousEye" type="CharacterBody2D"]
+script = ExtResource("1_3bp5x")
+metadata/_custom_type_script = "uid://dff3bryl7reu0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_61uwt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_16udp")
