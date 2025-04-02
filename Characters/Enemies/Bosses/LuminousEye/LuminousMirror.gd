@@ -1,0 +1,1 @@
+class_name LuminousMirror extends Area2D
