@@ -2,7 +2,7 @@ class_name IcathianRainAbility extends BaseTypeAbility
 
 var player : Player
 var deploy_speed = 50
-var launch_speed = 250
+var launch_speed = 450
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,7 +33,6 @@ func _turn():
 	#Can't figure out how to tween look at so yeah
 	#look_at(player.global_position)
 	tween.tween_property(self, "speed", launch_speed, 0.8).set_ease(Tween.EASE_IN)
-	tween.parallel().tween_property(self, "velocity", (player.global_position - global_position).normalized(), 1)
 	$Line2D.started = true
 
 func _on_body_entered(body: PhysicsBody2D):

@@ -12,17 +12,10 @@ var playable_area : Rect2
 var time: float
 @onready var spell_cast_location: Node2D = $CastLocation
 
-signal health_changed
-signal boss_dead
-
 func _ready():
-	cc_immune = true
-	# can i drop upgrades
-	droppable = false
 	maxHealth = 500
-	add_to_group("monsters")
-	await call_deferred("_set_player")
-	_connect_to_HUD("Umbrae, Fractured Mage")
+	boss_name = "Umbrae, Fractured Mage"
+	super._ready()
 	$StateMachine/Idle._go_invincible()
 
 # override so i just chill in the center and float

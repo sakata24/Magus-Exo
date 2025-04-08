@@ -48,11 +48,17 @@ func reset_boss_level_array():
 	available_boss_levels = boss_levels
 
 func init_boss_room():
+	# randomly choose a boss+room to spawn
 	var RNG = RandomNumberGenerator.new()
 	var random_num = RNG.randi() % boss_levels.size()
 	var new_room = available_boss_levels[random_num].instantiate()
 	add_child(new_room)
+	# remove it from the array
 	available_boss_levels.remove_at(random_num)
+	for node in new_room.get_children():
+		if node is Boss:
+			connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)
+			get_parent().get_node("HUD").show_boss_bar(node.boss_name, node.health)
 
 func init_rooms():
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
@@ -80,40 +86,40 @@ func init_rooms():
 			# top
 			if j == 0:
 				for n in range(0, 31):
-					if n == 13:
+					if n == 12:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(0, 3), 0)
-					elif 13 < n and n < 17:
+					elif 12 < n and n < 18:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(1, 0), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(5, 0), 0)
 					else:
 						tilemap.set_cell(Vector2i(n, -1), 0, Vector2i(8, 7), 0)
 			# left
 			if i == 0:
 				for n in range(0, 31):
-					if 12 < n and n < 17:
+					if 11 < n and n < 18:
 						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(0, 1), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(0, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(-1, n), 0, Vector2i(8, 7), 0)
 			# bottom
 			if j == MAP_SIZE-1:
 				for n in range(0, 31):
-					if n == 13:
+					if n == 12:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(0, 4), 0)
-					elif 13 < n and n < 17:
+					elif 12 < n and n < 18:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(1, 4), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(5, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(n, 31), 0, Vector2i(8, 7), 0)
 			# right
 			if i == MAP_SIZE-1:
 				for n in range(0, 31):
-					if 12 < n and n < 17:
+					if 11 < n and n < 18:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 1), 0)
-					elif n == 17:
+					elif n == 18:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(5, 4), 0)
 					else:
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(8, 7), 0)

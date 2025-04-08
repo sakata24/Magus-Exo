@@ -1,18 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8jqmlexm3xmx"]
+[gd_scene load_steps=9 format=3 uid="uid://b8jqmlexm3xmx"]
 
 [ext_resource type="Script" uid="uid://osdbgkudblyl" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEye.gd" id="1_3bp5x"]
 [ext_resource type="Texture2D" uid="uid://cb0jnb1hl3asv" path="res://Resources/enemies/luminous-eye.png" id="2_75xhx"]
+[ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_61uwt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61uwt"]
 radius = 17.0294
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61uwt"]
 atlas = ExtResource("2_75xhx")
-region = Rect2(48, 0, 48, 48)
+region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdlju"]
 atlas = ExtResource("2_75xhx")
 region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bdlju"]
+font = ExtResource("3_61uwt")
+font_size = 9
+font_color = Color(1, 0, 1, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.478431)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bdlju"]
+radius = 200.0
 
 [node name="LuminousEye" type="CharacterBody2D"]
 script = ExtResource("1_3bp5x")
@@ -26,4 +38,27 @@ texture = SubResource("AtlasTexture_61uwt")
 
 [node name="DodecahedronSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.470588)
+y_sort_enabled = true
 texture = SubResource("AtlasTexture_bdlju")
+
+[node name="StatusLabel" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -18.0
+offset_top = -14.0
+offset_right = 18.0
+offset_bottom = 1.0
+text = "STUN"
+label_settings = SubResource("LabelSettings_bdlju")
+
+[node name="FightTriggerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FightTriggerArea"]
+shape = SubResource("CircleShape2D_bdlju")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="FightTriggerArea" to="." method="_on_fight_trigger_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
