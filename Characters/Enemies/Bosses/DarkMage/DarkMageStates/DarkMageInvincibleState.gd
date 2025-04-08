@@ -11,6 +11,8 @@ func enter():
 	dark_mage.invincible = true
 	dark_mage.emit_signal("health_changed", dark_mage.health, true)
 	dark_mage.get_node("AnimatedSprite2D").set_animation("cast_staff")
+	if dark_mage.invincible_stage == 1:
+		dark_mage.toggle_lights(false)
 	spawn_crystals()
 	current_crystal_amount = dark_mage.CRYSTAL_AMOUNT_PER_STAGE[dark_mage.invincible_stage]
 
@@ -30,6 +32,7 @@ func spawn_crystals():
 func _on_crystal_destroyed():
 	current_crystal_amount -= 1
 	if current_crystal_amount == 0: #When the last crystal is destroyed
+		dark_mage.toggle_lights(true)
 		Transitioned.emit(self, "Attack")
 	else:
 		dark_mage.surround_player_with_minions()

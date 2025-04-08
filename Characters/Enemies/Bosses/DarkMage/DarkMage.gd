@@ -71,10 +71,18 @@ func die():
 func surround_player_with_minions():
 	var player_pos = player.global_position
 		#Spawn Minions around the player
-	for i in (5):
+	for i in (3):
 		var rad = deg_to_rad(360/(5) * i - 45)
 		var inst: Enemy = Minion.instantiate()
 		inst.global_position.x = player_pos.x + cos(rad) * 50
 		inst.global_position.y = player_pos.y + sin(rad) * 50
 		get_parent().call_deferred("add_child", inst)
 		inst.droppable = false
+
+func toggle_lights(on : bool):
+	if on:
+		player.get_node("Light2D").visible = true
+		get_parent().get_node("CanvasModulate").visible = true
+	else:
+		player.get_node("Light2D").visible = false
+		get_parent().get_node("CanvasModulate").visible = false
