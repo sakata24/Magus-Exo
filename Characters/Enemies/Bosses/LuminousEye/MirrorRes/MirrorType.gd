@@ -68,10 +68,10 @@ func update_perpendicular_angle():
 		variant.FACING_NORTH: perpendicular_angle = Vector2(0, 1)
 		variant.FACING_EAST: perpendicular_angle = Vector2(1, 0)
 		variant.FACING_WEST: perpendicular_angle = Vector2(-1, 0)
-		variant.FACING_NORTHEAST: perpendicular_angle = Vector2(1.0/2.0, sqrt(3)/2)
-		variant.FACING_SOUTHEAST: perpendicular_angle = Vector2(1.0/2.0, -sqrt(3)/2)
-		variant.FACING_SOUTHWEST: perpendicular_angle = Vector2(-1.0/2.0, -sqrt(3)/2)
-		variant.FACING_NORTHWEST: perpendicular_angle = Vector2(1.0/2.0, -sqrt(3)/2)
+		variant.FACING_NORTHEAST: perpendicular_angle = Vector2(1.0/sqrt(5), 2.0/sqrt(5))
+		variant.FACING_SOUTHEAST: perpendicular_angle = Vector2(1.0/sqrt(5), -2.0/sqrt(5))
+		variant.FACING_SOUTHWEST: perpendicular_angle = Vector2(-1.0/sqrt(5), -2.0/sqrt(5))
+		variant.FACING_NORTHWEST: perpendicular_angle = Vector2(1.0/sqrt(5), -2.0/sqrt(5))
 
 func update_offset():
 	match facing:

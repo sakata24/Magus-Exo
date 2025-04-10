@@ -55,6 +55,9 @@ func init_boss_room():
 	add_child(new_room)
 	# remove it from the array
 	available_boss_levels.remove_at(random_num)
+	setup_boss_room(new_room)
+
+func setup_boss_room(new_room: Node2D):
 	for node in new_room.get_children():
 		if node is Boss:
 			connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)

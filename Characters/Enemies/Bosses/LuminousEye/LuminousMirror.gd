@@ -29,10 +29,5 @@ func update_hitbox_and_sprite():
 	$Sprite2D.position.y = mirror.offset
 
 func _on_area_entered(area: Area2D) -> void:
-	print("init: " + str(area.rotation_degrees))
-	print("" + str(mirror.perpendicular_angle))
-	print("Vector of incidence: " + str(Vector2(sin(area.rotation), cos(area.rotation))))
-	area.look_at(10 * (Vector2(sin(area.rotation), cos(area.rotation)).bounce(mirror.perpendicular_angle)))
-	print("result: " + str(area.rotation_degrees))
-	#print(mirror.perpendicular_angle)
+	area.set_rotation((Vector2(cos(area.rotation), sin(area.rotation)).bounce(mirror.perpendicular_angle).angle()))
 	
