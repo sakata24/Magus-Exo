@@ -125,3 +125,23 @@ Abilities:
 
 Player Interaction:
 	Causing reactions increases audience score, and therefore player dmg
+
+- Aaron Boss -
+
+Look:
+Map:
+	4 Pillars (destructible for boss to dash)
+	- Causes the boss to become vulnerable when crashes into
+	- Only respawns after all 4 pillars destroyed
+	Hexagonal shape
+Phases:
+Attacks:
+	Dash Carpet Blind
+	- Dashes around the room and drops blinding explosives along the path
+	- immune while dashing
+	Lock-On Dash
+	- Locks on to the player and dashes
+Abilities:
+	Innate Immunity
+	- Boss does not take damage until crashing into a pillar
+Player Interaction:

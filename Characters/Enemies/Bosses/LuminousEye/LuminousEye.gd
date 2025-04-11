@@ -41,10 +41,10 @@ func randomize_mirrors():
 	for i in range(0, 17):
 		var new_mirror: LuminousMirror = mirror_resource.instantiate()
 		call_deferred("add_sibling", new_mirror)
-		var rand_pos = Vector2(randi_range(32, 1504), randi_range(32, 378))
+		var rand_pos = 32 * Vector2(randi_range(1, 47), randi_range(1, 12))
 		# ensure mirror is not on the boss
 		while ((rand_pos.x > self.get_global_position().x-96) and (rand_pos.x < self.get_global_position().x+96)) and ((rand_pos.y > self.get_global_position().y-96) and (rand_pos.y < self.get_global_position().y+96)):
-			rand_pos = Vector2(randi_range(32, 1504), randi_range(32, 378))
+			rand_pos = 32 * Vector2(randi_range(1, 47), randi_range(1, 12))
 			print(rand_pos)
 		new_mirror.global_position = rand_pos
 		new_mirror.mirror.facing = MirrorType.variant.values().pick_random()
@@ -71,5 +71,5 @@ func _on_fight_trigger_area_body_entered(body: Node2D) -> void:
 		randomize_mirrors()
 
 func _on_timer_timeout() -> void:
-	enable_fractal_barrier()
+	#enable_fractal_barrier()
 	cast_photon_laser(1)

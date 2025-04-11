@@ -24,26 +24,25 @@ func _on_laser_timer_timeout() -> void:
 func handle_collisions(dmg_area: ShapeCast2D):
 	dmg_area.force_shapecast_update()
 	if !dmg_area.is_colliding():
-		$LaserDamageTexture.add_point(to_local(dmg_area.target_position))
+		$LaserDamageTexture.add_point(dmg_area.target_position)
 	for i in range(0, dmg_area.get_collision_count()):
 		var collider = dmg_area.get_collider(i)
 		if collider is Player:
 			var dmg = DamageObject.new()
 			dmg.init(15, [], get_parent())
 			collider.hit(dmg)
-			$LaserDamageTexture.add_point(to_local(dmg_area.target_position))
+			$LaserDamageTexture.add_point(dmg_area.target_position)
 		elif collider is LuminousMirror:
-			$LaserDamageTexture.add_point(to_local(collider.global_position))
+			$LaserDamageTexture.add_point(to_local(dmg_area.get_collision_point(i)))
 			var new_damage_area: ShapeCast2D = ShapeCast2D.new()
 			dmg_area.add_child(new_damage_area)
 			new_damage_area.shape = CircleShape2D.new()
 			new_damage_area.shape.radius = 15.0
-			new_damage_area.global_position = collider.global_position
-			new_damage_area.target_position = to_local(dmg_area.target_position.bounce(collider.mirror.perpendicular_angle))
-			print(new_damage_area.target_position)
+			new_damage_area.global_position = dmg_area.get_collision_point(i)
+			new_damage_area.target_position = dmg_area.target_position.bounce(collider.mirror.perpendicular_angle)
 			handle_collisions(new_damage_area)
 		else:
-			$LaserDamageTexture.add_point(to_local(dmg_area.target_position))
+			$LaserDamageTexture.add_point(dmg_area.target_position)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	$LaserDamageTexture.clear_points()
