@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8jqmlexm3xmx"]
+[gd_scene load_steps=15 format=3 uid="uid://b8jqmlexm3xmx"]
 
 [ext_resource type="Script" uid="uid://osdbgkudblyl" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEye.gd" id="1_3bp5x"]
 [ext_resource type="Texture2D" uid="uid://cb0jnb1hl3asv" path="res://Resources/enemies/luminous-eye.png" id="2_75xhx"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://b40ggxuole017" path="res://Characters/Enemies/Bosses/LuminousEye/LuminouseEyeStates/LuminousEyeIdleState.gd" id="5_m511y"]
 [ext_resource type="Script" uid="uid://cigphpctxgruw" path="res://Characters/Enemies/Bosses/LuminousEye/LuminouseEyeStates/LuminousEyeAttackingState.gd" id="6_m511y"]
 [ext_resource type="Script" uid="uid://dd6a4rmxuu2sm" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEyeVulnerableState.gd" id="7_0kuyb"]
+[ext_resource type="Script" uid="uid://ctb4qvc4tm46d" path="res://Characters/Enemies/Bosses/LuminousEye/PhotonLaser.gd" id="4_16udp"]
+[ext_resource type="Texture2D" uid="uid://7adyhp5aos0f" path="res://Resources/abilities/enemy/photon-laser-particle.png" id="4_bdlju"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61uwt"]
 radius = 17.0294
@@ -29,6 +31,46 @@ shadow_color = Color(0, 0, 0, 0.478431)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bdlju"]
 radius = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16udp"]
+radius = 15.0
+
+[sub_resource type="Animation" id="Animation_16udp"]
+resource_name = "LaserAttack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserDamageTexture:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [4.0, 32.0, 24.0, 32.0, 4.0]
+}
+
+[sub_resource type="Animation" id="Animation_m511y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserDamageTexture:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [32.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kuyb"]
+_data = {
+&"LaserAttack": SubResource("Animation_16udp"),
+&"RESET": SubResource("Animation_m511y")
+}
 
 [node name="LuminousEye" type="CharacterBody2D"]
 collision_layer = 10
@@ -88,3 +130,33 @@ metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 [connection signal="body_entered" from="FightTriggerArea" to="." method="_on_fight_trigger_area_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
+[node name="PhotonLaser" type="Node2D" parent="."]
+script = ExtResource("4_16udp")
+
+[node name="DamageArea" type="ShapeCast2D" parent="PhotonLaser"]
+shape = SubResource("CircleShape2D_16udp")
+collision_mask = 41
+collide_with_areas = true
+
+[node name="LaserDamageTexture" type="Line2D" parent="PhotonLaser"]
+width = 32.0
+texture = ExtResource("4_bdlju")
+texture_mode = 1
+joint_mode = 2
+
+[node name="LaserIndicator" type="Line2D" parent="PhotonLaser"]
+width = 8.0
+default_color = Color(1, 0, 0, 0.556863)
+
+[node name="LaserTimer" type="Timer" parent="PhotonLaser"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PhotonLaser"]
+libraries = {
+&"": SubResource("AnimationLibrary_0kuyb")
+}
+
+[connection signal="body_entered" from="FightTriggerArea" to="." method="_on_fight_trigger_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PhotonLaser/LaserTimer" to="PhotonLaser" method="_on_laser_timer_timeout"]
+[connection signal="animation_finished" from="PhotonLaser/AnimationPlayer" to="PhotonLaser" method="_on_animation_player_animation_finished"]

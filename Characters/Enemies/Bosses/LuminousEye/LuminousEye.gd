@@ -19,8 +19,8 @@ func summon_photon_bullets(num: int, bounces: int):
 
 # photon laser - a laser that bounces off of mirrors
 func cast_photon_laser(bounces: int):
-	pass
-
+	$PhotonLaser.charge(player.global_position)
+	
 # fractal barrier - makes the boss immune to damage until shield is broken
 func enable_fractal_barrier():
 	dodecahedron_sprite.modulate = Color(1, 0.745, 0.416, 1)
@@ -51,11 +51,10 @@ func randomize_mirrors():
 		new_mirror.add_to_group("mirrors")
 
 func _hit(damage: DamageObject):
-	if self.protected:
-		if damage.get_types().has("fracture"):
-			fractal_barrier_broken()
-	else:
+	if not protected:
 		super(damage)
+	if damage.get_types().has("fracture"):
+		pass
 
 # override so i just chill in the center and float
 func _physics_process(delta: float) -> void:
@@ -73,3 +72,4 @@ func _on_fight_trigger_area_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	enable_fractal_barrier()
+	cast_photon_laser(1)
