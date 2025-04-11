@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.1
 	$EyeSprite.position.y += sin((time + 0.5) * 2.5) * 0.07
+	$ProjectilePivot.look_at(player.global_position)
 
 func _process(delta: float) -> void:
 	if position.distance_to(player.global_position) < 200:
