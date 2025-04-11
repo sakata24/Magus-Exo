@@ -25,18 +25,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			LASER:
 				STAGE_MASTER.get_node("AnimationPlayer").play("lazer")
 	await get_tree().create_timer(2).timeout
-		# Transition to next state
-	match selection:
-		ROCK:
-			Transitioned.emit(self, "Rock")
-		PAPER:
-			Transitioned.emit(self, "Paper")
-		SCISSORS:
-			Transitioned.emit(self, "Scissors")
-		GUN:
-			Transitioned.emit(self, "Gun")
-		LASER:
-			Transitioned.emit(self, "Laser")
+	STAGE_MASTER.emit_signal("selection_finished", STAGE_MASTER.which_hand)
 
 func get_into_position():
 	STAGE_MASTER.getting_into_position = true
@@ -64,12 +53,26 @@ func begin_selection():
 			else:
 				selection = LASER
 		_:
-			#selection = randi_range(ROCK, SCISSORS)
-			selection = ROCK
+			selection = randi_range(ROCK, SCISSORS)
+
+
+func transition():
+		# Transition to next state
+	match selection:
+		ROCK:
+			Transitioned.emit(self, "Rock")
+		PAPER:
+			Transitioned.emit(self, "Paper")
+		SCISSORS:
+			Transitioned.emit(self, "Scissors")
+		GUN:
+			Transitioned.emit(self, "Gun")
+		LASER:
+			Transitioned.emit(self, "Laser")
 
 func physics_update(delta):
 	new_velocity = STAGE_MASTER.global_position.direction_to(STAGE_MASTER.move_target) * STAGE_MASTER.speed
 	STAGE_MASTER.velocity = new_velocity
 
 func exit():
-	STAGE_MASTER.invincible = false
+	pass

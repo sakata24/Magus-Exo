@@ -1,5 +1,7 @@
 extends State
 
+@onready var SHOCKWAVE_ATTACK = preload("res://Abilities/BossMoves/StageMaster/Shockwave.tscn")
+
 @export var STAGE_MASTER : Boss
 @export var ATTACK_COOLDOWN : float = 2.0
 @export var RESET_DURATION : float = 5.0
@@ -45,5 +47,7 @@ func exit():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name.contains("rock_smash"):
+		var inst = SHOCKWAVE_ATTACK.instantiate()
+		STAGE_MASTER.add_child(inst)
 		STAGE_MASTER.invincible = false
 		reset_timer.start()

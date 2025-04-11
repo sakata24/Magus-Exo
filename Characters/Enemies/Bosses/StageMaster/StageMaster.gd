@@ -9,10 +9,12 @@ var invincible : bool = true
 var getting_into_position := false
 
 signal in_position
+signal selection_finished
 
 func _ready() -> void:
 	# Set boss/monster variables
 	maxHealth = 500
+	health = 500
 	speed = 300
 	boss_name = "The Stage Master"
 	aggro = true
@@ -24,6 +26,7 @@ func sm_init(hand : int, mark : Marker2D):
 	which_hand = hand
 	center_marker = mark
 	connect("in_position", get_parent().set_getting_in_position)
+	connect("selection_finished", get_parent().check_selection)
 
 func _physics_process(delta: float) -> void:
 	if getting_into_position:
