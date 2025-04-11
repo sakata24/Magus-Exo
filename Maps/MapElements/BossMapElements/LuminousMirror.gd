@@ -25,14 +25,12 @@ func _on_resource_changed():
 func update_hitbox_and_sprite():
 	$CollisionShape2D.shape = mirror.collision_shape
 	$Sprite2D.texture = mirror.sprite
+	$StaticBody2D/CollisionPolygon2D.polygon = mirror.map_hitbox
 	$CollisionShape2D.position.y = mirror.offset
 	$Sprite2D.position.y = mirror.offset
+	$StaticBody2D.position.y = mirror.offset
 
 func _on_area_entered(area: Area2D) -> void:
-	print("init: " + str(area.rotation_degrees))
-	print("" + str(mirror.perpendicular_angle))
-	print("Vector of incidence: " + str(Vector2(sin(area.rotation), cos(area.rotation))))
-	area.look_at(10 * (Vector2(sin(area.rotation), cos(area.rotation)).bounce(mirror.perpendicular_angle)))
-	print("result: " + str(area.rotation_degrees))
-	#print(mirror.perpendicular_angle)
-	
+	print(area.rotation)
+	area.set_rotation(Vector2(cos(area.rotation), sin(area.rotation)).bounce(mirror.perpendicular_angle).angle())
+	print(area.rotation)

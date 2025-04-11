@@ -17,3 +17,7 @@ func _ready():
 func _set_player():
 	if get_tree().get_nodes_in_group("players").size() > 0:
 		player = get_tree().get_nodes_in_group("players")[0]
+
+func _hit(dmg: DamageObject):
+	super(dmg)
+	health_changed.emit(self.health, false)

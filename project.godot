@@ -100,6 +100,7 @@ Space={
 2d_physics/layer_4="characters"
 2d_physics/layer_5="enemy_spells"
 2d_physics/layer_6="map"
+2d_physics/layer_7="map elements"
 
 [navigation]
 

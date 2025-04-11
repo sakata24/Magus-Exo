@@ -1,6 +1,8 @@
 @tool
 class_name MirrorType extends Resource
 
+var atlas_image = load("res://Resources/abilities/enemy/mirror.png")
+
 var collision_shape: SegmentShape2D
 var sprite: AtlasTexture = AtlasTexture.new()
 
@@ -23,13 +25,15 @@ enum variant {
 			update_sprite()
 			update_perpendicular_angle()
 			update_offset()
+			update_map_hitbox()
 			changed.emit()
 
 var perpendicular_angle = Vector2(0, -1)
 var offset = 12.0
+var map_hitbox = PackedVector2Array([Vector2(-16, -13), Vector2(16, -13), Vector2(16, 10), Vector2(-16, 10)])
 
 func _init() -> void:
-	sprite.set_atlas(ImageTexture.create_from_image(Image.load_from_file("res://Resources/abilities/enemy/mirror.png")))
+	sprite.set_atlas(atlas_image)
 	sprite.set_region(Rect2(0.0, 0.0, 32.0, 32.0))
 
 func update_structure():
@@ -64,14 +68,14 @@ func update_sprite():
 
 func update_perpendicular_angle():
 	match facing:
-		variant.FACING_SOUTH: perpendicular_angle = Vector2(0, -1)
-		variant.FACING_NORTH: perpendicular_angle = Vector2(0, 1)
+		variant.FACING_SOUTH: perpendicular_angle = Vector2(0, 1)
+		variant.FACING_NORTH: perpendicular_angle = Vector2(0, -1)
 		variant.FACING_EAST: perpendicular_angle = Vector2(1, 0)
 		variant.FACING_WEST: perpendicular_angle = Vector2(-1, 0)
-		variant.FACING_NORTHEAST: perpendicular_angle = Vector2(1.0/2.0, sqrt(3)/2)
-		variant.FACING_SOUTHEAST: perpendicular_angle = Vector2(1.0/2.0, -sqrt(3)/2)
-		variant.FACING_SOUTHWEST: perpendicular_angle = Vector2(-1.0/2.0, -sqrt(3)/2)
-		variant.FACING_NORTHWEST: perpendicular_angle = Vector2(1.0/2.0, -sqrt(3)/2)
+		variant.FACING_NORTHEAST: perpendicular_angle = Vector2(1.0/sqrt(5.0), -2.0/sqrt(5.0))
+		variant.FACING_SOUTHEAST: perpendicular_angle = Vector2(1.0/sqrt(5.0), 2.0/sqrt(5.0))
+		variant.FACING_SOUTHWEST: perpendicular_angle = Vector2(-1.0/sqrt(5.0), 2.0/sqrt(5.0))
+		variant.FACING_NORTHWEST: perpendicular_angle = Vector2(-1.0/sqrt(5.0), -2.0/sqrt(5.0))
 
 func update_offset():
 	match facing:
@@ -83,3 +87,14 @@ func update_offset():
 		variant.FACING_SOUTHEAST: offset = -16.0
 		variant.FACING_SOUTHWEST: offset = -16.0
 		variant.FACING_NORTHWEST: offset = -16.0
+
+func update_map_hitbox():
+	match facing:
+		variant.FACING_SOUTH: map_hitbox = PackedVector2Array([Vector2(-16, -13), Vector2(16, -13), Vector2(16, 10), Vector2(-16, 10)])
+		variant.FACING_NORTH: map_hitbox = PackedVector2Array([Vector2(-16, -10), Vector2(16, -10), Vector2(16, 12), Vector2(-16, 12)])
+		variant.FACING_EAST: map_hitbox = PackedVector2Array([Vector2(-3, -16), Vector2(1, -16), Vector2(1, 16), Vector2(-3, 16)])
+		variant.FACING_WEST: map_hitbox = PackedVector2Array([Vector2(-1, -16), Vector2(3, -16), Vector2(3, 16), Vector2(-1, 16)])
+		variant.FACING_NORTHEAST: map_hitbox = PackedVector2Array([Vector2(-16, -16), Vector2(16, -1), Vector2(16, 16), Vector2(11, 16), Vector2(-16, 3)])
+		variant.FACING_SOUTHEAST: map_hitbox = PackedVector2Array([Vector2(9, -16), Vector2(16, -16), Vector2(16, 0), Vector2(-16, 16), Vector2(-16, -3)])
+		variant.FACING_SOUTHWEST: map_hitbox = PackedVector2Array([Vector2(-16, -16), Vector2(-9, -16), Vector2(16, -3), Vector2(16, 16), Vector2(-16, 0)])
+		variant.FACING_NORTHWEST: map_hitbox = PackedVector2Array([Vector2(16, -16), Vector2(16, 3), Vector2(-11, 16), Vector2(-16, 16), Vector2(-16, -1)])

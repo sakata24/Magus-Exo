@@ -18,6 +18,8 @@ var MAP_SIZE = 2 # sqrt of room amt
 @onready var main = get_parent()
 @onready var player = main.get_node("Player")
 
+@export var initial_level: Node2D # for debugging purposes
+
 func _ready() -> void:
 	for room in get_children():
 		init_room_connections(room)
@@ -55,9 +57,12 @@ func init_boss_room():
 	add_child(new_room)
 	# remove it from the array
 	available_boss_levels.remove_at(random_num)
+	setup_boss_room(new_room)
+
+func setup_boss_room(new_room: Node2D):
 	for node in new_room.get_children():
 		if node is Boss:
-			connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)
+			node.connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)
 			get_parent().get_node("HUD").show_boss_bar(node.boss_name, node.health)
 
 func init_rooms():

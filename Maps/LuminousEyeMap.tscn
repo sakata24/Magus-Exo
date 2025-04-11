@@ -25,4 +25,4 @@ tile_set = ExtResource("1_h5nsq")
 position = Vector2(768, 192)
 
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
-position = Vector2(768, 368)
+position = Vector2(64, 192)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjqejomjtcknw"]
+
+[ext_resource type="Script" uid="uid://chfoacievlscw" path="res://Maps/MapElements/BossMapElements/LuminousMirror.gd" id="1_awcwx"]
+[ext_resource type="Texture2D" uid="uid://cfpplinbtkvxb" path="res://Resources/abilities/enemy/mirror.png" id="2_dsq1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0padd"]
+atlas = ExtResource("2_dsq1p")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rtbvi"]
+a = Vector2(-16, -8)
+b = Vector2(16, 8)
+
+[node name="LuminousMirror" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 32
+collision_mask = 20
+script = ExtResource("1_awcwx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_0padd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("SegmentShape2D_rtbvi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 64
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-16, -16, 16, -1, 16, 16, 11, 16, -16, 3)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

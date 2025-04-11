@@ -3,11 +3,13 @@ class_name LuminousEye extends Boss
 var time: float
 var mirror_spawn_area: Rect2 = Rect2()
 var protected = false
-@onready var mirror_resource = load("res://Characters/Enemies/Bosses/LuminousEye/LuminousMirror.tscn")
+var stage = 1
+@onready var mirror_resource = load("res://Maps/MapElements/BossMapElements/LuminousMirror.tscn")
 @onready var dodecahedron_sprite = $DodecahedronSprite
 
 func _ready():
 	maxHealth = 500
+	health = 500
 	boss_name = "Photonis, the Luminous Eye"
 	super._ready()
 
@@ -21,8 +23,12 @@ func cast_photon_laser(bounces: int):
 
 # fractal barrier - makes the boss immune to damage until shield is broken
 func enable_fractal_barrier():
-	dodecahedron_sprite.modulate = Color(1, 0.2, 0.2, 0.47)
+	dodecahedron_sprite.modulate = Color(1, 0.745, 0.416, 1)
 	protected = true
+
+func fractal_barrier_broken():
+	dodecahedron_sprite.modulate = Color(1, 1, 1, 0.47)
+	protected = false
 
 # parallax ability - teleports the boss to a new location
 func change_position():
@@ -34,14 +40,22 @@ func randomize_mirrors():
 		mirror.queue_free()
 	for i in range(0, 17):
 		var new_mirror: LuminousMirror = mirror_resource.instantiate()
-		add_sibling(new_mirror)
-		new_mirror.global_position = Vector2(randi_range(16, 1520), randi_range(16, 384))
+		call_deferred("add_sibling", new_mirror)
+		var rand_pos = Vector2(randi_range(32, 1504), randi_range(32, 378))
+		# ensure mirror is not on the boss
+		while ((rand_pos.x > self.get_global_position().x-96) and (rand_pos.x < self.get_global_position().x+96)) and ((rand_pos.y > self.get_global_position().y-96) and (rand_pos.y < self.get_global_position().y+96)):
+			rand_pos = Vector2(randi_range(32, 1504), randi_range(32, 378))
+			print(rand_pos)
+		new_mirror.global_position = rand_pos
 		new_mirror.mirror.facing = MirrorType.variant.values().pick_random()
 		new_mirror.add_to_group("mirrors")
 
 func _hit(damage: DamageObject):
-	if damage.get_types().has("fracture"):
-		pass
+	if self.protected:
+		if damage.get_types().has("fracture"):
+			fractal_barrier_broken()
+	else:
+		super(damage)
 
 # override so i just chill in the center and float
 func _physics_process(delta: float) -> void:
