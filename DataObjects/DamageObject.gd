@@ -6,7 +6,7 @@ var value = 0
 var types = []
 var source = null
 
-func init(init_value=0, init_types=[], init_source=null):
+func _init(init_value=0, init_types=[], init_source=null):
 	self.value = init_value
 	self.types = init_types
 	self.source = init_source
