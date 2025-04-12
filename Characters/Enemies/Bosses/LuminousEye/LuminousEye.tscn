@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://c48e7iupn8dsg" path="res://Abilities/BossMoves/LuminousEye/LaserRayCast.gd" id="9_vplet"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61uwt"]
-radius = 17.0294
+radius = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61uwt"]
 atlas = ExtResource("2_75xhx")
@@ -84,7 +84,7 @@ texture = SubResource("AtlasTexture_61uwt")
 
 [node name="DodecahedronSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.470588)
-y_sort_enabled = true
+z_index = 1
 texture = SubResource("AtlasTexture_bdlju")
 
 [node name="StatusLabel" type="Label" parent="."]
@@ -103,11 +103,8 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FightTriggerArea"]
 shape = SubResource("CircleShape2D_bdlju")
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="IdleTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [node name="ProjectilePivot" type="Node2D" parent="."]
@@ -116,20 +113,24 @@ rotation = -6.28319
 [node name="SpellSpawnPos" type="Marker2D" parent="ProjectilePivot"]
 position = Vector2(16, 0)
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_63uv6")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://drf17f1mu335f"
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("luminousEye")]
 script = ExtResource("5_m511y")
+luminousEye = NodePath("../..")
 metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("luminousEye")]
 script = ExtResource("6_m511y")
+luminousEye = NodePath("../..")
 metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 
-[node name="Vulnerable" type="Node" parent="StateMachine"]
+[node name="Vulnerable" type="Node" parent="StateMachine" node_paths=PackedStringArray("luminousEye")]
 script = ExtResource("7_0kuyb")
+luminousEye = NodePath("../..")
 metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 
 [node name="PhotonLaser" type="Node2D" parent="."]
@@ -153,7 +154,7 @@ width = 1.0
 default_color = Color(1, 0, 0, 0.556863)
 
 [node name="LaserTimer" type="Timer" parent="PhotonLaser"]
-wait_time = 0.5
+wait_time = 0.7
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PhotonLaser"]
@@ -162,7 +163,7 @@ libraries = {
 }
 
 [connection signal="body_entered" from="FightTriggerArea" to="." method="_on_fight_trigger_area_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
+[connection signal="attack_finished" from="PhotonLaser" to="StateMachine/Attack" method="_on_attack_finished"]
 [connection signal="timeout" from="PhotonLaser/LaserTimer" to="PhotonLaser" method="_on_laser_timer_timeout"]
 [connection signal="animation_finished" from="PhotonLaser/AnimationPlayer" to="PhotonLaser" method="_on_animation_player_animation_finished"]

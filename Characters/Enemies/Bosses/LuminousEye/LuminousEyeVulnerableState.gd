@@ -1,5 +1,7 @@
 class_name LuminousEyeVulnerableState extends State
 
+@export var luminousEye: LuminousEye
+
 func enter():
 	pass
 

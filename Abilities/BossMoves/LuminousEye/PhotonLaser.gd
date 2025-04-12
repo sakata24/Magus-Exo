@@ -1,6 +1,7 @@
 class_name PhotonLaser extends Node2D
 
 var current_target
+signal attack_finished
 @onready var spell_spawn_pos = get_parent().get_node("ProjectilePivot/SpellSpawnPos")
 
 func _ready() -> void:
@@ -13,7 +14,6 @@ func _physics_process(delta: float) -> void:
 	if $LaserRayCast.is_colliding():
 		for point in $LaserRayCast.get_reflection_points():
 			$LaserIndicator.add_point(to_local(point))
-			print(point)
 	elif $LaserRayCast.enabled:
 		$LaserIndicator.add_point(current_target)
 
@@ -22,9 +22,12 @@ func charge(target: Vector2):
 	$LaserRayCast.target_position = current_target
 	$LaserRayCast.enabled = true
 	$LaserTimer.start()
+	$LaserIndicator.visible = true
 
 func _on_laser_timer_timeout() -> void:
-	var laser_points = $LaserIndicator.points
+	$LaserIndicator.visible = false
+	var laser_points = $LaserIndicator.points.duplicate()
+	$LaserIndicator.clear_points()
 	var dummy_pos = position
 	for point in laser_points:
 		var x = dummy_pos.distance_to(point)
@@ -48,6 +51,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	for child in get_children():
 		if child is Area2D:
 			child.queue_free()
+	$LaserRayCast.enabled = false
+	attack_finished.emit()
 
 func _on_body_entered(body: PhysicsBody2D):
 	if body is Player:

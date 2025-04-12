@@ -8,8 +8,8 @@ var stage = 1
 @onready var dodecahedron_sprite = $DodecahedronSprite
 
 func _ready():
-	maxHealth = 500
-	health = 500
+	maxHealth = 750
+	health = 750
 	boss_name = "Photonis, the Luminous Eye"
 	super._ready()
 
@@ -61,16 +61,11 @@ func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.1
 	$EyeSprite.position.y += sin((time + 0.5) * 2.5) * 0.07
-	$ProjectilePivot.look_at(player.global_position)
 
 func _process(delta: float) -> void:
-	if position.distance_to(player.global_position) < 200:
-		$EyeSprite.look_at(player.global_position)
+	pass
 
 func _on_fight_trigger_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		randomize_mirrors()
-
-func _on_timer_timeout() -> void:
-	#enable_fractal_barrier()
-	cast_photon_laser(1)
+		$FightTriggerArea.set_collision_mask_value(1, false)

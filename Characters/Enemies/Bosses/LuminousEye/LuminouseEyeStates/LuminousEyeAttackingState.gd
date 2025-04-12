@@ -1,9 +1,9 @@
 class_name LuminousEyeAttackingState extends State
 
+@export var luminousEye: LuminousEye
+
 func enter():
-	# choose an attack
-	pass
+	luminousEye.cast_photon_laser(1)
 
 func _on_attack_finished():
-	# transition to idle
-	pass
+	Transitioned.emit(self, "Idle")
