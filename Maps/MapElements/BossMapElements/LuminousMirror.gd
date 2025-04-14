@@ -31,6 +31,4 @@ func update_hitbox_and_sprite():
 	$StaticBody2D.position.y = mirror.offset
 
 func _on_area_entered(area: Area2D) -> void:
-	print(area.rotation)
 	area.set_rotation(Vector2(cos(area.rotation), sin(area.rotation)).bounce(mirror.perpendicular_angle).angle())
-	print(area.rotation)

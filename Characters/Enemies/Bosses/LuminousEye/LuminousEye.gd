@@ -1,10 +1,13 @@
 class_name LuminousEye extends Boss
 
+var photon_laser_scene = load("res://Abilities/BossMoves/LuminousEye/PhotonLaser.tscn")
+var photon_bullet_scene = load("res://Abilities/BossMoves/LuminousEye/PhotonBullet.tscn")
+var mirror_resource = load("res://Maps/MapElements/BossMapElements/LuminousMirror.tscn")
+
 var time: float
 var mirror_spawn_area: Rect2 = Rect2()
 var protected = false
 var stage = 1
-@onready var mirror_resource = load("res://Maps/MapElements/BossMapElements/LuminousMirror.tscn")
 @onready var dodecahedron_sprite = $DodecahedronSprite
 
 func _ready():
@@ -15,11 +18,24 @@ func _ready():
 
 # photon bullets - summons a cone of bullets
 func summon_photon_bullets(num: int, bounces: int):
-	pass
+	var interval_size = (PI/4.0)
+	var delta = interval_size/(num-1)
+	for i in range(0, num):
+		var spawn_angle = ($ProjectilePivot.rotation - interval_size/2.0) + (delta * i)
+		var spawn_pos = Vector2(cos(spawn_angle), sin(spawn_angle)) * $ProjectilePivot/SpellSpawnPos.position
+		var photon_bullet: PhotonBullet = photon_bullet_scene.instantiate()
+		photon_bullet.connect("attack_finished", $StateMachine/Attack._on_attack_finished)
+		add_child(photon_bullet)
+		photon_bullet.position = spawn_pos
+		photon_bullet.rotation = spawn_angle
+	
 
 # photon laser - a laser that bounces off of mirrors
 func cast_photon_laser(bounces: int):
-	$PhotonLaser.charge(player.global_position)
+	var photon_laser = photon_laser_scene.instantiate()
+	add_child(photon_laser)
+	photon_laser.connect("attack_finished", $StateMachine/Attack._on_attack_finished)
+	photon_laser.charge(player.global_position)
 	
 # fractal barrier - makes the boss immune to damage until shield is broken
 func enable_fractal_barrier():
@@ -32,9 +48,27 @@ func fractal_barrier_broken():
 
 # parallax ability - teleports the boss to a new location
 func change_position():
-	$ParallaxFilter.visible = true
-	var tween = Tween.new()
-	
+	# blind player
+	var color_rect = ColorRect.new()
+	player.get_node("Camera2D").add_child(color_rect)
+	color_rect.size.x = player.get_viewport_rect().size.x
+	color_rect.size.y = player.get_viewport_rect().size.y
+	color_rect.position.x = -color_rect.size.x/2.0
+	color_rect.position.y = -color_rect.size.y/2.0
+	color_rect.z_index = 2
+	color_rect.color = Color(0, 0, 0)
+	var blind_timer = Timer.new()
+	blind_timer.connect("timeout", func(): 
+		color_rect.queue_free())
+	blind_timer.connect("timeout", $StateMachine/Attack._on_attack_finished)
+	blind_timer.wait_time = 0.2
+	color_rect.add_child(blind_timer)
+	blind_timer.start()
+	# teleport
+	var new_pos = randi_range(100, 1435)
+	position.x = new_pos
+	# randomize mirrors
+	randomize_mirrors()
 
 # hall of versailles - change the location of the mirrors
 func randomize_mirrors():

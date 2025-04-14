@@ -3,35 +3,35 @@
 [ext_resource type="Script" uid="uid://chfoacievlscw" path="res://Maps/MapElements/BossMapElements/LuminousMirror.gd" id="1_awcwx"]
 [ext_resource type="Texture2D" uid="uid://cfpplinbtkvxb" path="res://Resources/abilities/enemy/mirror.png" id="2_dsq1p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dsq1p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0padd"]
 atlas = ExtResource("2_dsq1p")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_0padd"]
-a = Vector2(0, -16)
-b = Vector2(0, 16)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rtbvi"]
+a = Vector2(-16, 0)
+b = Vector2(16, 0)
 
 [node name="LuminousMirror" type="Area2D"]
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
-collision_layer = 96
+collision_layer = 64
 collision_mask = 16
 script = ExtResource("1_awcwx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
-texture = SubResource("AtlasTexture_dsq1p")
+position = Vector2(0, -10)
+texture = SubResource("AtlasTexture_0padd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
-shape = SubResource("SegmentShape2D_0padd")
+position = Vector2(0, -10)
+shape = SubResource("SegmentShape2D_rtbvi")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -10)
 collision_layer = 64
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-3, -16, 1, -16, 1, 16, -3, 16)
+polygon = PackedVector2Array(-16, -13, 16, -13, 16, 10, -16, 10)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
