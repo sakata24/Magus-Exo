@@ -32,7 +32,9 @@ func fractal_barrier_broken():
 
 # parallax ability - teleports the boss to a new location
 func change_position():
-	pass
+	$ParallaxFilter.visible = true
+	var tween = Tween.new()
+	
 
 # hall of versailles - change the location of the mirrors
 func randomize_mirrors():
@@ -45,7 +47,6 @@ func randomize_mirrors():
 		# ensure mirror is not on the boss
 		while ((rand_pos.x > self.get_global_position().x-96) and (rand_pos.x < self.get_global_position().x+96)) and ((rand_pos.y > self.get_global_position().y-96) and (rand_pos.y < self.get_global_position().y+96)):
 			rand_pos = 32 * Vector2(randi_range(1, 47), randi_range(1, 12))
-			print(rand_pos)
 		new_mirror.global_position = rand_pos
 		new_mirror.mirror.facing = MirrorType.variant.values().pick_random()
 		new_mirror.add_to_group("mirrors")
