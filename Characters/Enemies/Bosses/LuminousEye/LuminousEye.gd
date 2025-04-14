@@ -32,8 +32,10 @@ func summon_photon_bullets(num: int, bounces: int):
 
 # photon laser - a laser that bounces off of mirrors
 func cast_photon_laser(bounces: int):
-	var photon_laser = photon_laser_scene.instantiate()
+	var photon_laser: PhotonLaser = photon_laser_scene.instantiate()
 	add_child(photon_laser)
+	if stage == 3:
+		photon_laser.get_node("LaserTimer").wait_time = 0.7
 	photon_laser.connect("attack_finished", $StateMachine/Attack._on_attack_finished)
 	photon_laser.charge(player.global_position)
 	
@@ -88,6 +90,16 @@ func randomize_mirrors():
 func _hit(damage: DamageObject):
 	if not protected:
 		super(damage)
+		if stage == 1 and health < maxHealth * 0.667:
+			stage = 2
+			change_position()
+			$IdleTimer.wait_time = 3.0
+		if stage == 2 and health < maxHealth * 0.333:
+			stage = 3
+			change_position()
+			$IdleTimer.wait_time = 2.0
+		if health <= 0:
+			die()
 	if damage.get_types().has("fracture"):
 		pass
 

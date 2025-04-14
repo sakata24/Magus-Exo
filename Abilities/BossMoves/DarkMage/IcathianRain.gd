@@ -35,7 +35,7 @@ func _turn():
 	tween.tween_property(self, "speed", launch_speed, 0.8).set_ease(Tween.EASE_IN)
 	$Line2D.started = true
 
-func _on_body_entered(body: PhysicsBody2D):
+func _on_body_entered(body: Node2D):
 	if body.is_in_group("players"):
 		var damage_object = DamageObject.new(dmg)
 		player.hit(damage_object)

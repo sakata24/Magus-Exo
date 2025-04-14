@@ -42,25 +42,6 @@ func _hit(damage: DamageObject):
 			emit_signal("health_changed", health, false)
 
 
-# when i die
-func die():
-	emit_signal("give_xp", bestowedXp)
-	emit_signal("boss_dead")
-	player.get_parent().get_node("HUD").get_node("MarginContainer/BossBar").visible = false # CHANGE THIS AFTER UI REFACTORING 
-	var drop
-	match randi_range(0, 2):
-		0: 
-			drop = upgradeDrop.instantiate()
-		_:
-			drop = null
-	if drop != null:
-		drop.position = position
-		get_parent().add_child(drop)
-	for enemy in get_tree().get_nodes_in_group("monsters"):
-		enemy.queue_free()
-	queue_free()
-
-
 func surround_player_with_minions():
 	var player_pos = player.global_position
 		#Spawn Minions around the player

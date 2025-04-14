@@ -13,7 +13,6 @@ func _ready() -> void:
 	call_deferred("emit_signal", "attack_finished")
 
 func _on_body_entered(body: Node2D):
-	print(body)
 	if body is Player:
 		var dmg = DamageObject.new(3, [], parent)
 		body.hit(dmg)

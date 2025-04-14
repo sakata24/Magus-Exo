@@ -51,7 +51,7 @@ func handle_reaction(reactant: BaseTypeAbility):
 	await $AudioStreamPlayer2D.finished
 	queue_free()
 
-func _on_body_entered(body: PhysicsBody2D):
+func _on_body_entered(body: Node2D):
 	if body.is_in_group("players"):
 		var damage_object = DamageObject.new(dmg)
 		player.hit(damage_object)

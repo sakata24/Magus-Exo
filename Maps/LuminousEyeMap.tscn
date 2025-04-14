@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://0gck43dixe41"]
+[gd_scene load_steps=6 format=4 uid="uid://0gck43dixe41"]
 
 [ext_resource type="Script" uid="uid://dqe7dkbqmh4tq" path="res://Maps/LuminousEyeMap.gd" id="1_axtkf"]
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_h5nsq"]
 [ext_resource type="PackedScene" uid="uid://b8jqmlexm3xmx" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEye.tscn" id="2_axtkf"]
+[ext_resource type="PackedScene" uid="uid://djshger1h1fb5" path="res://Maps/MapElements/ExitDoor.tscn" id="4_yuxw6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h5nsq"]
 vertices = PackedVector2Array(1510, 374, 26, 374, 26, 26, 1510, 26)
@@ -26,3 +27,7 @@ position = Vector2(768, 192)
 
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
 position = Vector2(64, 192)
+
+[node name="ExitDoor" parent="." instance=ExtResource("4_yuxw6")]
+visible = false
+position = Vector2(768, 192)

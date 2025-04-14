@@ -18,6 +18,8 @@ func _physics_process(delta: float) -> void:
 		repel_all_in_area()
 		set_collision_mask_value(2, false)
 		$Sprite2D.material.set("shader_parameter/flashState", $Sprite2D.material.get("shader_parameter/flashState") + 0.05)
+	if $Sprite2D.material.get("shader_parameter/flashState") >= 1:
+		queue_free()
 
 func repel_all_in_area():
 	for target in get_overlapping_bodies():
@@ -31,10 +33,10 @@ func attach_stun_timer(wait_time: float, enemy: Node2D):
 	var timer = Timer.new()
 	timer.wait_time = wait_time
 	# add the function to be run on timeout
-	timer.connect("timeout", Callable(func():
+	timer.connect("timeout", func():
 		if enemy is Monster:
 			enemy.can_move = true
 		enemy.velocity = Vector2.ZERO
-		timer.queue_free()))
+		timer.queue_free())
 	enemy.add_sibling(timer)
 	timer.start()
