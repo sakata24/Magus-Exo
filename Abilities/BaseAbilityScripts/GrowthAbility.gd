@@ -12,3 +12,7 @@ func get_reaction_scene(reactant_element: String) -> Node2D:
 		"flow": return SkillSceneHandler.get_scene_by_name("pursuit")
 		"wither": return SkillSceneHandler.get_scene_by_name("extend")
 		_: return null
+
+# growth spells have special interactions for each spell with sunder spells
+func burst_caused(reactant: SunderAbility):
+	pass

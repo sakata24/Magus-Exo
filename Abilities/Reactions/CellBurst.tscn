@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgdi3nfdxmacy"]
+
+[ext_resource type="Script" uid="uid://dg0j7ct5e1hj6" path="res://Abilities/Reactions/CellBurst.gd" id="1_q1x0g"]
+
+[sub_resource type="Gradient" id="Gradient_q1x0g"]
+colors = PackedColorArray(0.776471, 0.262745, 0, 0.603922, 0.741176, 0.909804, 0, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ntjlb"]
+gradient = SubResource("Gradient_q1x0g")
+width = 2
+height = 2
+fill_from = Vector2(0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jnwtg"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 3, 1)
+emission_ring_height = 5.0
+emission_ring_radius = 16.0
+emission_ring_inner_radius = 8.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, -50, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 8.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.211
+turbulence_initial_displacement_min = -50.0
+turbulence_initial_displacement_max = 50.0
+
+[node name="CellBurst" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_q1x0g")
+metadata/_custom_type_script = "uid://4xdsroefmwd8"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(11, -3, 16, 0, 11, 3, 0, 4, -11, 3, -16, 0, -11, -3, 0, -4)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 64
+texture = SubResource("GradientTexture2D_ntjlb")
+lifetime = 0.4
+preprocess = 0.4
+process_material = SubResource("ParticleProcessMaterial_jnwtg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

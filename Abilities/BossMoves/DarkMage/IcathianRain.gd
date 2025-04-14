@@ -37,8 +37,7 @@ func _turn():
 
 func _on_body_entered(body: PhysicsBody2D):
 	if body.is_in_group("players"):
-		var damage_object = DamageObject.new()
-		damage_object.init(dmg)
+		var damage_object = DamageObject.new(dmg)
 		player.hit(damage_object)
 		queue_free()
 

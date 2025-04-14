@@ -2,7 +2,6 @@ class_name CrackAbility extends SunderAbility
 
 func init(skill_dict, cast_target, caster):
 	super(skill_dict, cast_target, caster)
-	self.global_position = caster.global_position
 
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):

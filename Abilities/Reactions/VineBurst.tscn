@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://0jd2u544dilw"]
+
+[ext_resource type="Script" uid="uid://ba5j7dliulech" path="res://Abilities/Reactions/VineBurst.gd" id="1_rxndp"]
+
+[sub_resource type="Gradient" id="Gradient_q1x0g"]
+colors = PackedColorArray(0.776471, 0.262745, 0, 0.603922, 0.741176, 0.909804, 0, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rxndp"]
+gradient = SubResource("Gradient_q1x0g")
+width = 2
+height = 2
+fill_from = Vector2(0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rxndp"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -50, 0)
+turbulence_enabled = true
+turbulence_noise_scale = 8.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.211
+turbulence_initial_displacement_min = -50.0
+turbulence_initial_displacement_max = 50.0
+
+[node name="VineBurst" type="Node2D"]
+script = ExtResource("1_rxndp")
+metadata/_custom_type_script = "uid://daw8i2nrnonko"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = SubResource("GradientTexture2D_rxndp")
+lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_rxndp")

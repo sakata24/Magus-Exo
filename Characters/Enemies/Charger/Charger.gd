@@ -12,8 +12,7 @@ func _ready():
 
 func _on_damage_area_body_entered(body):
 	if body.name == "Player":
-		var damage_object = DamageObject.new()
-		damage_object.init(my_dmg)
+		var damage_object = DamageObject.new(my_dmg)
 		player.hit(damage_object)
 
 func _physics_process(delta: float) -> void:

@@ -56,6 +56,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_body_entered(body: PhysicsBody2D):
 	if body is Player:
-		var dmg = DamageObject.new()
-		dmg.init(15)
+		var dmg = DamageObject.new(15)
 		body.hit(dmg)

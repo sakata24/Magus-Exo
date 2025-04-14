@@ -11,7 +11,7 @@
 - [Gameplay] finish reactions:
 	burst,fork
 	burst: ?
-	fork: split the fork spell into two
+	fork: split the flow spell into two
 
 - gameplay notes -
 - construct dmg scale w size

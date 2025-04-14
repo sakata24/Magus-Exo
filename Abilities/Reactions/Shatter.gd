@@ -56,8 +56,7 @@ func damage_overlapping_bodies():
 
 # will damage an enemy
 func damage_enemy(enemy):
-	var damage_object = DamageObject.new()
-	damage_object.init(dmg, ["sunder", "construct"], my_parent.spell_caster)
+	var damage_object = DamageObject.new(dmg, ["sunder", "construct"], my_parent.spell_caster)
 	enemy._hit(damage_object)
 
 # on body enter

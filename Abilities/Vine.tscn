@@ -8,7 +8,7 @@
 script = ExtResource("2_cns7i")
 
 [node name="CollisionPolygon2D" parent="." index="0"]
-polygon = PackedVector2Array(-100, 2, -100, -2, 100, -2, 100, 2)
+polygon = PackedVector2Array(8, 2, 8, -2, 208, -2, 208, 2)
 
 [node name="LifetimeTimer" parent="." index="1"]
 autostart = true
@@ -18,5 +18,5 @@ visible = false
 polygon = PackedVector2Array(-100, 2, -100, -2, 100, -2, 100, 2)
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-rotation = 3.14159
+position = Vector2(108, 0)
 sprite_frames = ExtResource("3_hup53")

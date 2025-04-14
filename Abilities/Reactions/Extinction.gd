@@ -18,6 +18,5 @@ func init(reaction_components: Dictionary):
 func _process(delta):
 	for body in get_overlapping_bodies():
 		if body.is_in_group("monsters") and ((body.health * 10) <= (body.maxHealth) and body.health > 0):
-			var damage_object = DamageObject.new()
-			damage_object.init(999, ["construct", "wither"], get_parent().spell_caster)
+			var damage_object = DamageObject.new(999, ["construct", "wither"], get_parent().spell_caster)
 			body._hit(damage_object)

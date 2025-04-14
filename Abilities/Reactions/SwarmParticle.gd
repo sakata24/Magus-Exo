@@ -11,8 +11,7 @@ func _ready() -> void:
 # hit a target if i collide with them
 func _on_body_entered(body: Enemy) -> void:
 	if body.is_in_group("monsters"):
-		var damage_object = DamageObject.new()
-		damage_object.init(1, ["growth", "wither"], get_parent().caster)
+		var damage_object = DamageObject.new(1, ["growth", "wither"], get_parent().caster)
 		body._hit(damage_object)
 
 func _physics_process(delta: float) -> void:
