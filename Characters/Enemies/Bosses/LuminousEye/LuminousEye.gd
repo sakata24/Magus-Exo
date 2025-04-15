@@ -8,6 +8,7 @@ var time: float
 var mirror_spawn_area: Rect2 = Rect2()
 var protected = false
 var stage = 1
+var look_target = Vector2(0, 0)
 @onready var dodecahedron_sprite = $DodecahedronSprite
 
 func _ready():
@@ -109,6 +110,7 @@ func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.1
 	$EyeSprite.position.y += sin((time + 0.5) * 2.5) * 0.07
+	look_target = player.global_position
 
 func _process(delta: float) -> void:
 	pass

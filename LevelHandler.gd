@@ -1,7 +1,7 @@
 class_name LevelHandler extends Node2D
 
-var boss_levels = [preload("res://Maps/DarkMageMap.tscn")]
-var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn")]
+var boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
+var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
 var map0 = preload("res://Maps/Map.tscn")
 var map1 = preload("res://Maps/Map1.tscn")
 var map2 = preload("res://Maps/Map2.tscn")
@@ -51,8 +51,7 @@ func reset_boss_level_array():
 
 func init_boss_room():
 	# randomly choose a boss+room to spawn
-	var RNG = RandomNumberGenerator.new()
-	var random_num = RNG.randi() % boss_levels.size()
+	var random_num = randi_range(0, available_boss_levels.size()-1)
 	var new_room = available_boss_levels[random_num].instantiate()
 	add_child(new_room)
 	# remove it from the array
@@ -64,6 +63,8 @@ func setup_boss_room(new_room: Node2D):
 		if node is Boss:
 			node.connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)
 			get_parent().get_node("HUD").show_boss_bar(node.boss_name, node.health)
+		if node is ExitDoor:
+			node.connect("load_level", Callable(self, "_load_level"))
 
 func init_rooms():
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
