@@ -16,7 +16,7 @@ func bounce_on_mirror():
 	new_laser_ray.collide_with_bodies = false
 	new_laser_ray.add_exception(get_collider())
 	new_laser_ray.force_raycast_update()
-	if new_laser_ray.is_colliding():
+	if new_laser_ray.is_colliding() and get_collider() is LuminousMirror:
 		new_laser_ray.bounce_on_mirror()
 
 func get_reflection_points():

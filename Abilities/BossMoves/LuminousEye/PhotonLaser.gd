@@ -29,6 +29,7 @@ func charge(target: Vector2):
 
 # when laser firing, create rectangles to each mirror to damage the player and play the animation
 func _on_laser_timer_timeout() -> void:
+	get_parent().player.shake()
 	$LaserIndicator.visible = false
 	var laser_points = $LaserIndicator.points.duplicate()
 	$LaserIndicator.clear_points()

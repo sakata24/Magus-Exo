@@ -15,7 +15,7 @@ func _process(delta):
 		interval = 0.002
 
 func _on_body_entered(body):
-	if body.name == "Player":
+	if body is Player:
 		get_node("../../../Selection").setup()
 		queue_free()
 		get_tree().paused = true

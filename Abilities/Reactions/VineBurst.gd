@@ -8,6 +8,8 @@ var particle_spawn_area
 func _ready() -> void:
 	setup_particle_spawn_box()
 	parent.get_node("AnimatedSprite2D").modulate = Color(0.769, 0.345, 0.153)
+	# spawn reaction name
+	spawn_reaction_name("vine-burst!", self, AbilityColor.GROWTH, AbilityColor.SUNDER)
 
 func setup_particle_spawn_box():
 	var vine_shape = parent.get_node("CollisionPolygon2D").get_polygon()

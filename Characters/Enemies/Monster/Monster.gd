@@ -5,7 +5,7 @@ var upgradeDrop = preload("res://Interactables/UpgradeChest.tscn")
 # am i mad
 var aggro = false
 # reference to chase the player
-var player = CharacterBody2D
+var player: Player
 # damage
 var my_dmg: int = 2
 # base dmg for ref

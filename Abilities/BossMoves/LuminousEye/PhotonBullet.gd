@@ -5,16 +5,17 @@ signal attack_finished
 
 func _ready() -> void:
 	abilityID = "PhotonBullet"
-	speed = 400
+	speed = 125
 	myMovement = Movement.get_movement_object_by_name("bullet")
 	myModifiers.append(CollisionDespawnModifier.new())
+	element = "fracture"
 	for modifier in myModifiers:
 		modifier.apply(self)
 	call_deferred("emit_signal", "attack_finished")
 
 func _on_body_entered(body: Node2D):
-	if body is Player:
-		var dmg = DamageObject.new(3, [], parent)
+	if (body is Player) or (body is LuminousEye):
+		var dmg = DamageObject.new(3, [element], parent)
 		body.hit(dmg)
 	elif body.get_parent() is LuminousMirror:
 		self.speed += 100

@@ -19,7 +19,6 @@ color = Color(1, 1, 0, 0)
 polygon = PackedVector2Array(0, -15, 8, -13, 13, -8, 15, 0, 13, 8, 8, 13, 0, 15, -8, 13, -13, 8, -15, 0, -13, -8, -8, -13)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_1t8l3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
