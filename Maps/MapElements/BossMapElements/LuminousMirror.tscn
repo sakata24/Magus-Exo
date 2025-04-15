@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjqejomjtcknw"]
+[gd_scene load_steps=6 format=3 uid="uid://bjqejomjtcknw"]
 
 [ext_resource type="Script" uid="uid://chfoacievlscw" path="res://Maps/MapElements/BossMapElements/LuminousMirror.gd" id="1_awcwx"]
+[ext_resource type="Script" uid="uid://c8lhggatid621" path="res://Maps/MapElements/BossMapElements/MirrorRes/MirrorType.gd" id="2_0padd"]
 [ext_resource type="Texture2D" uid="uid://cfpplinbtkvxb" path="res://Resources/abilities/enemy/mirror.png" id="2_dsq1p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0padd"]
+[sub_resource type="Resource" id="Resource_rtbvi"]
+script = ExtResource("2_0padd")
+facing = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucblu"]
 atlas = ExtResource("2_dsq1p")
 region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_rtbvi"]
-a = Vector2(-16, 0)
-b = Vector2(16, 0)
 
 [node name="LuminousMirror" type="Area2D"]
 y_sort_enabled = true
@@ -17,17 +18,17 @@ scale = Vector2(1.5, 1.5)
 collision_layer = 64
 collision_mask = 16
 script = ExtResource("1_awcwx")
+mirror = SubResource("Resource_rtbvi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -10)
-texture = SubResource("AtlasTexture_0padd")
+position = Vector2(0, 12)
+texture = SubResource("AtlasTexture_ucblu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10)
-shape = SubResource("SegmentShape2D_rtbvi")
+position = Vector2(0, 12)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, 12)
 collision_layer = 64
 collision_mask = 3
 

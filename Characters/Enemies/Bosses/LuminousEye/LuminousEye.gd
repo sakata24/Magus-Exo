@@ -78,6 +78,7 @@ func randomize_mirrors():
 		mirror.queue_free()
 	for i in range(0, 17):
 		var new_mirror: LuminousMirror = mirror_resource.instantiate()
+		new_mirror.mirror = MirrorType.new()
 		call_deferred("add_sibling", new_mirror)
 		var rand_pos = 32 * Vector2(randi_range(1, 47), randi_range(1, 12))
 		# ensure mirror is not on the boss
