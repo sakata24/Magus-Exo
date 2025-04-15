@@ -1,20 +1,17 @@
-- [UI] settings
 - BUG [UI]: cooldown dash doesnt reflect on UI
 - BUG [Visual?]: particles for singularity show more than usual
-- BUG [Gameplay]: boss should not be able to be moved by singularity
 - BUG [Gameplay]: boss level monsters should not drop upgrades
-- BUG [Gameplay] Scythes spawning outside should not occur
+- BUG [Gameplay]: Scythes spawning outside should not occur
+- BUG [Gameplay]: Player gets stuck in between mirrors
 - [UI] show upgrades chosen
 - [UI] tooltips
-- [???] screen shrink on boss
+- [???] screen shrink on dark mage
 - [Gameplay][UI] armorer
+- [User Experience]: Tutorial/learning curve
 - [Gameplay] finish reactions:
-	burst,fork
-	burst: ?
 	fork: split the flow spell into two
 
 - gameplay notes -
-- construct dmg scale w size
 
 -- jake boss --
 Photonis, the Luminous Eye
@@ -25,7 +22,6 @@ Look:
 
 Map:
 	Boss in middle on start
-	3 places for the boss to be located
 	Mirrors part of the map
 	17 locations that a mirror could spawn
 
@@ -69,13 +65,13 @@ Abilities:
 	Hall of Versailles (Mirrors):
 		- reflects boss attacks
 		- 3 player size
-		- one special mirror will spawn a clone of player projectiles that hit it and increase spawned projectiles by 1
+		- *one special mirror will spawn a clone of player projectiles that hit it and increase spawned projectiles by 1
 		- these mirrors change locations every once in a while
 	Parallax (Blink):
 		- teleport to a different location
 
 Player Interaction:
-	Find an item on the floor that will break the shield upon next attack
+	*Find an item on the floor that will break the shield upon next attack
 
 
 - laa boss -

@@ -14,6 +14,9 @@ var growth_xp = 0
 var flow_xp = 0
 var wither_xp = 0
 
+# game states
+var tutorial_complete = false
+
 func _ready():
 	add_to_group("Persist")
 	# always try to have a save file on load

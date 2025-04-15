@@ -11,7 +11,7 @@ func _ready():
 	cc_immune = true
 	droppable = false
 	add_to_group("monsters")
-	await call_deferred("_set_player")
+	_set_player()
 	emit_signal("health_changed", maxHealth, true)
 
 func _set_player():
@@ -26,7 +26,6 @@ func _hit(dmg: DamageObject):
 func die():
 	emit_signal("give_xp", bestowedXp)
 	emit_signal("boss_dead")
-	player.get_parent().get_node("HUD").get_node("MarginContainer/BossBar").visible = false # CHANGE THIS AFTER UI REFACTORING 
 	var drop
 	match randi_range(0, 2):
 		0: 

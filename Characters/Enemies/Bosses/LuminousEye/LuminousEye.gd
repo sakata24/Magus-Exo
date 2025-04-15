@@ -121,6 +121,7 @@ func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.1
 	$EyeSprite.position.y += sin((time + 0.5) * 2.5) * 0.07
+	look_target = player.global_position
 
 func _process(delta: float) -> void:
 	pass

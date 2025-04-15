@@ -4,8 +4,6 @@ var dead = false
 var menus = []
 var level = 0
 
-@onready var room_handler = $RoomHandler
-
 # room hex: 25131a
 
 func _ready():
