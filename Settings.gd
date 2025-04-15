@@ -7,12 +7,14 @@ var settings_dict = {
 	"dev_mode" : true,
 	"window" : 0,
 	"resolution" : 0,
-	"master_volume" : 100.0
+	"master_volume" : 100.0,
+	"tooltips_enabled": true
 }
 
 func _ready() -> void:
 	_load()
 	_update_settings()
+	add_to_group("Persist")
 
 func _update_settings():
 	set_window_type()
@@ -52,10 +54,11 @@ func _load():
 	var parse_result = json.parse(json_string)
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-
+		return
 	# Get the data from the JSON object
 	var node_data = json.get_data()
 	settings_dict["dev_mode"] = bool(node_data["dev_mode"])
 	settings_dict["window"] = int(node_data["window"])
 	settings_dict["resolution"] = int(node_data["resolution"])
 	settings_dict["master_volume"] = float(node_data["master_volume"])
+	settings_dict["tooltips_enabled"] = bool(node_data["tooltips_enabled"])
