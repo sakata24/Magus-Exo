@@ -40,7 +40,6 @@ func load_game():
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		else:
-			print("just loaded: " + str(json.data))
 			loaded_data.merge(json.data)
 
 	print("Save file successfully loaded.")

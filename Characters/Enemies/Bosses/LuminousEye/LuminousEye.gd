@@ -84,14 +84,20 @@ func change_position():
 func randomize_mirrors():
 	for mirror in get_tree().get_nodes_in_group("mirrors"):
 		mirror.queue_free()
+	var mirror_pos_list = []
 	for i in range(0, 17):
 		var new_mirror: LuminousMirror = mirror_resource.instantiate()
 		new_mirror.mirror = MirrorType.new()
 		call_deferred("add_sibling", new_mirror)
-		var rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 8))
+		var rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
 		# ensure mirror is not on the boss
-		while ((rand_pos.x > self.get_global_position().x-96) and (rand_pos.x < self.get_global_position().x+96)) and ((rand_pos.y > self.get_global_position().y-96) and (rand_pos.y < self.get_global_position().y+96)):
-			rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 7))
+		while ((rand_pos.x > self.get_global_position().x-(48 * 3)) and \
+		(rand_pos.x < self.get_global_position().x+(48 * 3))) and \
+		((rand_pos.y > self.get_global_position().y-(48 * 3)) and \
+		(rand_pos.y < self.get_global_position().y+(48 * 3))) and \
+		mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y)):
+			rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
+		mirror_pos_list.append(str(rand_pos.x) + "|" + str(rand_pos.y))
 		new_mirror.global_position = rand_pos
 		new_mirror.mirror.facing = MirrorType.variant.values().pick_random()
 		new_mirror.add_to_group("mirrors")
