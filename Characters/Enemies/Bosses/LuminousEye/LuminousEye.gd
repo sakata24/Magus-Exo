@@ -96,7 +96,7 @@ func randomize_mirrors():
 		new_mirror.mirror.facing = MirrorType.variant.values().pick_random()
 		new_mirror.add_to_group("mirrors")
 
-func _hit(damage: DamageObject):
+func hit(damage: DamageObject):
 	if not protected:
 		super(damage)
 		if stage == 1 and health < maxHealth * 0.667:

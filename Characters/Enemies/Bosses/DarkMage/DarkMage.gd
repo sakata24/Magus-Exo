@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	position.y += sin(time * 2.5) * 0.25
 
 # hit by something
-func _hit(damage: DamageObject):
+func hit(damage: DamageObject):
 	if invincible:
 		# Spawn "Immune" damage number
 		var dmgNum = damageNumber.instantiate()

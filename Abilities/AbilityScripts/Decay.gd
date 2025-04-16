@@ -12,7 +12,7 @@ func handle_reaction(reactant: Node2D):
 
 func handle_enemy_collision(enemy: Node2D):
 	enemy.speed *= 0.5
-	enemy._hit(self.dmg, self.element, self.element, self.spell_caster)
+	enemy.hit(self.dmg, self.element, self.element, self.spell_caster)
 	attach_slow_timer(0.5, enemy)
 	despawn()
 

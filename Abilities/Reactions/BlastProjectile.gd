@@ -35,7 +35,7 @@ func handle_collision(collision: KinematicCollision2D):
 	if collision and collision.get_collider().get_name() != "Player":
 		if collision.get_collider().is_in_group("monsters"):
 			var damage_object = DamageObject.new(dmg, ["entropy", "sunder"], spell_caster)
-			collision.get_collider()._hit(damage_object)
+			collision.get_collider().hit(damage_object)
 		despawn()
 
 # despawn me

@@ -93,7 +93,7 @@ func get_new_reaction_priority_from_elements() -> int:
 # Handles collision when enemy is hit. Spells do not typically despawn.
 func handle_enemy_interaction(enemy: Enemy):
 	var damage_object = DamageObject.new(self.dmg, [self.element, self.element], self.spell_caster)
-	enemy._hit(damage_object)
+	enemy.hit(damage_object)
 
 # handles other things like walls
 func handle_other_interaction(thing: Node2D):

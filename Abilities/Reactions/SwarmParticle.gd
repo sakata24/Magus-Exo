@@ -12,7 +12,7 @@ func _ready() -> void:
 func _on_body_entered(body: Enemy) -> void:
 	if body.is_in_group("monsters"):
 		var damage_object = DamageObject.new(1, ["growth", "wither"], get_parent().caster)
-		body._hit(damage_object)
+		body.hit(damage_object)
 
 func _physics_process(delta: float) -> void:
 	if position.distance_to(target_location) <= 1:

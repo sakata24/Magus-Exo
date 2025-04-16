@@ -9,6 +9,10 @@ var source = null
 func _init(init_value=0, init_types=[], init_source=null):
 	self.value = init_value
 	self.types = init_types
+	if types.size() < 1:
+		types.append("")
+	if types.size() == 1:
+		types.append(types[0])
 	self.source = init_source
 
 func get_value() -> int:

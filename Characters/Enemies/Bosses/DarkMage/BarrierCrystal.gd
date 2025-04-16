@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 # hit by something
-func _hit(damage: DamageObject):
+func hit(damage: DamageObject):
 	if not invincible:
 		# Reduce my hp
 		health -= damage.get_value()

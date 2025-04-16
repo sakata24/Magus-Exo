@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PhotonBullet:
-		area.look_at(area.spell_caster)
+		area.look_at(area.spell_caster.global_position)
+		area.dmg = 1
 		area.set_collision_mask_value(2, true)
 		area.set_collision_mask_value(1, false)

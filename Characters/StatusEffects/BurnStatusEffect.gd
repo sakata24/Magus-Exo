@@ -8,4 +8,4 @@ func _on_tick_timer_timeout() -> void:
 	if parent is Boss:
 		dmg_value = dmg_value/3
 	var dmg = DamageObject.new(dmg_value, ["sunder", "growth"], caster)
-	parent._hit(dmg)
+	parent.hit(dmg)

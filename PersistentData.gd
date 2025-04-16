@@ -38,7 +38,7 @@ func get_all_data() -> Dictionary:
 # this function's purpose is to grab and assign data to this file's instance variables
 func fetch_save_data():
 	# load a save
-	var saved_data: Dictionary = CustomResourceLoader.load_file("user://savegame.save")
+	var saved_data: Dictionary = CustomResourceLoader.load_game()
 	
 	# if no save file, create one with default variables. This should ensure that the saved data always matches properly
 	if saved_data.size() <= 0:

@@ -16,7 +16,7 @@ var lastElementsHitBy = []
 # cc immune?
 var cc_immune: bool = false
 
-func _hit(damage: DamageObject):
+func hit(damage: DamageObject):
 	# reduce my hp
 	health -= damage.get_value()
 	# set the element to give player xp for

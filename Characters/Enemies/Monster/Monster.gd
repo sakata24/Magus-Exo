@@ -53,7 +53,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 # hit by something
-func _hit(damage: DamageObject):
+func hit(damage: DamageObject):
 	super(damage)
 	# aggro on the caster
 	if damage.has_source() and damage.get_source() is Player and self.has_node("PathTimer"):

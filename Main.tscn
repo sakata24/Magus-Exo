@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsujmysejgy4k" path="res://Main.gd" id="1"]
 [ext_resource type="Script" uid="uid://n3gij2h648i7" path="res://LevelHandler.gd" id="2_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://83qg0j5exfyc" path="res://Characters/Player.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://cbiw1tglncahn" path="res://Maps/Home.tscn" id="3_20pc6"]
+[ext_resource type="PackedScene" uid="uid://0gck43dixe41" path="res://Maps/LuminousEyeMap.tscn" id="3_20pc6"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://d37cep1ypwea6" path="res://HUDs/Menu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://d14papl6dxsqu" path="res://HUDs/Selection.tscn" id="6_7rc56"]
@@ -90,16 +90,16 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.145098, 0.0745098, 0.101961, 1)
 
+[node name="Player" parent="." groups=["Persist"] instance=ExtResource("3")]
+process_mode = 1
+position = Vector2(168, 104)
+
 [node name="LevelHandler" type="Node2D" parent="."]
 process_mode = 1
 y_sort_enabled = true
 script = ExtResource("2_5vvyt")
 
-[node name="Home" parent="LevelHandler" instance=ExtResource("3_20pc6")]
-
-[node name="Player" parent="." groups=["Persist"] instance=ExtResource("3")]
-process_mode = 1
-position = Vector2(168, 104)
+[node name="LuminousEyeMap" parent="LevelHandler" instance=ExtResource("3_20pc6")]
 
 [node name="HUD" parent="." instance=ExtResource("4")]
 

@@ -1,7 +1,6 @@
 class_name PhotonBullet extends BaseTypeAbility
 
 signal attack_finished
-@onready var parent = get_parent()
 
 func _ready() -> void:
 	abilityID = "PhotonBullet"
@@ -9,13 +8,14 @@ func _ready() -> void:
 	myMovement = Movement.get_movement_object_by_name("bullet")
 	myModifiers.append(CollisionDespawnModifier.new())
 	element = "fracture"
+	spell_caster = get_parent()
 	for modifier in myModifiers:
 		modifier.apply(self)
 	call_deferred("emit_signal", "attack_finished")
 
 func _on_body_entered(body: Node2D):
 	if (body is Player) or (body is LuminousEye):
-		var dmg = DamageObject.new(3, [element], parent)
+		var dmg = DamageObject.new(3, [element], spell_caster)
 		body.hit(dmg)
 	elif body.get_parent() is LuminousMirror:
 		self.speed += 100
