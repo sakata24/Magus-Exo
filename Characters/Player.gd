@@ -82,7 +82,7 @@ func get_equipped_skills():
 func _physics_process(delta):
 	$ProjectilePivot.look_at(cast_target)
 	emit_signal("cooling_down", skillTimer, skillCD)
-	emit_signal("cooling_dash", $DashTimer.time_left, $DashTimer.wait_time)
+	emit_signal("cooling_dash", get_node("DashTimer").time_left, get_node("DashTimer").wait_time)
 	check_and_set_skill_timers()
 
 func check_and_set_skill_timers():

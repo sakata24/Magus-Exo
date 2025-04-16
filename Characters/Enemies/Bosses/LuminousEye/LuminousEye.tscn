@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8jqmlexm3xmx"]
+[gd_scene load_steps=12 format=3 uid="uid://b8jqmlexm3xmx"]
 
 [ext_resource type="Script" uid="uid://osdbgkudblyl" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEye.gd" id="1_3bp5x"]
 [ext_resource type="Texture2D" uid="uid://cb0jnb1hl3asv" path="res://Resources/enemies/luminous-eye.png" id="2_75xhx"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://drf17f1mu335f" path="res://StateMachine/StateMachine.gd" id="4_63uv6"]
 [ext_resource type="Script" uid="uid://b40ggxuole017" path="res://Characters/Enemies/Bosses/LuminousEye/LuminouseEyeStates/LuminousEyeIdleState.gd" id="5_m511y"]
 [ext_resource type="Script" uid="uid://cigphpctxgruw" path="res://Characters/Enemies/Bosses/LuminousEye/LuminouseEyeStates/LuminousEyeAttackingState.gd" id="6_m511y"]
-[ext_resource type="Script" uid="uid://dd6a4rmxuu2sm" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEyeVulnerableState.gd" id="7_0kuyb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61uwt"]
 radius = 20.0
@@ -84,11 +83,6 @@ metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("luminousEye")]
 script = ExtResource("6_m511y")
-luminousEye = NodePath("../..")
-metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
-
-[node name="Vulnerable" type="Node" parent="StateMachine" node_paths=PackedStringArray("luminousEye")]
-script = ExtResource("7_0kuyb")
 luminousEye = NodePath("../..")
 metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 

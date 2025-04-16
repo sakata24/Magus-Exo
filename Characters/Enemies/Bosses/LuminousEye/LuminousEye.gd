@@ -95,7 +95,7 @@ func randomize_mirrors():
 		(rand_pos.x < self.get_global_position().x+(48 * 3))) and \
 		((rand_pos.y > self.get_global_position().y-(48 * 3)) and \
 		(rand_pos.y < self.get_global_position().y+(48 * 3))) and \
-		mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y)):
+		(!mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y))):
 			rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
 		mirror_pos_list.append(str(rand_pos.x) + "|" + str(rand_pos.y))
 		new_mirror.global_position = rand_pos
@@ -108,13 +108,13 @@ func hit(damage: DamageObject):
 		if stage == 1 and health < maxHealth * 0.667:
 			stage = 2
 			change_position()
-			cone_size *= 2
+			cone_size = PI/3.0
 			enable_fractal_barrier()
 			$IdleTimer.wait_time = 2.8
 		if stage == 2 and health < maxHealth * 0.333:
 			stage = 3
 			change_position()
-			cone_size *= 2
+			cone_size = PI/2.0
 			enable_fractal_barrier()
 			$IdleTimer.wait_time = 1.8
 		if health <= 0:

@@ -9,12 +9,7 @@ func enter():
 	# disable collision w enemy
 	player.set_collision_mask_value(4, false)
 	# start the cooldown
-	var dash_timer = Timer.new()
-	dash_timer.wait_time = 5.0
-	dash_timer.one_shot = true
-	dash_timer.connect("timeout", _on_dash_timer_timeout)
-	add_child(dash_timer)
-	dash_timer.start()
+	player.get_node("DashTimer").start()
 	# toggle the dash variable
 	player.dashing = true
 	# execute the dash
