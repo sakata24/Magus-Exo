@@ -1,7 +1,7 @@
 class_name Trail extends Line2D
 
 @onready var curve := Curve2D.new()
-@export var MAX_POINTS : int = 200
+@export var MAX_POINTS : int = 15
 var started = false
 
 func _ready():

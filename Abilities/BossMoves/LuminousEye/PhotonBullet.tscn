@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdwwwp7apgt0o"]
+[gd_scene load_steps=5 format=3 uid="uid://bdwwwp7apgt0o"]
 
 [ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_jps73"]
 [ext_resource type="Script" uid="uid://bxsog3hp8q2ji" path="res://Abilities/BossMoves/LuminousEye/PhotonBullet.gd" id="2_egcbb"]
 [ext_resource type="Texture2D" uid="uid://buh30kb51afg4" path="res://Resources/abilities/enemy/photon-bullet.png" id="3_36ayi"]
-[ext_resource type="Script" uid="uid://c1hnwox6n4vw4" path="res://Abilities/BossMoves/DarkMage/trail.gd" id="4_i7bp4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i7bp4"]
 animations = [{
@@ -15,8 +14,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="Gradient" id="Gradient_i7bp4"]
 
 [node name="PhotonBullet" instance=ExtResource("1_jps73")]
 collision_layer = 20
@@ -30,15 +27,9 @@ polygon = PackedVector2Array(0, -4, 3, -1, 3, 1, 0, 4, -3, 4, -4, 3, -4, -3, -3,
 wait_time = 25.0
 
 [node name="Texture" parent="." index="2"]
-visible = false
+color = Color(0.972549, 0.964706, 0.713726, 1)
+polygon = PackedVector2Array(6, 0, 1, 6, -4, 6, -6, 2, -17, 0, -6, -2, -4, -6, 1, -6)
 
 [node name="AnimatedSprite2D" parent="." index="3"]
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_i7bp4")
-
-[node name="Trail" type="Line2D" parent="." index="4"]
-points = PackedVector2Array(-5, 0, -10, 0)
-width = 1.0
-gradient = SubResource("Gradient_i7bp4")
-script = ExtResource("4_i7bp4")
-metadata/_custom_type_script = "uid://c1hnwox6n4vw4"

@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is PhotonBullet:
 		area.look_at(area.spell_caster.global_position)
+		area.get_node("Texture").color = Color("a4fff4")
 		area.dmg = 1
 		area.set_collision_mask_value(2, true)
 		area.set_collision_mask_value(1, false)

@@ -1,7 +1,11 @@
 class_name StormAbility extends EntropyAbility
 
+var INIT_TICK_SPEED = 1.2
+var INIT_DMG
+
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	super.init(skill_dict, cast_target, caster)
+	INIT_DMG = dmg
 
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
@@ -19,7 +23,8 @@ func _on_timeout_timer_timeout():
 		if not array.is_empty():
 			var enemy = array[randi() % array.size()]
 			handle_enemy_interaction(enemy)
-			$TimeoutTimer.wait_time = (0.9/(array.size()+1))
+			$TimeoutTimer.wait_time = (INIT_TICK_SPEED/(array.size()+1))
+			dmg = INIT_DMG/(array.size())
 	# Only start after changing wait time
 	$TimeoutTimer.start()
 

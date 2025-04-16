@@ -52,7 +52,7 @@ var ALL_SKILLS = {
 		"storm": {
 			"name": "storm",
 			"cooldown": 20.0,
-			"dmg": 2.0,
+			"dmg": 1.5,
 			"element": "entropy",
 			"lifetime": 5.0,
 			"size": 12.0,
