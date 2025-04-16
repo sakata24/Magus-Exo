@@ -5,7 +5,7 @@ var SettingMenu = preload("res://HUDs/Settings.tscn")
 signal skill_changed(idx, newSkill)
 
 func _ready():
-	if Settings.settings_dict["dev_mode"]:
+	if Settings.dev_mode:
 		var skillDict = PersistentData.get_equipped_skills()
 		# Load skills in drop down menu
 		for k in PlayerSkills.ALL_SKILLS["skills"]:
@@ -38,7 +38,7 @@ func _on_settings_button_pressed() -> void:
 	get_parent()._add_menu(SettingMenu.instantiate())
 
 func _on_save_button_pressed():
-	CustomResourceLoader.save_game()
+	SaveLoader.save_game()
 
 func _on_option_button_item_selected(index):
 	emit_signal("skill_changed", 0, $VBoxContainer2/OptionButton1.get_item_text(index))

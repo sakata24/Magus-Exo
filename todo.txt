@@ -71,7 +71,7 @@ Abilities:
 		- teleport to a different location
 
 Player Interaction:
-	*Find an item on the floor that will break the shield upon next attack
+	Find an item on the floor that will break the shield upon next attack
 
 
 - laa boss -

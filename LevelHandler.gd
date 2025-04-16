@@ -23,7 +23,7 @@ var MAP_SIZE = 2 # sqrt of room amt
 func _ready() -> void:
 	for room in get_children():
 		init_room_connections(room)
-	if Settings.settings_dict["dev_mode"]:
+	if Settings.dev_mode:
 		boss_level_multiple = 2
 
 # called every time a player goes thru the door
@@ -44,7 +44,7 @@ func _load_level():
 	else:
 		init_rooms()
 	# save the state of the game every level to be persisted
-	CustomResourceLoader.save_game()
+	SaveLoader.save_game()
 
 func reset_boss_level_array():
 	available_boss_levels = boss_levels

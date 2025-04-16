@@ -2,6 +2,11 @@
 
 extends Node
 
+var loaded_data = {}
+
+func _ready() -> void:
+	load_game()
+
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -18,9 +23,9 @@ func save_game():
 		var json_string = JSON.stringify(node_data)
 
 		# Store the save dictionary as a new line in the save file.
-		save_file.store_line(json_string)
+		save_file.store_line("{\"" + node.name + "\":" + json_string + "}")
 
-func load_game() -> Dictionary:
+func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
 		return {} # Error! We don't have a save to load.
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
@@ -30,18 +35,18 @@ func load_game() -> Dictionary:
 	while save_file.get_position() < save_file.get_length():
 		json_string = save_file.get_line()
 		json = JSON.new()
-
-	# Check if there is any error while parsing the JSON string, skip in case of failure
-	var parse_result = json.parse(json_string)
-	if not parse_result == OK:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-		return {}
+		# Check if there is any error while parsing the JSON string, skip in case of failure
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		else:
+			print("just loaded: " + str(json.data))
+			loaded_data.merge(json.data)
 
 	print("Save file successfully loaded.")
-	print(json.get_data())
-	# Get the data from the JSON object
-	return json.get_data()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func get_data(name: String) -> Dictionary:
+	if loaded_data.keys().has(name):
+		return loaded_data[name]
+	else:
+		return {}

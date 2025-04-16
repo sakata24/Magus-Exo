@@ -42,7 +42,7 @@ func cast_photon_laser(bounces: int):
 	
 # fractal barrier - makes the boss immune to damage until shield is broken
 func enable_fractal_barrier():
-	dodecahedron_sprite.modulate = Color(1, 0.745, 0.416, 1)
+	dodecahedron_sprite.modulate = Color(0.8, 0.745, 0.416, 0.8)
 	spawn_barrier_pickup()
 	protected = true
 
@@ -51,7 +51,7 @@ func fractal_barrier_broken():
 	protected = false
 
 func spawn_barrier_pickup():
-	var rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 8))
+	var rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 7))
 	var barrier_pickup: BarrierPickup = barrier_pickup_scene.instantiate()
 	add_sibling(barrier_pickup)
 	barrier_pickup.global_position = rand_pos
@@ -91,7 +91,7 @@ func randomize_mirrors():
 		var rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 8))
 		# ensure mirror is not on the boss
 		while ((rand_pos.x > self.get_global_position().x-96) and (rand_pos.x < self.get_global_position().x+96)) and ((rand_pos.y > self.get_global_position().y-96) and (rand_pos.y < self.get_global_position().y+96)):
-			rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 8))
+			rand_pos = 48 * Vector2(randi_range(1, 32), randi_range(1, 7))
 		new_mirror.global_position = rand_pos
 		new_mirror.mirror.facing = MirrorType.variant.values().pick_random()
 		new_mirror.add_to_group("mirrors")
@@ -115,6 +115,13 @@ func hit(damage: DamageObject):
 			die()
 	elif damage.get_types().has("fracture"):
 		fractal_barrier_broken()
+	else:
+		var dmgNum = damageNumber.instantiate()
+		dmgNum.set_colors(AbilityColor.get_color_by_string(damage.get_type(0)), AbilityColor.get_color_by_string(damage.get_type(1)))
+		get_parent().add_child(dmgNum)
+		dmgNum.set_value_and_pos("Immune", self.global_position)
+		# Update UI
+		emit_signal("health_changed", health, true)
 
 # override so i just chill in the center and float
 func _physics_process(delta: float) -> void:

@@ -16,9 +16,9 @@ func _ready() -> void:
 	settingListArray.append({"changed_value" : null, "node" : $ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume})
 	
 	# Initialize the values of the UI to match the saved data
-	settingListArray[SETTING_LIST.WINDOW]["node"].get_node("OptionButton").selected = Settings.settings_dict["window"]
-	settingListArray[SETTING_LIST.RESOLUTION]["node"].get_node("OptionButton").selected = Settings.settings_dict["resolution"]
-	settingListArray[SETTING_LIST.MASTER_VOL]["node"].get_node("HSlider").value = Settings.settings_dict["master_volume"]
+	settingListArray[SETTING_LIST.WINDOW]["node"].get_node("OptionButton").selected = Settings.window
+	settingListArray[SETTING_LIST.RESOLUTION]["node"].get_node("OptionButton").selected = Settings.resolution
+	settingListArray[SETTING_LIST.MASTER_VOL]["node"].get_node("HSlider").value = Settings.master_volume
 
 func _on_apply_button_pressed() -> void:
 	var inst = ConfirmPopup.instantiate()
@@ -35,17 +35,17 @@ func _setting_changes_accepted():
 	# WINDOW TYPE
 	if settingListArray[SETTING_LIST.WINDOW]["changed_value"] != null:
 		# Record the change in global settings
-		Settings.settings_dict.set("window", settingListArray[SETTING_LIST.WINDOW]["changed_value"])
+		Settings.window = settingListArray[SETTING_LIST.WINDOW]["changed_value"]
 		# Apply the change
 		Settings.set_window_type()
 	# RESOLUTION
 	if settingListArray[SETTING_LIST.RESOLUTION]["changed_value"] != null:
 		# Record the change in global settings
-		Settings.settings_dict.set("resolution", settingListArray[SETTING_LIST.RESOLUTION]["changed_value"])
+		Settings.resolution = settingListArray[SETTING_LIST.RESOLUTION]["changed_value"]
 	# MASTER VOLUME
 	if settingListArray[SETTING_LIST.MASTER_VOL]["changed_value"] != null:
 		# Record the change in global settings
-		Settings.settings_dict.set("master_volume", settingListArray[SETTING_LIST.MASTER_VOL]["changed_value"])
+		Settings.master_volume = settingListArray[SETTING_LIST.MASTER_VOL]["changed_value"]
 		# Apply the change
 		Settings.set_master_volume()
 	

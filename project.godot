@@ -18,11 +18,11 @@ config/icon="res://Resources/icon.png"
 
 [autoload]
 
-Settings="*res://Settings.gd"
 SkillDataHandler="*res://SkillDataHandler.gd"
 PlayerSkills="*res://PlayerSkills.gd"
 SkillSceneHandler="*res://SkillSceneHandler.gd"
-CustomResourceLoader="*res://CustomResourceLoader.gd"
+SaveLoader="*res://SaveLoader.gd"
+Settings="*res://Settings.gd"
 PersistentData="*res://PersistentData.gd"
 
 [debug]

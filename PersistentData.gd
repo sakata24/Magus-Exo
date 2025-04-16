@@ -38,7 +38,7 @@ func get_all_data() -> Dictionary:
 # this function's purpose is to grab and assign data to this file's instance variables
 func fetch_save_data():
 	# load a save
-	var saved_data: Dictionary = CustomResourceLoader.load_game()
+	var saved_data: Dictionary = SaveLoader.get_data(name)
 	
 	# if no save file, create one with default variables. This should ensure that the saved data always matches properly
 	if saved_data.size() <= 0:
@@ -68,7 +68,6 @@ func fetch_save_data():
 		equipped_skills = ["bolt", "charge", "rock", "fountain"]
 
 	print("Finished loading!\n")
-	print(get_all_data())
 
 # return a dictionary of all xp counts
 func get_xp_counts() -> Dictionary:
@@ -84,7 +83,6 @@ func get_equipped_skills() -> Array:
 
 # increase the xp gained by value given
 func increase_xp(value: int, element: String):
-	print("increasing xp")
 	match element:
 		"sunder": sunder_xp += value
 		"entropy": entropy_xp += value
