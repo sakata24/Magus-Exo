@@ -41,6 +41,7 @@ func save():
 	
 	# Store the save dictionary as a new line in the save file.
 	save_file.store_line(json_string)
+	return settings_dict
 
 func _load():
 	if not FileAccess.file_exists("user://usersettings.save"):

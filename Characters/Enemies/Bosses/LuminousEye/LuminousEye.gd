@@ -103,13 +103,13 @@ func _hit(damage: DamageObject):
 			stage = 2
 			change_position()
 			cone_size *= 2
-			#enable_fractal_barrier()
+			enable_fractal_barrier()
 			$IdleTimer.wait_time = 2.8
 		if stage == 2 and health < maxHealth * 0.333:
 			stage = 3
 			change_position()
 			cone_size *= 2
-			#enable_fractal_barrier()
+			enable_fractal_barrier()
 			$IdleTimer.wait_time = 1.8
 		if health <= 0:
 			die()
@@ -121,7 +121,6 @@ func _physics_process(delta: float) -> void:
 	time += delta
 	position.y += sin(time * 2.5) * 0.1
 	$EyeSprite.position.y += sin((time + 0.5) * 2.5) * 0.07
-	look_target = player.global_position
 
 func _process(delta: float) -> void:
 	pass

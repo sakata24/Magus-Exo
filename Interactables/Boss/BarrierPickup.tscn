@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk47wdy1x0yag"]
+[gd_scene load_steps=4 format=3 uid="uid://bk47wdy1x0yag"]
 
 [ext_resource type="Script" uid="uid://877dbxdyltle" path="res://Interactables/Boss/BarrierPickup.gd" id="1_1u6rr"]
-[ext_resource type="Texture2D" uid="uid://cb0jnb1hl3asv" path="res://Resources/enemies/luminous-eye.png" id="1_g5ouj"]
+[ext_resource type="Texture2D" uid="uid://b5402pwe4f1nb" path="res://Resources/abilities/enemy/shield.png" id="2_1u6rr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1u6rr"]
 radius = 15.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u6rr"]
-atlas = ExtResource("1_g5ouj")
-region = Rect2(7, 7, 34, 34)
 
 [node name="BarrierPickup" type="Area2D"]
 collision_layer = 0
@@ -22,8 +18,7 @@ color = Color(0, 100, 0, 0)
 polygon = PackedVector2Array(0, -15, 8, -13, 13, -8, 15, 0, 13, 8, 8, 13, 0, 15, -8, 13, -13, 8, -15, 0, -13, -8, -8, -13)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 0.784314, 0.564706)
 scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_1u6rr")
+texture = ExtResource("2_1u6rr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

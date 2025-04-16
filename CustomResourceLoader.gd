@@ -25,8 +25,11 @@ func load_game() -> Dictionary:
 		return {} # Error! We don't have a save to load.
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
 	# read the first line
-	var json_string = save_file.get_line()
-	var json = JSON.new()
+	var json_string
+	var json
+	while save_file.get_position() < save_file.get_length():
+		json_string = save_file.get_line()
+		json = JSON.new()
 
 	# Check if there is any error while parsing the JSON string, skip in case of failure
 	var parse_result = json.parse(json_string)
@@ -35,6 +38,7 @@ func load_game() -> Dictionary:
 		return {}
 
 	print("Save file successfully loaded.")
+	print(json.get_data())
 	# Get the data from the JSON object
 	return json.get_data()
 
