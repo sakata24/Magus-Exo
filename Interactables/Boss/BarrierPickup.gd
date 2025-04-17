@@ -18,3 +18,9 @@ func _on_body_entered(body: Node2D) -> void:
 		body.call_deferred("add_child", barrier_buff)
 		barrier_buff.get_node("Timer").connect("timeout", get_parent().get_node("LuminousEye").spawn_barrier_pickup)
 		queue_free()
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	$PlayerNotification.visible = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	$PlayerNotification.visible = true

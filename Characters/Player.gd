@@ -177,6 +177,8 @@ func gain_xp(amount: int, elements: Array[String]):
 
 func hit(damage: DamageObject):
 	health -= damage.get_value()
+	if health < 0:
+		health = 0
 	emit_signal("player_hit", health, max_health)
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = Color(255, 0, 0)

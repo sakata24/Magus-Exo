@@ -33,7 +33,7 @@ func _on_laser_timer_timeout() -> void:
 	$LaserIndicator.visible = false
 	var laser_points = $LaserIndicator.points.duplicate()
 	$LaserIndicator.clear_points()
-	var dummy_pos = position
+	var dummy_pos = laser_points[0]
 	# loops thru all points of the raycast, then builds an Area2D around the raycasts
 	for point in laser_points:
 		var x = dummy_pos.distance_to(point)

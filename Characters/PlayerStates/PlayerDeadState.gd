@@ -7,7 +7,7 @@ func enter():
 	# disable own collision
 	player.set_collision_layer_value(1, false)
 	player.set_collision_layer_value(4, false)
-	# execute the dash
+	# stop moving
 	player.move_target = player.global_position
 	animation.set_animation("death")
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk47wdy1x0yag"]
+[gd_scene load_steps=5 format=3 uid="uid://bk47wdy1x0yag"]
 
 [ext_resource type="Script" uid="uid://877dbxdyltle" path="res://Interactables/Boss/BarrierPickup.gd" id="1_1u6rr"]
 [ext_resource type="Texture2D" uid="uid://b5402pwe4f1nb" path="res://Resources/abilities/enemy/shield.png" id="2_1u6rr"]
+[ext_resource type="PackedScene" uid="uid://drfdud6r6sf1j" path="res://Interactables/ImportantItemIndicator.tscn" id="3_rj6wf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1u6rr"]
 radius = 15.0
@@ -19,6 +20,9 @@ polygon = PackedVector2Array(0, -15, 8, -13, 13, -8, 15, 0, 13, 8, 8, 13, 0, 15,
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1u6rr")
+
+[node name="ImportantItemIndicator" parent="." instance=ExtResource("3_rj6wf")]
 texture = ExtResource("2_1u6rr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
