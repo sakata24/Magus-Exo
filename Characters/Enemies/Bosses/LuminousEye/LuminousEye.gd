@@ -90,12 +90,8 @@ func randomize_mirrors():
 		new_mirror.mirror = MirrorType.new()
 		call_deferred("add_sibling", new_mirror)
 		var rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
-		# ensure mirror is not on the boss
-		while ((rand_pos.x > self.get_global_position().x-(48 * 3)) and \
-		(rand_pos.x < self.get_global_position().x+(48 * 3))) and \
-		((rand_pos.y > self.get_global_position().y-(48 * 3)) and \
-		(rand_pos.y < self.get_global_position().y+(48 * 3))) and \
-		(!mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y))):
+		# ensure mirror is not on the boss or on other mirrors
+		while ((rand_pos.distance_to(self.get_global_position()*(48 * 3)) < 200)) or (mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y))):
 			rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
 		mirror_pos_list.append(str(rand_pos.x) + "|" + str(rand_pos.y))
 		new_mirror.global_position = rand_pos
