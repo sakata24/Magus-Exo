@@ -16,6 +16,8 @@ func enter():
 	player.velocity = Vector2.ZERO
 
 func physics_update(delta):
+	if player.health <= 0:
+		Transitioned.emit(self, "Dead")
 	if Input.is_action_pressed('Space') and player.canDash:
 		Transitioned.emit(self, "Dashing")
 

@@ -17,6 +17,7 @@ func _ready():
 	health = 750
 	boss_name = "Photonis, the Luminous Eye"
 	super._ready()
+	randomize_mirrors()
 
 # photon bullets - summons a cone of bullets
 func summon_photon_bullets(num: int, bounces: int):
@@ -91,7 +92,7 @@ func randomize_mirrors():
 		call_deferred("add_sibling", new_mirror)
 		var rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
 		# ensure mirror is not on the boss or on other mirrors
-		while ((rand_pos.distance_to(self.get_global_position()*(48 * 3)) < 200)) or (mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y))):
+		while (rand_pos.distance_to(self.get_global_position()*(48 * 3)) < 200) or (rand_pos.distance_to(player.get_global_position()*(48 * 3)) < 100) or (mirror_pos_list.has(str(rand_pos.x) + "|" + str(rand_pos.y))):
 			rand_pos = 48 * Vector2(randi_range(1, 31), randi_range(1, 7))
 		mirror_pos_list.append(str(rand_pos.x) + "|" + str(rand_pos.y))
 		new_mirror.global_position = rand_pos
@@ -133,8 +134,3 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	pass
-
-func _on_fight_trigger_area_body_entered(body: Node2D) -> void:
-	if body is Player:
-		randomize_mirrors()
-		$FightTriggerArea.set_collision_mask_value(1, false)

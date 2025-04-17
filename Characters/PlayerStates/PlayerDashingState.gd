@@ -23,6 +23,8 @@ func update(delta: float):
 	pass
 
 func physics_update(delta: float):
+	if player.health <= 0:
+		Transitioned.emit(self, "Dead")
 	var offset = (player.move_target - player.global_position).normalized() * 58
 	player.move_and_collide(offset)
 	Transitioned.emit(self, "Moving")

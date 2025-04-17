@@ -15,6 +15,7 @@ signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)
 signal cooling_dash(dash_cd, dash_cd_max)
 signal player_hit(newHP, maxHP)
+signal player_died
 
 # instance variables for player HP
 var health = 25

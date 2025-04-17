@@ -12,7 +12,7 @@ func _ready():
 	$Player.connect("moving_to", Callable(self, "_show_click"))
 	$Player.connect("cooling_down", Callable($HUD, "_set_cd"))
 	$Player.connect("player_hit", Callable($HUD, "_set_health"))
-	$Player.connect("player_hit", Callable(self, "_check_death"))
+	$Player.connect("player_died", Callable(self, "game_over"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
 	$AudioStreamPlayer.play()
@@ -45,13 +45,12 @@ func _show_click():
 func _on_click_animation_animation_finished():
 	$ClickAnimation.visible = false
 
-func _check_death(newHP, maxHP):
-	if newHP <= 0:
-		dead = true
-		$Death.setup()
-		$Death.visible = true
-		# reset difficulty
-		level = 0
+func game_over():
+	dead = true
+	$Death.setup()
+	$Death.visible = true
+	# reset difficulty
+	level = 0
 
 func _change_skills(idx, newSkill):
 	print("update skils")

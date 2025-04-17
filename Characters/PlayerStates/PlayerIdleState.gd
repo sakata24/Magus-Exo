@@ -14,6 +14,8 @@ func update(delta: float):
 	pass
 
 func physics_update(delta: float):
+	if player.health <= 0:
+		Transitioned.emit(self, "Dead")
 	if Input.is_action_just_pressed('R-Click'):
 		Transitioned.emit(self, "Moving")
 	if Input.is_action_just_pressed('Space') and player.canDash:

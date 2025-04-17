@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8jqmlexm3xmx"]
+[gd_scene load_steps=11 format=3 uid="uid://b8jqmlexm3xmx"]
 
 [ext_resource type="Script" uid="uid://osdbgkudblyl" path="res://Characters/Enemies/Bosses/LuminousEye/LuminousEye.gd" id="1_3bp5x"]
 [ext_resource type="Texture2D" uid="uid://cb0jnb1hl3asv" path="res://Resources/enemies/luminous-eye.png" id="2_75xhx"]
@@ -26,9 +26,6 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.478431)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bdlju"]
-radius = 200.0
-
 [node name="LuminousEye" type="CharacterBody2D"]
 collision_layer = 10
 script = ExtResource("1_3bp5x")
@@ -55,12 +52,6 @@ offset_bottom = 1.0
 text = "STUN"
 label_settings = SubResource("LabelSettings_bdlju")
 
-[node name="FightTriggerArea" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FightTriggerArea"]
-shape = SubResource("CircleShape2D_bdlju")
-
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 3.5
 one_shot = true
@@ -86,5 +77,4 @@ script = ExtResource("6_m511y")
 luminousEye = NodePath("../..")
 metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
 
-[connection signal="body_entered" from="FightTriggerArea" to="." method="_on_fight_trigger_area_body_entered"]
 [connection signal="timeout" from="IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]

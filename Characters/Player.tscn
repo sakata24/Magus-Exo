@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://83qg0j5exfyc"]
+[gd_scene load_steps=32 format=3 uid="uid://83qg0j5exfyc"]
 
 [ext_resource type="Script" uid="uid://yspisjr3b8y5" path="res://Characters/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dq0nxxg68sdw7" path="res://Resources/player-cast.png" id="2_58vhh"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://e73ivebdym3s" path="res://Resources/player-sprite.png" id="2_vjjrh"]
 [ext_resource type="Texture2D" uid="uid://dh3jx4vydfqin" path="res://Resources/WhiteCircle.png" id="3_utm12"]
 [ext_resource type="Script" uid="uid://drf17f1mu335f" path="res://StateMachine/StateMachine.gd" id="5_v6d5b"]
+[ext_resource type="Texture2D" uid="uid://c1jnye2gghn2r" path="res://Resources/player-die.png" id="5_x35ji"]
 [ext_resource type="Script" uid="uid://dydpt5ghjcxq6" path="res://Characters/PlayerStates/PlayerCastingState.gd" id="6_c3bgu"]
 [ext_resource type="Script" uid="uid://c7818rcrjewfw" path="res://Characters/PlayerStates/PlayerDashingState.gd" id="7_nwlvs"]
 [ext_resource type="Script" uid="uid://dl1fa8smwli0i" path="res://Characters/PlayerStates/PlayerIdleState.gd" id="8_x35ji"]
 [ext_resource type="Script" uid="uid://cfs5h0csie147" path="res://Characters/PlayerStates/PlayerMovingState.gd" id="9_o8u7c"]
+[ext_resource type="Script" uid="uid://ccujry5bs3j0l" path="res://Characters/PlayerStates/PlayerDeadState.gd" id="12_o8u7c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_64fup"]
 atlas = ExtResource("2_58vhh")
@@ -26,6 +28,26 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_878xk"]
 atlas = ExtResource("2_58vhh")
 region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8u7c"]
+atlas = ExtResource("5_x35ji")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lli6r"]
+atlas = ExtResource("5_x35ji")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wf5q"]
+atlas = ExtResource("5_x35ji")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r52jx"]
+atlas = ExtResource("5_x35ji")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijtlc"]
+atlas = ExtResource("5_x35ji")
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ci4k"]
 atlas = ExtResource("2_vjjrh")
@@ -80,6 +102,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_o8u7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lli6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wf5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r52jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijtlc")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4ci4k")
 }, {
 "duration": 1.0,
@@ -117,7 +159,6 @@ animations = [{
 radius = 8.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(1, 1.01545)
 collision_layer = 9
 collision_mask = 105
 motion_mode = 1
@@ -131,7 +172,7 @@ script = ExtResource("2_nwlvs")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bv2qp")
-animation = &"cast"
+animation = &"death"
 autoplay = "idle"
 
 [node name="Shadow" type="Polygon2D" parent="."]
@@ -195,7 +236,13 @@ script = ExtResource("9_o8u7c")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://cfs5h0csie147"
 
+[node name="Dead" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("12_o8u7c")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Dead" method="_on_death_animation_finished"]
 [connection signal="timeout" from="DashTimer" to="StateMachine/Dashing" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="MultiCastTimer" to="." method="_on_multi_cast_timer_timeout"]
 [connection signal="timeout" from="CastTimer" to="." method="_on_cast_timer_timeout"]
