@@ -30,6 +30,7 @@ func summon_photon_bullets(num: int, bounces: int):
 		add_child(photon_bullet)
 		photon_bullet.position = spawn_pos
 		photon_bullet.rotation = spawn_angle
+		photon_bullet.collision_count = bounces
 	
 
 # photon laser - a laser that bounces off of mirrors

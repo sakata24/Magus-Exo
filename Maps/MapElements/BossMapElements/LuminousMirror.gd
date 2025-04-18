@@ -31,4 +31,11 @@ func update_hitbox_and_sprite():
 	$StaticBody2D.position.y = mirror.offset
 
 func _on_area_entered(area: Area2D) -> void:
-	area.set_rotation(Vector2(cos(area.rotation), sin(area.rotation)).bounce(mirror.perpendicular_angle).angle())
+	if area is PhotonBullet:
+		if area.collision_count <= 0:
+			return
+		else:
+			area.collision_count -= 1
+			area.set_rotation(Vector2(cos(area.rotation), sin(area.rotation)).bounce(mirror.perpendicular_angle).angle())
+			if area.collision_count <= 0:
+				area.get_node("Texture").color.g = 0.40
