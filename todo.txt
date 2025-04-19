@@ -3,15 +3,25 @@
 - BUG [Gameplay]: boss level monsters should not drop upgrades
 - BUG [Gameplay]: Scythes spawning outside should not occur
 - BUG [Gameplay]: Player gets stuck in between mirrors
+- BUG [Gameplay]: Multicast bolt being goofy. spam bolt
+- BUG [Gameplay]: Enemy not aggroing
+- BUG [Gameplay]: Enemy aggro on map load
+- BUG [Gameplay]: Spells on map load still present
+- BUG [Gameplay]: Stun oddly long and enemies still move for sickness
+- BUG [UI]: Boss health bar still present after death
 - [UI] show upgrades chosen
 - [UI] tooltips
+- [UI] finish indicator
 - [???] screen shrink on dark mage
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve
+- [Gameplay]: Balance the game
+- [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
 - [Gameplay] finish reactions:
 	fork: split the flow spell into two
 
 - gameplay notes -
+Utility spells/movement not for damage
 
 -- jake boss --
 Photonis, the Luminous Eye

@@ -65,6 +65,9 @@ func show_boss_bar(n : String, health : int):
 	$MarginContainer/BossBar/ProgressBar.value = health
 	$MarginContainer/BossBar.visible = true
 
+func hide_boss_bar():
+	$MarginContainer/BossBar.visible = false
+
 func _on_boss_health_change(newHealth : int, immune = false):
 	$MarginContainer/BossBar/ProgressBar/Label.text = str($MarginContainer/BossBar/ProgressBar.value) + "/" + str($MarginContainer/BossBar/ProgressBar.max_value)
 	$MarginContainer/BossBar/ProgressBar.value = newHealth
