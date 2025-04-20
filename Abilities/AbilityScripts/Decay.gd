@@ -11,8 +11,9 @@ func handle_reaction(reactant: Node2D):
 	create_new_reaction(reactant)
 
 func handle_enemy_collision(enemy: Node2D):
+	var damage_object = DamageObject.new(self.dmg, [self.element, self.element], self.spell_caster)
 	enemy.speed *= 0.5
-	enemy.hit(self.dmg, self.element, self.element, self.spell_caster)
+	enemy.hit(damage_object)
 	attach_slow_timer(0.5, enemy)
 	despawn()
 

@@ -24,5 +24,6 @@ texture = ExtResource("2_1u6rr")
 
 [node name="ImportantItemIndicator" parent="." instance=ExtResource("3_rj6wf")]
 texture = ExtResource("2_1u6rr")
+sprite_scale = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

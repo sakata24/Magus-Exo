@@ -1,9 +1,8 @@
-- BUG [UI]: cooldown dash doesnt reflect on UI
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: boss level monsters should not drop upgrades
 - BUG [Gameplay]: Scythes spawning outside should not occur
 - BUG [Gameplay]: Player gets stuck in between mirrors
-- BUG [Gameplay]: Multicast bolt being goofy. spam bolt
+- BUG [Gameplay]: Multicast bolt being goofy. spam bolt (TESTING)
 - BUG [Gameplay]: Enemy not aggroing
 - BUG [Gameplay]: Enemy aggro on map load
 - BUG [Gameplay]: Spells on map load still present
@@ -19,6 +18,9 @@
 - [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
 - [Gameplay] finish reactions:
 	fork: split the flow spell into two
+
+Finished Bugs:
+	- BUG [UI]: cooldown dash doesnt reflect on UI
 
 - gameplay notes -
 Utility spells/movement not for damage

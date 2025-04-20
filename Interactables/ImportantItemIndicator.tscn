@@ -11,7 +11,7 @@ top_level = true
 [node name="Pivot" type="Node2D" parent="Sprite2D"]
 
 [node name="Arrow" type="Polygon2D" parent="Sprite2D/Pivot"]
-polygon = PackedVector2Array(10, -2, 10, 2, 12, 0)
+polygon = PackedVector2Array(0, -7, 1, 0, 0, 7, 6, 0)
 
 [connection signal="screen_entered" from="." to="." method="_on_screen_entered"]
 [connection signal="screen_exited" from="." to="." method="_on_screen_exited"]
