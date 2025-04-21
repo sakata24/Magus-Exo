@@ -7,7 +7,6 @@
 - BUG [Gameplay]: Enemy aggro on map load
 - BUG [Gameplay]: Spells on map load still present
 - BUG [Gameplay]: Stun oddly long and enemies still move for sickness
-- BUG [UI]: Boss health bar still present after death
 - [UI] show upgrades chosen
 - [UI] tooltips
 - [UI] finish indicator
@@ -21,6 +20,7 @@
 
 Finished Bugs:
 	- BUG [UI]: cooldown dash doesnt reflect on UI
+	- BUG [UI]: Boss health bar still present after death
 
 - gameplay notes -
 Utility spells/movement not for damage
