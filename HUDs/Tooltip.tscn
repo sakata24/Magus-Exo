@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://utfq0vmk2p7t"]
+[gd_scene load_steps=3 format=3 uid="uid://utfq0vmk2p7t"]
 
+[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/BaseMenuUI.tscn" id="1_blt1f"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="1_em1lp"]
 
 [node name="Tooltip" type="Control"]
@@ -10,7 +11,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VFlowContainer" type="VBoxContainer" parent="."]
+[node name="Menu" parent="." instance=ExtResource("1_blt1f")]
+layout_mode = 1
+
+[node name="VFlowContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,13 +22,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="VFlowContainer"]
+[node name="Title" type="Label" parent="Menu/VFlowContainer"]
 layout_mode = 2
 theme = ExtResource("1_em1lp")
 text = "This is a title."
 horizontal_alignment = 1
 
-[node name="Body" type="RichTextLabel" parent="VFlowContainer"]
+[node name="Body" type="RichTextLabel" parent="Menu/VFlowContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_em1lp")

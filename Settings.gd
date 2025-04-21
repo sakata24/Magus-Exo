@@ -3,7 +3,7 @@ extends Node
 enum {WINDOW_TYPE_WINDOWED, WINDOW_TYPE_FULLSCREEN, WINDOW_TYPE_BORDERLESS}
 enum {VOLUME_BUS_MASTER}
 
-var dev_mode = true
+var dev_mode = false
 var window = 0
 var resolution = 0
 var master_volume = 100.0
@@ -11,7 +11,6 @@ var tooltips_enabled = true
 
 func get_all_data() -> Dictionary: 
 	return {
-		"dev_mode" : dev_mode,
 		"window" : window,
 		"resolution" : resolution,
 		"master_volume" : master_volume,
@@ -47,7 +46,6 @@ func fetch_save_data():
 	var saved_data: Dictionary = SaveLoader.get_data(name)
 	verify_json_data(saved_data)
 	
-	dev_mode = bool(saved_data["dev_mode"])
 	window = int(saved_data["window"])
 	resolution = int(saved_data["resolution"])
 	master_volume = float(saved_data["master_volume"])

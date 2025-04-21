@@ -3,27 +3,27 @@ class_name Monster extends Enemy
 var upgradeDrop = preload("res://Interactables/UpgradeChest.tscn")
 
 # am i mad
-var aggro = false
+var aggro: bool = false
 # reference to chase the player
 var player: Player
 # damage
 var my_dmg: int = 2
 # base dmg for ref
-var baseDmg = 2
+var baseDmg: int = 2
 # exp i give
-var bestowedXp = 1
+var bestowedXp: int = 1
 # am i attacking
-var attacking = false
+var attacking: bool = false
 # can i move
-var can_move = true
+var can_move: bool = true
 # can i drop upgrades
-var droppable = true
+var droppable: bool = true
 # where i want to move
-var move_target
+var move_target: Vector2
 # range at which i attack
-var attack_range = 29
+var attack_range: int = 29
 # how long to show indicator before attacking
-var attack_timer_time = 0.9
+var attack_timer_time: float = 0.9
 
 signal give_xp(xp: int, elements: Array[String])
 
@@ -85,7 +85,6 @@ func die():
 			get_parent().add_child(drop)
 	# give the player xp
 	give_xp.emit(bestowedXp, lastElementsHitBy)
-	print("bestowing")
 	queue_free()
 
 func _on_path_timer_timeout():

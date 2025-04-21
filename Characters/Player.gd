@@ -2,12 +2,12 @@ class_name Player extends CharacterBody2D
 
 var dashScene = load("res://Abilities/Dash.tscn")
 
-var remaining_casts = 0
+var remaining_casts: int = 0
 var ability_ref: String = ""
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
 
-@onready var focus = $ProjectilePivot/ProjectileSpawnPos
+@onready var focus: Marker2D = $ProjectilePivot/ProjectileSpawnPos
 @onready var my_cam: PlayerCamera = get_node("Camera2D")
 
 signal moving_to()
@@ -18,38 +18,38 @@ signal player_hit(newHP, maxHP)
 signal player_died
 
 # instance variables for player HP
-var health = 25
-var max_health = 25
+var health: int = 25
+var max_health: int = 25
 
 # instance variables for player movement
-var max_speed = 150
-var speed = 0
-var moving = false
-var dashing = false
+var max_speed: int = 150
+var speed: int = 0
+var moving: bool = false
+var dashing: bool = false
 var move_dir
-var move_target = Vector2()
-var movement = Vector2()
-var cast_target = Vector2()
+var move_target: Vector2 = Vector2()
+var movement: Vector2 = Vector2()
+var cast_target: Vector2 = Vector2()
 
 # to be changed when the player obtains a new skill
-var upgradesChosen = []
+var upgradesChosen: Array = []
 
 # to be changed when the player equips different skills
-var equippedSkills = ["bolt", "charge", "rock", "fountain"]
+var equippedSkills: Array = ["bolt", "charge", "rock", "fountain"]
 
-var skillReady = [true, true, true, true]
+var skillReady: Array[bool] = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
-var skillCD = [0, 0, 0, 0]
+var skillCD: Array[int] = [0, 0, 0, 0]
 # the current amt of physics processes that ran since last using the skill
-var skillTimer = [10, 10, 10, 10]
+var skillTimer: Array[int] = [10, 10, 10, 10]
 # can dash
-var canDash = true
-# the dash ready
-var dashIFrames = 0
+var canDash: bool = true
+# the dash iframes
+var dashIFrames: int = 0
 # can cast an ability
-var canCast = true
+var canCast: bool = true
 # is casting
-var casting = false
+var casting: bool = false
 # current run data every run reinstantiated
 @onready var current_run_data: PlayerRunData = PlayerRunData.new()
 

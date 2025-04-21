@@ -16,7 +16,7 @@ var roomArray = []
 var MAP_SIZE = 2 # sqrt of room amt
 
 @onready var main = get_parent()
-@onready var player = main.get_node("Player")
+@onready var player: Player = main.get_node("Player")
 
 @export var initial_level: Node2D # for debugging purposes
 
@@ -132,18 +132,16 @@ func init_rooms():
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(8, 7), 0)
 			add_child(newRoom)
 			init_room_connections(newRoom)
-	# fetch group of monsters on the map and connect their giveXp signals to player
-	var monsters = get_tree().get_nodes_in_group("monsters")
-	for monster in monsters:
-		monster.maxHealth *= current_level
-		monster.health *= current_level
-		monster.my_dmg *= current_level
-		monster.baseDmg *= current_level
-		monster.connect("give_xp", Callable(player, "gain_xp"))
 
 func init_room_connections(newRoom: Node2D):
 	for node in newRoom.get_children():
 		if node is NPC:
-			node.connect("button_pressed", Callable(main, "_add_menu"))
+			node.connect("button_pressed", main._add_menu)
 		if node is ExitDoor:
-			node.connect("load_level", Callable(self, "_load_level"))
+			node.connect("load_level", _load_level)
+		if node is Monster:
+			node.maxHealth *= current_level
+			node.health *= current_level
+			node.my_dmg *= current_level
+			node.baseDmg *= current_level
+			print(node.give_xp.connect(player.gain_xp))

@@ -3,8 +3,8 @@
 extends Node
 
 # player's unlocked skills
-var unlocked_skills = ["bolt", "charge", "rock", "fountain"]
-var equipped_skills = ["bolt", "charge", "rock", "fountain"]
+var unlocked_skills: Array = ["bolt", "charge", "rock", "fountain"]
+var equipped_skills: Array = ["bolt", "charge", "rock", "fountain"]
 
 # player's XP counts
 var sunder_xp = 0

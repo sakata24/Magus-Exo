@@ -84,6 +84,7 @@ offset_top = 10.0
 offset_right = 20.0
 offset_bottom = 28.0
 size_flags_horizontal = 3
+tooltip_text = "purchase new spells"
 theme = SubResource("Theme_lpuhh")
 text = "shop"
 
