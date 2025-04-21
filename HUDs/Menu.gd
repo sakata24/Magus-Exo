@@ -3,6 +3,7 @@ extends CanvasLayer
 var SettingMenu = preload("res://HUDs/Settings.tscn")
 
 signal skill_changed(idx, newSkill)
+signal run_ended
 
 func _ready():
 	if Settings.dev_mode:
@@ -33,6 +34,12 @@ func _on_QuitButton_pressed():
 
 func _on_QuitConfirm_confirmed():
 	get_tree().quit()
+
+func _on_end_run_button_pressed() -> void:
+	$EndRunConfirm.popup()
+
+func _on_end_run_confirm_confirmed() -> void:
+	emit_signal("run_ended")
 
 func _on_settings_button_pressed() -> void:
 	get_parent()._add_menu(SettingMenu.instantiate())

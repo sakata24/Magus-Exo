@@ -15,6 +15,7 @@ func _ready():
 	$Player.connect("player_died", Callable(self, "game_over"))
 	$Player.connect("cooling_dash", Callable($HUD, "_set_dash_cd"))
 	$Menu.connect("skill_changed", Callable(self, "_change_skills"))
+	$Menu.connect("run_ended", kill_player)
 	$AudioStreamPlayer.play()
 
 func _unhandled_input(event):
@@ -36,6 +37,12 @@ func _add_menu(menu):
 	menus.push_front(menu)
 	menu.visible = true
 
+func _clear_menus():
+	for menu in menus:
+		menu.visible = false
+	menus.clear()
+	get_tree().paused = false
+
 func _show_click():
 	$ClickAnimation.global_position = get_global_mouse_position()
 	$ClickAnimation.set_frame(0)
@@ -45,7 +52,15 @@ func _show_click():
 func _on_click_animation_animation_finished():
 	$ClickAnimation.visible = false
 
+func kill_player():
+	_clear_menus()
+	if $Player.health >= 0:
+		$Player.health = 0
+
 func game_over():
+	# clear menus
+	_clear_menus()
+	# make dead
 	dead = true
 	$Death.setup()
 	$Death.visible = true

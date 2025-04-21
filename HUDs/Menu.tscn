@@ -56,6 +56,11 @@ horizontal_alignment = 3
 initial_position = 1
 dialog_text = "Exit the game?"
 
+[node name="EndRunConfirm" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+initial_position = 1
+dialog_text = "End your run here?"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,6 +78,15 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_w5m8w")
 text = "QUIT"
+
+[node name="EndRunButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_44w5e")
+theme_override_font_sizes/font_size = 16
+text = "End Run"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -191,7 +205,9 @@ Slowing Projectile"
 horizontal_alignment = 2
 
 [connection signal="confirmed" from="QuitConfirm" to="." method="_on_QuitConfirm_confirmed"]
+[connection signal="confirmed" from="EndRunConfirm" to="." method="_on_end_run_confirm_confirmed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/EndRunButton" to="." method="_on_end_run_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="item_selected" from="VBoxContainer2/OptionButton1" to="." method="_on_option_button_item_selected"]

@@ -16,6 +16,7 @@ func _ready() -> void:
 		indicator_sprite.texture = PlaceholderTexture2D.new()
 	$Sprite2D.scale = Vector2(sprite_scale, sprite_scale)
 	$Sprite2D/Pivot/Arrow.position.x = arrow_offset
+	$Sprite2D/Pivot/Arrow.scale = Vector2(1.0/sprite_scale, 1.0/sprite_scale)
 
 func _process(delta: float) -> void:
 	$Sprite2D/Pivot.look_at(get_parent().global_position)
