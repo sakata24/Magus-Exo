@@ -9,9 +9,9 @@ var map3 = preload("res://Maps/Map3.tscn")
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
 
-var current_level = 0
-var boss_level_multiple = 5 # default floor multiple boss spawns on
-var exit_room = Vector2i()
+var current_level: int = 0
+var boss_level_multiple: int = 5 # default floor multiple boss spawns on
+var exit_room: Vector2i = Vector2i() # the location of the room
 var roomArray = []
 var MAP_SIZE = 2 # sqrt of room amt
 
@@ -34,8 +34,10 @@ func _load_level():
 	# clean rooms node
 	for child in get_children():
 		child.queue_free()
-	player.position = Vector2i(250, 250)
 	player.moving = false
+	# clear groups
+	for spell in get_tree().get_nodes_in_group("spells"):
+		spell.queue_free()
 	# init rooms
 	if current_level % boss_level_multiple == 0:
 		if available_boss_levels.size() <= 0:
@@ -43,8 +45,18 @@ func _load_level():
 		init_boss_room()
 	else:
 		init_rooms()
+	# move player
+	player.position = get_player_spawn(get_children())
 	# save the state of the game every level to be persisted
 	SaveLoader.save_game()
+
+func get_player_spawn(rooms: Array) -> Vector2:
+	# find where to spawn the player
+	for room in rooms: 
+		if room.has_node("PlayerSpawnPos"):
+			return room.get_node("PlayerSpawnPos").global_position
+	# if none, spawn in top left room center
+	return Vector2(250, 250)
 
 func reset_boss_level_array():
 	available_boss_levels = boss_levels
