@@ -146,7 +146,7 @@ offset_right = 65.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_lgskx")
-text = "Press ESC to skip"
+text = "Press ESC to skip and regain 2 HP"
 
 [connection signal="pressed" from="HBoxContainer/Slot1/Slot1Button" to="." method="_on_slot_1_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Slot2/Slot2Button" to="." method="_on_slot_2_button_pressed"]

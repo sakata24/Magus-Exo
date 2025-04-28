@@ -14,7 +14,7 @@ signal moving_to()
 signal dashing_()
 signal cooling_down(skill_cds, skill_cds_max)
 signal cooling_dash(dash_cd, dash_cd_max)
-signal player_hit(newHP, maxHP)
+signal health_changed(newHP, maxHP)
 signal player_died
 
 # instance variables for player HP
@@ -39,9 +39,9 @@ var equippedSkills: Array = ["bolt", "charge", "rock", "fountain"]
 
 var skillReady: Array[bool] = [true, true, true, true]
 # the amt of physics processes to occur before ability to use the skill again
-var skillCD: Array[int] = [0, 0, 0, 0]
+var skillCD: Array[float] = [0, 0, 0, 0]
 # the current amt of physics processes that ran since last using the skill
-var skillTimer: Array[int] = [10, 10, 10, 10]
+var skillTimer: Array[float] = [10, 10, 10, 10]
 # can dash
 var canDash: bool = true
 # the dash iframes
@@ -179,11 +179,22 @@ func hit(damage: DamageObject):
 	health -= damage.get_value()
 	if health < 0:
 		health = 0
-	emit_signal("player_hit", health, max_health)
+	emit_signal("health_changed", health, max_health)
 	var dmgNum = damageNumber.instantiate()
 	dmgNum.modulate = Color(255, 0, 0)
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(damage.get_value(), self.global_position)
+
+func heal(amount: int):
+	if health <= max_health + amount:
+		health += amount
+	else:
+		health = max_health
+	emit_signal("health_changed", health, max_health)
+	var heal_num = damageNumber.instantiate()
+	heal_num.modulate = Color(0, 255, 0)
+	get_parent().add_child(heal_num)
+	heal_num.set_value_and_pos(amount, self.global_position)
 
 func upgrade(upgrade_int):
 	match upgrade_int:

@@ -4,7 +4,7 @@
 
 class_name SicknessReaction extends AreaReaction
 
-var debuffedEnemies
+var debuffedEnemies = []
 
 # called after creation and add_child
 func init(reaction_components: Dictionary):
@@ -38,6 +38,7 @@ func debuff_enemies_in_radius():
 		if body.is_in_group("monsters"):
 			var rand = randi_range(0, 2)
 			if rand == 0:
+				body.velocity = Vector2.ZERO
 				body.can_move = false
 			elif rand == 1:
 				body.speed *= 0.5

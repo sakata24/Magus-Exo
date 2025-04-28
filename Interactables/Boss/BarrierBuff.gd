@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 			interval = -0.008
 		elif $Sprite2D.modulate.a < 0.2:
 			interval = 0.008
+	self.rotate(delta * 0.1)
 
 
 func _on_area_entered(area: Area2D) -> void:

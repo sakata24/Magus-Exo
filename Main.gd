@@ -11,7 +11,7 @@ func _ready():
 	$HUD.init($Player.health,$Player.max_health,str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
 	$Player.connect("moving_to", _show_click)
 	$Player.connect("cooling_down", $HUD._set_cd)
-	$Player.connect("player_hit", $HUD._set_health)
+	$Player.connect("health_changed", $HUD._set_health)
 	$Player.connect("player_died", game_over)
 	$Player.connect("cooling_dash", $HUD._set_dash_cd)
 	$Menu.connect("skill_changed", _change_skills)

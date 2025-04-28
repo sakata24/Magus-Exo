@@ -8,12 +8,13 @@ var map2 = preload("res://Maps/Map2.tscn")
 var map3 = preload("res://Maps/Map3.tscn")
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
+var home = preload("res://Maps/Home.tscn")
 
 var current_level: int = 0
 var boss_level_multiple: int = 5 # default floor multiple boss spawns on
 var exit_room: Vector2i = Vector2i() # the location of the room
 var roomArray = []
-var MAP_SIZE = 2 # sqrt of room amt
+var MAP_SIZE = 4 # sqrt of room amt
 
 @onready var main = get_parent()
 @onready var player: Player = main.get_node("Player")
@@ -21,6 +22,8 @@ var MAP_SIZE = 2 # sqrt of room amt
 @export var initial_level: Node2D # for debugging purposes
 
 func _ready() -> void:
+	if get_child_count() <= 0:
+		add_child(home.instantiate())
 	for room in get_children():
 		init_room_connections(room)
 	if Settings.dev_mode:
@@ -152,8 +155,7 @@ func init_room_connections(newRoom: Node2D):
 		if node is ExitDoor:
 			node.connect("load_level", _load_level)
 		if node is Monster:
-			node.maxHealth *= current_level
-			node.health *= current_level
-			node.my_dmg *= current_level
-			node.baseDmg *= current_level
-			print(node.give_xp.connect(player.gain_xp))
+			node.maxHealth += node.maxHealth * current_level
+			node.health += node.health * current_level
+			node.my_dmg += node.my_dmg * current_level
+			node.baseDmg += node.baseDmg * current_level

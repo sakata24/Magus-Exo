@@ -15,7 +15,7 @@
 - [User Experience]: Tutorial/learning curve
 - [Gameplay]: Balance the game
 - [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
-- [Gameplay] finish reactions:
+- [Gameplay]: finish reactions:
 	fork: split the flow spell into two
 
 Finished Bugs:

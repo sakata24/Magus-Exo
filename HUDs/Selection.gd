@@ -66,18 +66,19 @@ func setup():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("ui_cancel") and visible:
+		get_parent().get_node("Player").heal(2)
 
 func _on_slot_1_button_pressed():
-	get_node("../Player").upgrade(slots[0])
+	get_parent().get_node("Player").upgrade(slots[0])
 	cleanup()
 
 func _on_slot_2_button_pressed():
-	get_node("../Player").upgrade(slots[1])
+	get_parent().get_node("Player").upgrade(slots[1])
 	cleanup()
 
 func _on_slot_3_button_pressed():
-	get_node("../Player").upgrade(slots[2])
+	get_parent().get_node("Player").upgrade(slots[2])
 	cleanup()
 
 func cleanup():
