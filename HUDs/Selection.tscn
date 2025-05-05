@@ -21,19 +21,20 @@ anchor_left = 0.2
 anchor_top = 0.2
 anchor_right = 0.8
 anchor_bottom = 0.8
-theme = ExtResource("2_lgskx")
-
-[node name="Slot1" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Slot1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_lgskx")
+
+[node name="Slot1" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Slot1"]
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Slot1/VBoxContainer"]
 texture_filter = 1
@@ -43,35 +44,28 @@ texture = ExtResource("2_dvfnu")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="HBoxContainer/Slot1/VBoxContainer"]
-custom_minimum_size = Vector2(222, 23)
+custom_minimum_size = Vector2(100, 23)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 8
 text = "text"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Slot1Button" type="Button" parent="HBoxContainer/Slot1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 flat = true
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Slot2" type="Control" parent="HBoxContainer"]
+[node name="Slot2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Slot2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Slot2/VBoxContainer"]
 texture_filter = 1
@@ -81,35 +75,28 @@ texture = ExtResource("2_dvfnu")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="HBoxContainer/Slot2/VBoxContainer"]
-custom_minimum_size = Vector2(222, 23)
+custom_minimum_size = Vector2(100, 23)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 8
 text = "text"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Slot2Button" type="Button" parent="HBoxContainer/Slot2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 flat = true
 
-[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Slot3" type="Control" parent="HBoxContainer"]
+[node name="Slot3" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Slot3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Slot3/VBoxContainer"]
 texture_filter = 1
@@ -119,33 +106,31 @@ texture = ExtResource("2_dvfnu")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="HBoxContainer/Slot3/VBoxContainer"]
-custom_minimum_size = Vector2(222, 23)
+custom_minimum_size = Vector2(100, 23)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 8
 text = "text"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Slot3Button" type="Button" parent="HBoxContainer/Slot3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 flat = true
 
 [node name="SkipTooltip" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.95
+anchor_top = 0.9
 anchor_right = 0.5
-anchor_bottom = 0.95
+anchor_bottom = 0.9
 offset_left = -65.0
 offset_top = -23.0
 offset_right = 65.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_lgskx")
+theme_override_font_sizes/font_size = 16
 text = "Press ESC to skip and regain 2 HP"
 
 [connection signal="pressed" from="HBoxContainer/Slot1/Slot1Button" to="." method="_on_slot_1_button_pressed"]

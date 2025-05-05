@@ -27,7 +27,7 @@ cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0pibi"]
 font = ExtResource("3_w5m8w")
-font_size = 32
+font_size = 24
 
 [node name="Menu" type="CanvasLayer" groups=["windows"]]
 script = ExtResource("1")
@@ -76,13 +76,14 @@ grow_vertical = 2
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_w5m8w")
+theme = ExtResource("4_44w5e")
+theme_override_font_sizes/font_size = 8
 text = "QUIT"
 
 [node name="EndRunButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_44w5e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "End Run"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
@@ -90,12 +91,14 @@ layout_mode = 2
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_w5m8w")
+theme = ExtResource("4_44w5e")
+theme_override_font_sizes/font_size = 8
 text = "Settings"
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_w5m8w")
+theme = ExtResource("4_44w5e")
+theme_override_font_sizes/font_size = 8
 text = "SAVE
 "
 
@@ -106,6 +109,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_44w5e")
+theme_override_font_sizes/font_size = 8
 text = "Sunder XP:
 Entropy XP:
 Construct XP:
@@ -117,6 +121,7 @@ Wither XP:"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_44w5e")
+theme_override_font_sizes/font_size = 8
 horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]

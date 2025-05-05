@@ -2,6 +2,11 @@ class_name HUD extends CanvasLayer
 
 var hudScale = 100
 
+@onready var bottom_progress_bar_max = $BottomHUD/HealthBar.size.x
+@onready var health_bar = $BottomHUD/HealthBar
+@onready var health_label = $BottomHUD/HealthLabel
+@onready var dash_bar = $BottomHUD/DashBar
+
 func _ready():
 	_set_ui_size()
 	_hide_ability_names()
@@ -11,12 +16,16 @@ func init(health, max_health, skill1, skill2, skill3, skill4):
 	set_floor(0)
 	_set_skills(skill1,skill2,skill3,skill4)
 
+func on_hud_size_changed():
+	pass
+	# change hud size
+
 func _set_health(new_HP, max_HP):
-	$Health/ProgressBar.set_size(Vector2((4*hudScale*new_HP)/max_HP,(0.35*hudScale)))
-	$Health/HealthLabel.text = ("HEALTH: " + str(new_HP))
+	health_bar.set_size(Vector2(bottom_progress_bar_max * float(float(new_HP) / float(max_HP)),(health_bar.size.y)))
+	health_label.text = ("HEALTH: " + str(new_HP))
 
 func _set_dash_cd(dash_cd, dash_cd_max):
-	$Dash/ProgressBar.set_size(Vector2((4*hudScale)-(dash_cd*(4*hudScale)/dash_cd_max),(0.05*hudScale)))
+	dash_bar.set_size(Vector2(bottom_progress_bar_max - (bottom_progress_bar_max * float(float(dash_cd) / float(dash_cd_max))),(dash_bar.size.y)))
 
 func _set_skills(one,two,three,four):
 	$Skill/Ability1/HBoxContainer/SkillName.text = one

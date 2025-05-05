@@ -23,7 +23,7 @@ func _ready() -> void:
 	add_to_group("Persist")
 
 func _update_settings():
-	set_window_type()
+	#set_window_type()
 	set_master_volume()
 
 func set_window_type():

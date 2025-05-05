@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dfp0saptduhg3" path="res://Characters/Enemies/Charger/Charger.tscn" id="4_ynbhv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y6dut"]
-vertices = PackedVector2Array(272, 319, 256, 319, 256, 207, 272, 207, 256, 95, 272, 79, 296, 79, 296, 127, 256, -65, 272, -81, 80, -81, -16, -65, -48, 127, -48, 95, -16, -1, -48, -1, -48, 207, 128, 207, 128, 319, 80, 319, 80, 343, 32, 343, 32, 319, -160, 319, -64, 207, -160, 207, -64, 127, -64, 79, -184, 79, -184, 127, -64, -1, -144, -1, -144, -97, 32, -97, 32, -137, 80, -137)
+vertices = PackedVector2Array(272, 319, 256, 319, 256, 207, 272, 207, 256, 95, 272, 79, 304, 79, 304, 127, 256, -65, 272, -81, 80, -81, -16, -65, -48, 127, -48, 95, -16, -1, -48, -1, -48, 207, 128, 207, 128, 319, 80, 319, 80, 351, 32, 351, 32, 319, -160, 319, -64, 207, -160, 207, -64, 127, -64, 79, -192, 79, -192, 127, -64, -1, -144, -1, -144, -97, 32, -97, 32, -145, 80, -145)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(5, 4, 8, 9), PackedInt32Array(10, 9, 8, 11), PackedInt32Array(4, 7, 12, 13), PackedInt32Array(11, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(16, 19, 22), PackedInt32Array(16, 22, 23, 24), PackedInt32Array(23, 25, 24), PackedInt32Array(12, 16, 24, 26), PackedInt32Array(27, 13, 12, 26, 28), PackedInt32Array(26, 29, 28), PackedInt32Array(15, 13, 27, 30), PackedInt32Array(30, 31, 32, 11), PackedInt32Array(33, 34, 35, 10), PackedInt32Array(33, 10, 11, 32), PackedInt32Array(30, 11, 15)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-200, -153, 312, -153, 312, 359, -200, 359)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-208, -161, 320, -161, 320, 367, -208, 367)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 16.0
 

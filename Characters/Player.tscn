@@ -166,7 +166,6 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 script = ExtResource("2_nwlvs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

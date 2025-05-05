@@ -133,7 +133,7 @@ func _on_wither_toggled(toggled_on: bool) -> void:
 
 
 func _on_learn_button_pressed() -> void:
-	var inst = ConfirmPopup.instantiate()
+	var inst: ConfirmationPopup = ConfirmPopup.instantiate()
 	# Set the text
 	inst.set_label("[center]Learn [color=" + AbilityColor.get_color_by_string(selectedSpell.element).to_html(false) + "]" + selectedSpell.name + "[/color] for " + str(PlayerSkills.ALL_SKILLS.skills.get(selectedSpell.name).get("price")) + " xp?")
 	

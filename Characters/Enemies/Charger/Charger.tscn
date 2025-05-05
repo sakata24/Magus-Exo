@@ -125,6 +125,7 @@ shape = SubResource("2")
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
 position = Vector2(1, 0)

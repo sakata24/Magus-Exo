@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c4ktyer38vnk4" path="res://Characters/Enemies/Monster/Monster.tscn" id="3_up4gq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2eh2d"]
-vertices = PackedVector2Array(272, 160, 288, 160, 288, 176, 320, 176, 320, 208, 336, 208, 336, 224, 488, 224, 488, 272, 336, 272, 336, 288, 320, 288, 176, 208, 320, 320, 288, 320, 288, 336, 272, 336, 272, 488, 224, 488, 224, 336, 208, 336, 208, 320, 176, 320, 176, 288, 160, 288, 160, 272, 8, 272, 8, 224, 160, 224, 160, 208, 176, 176, 208, 176, 208, 160, 224, 160, 224, 8, 272, 8)
+vertices = PackedVector2Array(272, 160, 288, 160, 288, 176, 320, 176, 320, 208, 336, 208, 336, 224, 496, 224, 496, 272, 336, 272, 336, 288, 320, 288, 176, 208, 320, 320, 288, 320, 288, 336, 272, 336, 272, 496, 224, 496, 224, 336, 208, 336, 208, 320, 176, 320, 176, 288, 160, 288, 160, 272, 0, 272, 0, 224, 160, 224, 160, 208, 176, 176, 208, 176, 208, 160, 224, 160, 224, 0, 272, 0)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 5, 6), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(11, 13, 14, 12), PackedInt32Array(14, 15, 16, 12), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(19, 20, 21), PackedInt32Array(21, 22, 23), PackedInt32Array(23, 24, 25, 12), PackedInt32Array(25, 26, 27, 28), PackedInt32Array(28, 29, 12), PackedInt32Array(12, 30, 31, 4, 6, 9), PackedInt32Array(31, 32, 33, 2, 4), PackedInt32Array(33, 34, 35, 0), PackedInt32Array(33, 0, 2), PackedInt32Array(12, 16, 19, 21), PackedInt32Array(12, 21, 23), PackedInt32Array(12, 25, 28)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 504, -8, 504, 504, -8, 504)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 512, -16, 512, 512, -16, 512)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 16.0
 

@@ -6,6 +6,7 @@ class_name ChargerDashingState extends State
 func enter():
 	charger.dashing = true
 	charger.wall_min_slide_angle = deg_to_rad(30)
+	charger.get_node("DamageArea").set_collision_mask_value(1, true)
 	setup_dash_timer()
 
 func exit():
@@ -13,6 +14,7 @@ func exit():
 	animation.set_animation("idle")
 	var tween = get_tree().create_tween()
 	tween.tween_property(charger, "rotation", 0.0, 0.2)
+	charger.get_node("DamageArea").set_collision_mask_value(1, false)
 	charger.wall_min_slide_angle = deg_to_rad(0)
 
 func physics_update(delta: float):
