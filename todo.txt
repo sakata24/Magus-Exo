@@ -3,10 +3,8 @@
 - BUG [Gameplay]: Scythes spawning outside should not occur
 - BUG [Gameplay]: Player gets stuck in between mirrors
 - BUG [Gameplay]: Multicast bolt being goofy. spam bolt (TESTING)
-- BUG [Gameplay]: Enemy not aggroing
-- BUG [Gameplay]: Enemy aggro on map load
-- BUG [Gameplay]: Spells on map load still present
 - BUG [Gameplay]: Stun oddly long and enemies still move for sickness
+- BUG [Gameplay]: Spell shatter location on fissure located not in the center
 - [UI] show upgrades chosen
 - [UI] tooltips
 - [UI] finish indicator

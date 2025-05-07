@@ -29,7 +29,7 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -47,7 +47,7 @@ stretch_mode = 4
 [node name="Label" type="Label" parent="ContentContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_mbbew")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 16
 text = "Spell Tome"
 horizontal_alignment = 1
 

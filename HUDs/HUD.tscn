@@ -161,12 +161,3 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="mouse_entered" from="Skill/Ability1" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability1" to="." method="_hide_ability_names"]
-[connection signal="mouse_entered" from="Skill/Ability2" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability2" to="." method="_hide_ability_names"]
-[connection signal="mouse_entered" from="Skill/Ability3" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability3" to="." method="_hide_ability_names"]
-[connection signal="mouse_entered" from="Skill/Ability4" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability4" to="." method="_hide_ability_names"]

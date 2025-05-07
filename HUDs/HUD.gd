@@ -9,7 +9,6 @@ var hudScale = 100
 
 func _ready():
 	_set_ui_size()
-	_hide_ability_names()
 
 func init(health, max_health, skill1, skill2, skill3, skill4):
 	_set_health(health, max_health)
@@ -49,17 +48,6 @@ func _set_ui_size():
 	$Skill.position.x = 10
 	$Skill.size.x = $Skill.size.y*0.75
 	var boxSize = ($Skill.size.y-(3*15))/4
-
-func _show_ability_names():
-	for n in $Skill.get_children():
-		n.get_node("Body").visible = true
-		n.get_node("HBoxContainer/SkillName").self_modulate = Color(1,1,1,1)
-
-
-func _hide_ability_names():
-	for n in $Skill.get_children():
-		n.get_node("Body").visible = false
-		n.get_node("HBoxContainer/SkillName").self_modulate = Color(1,1,1,0)
 
 func set_floor(i : int):
 	$FloorLabel.text = "Floor: " + str(i)

@@ -3,7 +3,7 @@ extends Node
 enum {WINDOW_TYPE_WINDOWED, WINDOW_TYPE_FULLSCREEN, WINDOW_TYPE_BORDERLESS}
 enum {VOLUME_BUS_MASTER}
 
-var dev_mode = false
+var dev_mode = true
 var window = 0
 var resolution = 0
 var master_volume = 100.0

@@ -5,7 +5,7 @@ class_name ChargerDashingState extends State
 
 func enter():
 	charger.dashing = true
-	charger.wall_min_slide_angle = deg_to_rad(30)
+	charger.wall_min_slide_angle = deg_to_rad(180)
 	charger.get_node("DamageArea").set_collision_mask_value(1, true)
 	setup_dash_timer()
 

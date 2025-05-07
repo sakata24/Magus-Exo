@@ -67,17 +67,16 @@ func game_over():
 	# reset difficulty
 	level = 0
 
-func _change_skills(idx, newSkill):
-	print("update skils")
+func _change_skills(idx, new_skill):
 	var key
 	match idx:
 		0: key = "Q"
 		1: key = "W"
 		2: key = "E"
 		3: key = "R"
-	$Player.equippedSkills[idx] = newSkill
+	$Player.equippedSkills[idx] = new_skill
 	$Player.init_skill_cooldowns()
-	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/SkillMargin/SkillIcon").set_icon(newSkill, key)
+	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/Border/SkillIcon").set_icon(new_skill, key)
 
 func despawn_light():
 	var tween = create_tween()
