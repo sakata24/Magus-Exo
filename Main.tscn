@@ -112,9 +112,12 @@ visible = false
 
 [node name="ClickAnimation" type="AnimatedSprite2D" parent="."]
 visible = false
+texture_filter = 1
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_33bx4")
 animation = &"click"
+frame = 6
+frame_progress = 1.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false

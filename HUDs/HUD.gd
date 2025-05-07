@@ -32,16 +32,16 @@ func _set_skills(one,two,three,four):
 	$Skill/Ability2/HBoxContainer/SkillName.text = two
 	$Skill/Ability3/HBoxContainer/SkillName.text = three
 	$Skill/Ability4/HBoxContainer/SkillName.text = four
-	$Skill/Ability1/HBoxContainer/SkillMargin/SkillIcon.set_icon(one,"Q")
-	$Skill/Ability2/HBoxContainer/SkillMargin/SkillIcon.set_icon(two,"W")
-	$Skill/Ability3/HBoxContainer/SkillMargin/SkillIcon.set_icon(three,"E")
-	$Skill/Ability4/HBoxContainer/SkillMargin/SkillIcon.set_icon(four,"R")
+	$Skill/Ability1/HBoxContainer/Border/SkillIcon.set_icon(one,"Q")
+	$Skill/Ability2/HBoxContainer/Border/SkillIcon.set_icon(two,"W")
+	$Skill/Ability3/HBoxContainer/Border/SkillIcon.set_icon(three,"E")
+	$Skill/Ability4/HBoxContainer/Border/SkillIcon.set_icon(four,"R")
 
 func _set_cd(skill_cds, skill_cds_max):
-	$Skill/Ability1/HBoxContainer/SkillMargin/SkillIcon/ProgressBar.value = skill_cds_max[0]-skill_cds[0]
-	$Skill/Ability2/HBoxContainer/SkillMargin/SkillIcon/ProgressBar.value = skill_cds_max[1]-skill_cds[1]
-	$Skill/Ability3/HBoxContainer/SkillMargin/SkillIcon/ProgressBar.value = skill_cds_max[2]-skill_cds[2]
-	$Skill/Ability4/HBoxContainer/SkillMargin/SkillIcon/ProgressBar.value = skill_cds_max[3]-skill_cds[3]
+	$Skill/Ability1/HBoxContainer/Border/SkillIcon/ProgressBar.value = skill_cds_max[0]-skill_cds[0]
+	$Skill/Ability2/HBoxContainer/Border/SkillIcon/ProgressBar.value = skill_cds_max[1]-skill_cds[1]
+	$Skill/Ability3/HBoxContainer/Border/SkillIcon/ProgressBar.value = skill_cds_max[2]-skill_cds[2]
+	$Skill/Ability4/HBoxContainer/Border/SkillIcon/ProgressBar.value = skill_cds_max[3]-skill_cds[3]
 
 func _set_ui_size():
 	$Skill.size.y = get_viewport().get_visible_rect().size.y/3
@@ -49,10 +49,6 @@ func _set_ui_size():
 	$Skill.position.x = 10
 	$Skill.size.x = $Skill.size.y*0.75
 	var boxSize = ($Skill.size.y-(3*15))/4
-	for n in $Skill.get_children():
-		n.get_node("HBoxContainer/Control/ColorRect").size.x = boxSize + 2
-		n.get_node("HBoxContainer/Control/ColorRect").size.y = boxSize + 2
-		n.get_node("HBoxContainer/SkillMargin/SkillIcon/ProgressBar").scale = Vector2(boxSize/500, boxSize/500)
 
 func _show_ability_names():
 	for n in $Skill.get_children():

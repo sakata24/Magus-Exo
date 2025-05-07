@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d37cep1ypwea6"]
+[gd_scene load_steps=8 format=3 uid="uid://d37cep1ypwea6"]
 
 [ext_resource type="Script" uid="uid://6kp8h0strgpc" path="res://HUDs/Menu.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_w5m8w"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="4_44w5e"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="4_sqorb"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -50,7 +51,7 @@ grow_horizontal = 2
 theme_override_fonts/font = SubResource("1")
 text = "Menu"
 label_settings = SubResource("LabelSettings_0pibi")
-horizontal_alignment = 3
+horizontal_alignment = 1
 
 [node name="QuitConfirm" type="ConfirmationDialog" parent="."]
 initial_position = 1
@@ -60,6 +61,8 @@ dialog_text = "Exit the game?"
 auto_translate_mode = 1
 initial_position = 1
 dialog_text = "End your run here?"
+
+[node name="BorderContainer" parent="." instance=ExtResource("4_sqorb")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8

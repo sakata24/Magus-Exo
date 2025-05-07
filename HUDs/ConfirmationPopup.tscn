@@ -8,7 +8,7 @@
 [node name="Popup" type="Popup"]
 auto_translate_mode = 1
 initial_position = 1
-size = Vector2i(300, 133)
+size = Vector2i(300, 186)
 visible = true
 min_size = Vector2i(300, 0)
 max_size = Vector2i(32768, 250)

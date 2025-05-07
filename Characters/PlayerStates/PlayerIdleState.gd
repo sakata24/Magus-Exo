@@ -4,8 +4,9 @@ class_name PlayerIdleState extends State
 @onready var animation: AnimatedSprite2D = player.get_node("AnimatedSprite2D")
 
 func enter():
+	var frame = animation.frame
 	animation.set_animation("idle")
-	animation.set_frame_and_progress(animation.get_frame(), animation.frame_progress)
+	animation.set_frame_and_progress(frame, animation.frame_progress)
 
 func exit():
 	pass

@@ -55,7 +55,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "Video"
 
 [node name="HSeparator" type="HSeparator" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer"]
@@ -68,28 +68,6 @@ theme_override_constants/margin_left = 50
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="WindowType" type="HBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/WindowType"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 8
-text = "Window Type"
-
-[node name="OptionButton" type="OptionButton" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/WindowType"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-selected = 0
-item_count = 3
-popup/item_0/text = "Windowed"
-popup/item_0/id = 0
-popup/item_1/text = "Fullscreen"
-popup/item_1/id = 1
-popup/item_2/text = "Borderless"
-popup/item_2/id = 2
 
 [node name="Resolution" type="HBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -115,7 +93,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 8
 text = "Audio"
 
 [node name="HSeparator2" type="HSeparator" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer"]
@@ -160,7 +138,7 @@ alignment = 1
 
 [node name="CancelButton" type="Button" parent="ContentContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "Cancel"
 
 [node name="ApplyButton" type="Button" parent="ContentContainer/VBoxContainer/HBoxContainer"]
@@ -171,10 +149,9 @@ theme_override_colors/font_hover_color = Color(0.592157, 0.364706, 0.219608, 1)
 theme_override_colors/font_color = Color(0.592157, 0.364706, 0.219608, 1)
 theme_override_colors/font_focus_color = Color(0.592157, 0.364706, 0.219608, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "Apply"
 
-[connection signal="item_selected" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/WindowType/OptionButton" to="." method="_on_window_option_button_item_selected"]
 [connection signal="item_selected" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/Resolution/OptionButton" to="." method="_on_resolution_option_button_item_selected"]
 [connection signal="drag_ended" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume/HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume/HSlider" to="." method="_on_h_slider_value_changed"]

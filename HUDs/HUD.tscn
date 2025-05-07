@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://u7bsufm6x1io" path="res://HUDs/HUD.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://o7m3yeirq5vk" path="res://Resources/fonts/KiriFont.ttf" id="2"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_2uc2n"]
-[ext_resource type="PackedScene" uid="uid://jb02v63no31m" path="res://Resources/hud_elements/SkillIcon.tscn" id="3_e3bud"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_typ2u"]
+[ext_resource type="PackedScene" uid="uid://b6kgq314efu3b" path="res://Resources/hud_elements/SkillContainer.tscn" id="5_5d0cg"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -106,174 +106,25 @@ label_settings = SubResource("LabelSettings_5d0cg")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -126.5
-offset_right = 200.0
-offset_bottom = 126.5
+offset_top = -90.5
+offset_right = 86.0
+offset_bottom = 90.5
 grow_vertical = 2
 theme = ExtResource("2_2uc2n")
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="Ability1" type="MarginContainer" parent="Skill"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Body" type="ColorRect" parent="Skill/Ability1"]
-layout_mode = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0.392157)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability1"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Control" type="Control" parent="Skill/Ability1/HBoxContainer"]
-custom_minimum_size = Vector2(2, 2.08165e-12)
+[node name="Ability1" parent="Skill" instance=ExtResource("5_5d0cg")]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Skill/Ability1/HBoxContainer/Control"]
-layout_mode = 2
-offset_right = 54.0
-offset_bottom = 54.0
-size_flags_horizontal = 3
-color = Color(0.682353, 0.458824, 0, 1)
-
-[node name="SkillMargin" type="MarginContainer" parent="Skill/Ability1/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 2
-
-[node name="SkillIcon" parent="Skill/Ability1/HBoxContainer/SkillMargin" instance=ExtResource("3_e3bud")]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="SkillName" type="Label" parent="Skill/Ability1/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Q:"
-
-[node name="Ability2" type="MarginContainer" parent="Skill"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Body" type="ColorRect" parent="Skill/Ability2"]
-layout_mode = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0.392157)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability2"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Control" type="Control" parent="Skill/Ability2/HBoxContainer"]
-custom_minimum_size = Vector2(2, 2.08165e-12)
+[node name="Ability2" parent="Skill" instance=ExtResource("5_5d0cg")]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Skill/Ability2/HBoxContainer/Control"]
-layout_mode = 2
-offset_right = 54.0
-offset_bottom = 54.0
-size_flags_horizontal = 3
-color = Color(0.682353, 0.458824, 0, 1)
-
-[node name="SkillMargin" type="MarginContainer" parent="Skill/Ability2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 2
-
-[node name="SkillIcon" parent="Skill/Ability2/HBoxContainer/SkillMargin" instance=ExtResource("3_e3bud")]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SkillName" type="Label" parent="Skill/Ability2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Q:"
-
-[node name="Ability3" type="MarginContainer" parent="Skill"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Body" type="ColorRect" parent="Skill/Ability3"]
-layout_mode = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0.392157)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability3"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Control" type="Control" parent="Skill/Ability3/HBoxContainer"]
-custom_minimum_size = Vector2(2, 2.08165e-12)
+[node name="Ability3" parent="Skill" instance=ExtResource("5_5d0cg")]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Skill/Ability3/HBoxContainer/Control"]
+[node name="Ability4" parent="Skill" instance=ExtResource("5_5d0cg")]
 layout_mode = 2
-offset_right = 54.0
-offset_bottom = 54.0
-size_flags_horizontal = 3
-color = Color(0.682353, 0.458824, 0, 1)
-
-[node name="SkillMargin" type="MarginContainer" parent="Skill/Ability3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 2
-
-[node name="SkillIcon" parent="Skill/Ability3/HBoxContainer/SkillMargin" instance=ExtResource("3_e3bud")]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SkillName" type="Label" parent="Skill/Ability3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Q:"
-
-[node name="Ability4" type="MarginContainer" parent="Skill"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Body" type="ColorRect" parent="Skill/Ability4"]
-layout_mode = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0.392157)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Skill/Ability4"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Control" type="Control" parent="Skill/Ability4/HBoxContainer"]
-custom_minimum_size = Vector2(2, 2.08165e-12)
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Skill/Ability4/HBoxContainer/Control"]
-layout_mode = 2
-offset_right = 54.0
-offset_bottom = 54.0
-size_flags_horizontal = 3
-color = Color(0.682353, 0.458824, 0, 1)
-
-[node name="SkillMargin" type="MarginContainer" parent="Skill/Ability4/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 2
-
-[node name="SkillIcon" parent="Skill/Ability4/HBoxContainer/SkillMargin" instance=ExtResource("3_e3bud")]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SkillName" type="Label" parent="Skill/Ability4/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Q:"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
@@ -311,11 +162,11 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="mouse_entered" from="Skill/Ability1/HBoxContainer/SkillMargin/SkillIcon" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability1/HBoxContainer/SkillMargin/SkillIcon" to="." method="_hide_ability_names"]
-[connection signal="mouse_entered" from="Skill/Ability2/HBoxContainer/SkillMargin/SkillIcon" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability2/HBoxContainer/SkillMargin/SkillIcon" to="." method="_hide_ability_names"]
-[connection signal="mouse_entered" from="Skill/Ability3/HBoxContainer/SkillMargin/SkillIcon" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability3/HBoxContainer/SkillMargin/SkillIcon" to="." method="_hide_ability_names"]
-[connection signal="mouse_entered" from="Skill/Ability4/HBoxContainer/SkillMargin/SkillIcon" to="." method="_show_ability_names"]
-[connection signal="mouse_exited" from="Skill/Ability4/HBoxContainer/SkillMargin/SkillIcon" to="." method="_hide_ability_names"]
+[connection signal="mouse_entered" from="Skill/Ability1" to="." method="_show_ability_names"]
+[connection signal="mouse_exited" from="Skill/Ability1" to="." method="_hide_ability_names"]
+[connection signal="mouse_entered" from="Skill/Ability2" to="." method="_show_ability_names"]
+[connection signal="mouse_exited" from="Skill/Ability2" to="." method="_hide_ability_names"]
+[connection signal="mouse_entered" from="Skill/Ability3" to="." method="_show_ability_names"]
+[connection signal="mouse_exited" from="Skill/Ability3" to="." method="_hide_ability_names"]
+[connection signal="mouse_entered" from="Skill/Ability4" to="." method="_show_ability_names"]
+[connection signal="mouse_exited" from="Skill/Ability4" to="." method="_hide_ability_names"]
