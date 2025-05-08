@@ -64,10 +64,9 @@ func setup():
 		slots.push_back(rand)
 		self.visible = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel") and visible:
-		get_parent().get_node("Player").heal(2)
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel") and visible:
+		get_parent().get_node("Player").call_deferred("heal", 2)
 
 func _on_slot_1_button_pressed():
 	get_parent().get_node("Player").upgrade(slots[0])

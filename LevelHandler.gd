@@ -2,10 +2,7 @@ class_name LevelHandler extends Node2D
 
 var boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
 var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
-var map0 = preload("res://Maps/Map.tscn")
-var map1 = preload("res://Maps/Map1.tscn")
-var map2 = preload("res://Maps/Map2.tscn")
-var map3 = preload("res://Maps/Map3.tscn")
+var maps = [preload("res://Maps/Map.tscn"), preload("res://Maps/Map1.tscn"), preload("res://Maps/Map2.tscn"), preload("res://Maps/Map3.tscn"), preload("res://Maps/Map4.tscn")]
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
 var home = preload("res://Maps/Home.tscn")
@@ -92,15 +89,8 @@ func init_rooms():
 			elif exit_room == Vector2i(i, j):
 				newRoom = exit.instantiate()
 			else:
-				var rand = randi_range(0,3);
-				if rand == 0:
-					newRoom = map0.instantiate()
-				elif rand == 1:
-					newRoom = map1.instantiate()
-				elif rand == 2:
-					newRoom = map2.instantiate()
-				else:
-					newRoom = map3.instantiate()
+				var rand = randi_range(0,maps.size() - 1);
+				newRoom = maps[rand].instantiate()
 			newRoom.position = Vector2(position.x + (496.0 * i), position.y + (496.0 * j))
 			
 			# block off edges of map

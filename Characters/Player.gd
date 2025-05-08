@@ -187,9 +187,8 @@ func hit(damage: DamageObject):
 	dmgNum.set_value_and_pos(damage.get_value(), self.global_position)
 
 func heal(amount: int):
-	if health <= max_health + amount:
-		health += amount
-	else:
+	health += amount
+	if health > max_health:
 		health = max_health
 	emit_signal("health_changed", health, max_health)
 	var heal_num = damageNumber.instantiate()
