@@ -56,7 +56,7 @@ func _physics_process(delta):
 func hit(damage: DamageObject):
 	super(damage)
 	# aggro on the caster
-	if damage.has_source() and damage.get_source() is Player and self.has_node("PathTimer"):
+	if not aggro and damage.has_source() and damage.get_source() is Player and self.has_node("PathTimer"):
 		aggro = true
 		player = damage.get_source()
 		$PathTimer.start()

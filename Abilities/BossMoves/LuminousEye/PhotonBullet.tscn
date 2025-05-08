@@ -32,5 +32,4 @@ color = Color(0.972549, 0.964706, 0.713726, 1)
 polygon = PackedVector2Array(4, 2, 0, 6, -3, 6, -6, 3, -6, -3, -3, -6, 0, -6, 4, -2, 5, 0)
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_i7bp4")

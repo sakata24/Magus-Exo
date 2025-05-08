@@ -1,26 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://7rvqd8favk01"]
+[gd_scene load_steps=9 format=3 uid="uid://7rvqd8favk01"]
 
 [ext_resource type="PackedScene" uid="uid://bnisb47qe61bq" path="res://Abilities/BaseTypeAbility.tscn" id="1_844lo"]
 [ext_resource type="SpriteFrames" uid="uid://bo4qe5bist8cv" path="res://Abilities/Animations/ChargeSprite.tres" id="2_4be8l"]
 [ext_resource type="Script" uid="uid://bheax13ijm4i7" path="res://Abilities/AbilityScripts/Charge.gd" id="2_42sja"]
 
+[sub_resource type="Gradient" id="Gradient_lbg6i"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b7lqw"]
+gradient = SubResource("Gradient_lbg6i")
+width = 2
+height = 2
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_b7lqw"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2186j"]
+gradient = SubResource("Gradient_b7lqw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lbg6i"]
+particle_flag_disable_z = true
+angle_min = -90.0
+angle_max = 90.0
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_2186j")
+
 [node name="AbilityBody" instance=ExtResource("1_844lo")]
 script = ExtResource("2_42sja")
 
 [node name="CollisionPolygon2D" parent="." index="0"]
-polygon = PackedVector2Array(-4, -4, 1, -5, 3, -3, 5, -1, 5, 1, 3, 3, 1, 5, -4, 4, -3, 1, -3, -1)
+polygon = PackedVector2Array(1, -4, 4, -2, 4, 2, 1, 4, -4, 3, -4, -3)
 
 [node name="Texture" parent="." index="2"]
 visible = false
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("2_4be8l")
 autoplay = "default"
+frame_progress = 0.982974
 
 [node name="ChargeTimer" type="Timer" parent="." index="4"]
 wait_time = 0.7
 one_shot = true
 autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="5"]
+amount = 16
+texture = SubResource("GradientTexture2D_b7lqw")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_lbg6i")
 
 [connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
