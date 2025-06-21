@@ -13,6 +13,8 @@ var exit_room: Vector2i = Vector2i() # the location of the room
 var roomArray = []
 var MAP_SIZE = 4 # sqrt of room amt
 
+signal change_song(song)
+
 @onready var main = get_parent()
 @onready var player: Player = main.get_node("Player")
 
@@ -53,8 +55,8 @@ func _load_level():
 func get_player_spawn(rooms: Array) -> Vector2:
 	# find where to spawn the player
 	for room in rooms: 
-		if room.has_node("PlayerSpawnPos"):
-			return room.get_node("PlayerSpawnPos").global_position
+		if room.has_node("PlayerSpawnLoc"):
+			return room.get_node("PlayerSpawnLoc").global_position
 	# if none, spawn in top left room center
 	return Vector2(250, 250)
 
@@ -149,3 +151,6 @@ func init_room_connections(newRoom: Node2D):
 			node.health += node.health * current_level
 			node.my_dmg += node.my_dmg * current_level
 			node.baseDmg += node.baseDmg * current_level
+
+func play_song(song_name: String):
+	emit_signal("change_song", song_name)

@@ -1,9 +1,12 @@
 extends Node2D
 
+@onready var level_handler: LevelHandler = get_parent()
+
 func _ready():
-	get_parent().setup_boss_room(self)
+	level_handler.setup_boss_room(self)
 	$LuminousEye.connect("boss_dead", Callable(self, "_boss_died"))
 	$LuminousEye.player.global_position = $PlayerSpawnPos.global_position
+	level_handler.play_song("crystal_mirror")
 
 func _boss_died():
 	_cleanup_room()

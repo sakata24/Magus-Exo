@@ -108,13 +108,13 @@ func hit(damage: DamageObject):
 			change_position()
 			cone_size = PI/3.0
 			enable_fractal_barrier()
-			$IdleTimer.wait_time = 2.8
+			$IdleTimer.wait_time = 2.4
 		if stage == 2 and health < maxHealth * 0.333:
 			stage = 3
 			change_position()
 			cone_size = PI/2.0
 			enable_fractal_barrier()
-			$IdleTimer.wait_time = 1.8
+			$IdleTimer.wait_time = 1.3
 		if health <= 0:
 			die()
 	elif damage.get_types().has("fracture"):

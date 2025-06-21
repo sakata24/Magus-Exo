@@ -18,8 +18,8 @@ signal health_changed(newHP, maxHP)
 signal player_died
 
 # instance variables for player HP
-var health: int = 25
-var max_health: int = 25
+var health: int = 15
+var max_health: int = 15
 
 # instance variables for player movement
 var max_speed: int = 150
@@ -162,7 +162,6 @@ func apply_run_buffs(ability: BaseTypeAbility):
 		$MultiCastTimer.start()
 
 func _on_multi_cast_timer_timeout():
-	print(remaining_casts)
 	if remaining_casts > 0 and ability_ref:
 		remaining_casts -= 1
 		spawn_ability(ability_ref)
@@ -172,7 +171,6 @@ func _on_multi_cast_timer_timeout():
 		ability_ref =""
 
 func gain_xp(amount: int, elements: Array[String]):
-	print("gaining xp")
 	for element in elements:
 		PersistentData.increase_xp(amount, element)
 

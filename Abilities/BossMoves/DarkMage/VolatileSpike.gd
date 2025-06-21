@@ -31,7 +31,7 @@ func _physics_process(delta):
 	handle_movement(delta)
 
 func handle_reaction(reactant: BaseTypeAbility):
-	print("MAKE IT RAIN")
+	#print("MAKE IT RAIN")
 	player.shake()
 	for i in 9:
 		var spike: IcathianRainAbility = Rain.instantiate()

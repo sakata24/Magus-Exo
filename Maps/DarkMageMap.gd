@@ -11,7 +11,7 @@ func _ready() -> void:
 	$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
 	player = get_tree().get_nodes_in_group("players")[0]
 	$DarkMage.connect("boss_dead", Callable(self, "_boss_died"))
-	$DarkMage.player.global_position = $PlayerSpawnPos.global_position
+	$DarkMage.player.global_position = $PlayerSpawnLoc.global_position
 	player.my_cam.global_position = $DarkMage.global_position
 	var tween = create_tween()
 	tween.connect("finished", _on_tween_finished)

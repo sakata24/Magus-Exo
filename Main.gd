@@ -16,6 +16,7 @@ func _ready():
 	$Player.connect("cooling_dash", $HUD._set_dash_cd)
 	$Menu.connect("skill_changed", _change_skills)
 	$Menu.connect("run_ended", kill_player)
+	$LevelHandler.connect("change_song", $AudioStreamPlayer.swap_bgm)
 	$AudioStreamPlayer.play()
 
 func _unhandled_input(event):
