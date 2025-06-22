@@ -30,16 +30,13 @@ func _ready() -> void:
 
 # called every time a player goes thru the door
 func _load_level():
+	# first, fade to black
+	main.get_node("FullscreenDimmer").transition(1.5)
 	# inc difficulty when loading
 	current_level += 1
 	main.get_node("HUD").set_floor(current_level)
-	# clean rooms node
-	for child in get_children():
-		child.queue_free()
-	player.moving = false
-	# clear groups
-	for spell in get_tree().get_nodes_in_group("spells"):
-		spell.queue_free()
+	
+	cleanup_rooms()
 	# init rooms
 	if current_level % boss_level_multiple == 0:
 		if available_boss_levels.size() <= 0:
@@ -47,10 +44,24 @@ func _load_level():
 		init_boss_room()
 	else:
 		init_rooms()
-	# move player
+	# move player. must disable cam smoothing for transitioning purposes
+	player.my_cam.position_smoothing_enabled = false
 	player.position = get_player_spawn(get_children())
+	player.move_target = player.position
+	# wait until next frame
+	await get_tree().create_timer(0).timeout
+	player.my_cam.call_deferred("set_position_smoothing_enabled", true)
 	# save the state of the game every level to be persisted
 	SaveLoader.save_game()
+
+func cleanup_rooms():
+	# clean rooms node
+	for child in get_children():
+		child.queue_free()
+	player.moving = false
+	# clear groups
+	for spell in get_tree().get_nodes_in_group("spells"):
+		spell.queue_free()
 
 func get_player_spawn(rooms: Array) -> Vector2:
 	# find where to spawn the player

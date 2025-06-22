@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="JustAnRPG"
+config/name="Magus Exo"
 run/main_scene="res://HUDs/Home.tscn"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0.145098, 0.0745098, 0.101961, 1)
-config/icon="res://Resources/icon.png"
+config/icon="uid://dsg7wh7xgxc1s"
 
 [autoload]
 

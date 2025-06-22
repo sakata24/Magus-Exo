@@ -1,8 +1,9 @@
+- FIXED BUG [Gameplay]: Multicast bolt being goofy. spam bolt (TESTING)
+- FIXED BUG [Gameplay]: Scythes spawning outside should not occur
+
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: boss level monsters should not drop upgrades
-- BUG [Gameplay]: Scythes spawning outside should not occur
 - BUG [Gameplay]: Player gets stuck in between mirrors
-- BUG [Gameplay]: Multicast bolt being goofy. spam bolt (TESTING)
 - BUG [Gameplay]: Stun oddly long and enemies still move for sickness
 - BUG [Gameplay]: Spell shatter location on fissure located not in the center
 - [UI] show upgrades chosen

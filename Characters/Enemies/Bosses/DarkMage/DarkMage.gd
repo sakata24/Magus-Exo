@@ -8,9 +8,14 @@ class_name DarkMage extends Boss
 var invincible_stage = 0
 var invincible : bool = true
 var current_crystal_amount : int
-var playable_area : Rect2
 var time: float
 @onready var spell_cast_location: Node2D = $CastLocation
+@onready var map: Node2D = get_parent()
+
+const MAP_BOUNDS = {
+	"min": Vector2(16, 16),
+	"max": Vector2(480, 480)
+}
 
 func _ready():
 	maxHealth = 500
@@ -50,5 +55,7 @@ func surround_player_with_minions():
 		var inst: Enemy = Minion.instantiate()
 		inst.global_position.x = player_pos.x + cos(rad) * 50
 		inst.global_position.y = player_pos.y + sin(rad) * 50
-		get_parent().call_deferred("add_child", inst)
+		# dont let any enemies spawn outside of the map
+		if inst.global_position.x > MAP_BOUNDS["min"].x and inst.global_position.x < MAP_BOUNDS["max"].x and inst.global_position.y > MAP_BOUNDS["min"].y and inst.global_position.y < MAP_BOUNDS["max"].y:
+			get_parent().call_deferred("add_child", inst)
 		inst.droppable = false
