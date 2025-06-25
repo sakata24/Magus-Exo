@@ -16,12 +16,13 @@ func exit():
 	tween.tween_property(charger, "rotation", 0.0, 0.2)
 	charger.get_node("DamageArea").set_collision_mask_value(1, false)
 	charger.wall_min_slide_angle = deg_to_rad(0)
+	charger.did_hit = false
 
 func physics_update(delta: float):
 	if !charger.can_move:
 		Transitioned.emit(self, "Stunned")
 		return
-	charger.velocity = Vector2(cos(charger.rotation), sin(charger.rotation)) * charger.speed * 4.5
+	charger.velocity = Vector2(cos(charger.rotation), sin(charger.rotation)) * charger.speed * charger.speed_multiplier
 
 func setup_dash_timer():
 	var dash_timer = Timer.new()

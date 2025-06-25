@@ -8,7 +8,6 @@
 - BUG [Gameplay]: Spell shatter location on fissure located not in the center
 - [UI] show upgrades chosen
 - [UI] tooltips
-- [UI] finish indicator
 - [???] screen shrink on dark mage
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve
@@ -20,6 +19,9 @@
 Finished Bugs:
 	- BUG [UI]: cooldown dash doesnt reflect on UI
 	- BUG [UI]: Boss health bar still present after death
+
+Finished Implementations:
+	- [UI] finish indicator
 
 - gameplay notes -
 Utility spells/movement not for damage

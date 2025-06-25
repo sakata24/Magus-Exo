@@ -22,7 +22,7 @@ var health: int = 15
 var max_health: int = 15
 
 # instance variables for player movement
-var max_speed: int = 150
+var max_speed: int = 130
 var speed: int = 0
 var moving: bool = false
 var dashing: bool = false

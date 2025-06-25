@@ -80,6 +80,7 @@ position = Vector2(168, 104)
 
 [node name="LevelHandler" type="Node2D" parent="."]
 process_mode = 1
+z_index = -1
 y_sort_enabled = true
 script = ExtResource("2_5vvyt")
 

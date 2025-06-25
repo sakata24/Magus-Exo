@@ -9,7 +9,7 @@ func _ready() -> void:
 	setup_particle_spawn_box()
 	parent.get_node("AnimatedSprite2D").modulate = Color(0.769, 0.345, 0.153)
 	# spawn reaction name
-	spawn_reaction_name("vine-burst!", self, AbilityColor.GROWTH, AbilityColor.SUNDER)
+	spawn_reaction_name("vine-burst!", parent, AbilityColor.GROWTH, AbilityColor.SUNDER)
 
 func setup_particle_spawn_box():
 	var vine_shape = parent.get_node("CollisionPolygon2D").get_polygon()
@@ -28,7 +28,6 @@ func setup_particle_spawn_box():
 		if point.y < y_min:
 			y_min = point.y
 	x_size = x_max - x_min
-	$GPUParticles2D.get_process_material().emission_shape_offset.x = x_size/2.0
 	$GPUParticles2D.get_process_material().emission_box_extents.x = x_size/2.0
 	$GPUParticles2D.amount = (MIN_PARTICLES * x_size)/64.0
 
