@@ -12,8 +12,9 @@ func enter():
 func exit():
 	charger.dashing = false
 	animation.set_animation("idle")
+	charger.velocity *= 1.0/(charger.speed_multiplier * 1.2)
 	var tween = get_tree().create_tween()
-	tween.tween_property(charger, "rotation", 0.0, 0.2)
+	tween.tween_property(charger, "rotation", 0.0, charger.attack_timer_time)
 	charger.get_node("DamageArea").set_collision_mask_value(1, false)
 	charger.wall_min_slide_angle = deg_to_rad(0)
 	charger.did_hit = false
@@ -35,4 +36,4 @@ func setup_dash_timer():
 
 func on_dash_timer_timeout():
 	get_node("dash_timer").queue_free()
-	Transitioned.emit(self, "Chase")
+	Transitioned.emit(self, "Reeling")

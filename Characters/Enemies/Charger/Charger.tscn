@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfp0saptduhg3"]
+[gd_scene load_steps=22 format=3 uid="uid://dfp0saptduhg3"]
 
 [ext_resource type="Script" uid="uid://ev5mkcvdufn3" path="res://Characters/Enemies/Charger/Charger.gd" id="1_kvkxl"]
 [ext_resource type="Texture2D" uid="uid://dmxm2tc7fa5iq" path="res://Resources/enemies/charger.png" id="2_vyloo"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dk0bn26n7frht" path="res://Characters/Enemies/Charger/ChargerStates/ChargerAttackingState.gd" id="7_pdqrh"]
 [ext_resource type="Script" uid="uid://cv4souy4l8cjd" path="res://Characters/Enemies/Charger/ChargerStates/ChargerDashingState.gd" id="8_0ba1v"]
 [ext_resource type="Script" uid="uid://dy3ivdu5piffg" path="res://Characters/Enemies/Monster/MonsterStates/MonsterStunnedState.gd" id="8_nam1u"]
+[ext_resource type="Script" uid="uid://b67wslm8oirdo" path="res://Characters/Enemies/Monster/MonsterStates/MonsterReelingState.gd" id="10_tubmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vyloo"]
 atlas = ExtResource("2_vyloo")
@@ -191,6 +192,11 @@ charger = NodePath("../..")
 [node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
 script = ExtResource("6_grddu")
 monster = NodePath("../..")
+
+[node name="Reeling" type="Node" parent="StateMachine" node_paths=PackedStringArray("monster")]
+script = ExtResource("10_tubmy")
+monster = NodePath("../..")
+metadata/_custom_type_script = "uid://b67wslm8oirdo"
 
 [connection signal="body_entered" from="AggroRange" to="." method="_on_AggroRange_body_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

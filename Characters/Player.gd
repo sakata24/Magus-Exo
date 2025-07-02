@@ -147,7 +147,7 @@ func cast_ability(slot_num: int) -> bool:
 func play_cast_sound():
 	# play casting audio
 	$AudioStreamPlayer2D.set_stream(cast_audio)
-	$AudioStreamPlayer2D.pitch_scale = randf_range(0.80, 1.15)
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.85, 1.15)
 	$AudioStreamPlayer2D.play()
 
 func spawn_ability(ability_name: String):

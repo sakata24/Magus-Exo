@@ -10,7 +10,7 @@ var dash_time = 0.4
 var did_hit = false
 
 func _ready():
-	attack_range = 70
+	attack_range = 90
 	super()
 
 func _on_damage_area_body_entered(body):
