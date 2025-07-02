@@ -6,6 +6,7 @@ var remaining_casts: int = -1
 var ability_ref: String = ""
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
+var cast_audio = preload("res://Resources/audio/sfx/cast.ogg")
 
 @onready var focus: Marker2D = $ProjectilePivot/ProjectileSpawnPos
 @onready var my_cam: PlayerCamera = get_node("Camera2D")
@@ -134,12 +135,20 @@ func cast_ability(slot_num: int) -> bool:
 	# stop moving
 	speed = 0
 	moving = false
+	# play sound
+	play_cast_sound()
 	# start a timer
 	$CastTimer.start()
 	await $CastTimer.timeout
 	canCast = true
 	spawn_ability(ability_name)
 	return true
+
+func play_cast_sound():
+	# play casting audio
+	$AudioStreamPlayer2D.set_stream(cast_audio)
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.80, 1.15)
+	$AudioStreamPlayer2D.play()
 
 func spawn_ability(ability_name: String):
 	canCast = true

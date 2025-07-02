@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://83qg0j5exfyc"]
+[gd_scene load_steps=33 format=3 uid="uid://83qg0j5exfyc"]
 
 [ext_resource type="Script" uid="uid://yspisjr3b8y5" path="res://Characters/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dq0nxxg68sdw7" path="res://Resources/player-cast.png" id="2_58vhh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://drf17f1mu335f" path="res://StateMachine/StateMachine.gd" id="5_v6d5b"]
 [ext_resource type="Texture2D" uid="uid://c1jnye2gghn2r" path="res://Resources/player-die.png" id="5_x35ji"]
 [ext_resource type="Script" uid="uid://dydpt5ghjcxq6" path="res://Characters/PlayerStates/PlayerCastingState.gd" id="6_c3bgu"]
+[ext_resource type="AudioStream" uid="uid://byxsq50pix5c4" path="res://Resources/audio/sfx/cast.ogg" id="7_lli6r"]
 [ext_resource type="Script" uid="uid://c7818rcrjewfw" path="res://Characters/PlayerStates/PlayerDashingState.gd" id="7_nwlvs"]
 [ext_resource type="Script" uid="uid://dl1fa8smwli0i" path="res://Characters/PlayerStates/PlayerIdleState.gd" id="8_x35ji"]
 [ext_resource type="Script" uid="uid://cfs5h0csie147" path="res://Characters/PlayerStates/PlayerMovingState.gd" id="9_o8u7c"]
@@ -211,6 +212,11 @@ visible = false
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("3_utm12")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_lli6r")
+volume_db = 5.0
+max_polyphony = 10
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_v6d5b")
