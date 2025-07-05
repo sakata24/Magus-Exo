@@ -50,6 +50,7 @@ mouse_cursor/custom_image="uid://dsjdsjsl0svxw"
 windows=""
 enemy_skills=""
 monsters=""
+sfx_stream_players=""
 
 [gui]
 

@@ -33,6 +33,7 @@ func on_attack_timer_timeout():
 	get_node("attack_timer").queue_free()
 	animation.set_animation("attack")
 	animation.play()
+	monster.get_node("AudioStreamPlayer2D").play()
 	for entity: PhysicsBody2D in monster.get_node("DamageArea").get_overlapping_bodies():
 		if entity and !entity.is_in_group("monsters"):
 			var damage_object = DamageObject.new(monster.my_dmg)
