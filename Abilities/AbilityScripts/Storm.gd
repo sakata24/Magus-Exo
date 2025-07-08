@@ -22,14 +22,14 @@ func _on_timeout_timer_timeout():
 				array.push_back(body)
 		if not array.is_empty():
 			var enemy = array[randi() % array.size()]
+			dmg = INIT_DMG/(array.size())
 			handle_enemy_interaction(enemy)
 			$TimeoutTimer.wait_time = (INIT_TICK_SPEED/(array.size()+1))
-			dmg = INIT_DMG/(array.size())
 	# Only start after changing wait time
 	$TimeoutTimer.start()
 
 # ignore things entering this Ability
-func _on_SpellBody_body_entered(body):
+func _on_body_entered(body):
 	if body.is_in_group("skills"):
 		handle_reaction(body)
 	else:

@@ -1,27 +1,32 @@
-- FIXED BUG [Gameplay]: Multicast bolt being goofy. spam bolt (TESTING)
-- FIXED BUG [Gameplay]: Scythes spawning outside should not occur
+Notes:
+	uh fix the light thing
+	dont forget to add the other boss back in
 
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: boss level monsters should not drop upgrades
 - BUG [Gameplay]: Player gets stuck in between mirrors
-- BUG [Gameplay]: Stun oddly long and enemies still move for sickness
 - BUG [Gameplay]: Spell shatter location on fissure located not in the center
 - [UI] show upgrades chosen
 - [UI] tooltips
 - [???] screen shrink on dark mage
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve
+- [User Experience]: Intro/story
 - [Gameplay]: Balance the game
-- [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
 - [Gameplay]: finish reactions:
 	fork: split the flow spell into two
 
 Finished Bugs:
-	- BUG [UI]: cooldown dash doesnt reflect on UI
-	- BUG [UI]: Boss health bar still present after death
+	- FIXED BUG [UI]: cooldown dash doesnt reflect on UI
+	- FIXED BUG [UI]: Boss health bar still present after death
+	- FIXED BUG [Gameplay]: Multicast bolt being goofy. spam bolt
+	- FIXED BUG [Gameplay]: Scythes spawning outside should not occur
+	- FIXED BUG [Gameplay]: Stun oddly long and enemies still move for sickness (TESTING)
+	- FIXED BUG [Gameplay]: Storm spell dmg at max upon casting
 
 Finished Implementations:
 	- [UI] finish indicator
+	- [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
 
 - gameplay notes -
 Utility spells/movement not for damage

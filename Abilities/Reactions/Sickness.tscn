@@ -5,6 +5,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n5vtr"]
 radius = 48.0
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q7pb"]
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b2u67"]
 particle_flag_disable_z = true
 emission_shape = 6
@@ -22,8 +24,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.3
 scale_max = 0.7
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q7pb"]
-
 [node name="Sickness" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
@@ -34,10 +34,9 @@ shape = SubResource("CircleShape2D_n5vtr")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 60
-process_material = SubResource("ParticleProcessMaterial_b2u67")
 texture = SubResource("PlaceholderTexture2D_2q7pb")
 preprocess = 1.0
-trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_b2u67")
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.7
@@ -45,6 +44,7 @@ autostart = true
 
 [node name="LifetimeTimer" type="Timer" parent="."]
 wait_time = 3.6
+one_shot = true
 autostart = true
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

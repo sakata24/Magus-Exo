@@ -5,6 +5,8 @@ class_name DarkMage extends Boss
 @export var CANNON_SPAWN_RADIUS : int = 100
 @export var CRYSTAL_AMOUNT_PER_STAGE : Array = [4, 5]
 
+signal blinding_player
+
 var invincible_stage = 0
 var invincible : bool = true
 var current_crystal_amount : int
@@ -21,6 +23,7 @@ func _ready():
 	maxHealth = 500
 	boss_name = "Umbrae, Fractured Mage"
 	super._ready()
+	self.connect("blinding_player", player.spawn_light)
 	$StateMachine/Idle._go_invincible()
 
 # override so i just chill in the center and float

@@ -1,7 +1,7 @@
 class_name LevelHandler extends Node2D
 
 var boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
-var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
+var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn")]
 var maps = [preload("res://Maps/Map.tscn"), preload("res://Maps/Map1.tscn"), preload("res://Maps/Map2.tscn"), preload("res://Maps/Map3.tscn"), preload("res://Maps/Map4.tscn")]
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
@@ -69,6 +69,7 @@ func get_player_spawn(rooms: Array) -> Vector2:
 		if room.has_node("PlayerSpawnLoc"):
 			return room.get_node("PlayerSpawnLoc").global_position
 	# if none, spawn in top left room center
+	printerr("Could not find player spawn pos. Spawning in default pos.")
 	return Vector2(250, 250)
 
 func reset_boss_level_array():

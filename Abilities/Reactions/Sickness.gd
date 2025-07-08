@@ -13,8 +13,8 @@ func init(reaction_components: Dictionary):
 
 # every tick add debuff
 func _on_tick_timer_timeout():
+	remove_debuffs_from_debuffed_enemies()
 	if has_overlapping_bodies():
-		remove_debuffs_from_debuffed_enemies()
 		debuff_enemies_in_radius()
 
 # when this effect is done, cleanse
@@ -29,7 +29,8 @@ func remove_debuffs_from_debuffed_enemies():
 			if body != null and body.is_in_group("monsters"):
 				body.can_move = true
 				body.speed = body.baseSpeed
-				body.myDmg = body.baseDmg
+				body.my_dmg = body.baseDmg
+		debuffedEnemies = []
 
 # apply random debuff
 func debuff_enemies_in_radius():
@@ -43,4 +44,4 @@ func debuff_enemies_in_radius():
 			elif rand == 1:
 				body.speed *= 0.5
 			elif rand == 2:
-				body.myDmg *= 0.5
+				body.my_dmg *= 0.5

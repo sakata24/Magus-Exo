@@ -25,7 +25,7 @@ tile_set = ExtResource("1_h5nsq")
 [node name="LuminousEye" parent="." instance=ExtResource("2_axtkf")]
 position = Vector2(768, 192)
 
-[node name="PlayerSpawnPos" type="Node2D" parent="."]
+[node name="PlayerSpawnLoc" type="Node2D" parent="."]
 position = Vector2(64, 192)
 
 [node name="ExitDoor" parent="." instance=ExtResource("4_yuxw6")]

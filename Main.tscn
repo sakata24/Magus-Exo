@@ -128,5 +128,7 @@ stream = ExtResource("10_20pc6")
 volume_db = -5.0
 script = ExtResource("10_wkp8b")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
 [connection signal="animation_finished" from="ClickAnimation" to="." method="_on_click_animation_animation_finished"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

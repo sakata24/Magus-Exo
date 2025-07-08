@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	level_handler.setup_boss_room(self)
 	$LuminousEye.connect("boss_dead", Callable(self, "_boss_died"))
-	$LuminousEye.player.global_position = $PlayerSpawnPos.global_position
+	$LuminousEye.player.global_position = $PlayerSpawnLoc.global_position
 	level_handler.play_song("crystal_mirror")
 
 func _boss_died():

@@ -29,7 +29,7 @@ signal give_xp(xp: int, elements: Array[String])
 
 func _ready():
 	speed = 100
-	baseSpeed = 50
+	baseSpeed = 100
 	health = 100
 	maxHealth = 100
 	add_to_group("monsters")
