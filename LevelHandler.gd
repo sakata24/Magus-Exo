@@ -1,8 +1,14 @@
 class_name LevelHandler extends Node2D
 
 var boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
-var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn")]
-var maps = [preload("res://Maps/Map.tscn"), preload("res://Maps/Map1.tscn"), preload("res://Maps/Map2.tscn"), preload("res://Maps/Map3.tscn"), preload("res://Maps/Map4.tscn")]
+var available_boss_levels = [preload("res://Maps/DarkMageMap.tscn"), preload("res://Maps/LuminousEyeMap.tscn")]
+var maps = [
+	preload("res://Maps/Map.tscn"), 
+	preload("res://Maps/Map1.tscn"), 
+	preload("res://Maps/Map2.tscn"), 
+	preload("res://Maps/Map3.tscn"), 
+	preload("res://Maps/Map4.tscn")
+]
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
 var home = preload("res://Maps/Home.tscn")

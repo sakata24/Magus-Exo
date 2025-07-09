@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceqvkhki38wwr"]
+[gd_scene load_steps=12 format=3 uid="uid://ceqvkhki38wwr"]
 
 [ext_resource type="Script" uid="uid://b4m2erald7q03" path="res://Characters/NPCs/Librarian.gd" id="1_dpsci"]
 [ext_resource type="Texture2D" uid="uid://dan0j4bwdb37c" path="res://Resources/warlock.png" id="2_6dfoj"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_s2qmh"]
 [ext_resource type="PackedScene" uid="uid://b87627nrcya2c" path="res://HUDs/Shop.tscn" id="4_pg1vt"]
+[ext_resource type="PackedScene" uid="uid://utfq0vmk2p7t" path="res://HUDs/Tooltip.tscn" id="5_lockf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxb7v"]
 radius = 25.0
@@ -75,6 +76,21 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Librarian"
 label_settings = SubResource("LabelSettings_2ohol")
+
+[node name="Tooltip" parent="." instance=ExtResource("5_lockf")]
+visible = false
+z_index = 100
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -54.0
+offset_right = 63.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Button" type="Button" parent="."]
 visible = false

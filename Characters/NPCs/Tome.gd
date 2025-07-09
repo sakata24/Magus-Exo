@@ -3,7 +3,10 @@ class_name TomeNPC extends NPC
 @onready var ChangeSpellMenu = preload("res://HUDs/SwapSpellMenu.tscn")
 
 func _ready() -> void:
-	pass
+	tooltip = $Tooltip
+	tooltip.change_title("Tome of Spells:")
+	tooltip.change_text("Browse owned spells and equip the ones you want.")
+	super()
 
 func _on_button_pressed():
 	emit_signal("button_pressed", ChangeSpellMenu.instantiate())

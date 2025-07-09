@@ -1,14 +1,8 @@
-Notes:
-	uh fix the light thing
-	dont forget to add the other boss back in
-
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: boss level monsters should not drop upgrades
 - BUG [Gameplay]: Player gets stuck in between mirrors
-- BUG [Gameplay]: Spell shatter location on fissure located not in the center
 - [UI] show upgrades chosen
 - [UI] tooltips
-- [???] screen shrink on dark mage
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve
 - [User Experience]: Intro/story
@@ -23,6 +17,8 @@ Finished Bugs:
 	- FIXED BUG [Gameplay]: Scythes spawning outside should not occur
 	- FIXED BUG [Gameplay]: Stun oddly long and enemies still move for sickness (TESTING)
 	- FIXED BUG [Gameplay]: Storm spell dmg at max upon casting
+	- FIXED BUG [???] screen shrink on dark mage
+	- FIXED BUG [Gameplay]: Spell shatter location on fissure located not in the center
 
 Finished Implementations:
 	- [UI] finish indicator

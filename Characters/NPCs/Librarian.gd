@@ -7,7 +7,10 @@ var Shop = preload("res://HUDs/Shop.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	tooltip = $Tooltip
+	tooltip.change_title("The Librarian:")
+	tooltip.change_text("A spell peddler that will teach you new spells for a price.")
+	super()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
