@@ -1,8 +1,9 @@
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: boss level monsters should not drop upgrades
 - BUG [Gameplay]: Player gets stuck in between mirrors
+- BUG [Gameplay]: Player spawns in odd spot after boss level
 - [UI] show upgrades chosen
-- [UI] tooltips
+- [UI] tooltips for other things besides npc
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve
 - [User Experience]: Intro/story

@@ -1,7 +1,7 @@
 class_name DarkMageIcathianRainState extends State
 
 @onready var Spike = load("res://Abilities/BossMoves/DarkMage/VolatileSpike.tscn")
-@onready var Cannon = load("res://Abilities/BossMoves/darkMage/Cannon.tscn")
+@onready var Cannon = load("res://Abilities/BossMoves/DarkMage/Cannon.tscn")
 
 @export var dark_mage: DarkMage 
 @export var SPIKE_TIMER : float = 2.0 ## The time in between the firing of spikes

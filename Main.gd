@@ -3,6 +3,7 @@ extends Node2D
 var dead = false
 var menus = []
 var level = 0
+var player_info_scene = preload("res://HUDs/PlayerInfo.tscn")
 
 # room hex: 25131a
 
@@ -32,6 +33,21 @@ func _unhandled_input(event):
 		else:
 			menus.pop_front().visible = false
 			get_tree().paused = false
+	elif event.is_action_pressed('I') and !dead:
+		if menus.is_empty():
+			var player_info_menu = player_info_scene.instantiate()
+			player_info_menu.update_data($Player.current_run_data)
+			self._add_menu(player_info_menu)
+			get_tree().paused = true
+		elif menus[0] is PlayerInfo:
+			menus.pop_front().visible = false
+			get_tree().paused = false
+		else:
+			menus.pop_front().visible = false
+			var player_info_menu = player_info_scene.instantiate()
+			player_info_menu.update_data($Player.current_run_data)
+			self._add_menu(player_info_menu)
+			get_tree().paused = true
 
 func _add_menu(menu):
 	add_child(menu)

@@ -18,6 +18,8 @@ class_name PlayerRunData extends Resource
 @export var wither_lifetime_boost = 1.0
 @export var wither_size_boost = 1.0
 
+var obtained_buffs: Dictionary = {}
+
 func apply_run_buffs(ability: BaseTypeAbility):
 	match ability.element:
 		"sunder":

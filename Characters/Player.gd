@@ -203,27 +203,31 @@ func heal(amount: int):
 	get_parent().add_child(heal_num)
 	heal_num.set_value_and_pos(amount, self.global_position)
 
-func upgrade(upgrade_int):
-	match upgrade_int:
-		0: current_run_data.sunder_dmg_boost += 0.1
-		1: current_run_data.sunder_extra_casts += 1
-		2: current_run_data.entropy_speed_boost += 0.1
-		3: current_run_data.entropy_crit_chance += 0.15
-		4: current_run_data.construct_size_boost += 0.1
-		5: current_run_data.construct_ignore_walls = true
-		6: current_run_data.growth_lifetime_boost += 0.1
-		7: current_run_data.growth_reaction_potency += 0.1
-		8: 
+func upgrade(upgrade_name):
+	match upgrade_name:
+		"sunder_dmg": current_run_data.sunder_dmg_boost += 0.1
+		"sunder_multicast": current_run_data.sunder_extra_casts += 1
+		"entropy_spd": current_run_data.entropy_speed_boost += 0.1
+		"entropy_cr": current_run_data.entropy_crit_chance += 0.15
+		"construct_size": current_run_data.construct_size_boost += 0.1
+		"construct_passthru": current_run_data.construct_ignore_walls = true
+		"growth_lifetime": current_run_data.growth_lifetime_boost += 0.1
+		"growth_rpotency": current_run_data.growth_reaction_potency += 0.1
+		"flow_cd": 
 			current_run_data.flow_cooldown_reduction *= 0.9
 			for i in range(0, 4):
 				if SkillDataHandler.skill_dict[equippedSkills[i]]["element"] == "flow":
 					skillCD[i] *= current_run_data.flow_cooldown_reduction
 					skillTimer[i] = skillCD[i]
-		9: current_run_data.flow_size_boost += 0.1
-		10: current_run_data.wither_lifetime_boost += 0.1
-		11: current_run_data.wither_size_boost += 0.1
+		"flow_size": current_run_data.flow_size_boost += 0.1
+		"wither_lifetime": current_run_data.wither_lifetime_boost += 0.1
+		"wither_size": current_run_data.wither_size_boost += 0.1
 		_: pass
-	print("upgraded: ", upgrade_int)
+	if current_run_data.obtained_buffs.has(upgrade_name):
+		current_run_data.obtained_buffs[upgrade_name] += 1
+	else:
+		current_run_data.obtained_buffs[upgrade_name] = 1
+	#print("upgraded: ", upgrade_name)
 
 func spawn_light(seconds: float):
 	var light = $PointLight2D
