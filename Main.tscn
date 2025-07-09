@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://n3gij2h648i7" path="res://LevelHandler.gd" id="2_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://83qg0j5exfyc" path="res://Characters/Player.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
-[ext_resource type="Script" uid="uid://dbueo4byym4kn" path="res://FullscreenDimmer.gd" id="4_20pc6"]
 [ext_resource type="PackedScene" uid="uid://d37cep1ypwea6" path="res://HUDs/Menu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://d14papl6dxsqu" path="res://HUDs/Selection.tscn" id="6_7rc56"]
 [ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
 [ext_resource type="PackedScene" uid="uid://cpkd7jx2ts1lw" path="res://HUDs/Death.tscn" id="6_m4you"]
 [ext_resource type="AudioStream" uid="uid://bb15t6j533uux" path="res://Resources/audio/music/Dungeon_Delving.mp3" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://bwry02qor847m" path="res://BGMPlayer.gd" id="10_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://ehygk7kad8e8" path="res://BGHandler.tscn" id="11_20pc6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cr0tb"]
 atlas = ExtResource("6_f2si5")
@@ -84,24 +84,6 @@ z_index = -1
 y_sort_enabled = true
 script = ExtResource("2_5vvyt")
 
-[node name="FullscreenDimmer" type="ColorRect" parent="."]
-process_mode = 3
-visible = false
-top_level = true
-z_index = 100
-z_as_relative = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_right = 1000.0
-offset_bottom = 1000.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
-script = ExtResource("4_20pc6")
-
 [node name="HUD" parent="." instance=ExtResource("4")]
 
 [node name="Menu" parent="." instance=ExtResource("5")]
@@ -128,7 +110,7 @@ stream = ExtResource("10_20pc6")
 volume_db = -5.0
 script = ExtResource("10_wkp8b")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="BGHandler" parent="." instance=ExtResource("11_20pc6")]
 
 [connection signal="animation_finished" from="ClickAnimation" to="." method="_on_click_animation_animation_finished"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

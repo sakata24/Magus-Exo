@@ -14,10 +14,7 @@ func enter():
 	spawn_crystals()
 	current_crystal_amount = dark_mage.CRYSTAL_AMOUNT_PER_STAGE[dark_mage.invincible_stage]
 	if dark_mage.invincible_stage >= 1:
-		dark_mage.blinding_player.emit()
-		# blind the player
-		dark_mage.player.get_parent().get_node("CanvasModulate").color = Color(0.0, 0.0, 0.0)
-		RenderingServer.set_default_clear_color(Color(0.0, 0.0, 0.0))
+		dark_mage.blinding_player.emit(2)
 
 #Spawns barrier crystals for Invincible states
 func spawn_crystals():

@@ -225,14 +225,26 @@ func upgrade(upgrade_int):
 		_: pass
 	print("upgraded: ", upgrade_int)
 
-func spawn_light():
+func spawn_light(seconds: float):
 	var light = $PointLight2D
 	light.scale = Vector2(20,20)
 	light.visible = true
+	light.energy = 0.0
 	var tween = create_tween()
-	tween.tween_property(light, "scale", Vector2(1.5,1.5), 2)
+	tween.tween_property(light, "scale", Vector2(2.0,2.0), seconds)
+	tween.parallel().tween_property(light, "energy", 1.0, seconds)
 	await tween.finished
 	return true
+
+func despawn_light(seconds: float):
+	var light = $PointLight2D
+	var tween = create_tween()
+	tween.tween_property(light, "modulate", Color(1,1,1,0), seconds)
+	tween.parallel().tween_property(light, "energy", 0.0, seconds)
+	tween.play()
+	await tween.finished
+	light.visible = false
+	light.modulate = Color(1,1,1,1)
 
 func shake():
 	my_cam.apply_shake()

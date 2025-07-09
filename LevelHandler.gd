@@ -31,7 +31,7 @@ func _ready() -> void:
 # called every time a player goes thru the door
 func _load_level():
 	# first, fade to black
-	main.get_node("FullscreenDimmer").transition(1.5)
+	main.get_node("BGHandler").transition(1.5)
 	# inc difficulty when loading
 	current_level += 1
 	main.get_node("HUD").set_floor(current_level)
@@ -87,8 +87,16 @@ func init_boss_room():
 func setup_boss_room(new_room: Node2D):
 	for node in new_room.get_children():
 		if node is Boss:
-			node.connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)
-			node.connect("boss_dead", get_parent().get_node("HUD").hide_boss_bar)
+			for sig in node.signals:
+				match sig:
+					"health_changed": node.connect("health_changed", get_parent().get_node("HUD")._on_boss_health_change)
+					"boss_dead": node.connect("boss_dead", get_parent().get_node("HUD").hide_boss_bar)
+					"blinding_player": 
+						node.connect("blinding_player", get_parent().get_node("BGHandler").despawn_light)
+						node.connect("blinding_player", get_parent().get_node("Player").spawn_light)
+					"unblinding_player": 
+						node.connect("unblinding_player", get_parent().get_node("BGHandler").respawn_light)
+						node.connect("unblinding_player", get_parent().get_node("Player").despawn_light)
 			get_parent().get_node("HUD").show_boss_bar(node.boss_name, node.health)
 		if node is ExitDoor:
 			node.connect("load_level", Callable(self, "_load_level"))

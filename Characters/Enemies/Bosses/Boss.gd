@@ -7,6 +7,8 @@ var boss_name: String
 signal health_changed
 signal boss_dead
 
+var signals : Array[String] = ["health_changed", "boss_dead"]
+
 func _ready():
 	cc_immune = true
 	droppable = false

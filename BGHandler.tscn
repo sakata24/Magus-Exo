@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ehygk7kad8e8"]
+
+[ext_resource type="Script" uid="uid://dbueo4byym4kn" path="res://BGHandler.gd" id="1_c7vj4"]
+
+[node name="BGHandler" type="CanvasModulate"]
+script = ExtResource("1_c7vj4")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(640, 360)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.145098, 0.0745098, 0.101961, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]

@@ -36,6 +36,7 @@ func enter():
 	spike_timer.start()
 	if dark_mage.invincible_stage > 1:
 		cannon_timer.start()
+		dark_mage.unblinding_player.emit(2)
 
 func exit():
 	get_node("attack_timer").queue_free()
