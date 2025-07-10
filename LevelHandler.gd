@@ -17,7 +17,7 @@ var current_level: int = 0
 var boss_level_multiple: int = 5 # default floor multiple boss spawns on
 var exit_room: Vector2i = Vector2i() # the location of the room
 var roomArray = []
-var MAP_SIZE = 2 # sqrt of room amt
+var MAP_SIZE = 3 # sqrt of room amt
 
 signal change_song(song)
 

@@ -28,12 +28,14 @@ func _on_spawn_timer_timeout() -> void:
 		add_child(inst)
 		inst._on_AggroRange_body_entered(player)
 		inst.add_to_group("monsters")
+		inst.droppable = false
 		#Second Spawn
 		var inst2 = Mon.instantiate()
 		inst2.global_position = $Path2D/PathFollow2D2.global_position
 		add_child(inst2)
 		inst2._on_AggroRange_body_entered(player)
 		inst2.add_to_group("monsters")
+		inst.droppable = false
 		$Path2D/MoveTimer/SpawnTimer.wait_time = randf_range(2, 6)
 		$Path2D/MoveTimer/SpawnTimer.start()
 

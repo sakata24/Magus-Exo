@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://djshger1h1fb5"]
+[gd_scene load_steps=9 format=3 uid="uid://djshger1h1fb5"]
 
 [ext_resource type="Texture2D" uid="uid://bl4bjpbncf41p" path="res://Resources/2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Tileset.png" id="1_6afpp"]
 [ext_resource type="Script" uid="uid://cvsgry1kmbmkm" path="res://Maps/MapElements/ExitDoor.gd" id="1_k0d7l"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="2_wrbht"]
+[ext_resource type="PackedScene" uid="uid://utfq0vmk2p7t" path="res://HUDs/Tooltip.tscn" id="4_w1pud"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wrbht"]
 atlas = ExtResource("1_6afpp")
@@ -54,6 +55,20 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "EXIT"
 label_settings = SubResource("LabelSettings_k0d7l")
+
+[node name="Tooltip" parent="." instance=ExtResource("4_w1pud")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -54.0
+offset_right = 63.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="body_entered" from="ExitDoorArea" to="." method="_on_exit_door_area_body_entered"]
 [connection signal="body_exited" from="ExitDoorArea" to="." method="_on_exit_door_area_body_exited"]

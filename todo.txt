@@ -1,8 +1,6 @@
 - BUG [Visual?]: particles for singularity show more than usual
-- BUG [Gameplay]: boss level monsters should not drop upgrades
 - BUG [Gameplay]: Player gets stuck in between mirrors
 - BUG [Gameplay]: Player spawns in odd spot after boss level
-- [UI] show upgrades chosen
 - [UI] tooltips for other things besides npc
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve
@@ -20,10 +18,12 @@ Finished Bugs:
 	- FIXED BUG [Gameplay]: Storm spell dmg at max upon casting
 	- FIXED BUG [???] screen shrink on dark mage
 	- FIXED BUG [Gameplay]: Spell shatter location on fissure located not in the center
+	- FIXED BUG [Gameplay]: boss level monsters should not drop upgrades (TESTING)
 
 Finished Implementations:
-	- [UI] finish indicator
+	- [UI] finish boss indicator
 	- [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
+	- [UI] show upgrades chosen
 
 - gameplay notes -
 Utility spells/movement not for damage
