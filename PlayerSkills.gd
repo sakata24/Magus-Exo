@@ -21,7 +21,7 @@ var ALL_SKILLS = {
 		},
 		"crack": {
 			"name": "crack",
-			"cooldown": 14.0,
+			"cooldown": 16.0,
 			"dmg": 2.5,
 			"element": "sunder",
 			"lifetime": 0.5,
