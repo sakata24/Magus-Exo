@@ -131,6 +131,42 @@ text = "100"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Spacer2" type="Control" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Game" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer"]
+layout_mode = 2
+theme = ExtResource("2_e018v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 8
+text = "Game"
+
+[node name="HSeparator3" type="HSeparator" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer"]
+layout_mode = 2
+
+[node name="GameOptionsMarginContainer" type="MarginContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/GameOptionsMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Tooltips" type="HBoxContainer" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/GameOptionsMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/GameOptionsMarginContainer/VBoxContainer/Tooltips"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tooltips Enabled"
+
+[node name="CheckBox" type="CheckBox" parent="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/GameOptionsMarginContainer/VBoxContainer/Tooltips"]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -155,5 +191,6 @@ text = "Apply"
 [connection signal="item_selected" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/VideoOptionsMarginContainer/VBoxContainer/Resolution/OptionButton" to="." method="_on_resolution_option_button_item_selected"]
 [connection signal="drag_ended" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume/HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/AudioOptionsMarginContainer2/VBoxContainer/MasterVolume/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="ContentContainer/VBoxContainer/MarginContainer/ScrollContainer/SettingTypeContainer/GameOptionsMarginContainer/VBoxContainer/Tooltips/CheckBox" to="." method="_on_tooltips_enabled_check_box_toggled"]
 [connection signal="pressed" from="ContentContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="ContentContainer/VBoxContainer/HBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]

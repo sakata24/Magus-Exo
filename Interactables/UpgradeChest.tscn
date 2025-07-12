@@ -11,6 +11,7 @@ atlas = ExtResource("1_g8xes")
 region = Rect2(83, 132, 10, 10)
 
 [node name="UpgradeChest" type="Area2D"]
+z_index = 1
 collision_layer = 0
 script = ExtResource("1_u4jhe")
 
