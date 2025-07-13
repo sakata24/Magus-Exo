@@ -23,7 +23,7 @@ var move_target: Vector2
 # range at which i attack
 var attack_range: int = 29
 # how long to show indicator before attacking
-var attack_timer_time: float = 0.9
+var attack_timer_time: float = 0.8
 
 signal give_xp(xp: int, elements: Array[String])
 

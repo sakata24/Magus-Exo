@@ -5,7 +5,7 @@ var collision_count
 
 func _ready() -> void:
 	abilityID = "PhotonBullet"
-	speed = 125
+	speed = 150
 	myMovement = Movement.get_movement_object_by_name("bullet")
 	myModifiers.append(CollisionDespawnModifier.new())
 	element = "fracture"
