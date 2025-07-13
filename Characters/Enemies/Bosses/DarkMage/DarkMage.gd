@@ -1,6 +1,7 @@
 class_name DarkMage extends Boss
 
 @onready var Minion = load("res://Characters/Enemies/Monster/Monster.tscn")
+var cast_audio = preload("res://Resources/audio/sfx/wave.ogg")
 
 @export var CANNON_SPAWN_RADIUS : int = 100
 @export var CRYSTAL_AMOUNT_PER_STAGE : Array = [4, 5]
@@ -51,6 +52,11 @@ func hit(damage: DamageObject):
 			super(damage)
 			emit_signal("health_changed", health, false)
 
+func play_cast_sound(plus: float, min: float):
+	# play casting audio
+	$AudioStreamPlayer2D.set_stream(cast_audio)
+	$AudioStreamPlayer2D.pitch_scale = randf_range(1.0 - min, 1.0 + plus)
+	$AudioStreamPlayer2D.play()
 
 func surround_player_with_minions():
 	var player_pos = player.global_position
@@ -60,7 +66,7 @@ func surround_player_with_minions():
 		var inst: Enemy = Minion.instantiate()
 		inst.global_position.x = player_pos.x + cos(rad) * 50
 		inst.global_position.y = player_pos.y + sin(rad) * 50
+		inst.droppable = false
 		# dont let any enemies spawn outside of the map
 		if inst.global_position.x > MAP_BOUNDS["min"].x and inst.global_position.x < MAP_BOUNDS["max"].x and inst.global_position.y > MAP_BOUNDS["min"].y and inst.global_position.y < MAP_BOUNDS["max"].y:
 			get_parent().call_deferred("add_child", inst)
-		inst.droppable = false

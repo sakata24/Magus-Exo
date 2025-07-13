@@ -50,6 +50,8 @@ func _on_spike_timer_timeout():
 	get_parent().add_child(projectile)
 	# calculates the projectiles direction
 	projectile.velocity = (dark_mage.player.global_position - projectile.position).normalized()
+	var pitch_mod = 0.1
+	dark_mage.play_cast_sound(pitch_mod, pitch_mod)
 
 func _on_cannon_timer_timeout():
 	for n in CANNON_AMOUNT:
@@ -59,6 +61,9 @@ func _on_cannon_timer_timeout():
 		pos.y = randi_range(dark_mage.player.global_position.y - dark_mage.CANNON_SPAWN_RADIUS, dark_mage.player.global_position.y + dark_mage.CANNON_SPAWN_RADIUS)
 		inst.global_position = pos
 		get_parent().add_child(inst)
+	var pitch_mod_inc = 0.5
+	var pitch_mod_dec = -0.4
+	dark_mage.play_cast_sound(pitch_mod_inc, pitch_mod_dec)
 
 func go_invincible():
 	Transitioned.emit(self, "Invincible")

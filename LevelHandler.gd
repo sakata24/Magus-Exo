@@ -14,7 +14,7 @@ var exit = preload("res://Maps/Exit.tscn")
 var home = preload("res://Maps/Home.tscn")
 
 var current_level: int = 0
-var boss_level_multiple: int = 5 # default floor multiple boss spawns on
+var boss_level_multiple: int = 1 # default floor multiple boss spawns on
 var exit_room: Vector2i = Vector2i() # the location of the room
 var roomArray = []
 var MAP_SIZE = 3 # sqrt of room amt
@@ -50,9 +50,10 @@ func _load_level():
 		init_boss_room()
 	else:
 		init_rooms()
+		play_song("dungeon_delving")
 	# move player. must disable cam smoothing for transitioning purposes
 	player.my_cam.position_smoothing_enabled = false
-	player.position = get_player_spawn(get_children())
+	player.global_position = get_player_spawn(get_children())
 	player.move_target = player.position
 	# wait until next frame
 	await get_tree().create_timer(0).timeout
@@ -76,6 +77,7 @@ func get_player_spawn(rooms: Array) -> Vector2:
 			return room.get_node("PlayerSpawnLoc").global_position
 	# if none, spawn in top left room center
 	printerr("Could not find player spawn pos. Spawning in default pos.")
+	printerr(rooms)
 	return Vector2(250, 250)
 
 func reset_boss_level_array():

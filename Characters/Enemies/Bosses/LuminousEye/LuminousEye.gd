@@ -4,6 +4,7 @@ var photon_laser_scene = load("res://Abilities/BossMoves/LuminousEye/PhotonLaser
 var photon_bullet_scene = load("res://Abilities/BossMoves/LuminousEye/PhotonBullet.tscn")
 var mirror_resource = load("res://Maps/MapElements/BossMapElements/LuminousMirror.tscn")
 var barrier_pickup_scene = load("res://Interactables/Boss/BarrierPickup.tscn")
+var laser_audio = preload("res://Resources/audio/sfx/laser.ogg")
 
 var time: float
 var mirror_spawn_area: Rect2 = Rect2()
@@ -40,6 +41,7 @@ func cast_photon_laser(bounces: int):
 	if stage == 3:
 		photon_laser.get_node("LaserTimer").wait_time = 0.7
 	photon_laser.connect("attack_finished", $StateMachine/Attack._on_attack_finished)
+	photon_laser.connect("firing_laser", play_laser_audio)
 	photon_laser.charge(player.global_position)
 	
 # fractal barrier - makes the boss immune to damage until shield is broken
@@ -133,5 +135,6 @@ func _physics_process(delta: float) -> void:
 	position.y += sin(time * 2.5) * 0.1
 	$EyeSprite.position.y += sin((time + 0.5) * 2.5) * 0.07
 
-func _process(delta: float) -> void:
-	pass
+func play_laser_audio() -> void:
+	$AudioStreamPlayer2D.set_stream(laser_audio)
+	$AudioStreamPlayer2D.play()

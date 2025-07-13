@@ -119,6 +119,9 @@ debug_enabled = true
 [node name="CastLocation" type="Node2D" parent="."]
 position = Vector2(-18, -15)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." groups=["sfx_stream_players"]]
+max_polyphony = 10
+
 [node name="CannonTimer" type="Timer" parent="."]
 wait_time = 0.4
 
