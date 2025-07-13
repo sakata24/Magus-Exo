@@ -7,12 +7,12 @@ var unlocked_skills: Array = ["bolt", "charge", "rock", "fountain"]
 var equipped_skills: Array = ["bolt", "charge", "rock", "fountain"]
 
 # player's XP counts
-var sunder_xp = 0
-var entropy_xp = 0
-var construct_xp = 0
-var growth_xp = 0
-var flow_xp = 0
-var wither_xp = 0
+var sunder_xp: int = 0
+var entropy_xp: int = 0
+var construct_xp: int = 0
+var growth_xp: int = 0
+var flow_xp: int = 0
+var wither_xp: int = 0
 
 # game states
 var tutorial_complete = false

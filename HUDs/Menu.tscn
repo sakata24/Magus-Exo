@@ -54,12 +54,18 @@ label_settings = SubResource("LabelSettings_0pibi")
 horizontal_alignment = 1
 
 [node name="QuitConfirm" type="ConfirmationDialog" parent="."]
+title = ""
 initial_position = 1
+theme = ExtResource("4_44w5e")
+ok_button_text = "yes"
 dialog_text = "Exit the game?"
 
 [node name="EndRunConfirm" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
+title = ""
 initial_position = 1
+theme = ExtResource("4_44w5e")
+ok_button_text = "YES"
 dialog_text = "End your run here?"
 
 [node name="BorderContainer" parent="." instance=ExtResource("4_sqorb")]
@@ -104,28 +110,6 @@ theme = ExtResource("4_44w5e")
 theme_override_font_sizes/font_size = 8
 text = "SAVE
 "
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="XPLabels" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_44w5e")
-theme_override_font_sizes/font_size = 8
-text = "Sunder XP:
-Entropy XP:
-Construct XP:
-Growth XP:
-Flow XP:
-Wither XP:"
-
-[node name="XPCounts" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_44w5e")
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 anchors_preset = 4

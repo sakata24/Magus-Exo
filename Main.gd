@@ -27,7 +27,6 @@ func _unhandled_input(event):
 			menus.push_front($Menu)
 			$Menu.visible = true
 			# pass along the xp from player to the menu
-			$Menu.update_exp_count(PersistentData.sunder_xp, PersistentData.entropy_xp, PersistentData.construct_xp, PersistentData.growth_xp, PersistentData.flow_xp, PersistentData.wither_xp)
 			get_tree().paused = true
 		# if menu is open, close it
 		else:
@@ -35,8 +34,8 @@ func _unhandled_input(event):
 			get_tree().paused = false
 	elif event.is_action_pressed('I') and !dead:
 		if menus.is_empty():
-			var player_info_menu = player_info_scene.instantiate()
-			player_info_menu.update_data($Player.current_run_data)
+			var player_info_menu: PlayerInfo = player_info_scene.instantiate()
+			player_info_menu.update_run_data($Player.current_run_data)
 			self._add_menu(player_info_menu)
 			get_tree().paused = true
 		elif menus[0] is PlayerInfo:
@@ -45,7 +44,7 @@ func _unhandled_input(event):
 		else:
 			menus.pop_front().visible = false
 			var player_info_menu = player_info_scene.instantiate()
-			player_info_menu.update_data($Player.current_run_data)
+			player_info_menu.update_run_data($Player.current_run_data)
 			self._add_menu(player_info_menu)
 			get_tree().paused = true
 

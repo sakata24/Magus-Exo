@@ -58,6 +58,3 @@ func _on_option_button_3_item_selected(index):
 
 func _on_option_button_4_item_selected(index):
 	emit_signal("skill_changed", 3, $VBoxContainer2/OptionButton4.get_item_text(index))
-
-func update_exp_count(sunder, entropy, construct, growth, flow, wither):
-	$VBoxContainer/HBoxContainer/XPCounts.text = str(sunder) + "\n" + str(entropy) + "\n" + str(construct) + "\n" + str(growth) + "\n" + str(flow) + "\n" + str(wither)

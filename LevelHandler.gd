@@ -175,10 +175,18 @@ func init_room_connections(newRoom: Node2D):
 		if node is ExitDoor:
 			node.connect("load_level", _load_level)
 		if node is Monster:
-			node.maxHealth += node.maxHealth * current_level
-			node.health += node.health * current_level
-			node.my_dmg += node.my_dmg * current_level
-			node.baseDmg += node.baseDmg * current_level
+			node.connect("give_xp", player.gain_xp)
+			update_monster_scaling(node)
+
+func update_monster_scaling(monster: Monster):
+	if monster is Boss:
+		monster.maxHealth *= current_level/boss_level_multiple
+		monster.health *= current_level/boss_level_multiple
+	else:
+		monster.maxHealth = monster.maxHealth + (current_level * 10.0)
+		monster.health = monster.health + (current_level * 10.0)
+		monster.my_dmg += current_level / 2.0
+		monster.baseDmg += current_level / 2.0
 
 func play_song(song_name: String):
 	emit_signal("change_song", song_name, 1.5)

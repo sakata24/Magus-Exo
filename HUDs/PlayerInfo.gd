@@ -52,7 +52,10 @@ var readable_string_dict = {
 	}
 }
 
-func update_data(run_data: PlayerRunData):
+func _ready() -> void:
+	update_exp_count(PersistentData.sunder_xp, PersistentData.entropy_xp, PersistentData.construct_xp, PersistentData.growth_xp, PersistentData.flow_xp, PersistentData.wither_xp)
+
+func update_run_data(run_data: PlayerRunData):
 	# loop through all of the buffs obtained
 	for key in run_data.obtained_buffs.keys():
 		var img = TextureRect.new()
@@ -80,3 +83,6 @@ func update_data(run_data: PlayerRunData):
 		container.add_child(amt_label)
 		# add to flow container
 		$ContentContainer/HFlowContainer.add_child(container)
+
+func update_exp_count(sunder, entropy, construct, growth, flow, wither):
+	$ContentContainer/HBoxContainer2/HBoxContainer/XPCounts.text = str(sunder) + "\n" + str(entropy) + "\n" + str(construct) + "\n" + str(growth) + "\n" + str(flow) + "\n" + str(wither)
