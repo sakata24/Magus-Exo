@@ -32,8 +32,8 @@ var displaceScene = preload("res://Abilities/Displace.tscn")
 var decayScene = preload("res://Abilities/Decay.tscn")
 
 # returns an instantiated scene by the given name
-func get_scene_by_name(name: String) -> Node2D:
-	match name:
+func get_scene_by_name(scene_name: String) -> Node2D:
+	match scene_name:
 		# reactions
 		"shatter": return shatterScene.instantiate()
 		"singularity": return singularityScene.instantiate()
@@ -62,5 +62,5 @@ func get_scene_by_name(name: String) -> Node2D:
 		"fountain": return fountainScene.instantiate()
 		"suspend": return suspendScene.instantiate()
 		_:
-			print("bad spell/reaction load or no reaction implemented for \"" + name + "\"!")
+			print("bad spell/reaction load or no reaction implemented for \"" + scene_name + "\"!")
 			return null

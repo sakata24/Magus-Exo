@@ -44,8 +44,8 @@ func load_game():
 
 	print("Save file successfully loaded.")
 
-func get_data(name: String) -> Dictionary:
-	if loaded_data.keys().has(name):
-		return loaded_data[name]
+func get_data(data_name: String) -> Dictionary:
+	if loaded_data.keys().has(data_name):
+		return loaded_data[data_name]
 	else:
 		return {}

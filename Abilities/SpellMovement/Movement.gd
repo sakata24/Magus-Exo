@@ -4,8 +4,8 @@ class_name Movement extends Node
 func apply_movement(ability: BaseTypeAbility, delta: float):
 	pass
 
-static func get_movement_object_by_name(name: String):
-	match name:
+static func get_movement_object_by_name(obj_name: String):
+	match obj_name:
 		"bullet": return BulletMovement.new()
 		"still" : return StillMovement.new()
 		"homing" : return HomingMovement.new()

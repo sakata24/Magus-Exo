@@ -17,5 +17,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D):
 	if (body is Player) or (body is LuminousEye):
-		var dmg = DamageObject.new(dmg, [element], spell_caster)
-		body.hit(dmg)
+		var dmg_obj = DamageObject.new(dmg, [element], spell_caster)
+		body.hit(dmg_obj)

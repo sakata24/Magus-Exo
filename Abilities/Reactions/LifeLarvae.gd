@@ -11,8 +11,8 @@ func _ready():
 	find_target()
 	global_rotation = 0
 
-func init(dmg: int, caster):
-	self.dmg = int(dmg * 0.5)
+func init(init_dmg: int, caster):
+	self.dmg = int(init_dmg * 0.5)
 	spell_caster = caster
 
 func _physics_process(delta: float) -> void:

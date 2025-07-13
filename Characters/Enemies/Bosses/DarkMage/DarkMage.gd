@@ -52,10 +52,10 @@ func hit(damage: DamageObject):
 			super(damage)
 			emit_signal("health_changed", health, false)
 
-func play_cast_sound(plus: float, min: float):
+func play_cast_sound(plus_pitch_mod: float, min_pitch_mod: float):
 	# play casting audio
 	$AudioStreamPlayer2D.set_stream(cast_audio)
-	$AudioStreamPlayer2D.pitch_scale = randf_range(1.0 - min, 1.0 + plus)
+	$AudioStreamPlayer2D.pitch_scale = randf_range(1.0 - min_pitch_mod, 1.0 + plus_pitch_mod)
 	$AudioStreamPlayer2D.play()
 
 func surround_player_with_minions():
