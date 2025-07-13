@@ -13,7 +13,7 @@ func dim_screen(value: float):
 	self.visible = true
 	bg_canvas_modulate.visible = true
 	self.color = Color(value, value, value, value)
-	bg_canvas_modulate.color = Color(0, 0, 0, 1)
+	bg_canvas_modulate.color = Color(value, value, value, 1)
 
 func transition(duration: float):
 	self.visible = true

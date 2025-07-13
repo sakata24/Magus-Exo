@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwpheh7agwnlk"]
+[gd_scene load_steps=3 format=3 uid="uid://bwpheh7agwnlk"]
 
+[ext_resource type="Script" uid="uid://b8y6jm3oxm4is" path="res://HUDs/StylizedContainer.gd" id="1_iaoqe"]
 [ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="1_lp0nr"]
 
 [node name="StylizedContainer" type="MarginContainer"]
@@ -14,10 +15,10 @@ offset_right = 28.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iaoqe")
 
 [node name="BorderOutside" type="ColorRect" parent="."]
 layout_mode = 2
-color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -28,7 +29,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="BGColor" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
-color = Color(0.590491, 0.365052, 0.22069, 1)
+color = Color(0.592157, 0.364706, 0.219608, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -39,7 +40,6 @@ theme_override_constants/margin_bottom = 5
 
 [node name="BorderInside" type="ColorRect" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
-color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
