@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=4 uid="uid://dbvxpxv3fg03q"]
+[gd_scene load_steps=6 format=4 uid="uid://dbvxpxv3fg03q"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_p7vvt"]
+[ext_resource type="Script" uid="uid://dir7iaigxtvar" path="res://Maps/Tutorial.gd" id="1_vqqba"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_8a582"]
 [ext_resource type="Texture2D" uid="uid://cnn41x468jkea" path="res://icon-144.png" id="2_w5kg4"]
 [ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="3_p0mxm"]
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_vqqba")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 
@@ -16,6 +19,15 @@ tile_set = ExtResource("1_p7vvt")
 position = Vector2(64, 64)
 
 [node name="TutorialHUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="TutorialHUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialHUD"]
 anchors_preset = 15
@@ -23,21 +35,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_8a582")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TextureRect" type="TextureRect" parent="TutorialHUD/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialHUD/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+alignment = 2
+
+[node name="StylizedContainer" parent="TutorialHUD/MarginContainer/VBoxContainer" instance=ExtResource("3_p0mxm")]
+layout_mode = 2
+border_color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_w5kg4")
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="TutorialHUD/MarginContainer"]
+[node name="VSeparator" type="VSeparator" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
-text = "Text."
 
-[node name="StylizedContainer" parent="TutorialHUD/MarginContainer" instance=ExtResource("3_p0mxm")]
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayText" type="Label" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "lorem ipsum dolor sit amet"
+vertical_alignment = 1
+
+[node name="ContinueText" type="Label" parent="TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "press any key to continue..."
+horizontal_alignment = 1
