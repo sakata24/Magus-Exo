@@ -25,6 +25,7 @@ func transition(duration: float):
 	tween.tween_property(self, "color", Color(1, 1, 1, 1), duration/2.0)
 	tween.parallel().tween_property(bg_canvas_modulate, "color", Color(1, 1, 1, 1), duration/2.0)
 	tween.play()
+	await tween.finished
 
 func despawn_light(seconds: float):
 	self.visible = true

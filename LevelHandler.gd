@@ -31,6 +31,7 @@ func _ready() -> void:
 		add_child(home.instantiate())
 	for room in get_children():
 		init_room_connections(room)
+		place_player()
 	if Settings.dev_mode:
 		boss_level_multiple = 2
 
@@ -51,6 +52,11 @@ func _load_level():
 	else:
 		init_rooms()
 		play_song("dungeon_delving")
+	place_player()
+	# save the state of the game every level to be persisted
+	SaveLoader.save_game()
+
+func place_player():
 	# move player. must disable cam smoothing for transitioning purposes
 	player.my_cam.position_smoothing_enabled = false
 	player.global_position = get_player_spawn(get_children())
@@ -58,8 +64,6 @@ func _load_level():
 	# wait until next frame
 	await get_tree().create_timer(0).timeout
 	player.my_cam.call_deferred("set_position_smoothing_enabled", true)
-	# save the state of the game every level to be persisted
-	SaveLoader.save_game()
 
 func cleanup_rooms():
 	# clean rooms node

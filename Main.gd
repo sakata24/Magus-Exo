@@ -1,4 +1,4 @@
-extends Node2D
+class_name Main extends Node2D
 
 var dead = false
 var menus = []
@@ -52,6 +52,7 @@ func _add_menu(menu):
 	add_child(menu)
 	menus.push_front(menu)
 	menu.visible = true
+	print("menu.")
 
 func _clear_menus():
 	for menu in menus:
