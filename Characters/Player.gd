@@ -6,6 +6,7 @@ var remaining_casts: int = -1
 var ability_ref: String = ""
 
 var damageNumber = preload("res://HUDs/DamageNumber.tscn")
+var popup_text = preload("res://HUDs/PopupText.tscn")
 var cast_audio = preload("res://Resources/audio/sfx/cast.ogg")
 
 @onready var focus: Marker2D = $ProjectilePivot/ProjectileSpawnPos

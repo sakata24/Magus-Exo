@@ -18,8 +18,13 @@ func enter():
 func physics_update(delta):
 	if player.health <= 0:
 		Transitioned.emit(self, "Dead")
-	if Input.is_action_pressed('Space') and player.canDash:
-		Transitioned.emit(self, "Dashing")
+	if Input.is_action_pressed('Space'):
+		if player.canDash:
+			Transitioned.emit(self, "Dashing")
+		else:
+			var dash_cd_text: PopupText = player.popup_text.instantiate()
+			player.add_child(dash_cd_text)
+			dash_cd_text.set_value_and_pos("dash not ready!", player.global_position)
 
 func _on_cast_anim_timer_timeout():
 	player.casting = false

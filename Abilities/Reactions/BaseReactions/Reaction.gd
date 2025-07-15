@@ -1,6 +1,6 @@
 class_name Reaction extends Node2D
 
-var reactionTextScene = preload("res://HUDs/ReactionText.tscn")
+var reactionTextScene = preload("res://HUDs/PopupText.tscn")
 
 var caster = null
 

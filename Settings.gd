@@ -20,10 +20,10 @@ func get_all_data() -> Dictionary:
 func get_controls_from_event(event_as_string: String) -> String:
 	var control_keys = ""
 	for event in InputMap.action_get_events(event_as_string):
-		control_keys += event.as_text()
+		control_keys += event.as_text().substr(0, event.as_text().find("("))
 		if InputMap.action_get_events(event_as_string).find(event) < InputMap.action_get_events(event_as_string).size() - 1:
-			control_keys += "|"
-	return control_keys
+			control_keys += "/ "
+	return control_keys.strip_edges()
 
 func _ready() -> void:
 	fetch_save_data()

@@ -14,7 +14,7 @@ func set_value_and_pos(dmg, pos: Vector2):
 	self.global_position = pos
 	$DmgText.text = str(dmg)
 	$Outline.text = str(dmg)
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	var end_pos = Vector2(randf_range(-7, 7), -10) + pos
 	tween.tween_property(self, "global_position", end_pos, 0.9)
 	
