@@ -9,7 +9,7 @@ var enemy_scene = preload("res://Characters/Enemies/Monster/Monster.tscn")
 @onready var main: Main = get_parent().get_parent()
 
 signal dialogue_menu_triggered(menu)
-enum {MOVE_STAGE, DONE_MOVE, DASH_STAGE, DONE_DASH, SPELL_STAGE, DONE_SPELL}
+enum {MOVE_STAGE, DONE_MOVE, DASH_STAGE, DONE_DASH, SPELL_STAGE, DONE_SPELL, KILL_STAGE, CHEST_STAGE}
 var spell_slots_used = {
 	"Q": false,
 	"W": false,
@@ -70,22 +70,41 @@ func _on_spell_tutorial_start_trigger_body_entered(body: Node2D) -> void:
 			spell_controls = spell_controls + Settings.get_controls_from_event(spell_key) + ", "
 		spell_controls.substr(0, spell_controls.rfind(",")).strip_edges()
 		display_tutorial_text("... i can do..... this?", "use " + spell_controls + " to cast spells.", 1.0)
+	elif cur_stage < DONE_DASH:
+		# push the player back 50 px
+		body.global_position = Vector2(body.global_position.x, body.global_position.y + 50)
 
 func start_enemy_stage():
+	cur_stage += 1
 	var enemy: Monster = enemy_scene.instantiate()
-	enemy.droppable = false
+	enemy.connect("give_xp", on_enemy_killed)
+	add_child(enemy)
 	# reduce the first enemy difficulty
 	enemy.speed = enemy.speed/2.0
 	enemy.maxHealth = enemy.maxHealth * 0.8
 	enemy.health = enemy.health * 0.8
 	enemy.my_dmg = 1
-	enemy.connect("give_xp", on_enemy_killed)
-	add_child(enemy)
+	enemy.drop_chance = 1.1
 	enemy.global_position = $MonsterSpawnLoc.global_position
-	display_tutorial_text("what is that...?", "Slay the monster!", 2.0)
+	display_tutorial_text("what is that...?", "Slay the enemy!", 2.0)
 
-func on_enemy_killed():
+func on_enemy_killed(none, none_):
 	cur_stage += 1
+	display_tutorial_text("it dropped something.", "Pick up the chest.", 1.0)
+	var chest_dropped: UpgradeChest = get_node("UpgradeChest")
+	if chest_dropped:
+		chest_dropped.connect("body_entered", on_chest_grabbed)
+	print("Done Kill Stage")
+
+func on_chest_grabbed(body: Node2D):
+	cur_stage += 1
+	hide_dialogue_hud()
+	print("Done Chest Stage")
+	start_player_info_stage()
+
+func start_player_info_stage():
+	var player_info_controls = Settings.get_controls_from_event("I")
+	display_tutorial_text("What was that? I feel something different.", "Press " + player_info_controls + " to check your info.", 1.5)
 	
 func display_tutorial_text(dialogue_to_display: String, directions_to_display: String, time_to_display: float):
 	dialogue_label.text = ""

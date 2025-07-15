@@ -1,4 +1,4 @@
-extends Area2D
+class_name UpgradeChest extends Area2D
 
 var interval = 0.002
 

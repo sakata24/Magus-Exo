@@ -14,11 +14,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 416, 0, 416, -5
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vqqba"]
 b = Vector2(0, 128)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_65mjx"]
-b = Vector2(152, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65mjx"]
+size = Vector2(144, 100)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_t26xa"]
-b = Vector2(144, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqqba"]
+size = Vector2(144, 100)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_vqqba")
@@ -46,16 +46,16 @@ position = Vector2(424, 0)
 shape = SubResource("SegmentShape2D_vqqba")
 
 [node name="DashTutorialStartTrigger" type="Area2D" parent="LevelTriggers"]
-position = Vector2(424, 0)
+position = Vector2(496, -48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTriggers/DashTutorialStartTrigger"]
-shape = SubResource("SegmentShape2D_65mjx")
+shape = SubResource("RectangleShape2D_65mjx")
 
 [node name="SpellTutorialStartTrigger" type="Area2D" parent="LevelTriggers"]
-position = Vector2(424, -552)
+position = Vector2(496, -576)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTriggers/SpellTutorialStartTrigger"]
-shape = SubResource("SegmentShape2D_t26xa")
+shape = SubResource("RectangleShape2D_vqqba")
 
 [node name="TutorialHUD" type="CanvasLayer" parent="."]
 visible = false

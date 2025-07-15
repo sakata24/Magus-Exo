@@ -24,6 +24,8 @@ var move_target: Vector2
 var attack_range: int = 29
 # how long to show indicator before attacking
 var attack_timer_time: float = 0.8
+# chance i drop an upgrade as a float
+var drop_chance: float = 0.3
 
 signal give_xp(xp: int, elements: Array[String])
 
@@ -75,14 +77,12 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 func die():
 	if droppable:
 		var drop
-		match randi_range(0, 2):
-			0: 
-				drop = upgradeDrop.instantiate()
-			_:
-				drop = null
-		if drop != null:
+		if randf() < drop_chance:
+			drop = upgradeDrop.instantiate()
 			drop.position = position
 			get_parent().add_child(drop)
+		else:
+			drop = null
 	# give the player xp
 	give_xp.emit(bestowedXp, lastElementsHitBy)
 	queue_free()
