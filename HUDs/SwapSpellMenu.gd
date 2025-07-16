@@ -40,9 +40,8 @@ func _swap_spell(spell:Control, texture):
 			if i.equipped == selectedEquipSlot:
 				i.set_unequipped()
 		spell.set_equipped(selectedEquipSlot)
-		PersistentData.equipped_skills[selectedEquipSlot] = spell.spellData.name
+		PersistentData.equip_skill(spell.spellData.name, selectedEquipSlot)
 		HeaderSkillCards[selectedEquipSlot].set_ui(spell.spellData.name)
-		
 
 func _select_equip_slot(idx : int):
 	selectedEquipSlot = idx

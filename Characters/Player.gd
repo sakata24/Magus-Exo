@@ -82,6 +82,10 @@ func get_unlocked_skills():
 func get_equipped_skills():
 	return equippedSkills
 
+func set_equipped_skills(new_skills: Array):
+	equippedSkills = new_skills
+	init_skill_cooldowns()
+
 func _physics_process(delta):
 	$ProjectilePivot.look_at(cast_target)
 	emit_signal("cooling_down", skillTimer, skillCD)

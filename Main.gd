@@ -11,7 +11,9 @@ var player_info_scene = preload("res://HUDs/PlayerInfo.tscn")
 
 func _ready():
 	# connect hud to player
-	$HUD.init($Player.health,$Player.max_health,str($Player.equippedSkills[0]),str($Player.equippedSkills[1]),str($Player.equippedSkills[2]),str($Player.equippedSkills[3]))
+	$HUD.init($Player.health, $Player.max_health, PersistentData.equipped_skills)
+	PersistentData.connect("equipped_skills_updated", $HUD._set_skills)
+	PersistentData.connect("equipped_skills_updated", $Player.set_equipped_skills)
 	$Player.connect("moving_to", _show_click)
 	$Player.connect("cooling_down", $HUD._set_cd)
 	$Player.connect("health_changed", $HUD._set_health)

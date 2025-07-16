@@ -1,6 +1,7 @@
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: Player gets stuck in between mirrors
 - BUG [Gameplay]: Player spawns in odd spot after boss level
+- BUG [UI/Gameplay]: Choosing spells does not update in HUD
 - [UI] tooltips for other things besides npc
 - [Gameplay][UI] armorer
 - [User Experience]: Tutorial/learning curve

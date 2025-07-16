@@ -17,6 +17,9 @@ var wither_xp: int = 0
 # game states
 var tutorial_complete = false
 
+# signals for when updated
+signal equipped_skills_updated(new_skills)
+
 func _ready():
 	add_to_group("Persist")
 	# always try to have a save file on load
@@ -79,6 +82,10 @@ func get_xp_counts() -> Dictionary:
 # return unlocked skills
 func get_unlocked_skills() -> Array:
 	return unlocked_skills
+
+func equip_skill(skill: String, slot: int) -> void:
+	equipped_skills[slot] = skill
+	equipped_skills_updated.emit(equipped_skills)
 
 # return equipped skills
 func get_equipped_skills() -> Array:

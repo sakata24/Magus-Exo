@@ -10,10 +10,10 @@ var hudScale = 100
 func _ready():
 	_set_ui_size()
 
-func init(health, max_health, skill1, skill2, skill3, skill4):
+func init(health, max_health, skills):
 	_set_health(health, max_health)
 	set_floor(0)
-	_set_skills(skill1,skill2,skill3,skill4)
+	_set_skills(skills)
 
 func on_hud_size_changed():
 	pass
@@ -26,15 +26,15 @@ func _set_health(new_HP, max_HP):
 func _set_dash_cd(dash_cd, dash_cd_max):
 	dash_bar.set_size(Vector2(bottom_progress_bar_max - (bottom_progress_bar_max * float(float(dash_cd) / float(dash_cd_max))),(dash_bar.size.y)))
 
-func _set_skills(one,two,three,four):
-	$Skill/Ability1/HBoxContainer/SkillName.text = one
-	$Skill/Ability2/HBoxContainer/SkillName.text = two
-	$Skill/Ability3/HBoxContainer/SkillName.text = three
-	$Skill/Ability4/HBoxContainer/SkillName.text = four
-	$Skill/Ability1/HBoxContainer/Border/SkillIcon.set_icon(one,"Q")
-	$Skill/Ability2/HBoxContainer/Border/SkillIcon.set_icon(two,"W")
-	$Skill/Ability3/HBoxContainer/Border/SkillIcon.set_icon(three,"E")
-	$Skill/Ability4/HBoxContainer/Border/SkillIcon.set_icon(four,"R")
+func _set_skills(skills: Array):
+	$Skill/Ability1/HBoxContainer/SkillName.text = skills[0]
+	$Skill/Ability2/HBoxContainer/SkillName.text = skills[1]
+	$Skill/Ability3/HBoxContainer/SkillName.text = skills[2]
+	$Skill/Ability4/HBoxContainer/SkillName.text = skills[3]
+	$Skill/Ability1/HBoxContainer/Border/SkillIcon.set_icon(skills[0],"Q")
+	$Skill/Ability2/HBoxContainer/Border/SkillIcon.set_icon(skills[1],"W")
+	$Skill/Ability3/HBoxContainer/Border/SkillIcon.set_icon(skills[2],"E")
+	$Skill/Ability4/HBoxContainer/Border/SkillIcon.set_icon(skills[3],"R")
 
 func _set_cd(skill_cds, skill_cds_max):
 	$Skill/Ability1/HBoxContainer/Border/SkillIcon/ProgressBar.value = skill_cds_max[0]-skill_cds[0]
