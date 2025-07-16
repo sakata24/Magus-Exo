@@ -52,7 +52,14 @@ func _unhandled_input(event):
 			player_info_menu.update_run_data($Player.current_run_data)
 			get_tree().paused = true
 
+func _close_top_menu():
+	menus.pop_front().visible = false
+	get_tree().paused = false
+
 func _add_menu(menu):
+	for child in menu.get_children():
+		if child is BaseMenuUI:
+			child.connect("close_me", _close_top_menu)
 	add_child(menu)
 	menus.push_front(menu)
 	menu.visible = true

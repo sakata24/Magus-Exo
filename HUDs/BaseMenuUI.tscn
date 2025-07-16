@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://3g685ilkl0qx"]
+[gd_scene load_steps=7 format=3 uid="uid://3g685ilkl0qx"]
 
 [ext_resource type="Script" uid="uid://baldn1yvjhbgg" path="res://HUDs/BaseMenuUI.gd" id="1_t44e7"]
 [ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="2_t44e7"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_teuwr"]
+[ext_resource type="Texture2D" uid="uid://bx4eby5tdrc57" path="res://Resources/hud_elements/x.png" id="3_gp4yr"]
 
 [sub_resource type="Curve" id="Curve_t715p"]
 _data = [Vector2(0.116667, 1), 0.0, 0.0, 0, 0]
@@ -96,5 +97,32 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_gp4yr")
+texture_pressed = ExtResource("3_gp4yr")
+texture_hover = ExtResource("3_gp4yr")
+texture_disabled = ExtResource("3_gp4yr")
+texture_focused = ExtResource("3_gp4yr")
+stretch_mode = 3
+
 [connection signal="screen_exited" from="HighlightHolder/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HighlightHolder/HighlightTimer" to="." method="_on_highlight_timer_timeout"]
+[connection signal="pressed" from="MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

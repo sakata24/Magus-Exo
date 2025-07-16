@@ -4,8 +4,6 @@
 - BUG [UI/Gameplay]: Choosing spells does not update in HUD
 - [UI] tooltips for other things besides npc
 - [Gameplay][UI] armorer
-- [User Experience]: Tutorial/learning curve
-- [User Experience]: Intro/story
 - [Gameplay]: Balance the game
 - [Gameplay]: finish reactions:
 	fork: split the flow spell into two
@@ -25,6 +23,8 @@ Finished Implementations:
 	- [UI] finish boss indicator
 	- [Gameplay]: Add potions and stuff (potion option when choosing upgrades)
 	- [UI] show upgrades chosen
+	- [User Experience]: Tutorial/learning curve
+	- [User Experience]: Intro/story
 
 - gameplay notes -
 Utility spells/movement not for damage

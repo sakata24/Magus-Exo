@@ -1,6 +1,7 @@
-extends Control
+class_name BaseMenuUI extends Control
 
 @export var highlightSpeed := 500
+signal close_me
 
 func _ready() -> void:
 	set_process(false)
@@ -18,3 +19,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	set_process(false)
 	$HighlightHolder/VisibleOnScreenNotifier2D.position = Vector2(0,0)
 	$HighlightHolder/HighlightTimer.start(randi_range(3, 7))
+
+func _on_close_button_pressed() -> void:
+	print("hi")
+	emit_signal("close_me")
