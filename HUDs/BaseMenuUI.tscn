@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://3g685ilkl0qx"]
+[gd_scene load_steps=6 format=3 uid="uid://3g685ilkl0qx"]
 
 [ext_resource type="Script" uid="uid://baldn1yvjhbgg" path="res://HUDs/BaseMenuUI.gd" id="1_t44e7"]
-[ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="2_d0etk"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="2_t44e7"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_teuwr"]
 
 [sub_resource type="Curve" id="Curve_t715p"]
 _data = [Vector2(0.116667, 1), 0.0, 0.0, 0, 0]
@@ -29,6 +30,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.8)
 
+[node name="CloseTooltip" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 52.0
+offset_top = 40.0
+offset_right = 140.0
+offset_bottom = 10.0
+size_flags_vertical = 0
+theme = ExtResource("2_teuwr")
+text = "Press KEY to close."
+vertical_alignment = 1
+
 [node name="BorderContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -41,80 +54,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="BorderOutside" type="ColorRect" parent="BorderContainer"]
-light_mask = 3
+[node name="StylizedContainer" parent="BorderContainer" instance=ExtResource("2_t44e7")]
 layout_mode = 2
-color = Color(0.27451, 0.27451, 0.27451, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="BorderContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BGColor" type="ColorRect" parent="BorderContainer/MarginContainer"]
-layout_mode = 2
-color = Color(0.27451, 0, 0.156863, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="BorderContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BorderInside" type="ColorRect" parent="BorderContainer/MarginContainer/MarginContainer"]
-light_mask = 3
-layout_mode = 2
-color = Color(0.27451, 0.27451, 0.27451, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="BorderContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="BGColor" type="ColorRect" parent="BorderContainer/MarginContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-color = Color(0.27451, 0, 0.156863, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("2_d0etk")
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 10
-texture = ExtResource("2_d0etk")
-stretch_mode = 4
-flip_v = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="TextureRect" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_d0etk")
-stretch_mode = 4
-flip_h = true
-
-[node name="TextureRect2" type="TextureRect" parent="BorderContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 10
-texture = ExtResource("2_d0etk")
-stretch_mode = 4
-flip_h = true
-flip_v = true
+container_color = Color(0.27451, 0, 0.156863, 1)
+border_color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [node name="HighlightHolder" type="Control" parent="."]
 z_index = 2

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://cbiw1tglncahn"]
+[gd_scene load_steps=9 format=4 uid="uid://cbiw1tglncahn"]
 
 [ext_resource type="TileSet" uid="uid://dulhu4nsq70uv" path="res://Maps/DungeonTileset.tres" id="1_8kufv"]
 [ext_resource type="Script" uid="uid://0a1jr1ppxssi" path="res://Maps/Home.gd" id="1_ns77l"]
 [ext_resource type="PackedScene" uid="uid://dx6qgbly3aoao" path="res://Characters/NPCs/Armorer.tscn" id="4_8hjcu"]
 [ext_resource type="PackedScene" uid="uid://ceqvkhki38wwr" path="res://Characters/NPCs/Librarian.tscn" id="5_hlh4u"]
 [ext_resource type="PackedScene" uid="uid://cqtbn2dl7psx" path="res://Characters/NPCs/Tome.tscn" id="6_fw0ow"]
+[ext_resource type="PackedScene" uid="uid://dcupmctg1jtxb" path="res://Characters/NPCs/TutorialAccessPoint.tscn" id="7_3kamg"]
 [ext_resource type="PackedScene" uid="uid://djshger1h1fb5" path="res://Maps/MapElements/ExitDoor.tscn" id="7_pduyj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cxcv7"]
@@ -45,3 +46,6 @@ position = Vector2(281, 226)
 
 [node name="PlayerSpawnLoc" type="Node2D" parent="."]
 position = Vector2(168, 104)
+
+[node name="TutorialAccessPoint" parent="." instance=ExtResource("7_3kamg")]
+position = Vector2(104, 24)

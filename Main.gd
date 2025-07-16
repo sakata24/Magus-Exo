@@ -6,6 +6,8 @@ var level = 0
 var player_info_scene = preload("res://HUDs/PlayerInfo.tscn")
 
 # room hex: 25131a
+# menu maroon: 460028
+# border grey: 464646
 
 func _ready():
 	# connect hud to player
@@ -35,8 +37,8 @@ func _unhandled_input(event):
 	elif event.is_action_pressed('I') and !dead:
 		if menus.is_empty():
 			var player_info_menu: PlayerInfo = player_info_scene.instantiate()
-			player_info_menu.update_run_data($Player.current_run_data)
 			self._add_menu(player_info_menu)
+			player_info_menu.update_run_data($Player.current_run_data)
 			get_tree().paused = true
 		elif menus[0] is PlayerInfo:
 			menus.pop_front().visible = false
@@ -44,8 +46,8 @@ func _unhandled_input(event):
 		else:
 			menus.pop_front().visible = false
 			var player_info_menu = player_info_scene.instantiate()
-			player_info_menu.update_run_data($Player.current_run_data)
 			self._add_menu(player_info_menu)
+			player_info_menu.update_run_data($Player.current_run_data)
 			get_tree().paused = true
 
 func _add_menu(menu):

@@ -32,7 +32,8 @@ func get_all_data() -> Dictionary:
 		"flow_xp": flow_xp,
 		"wither_xp": wither_xp,
 		"unlocked_skills": unlocked_skills,
-		"equipped_skills": equipped_skills
+		"equipped_skills": equipped_skills,
+		"tutorial_complete": tutorial_complete
 	}
 
 # this function's purpose is to grab and assign data to this file's instance variables
@@ -66,6 +67,8 @@ func fetch_save_data():
 	if unlocked_skills.size() < 4:
 		print("Problem loading equipped skills. Setting to default.")
 		equipped_skills = ["bolt", "charge", "rock", "fountain"]
+	
+	tutorial_complete = saved_data["tutorial_complete"]
 
 	print("Finished loading!\n")
 
@@ -110,7 +113,8 @@ func save():
 		"flow_xp": flow_xp,
 		"wither_xp": wither_xp,
 		"unlocked_skills": save_skills,
-		"equipped_skills": save_equipped_skills
+		"equipped_skills": save_equipped_skills,
+		"tutorial_complete": tutorial_complete
 	}
 	return save_dict
 

@@ -12,6 +12,7 @@ var maps = [
 var spawn = preload("res://Maps/Spawn.tscn")
 var exit = preload("res://Maps/Exit.tscn")
 var home = preload("res://Maps/Home.tscn")
+var tutorial = preload("res://Maps/Tutorial.tscn")
 
 var current_level: int = 0
 var boss_level_multiple: int = 5 # default floor multiple boss spawns on
@@ -28,10 +29,13 @@ signal change_song(song)
 
 func _ready() -> void:
 	if get_child_count() <= 0:
-		add_child(home.instantiate())
+		if not PersistentData.tutorial_complete:
+			add_child(tutorial.instantiate())
+		else:
+			add_child(home.instantiate())
 	for room in get_children():
 		init_room_connections(room)
-		place_player()
+	place_player(get_children())
 	if Settings.dev_mode:
 		boss_level_multiple = 2
 
@@ -39,27 +43,32 @@ func _ready() -> void:
 func _load_level():
 	# first, fade to black
 	main.get_node("BGHandler").transition(1.5)
+	cleanup_rooms()
+	var new_rooms: Array[Node]
+	if not PersistentData.tutorial_complete:
+		new_rooms = [tutorial.instantiate()]
+		add_child(new_rooms[0])
+		place_player(new_rooms)
+		return
 	# inc difficulty when loading
 	current_level += 1
 	main.get_node("HUD").set_floor(current_level)
-	
-	cleanup_rooms()
 	# init rooms
 	if current_level % boss_level_multiple == 0:
 		if available_boss_levels.size() <= 0:
 			reset_boss_level_array()
-		init_boss_room()
+		new_rooms = init_boss_room()
 	else:
-		init_rooms()
+		new_rooms = init_rooms()
 		play_song("dungeon_delving")
-	place_player()
+	place_player(new_rooms)
 	# save the state of the game every level to be persisted
 	SaveLoader.save_game()
 
-func place_player():
+func place_player(new_rooms: Array[Node]):
 	# move player. must disable cam smoothing for transitioning purposes
 	player.my_cam.position_smoothing_enabled = false
-	player.global_position = get_player_spawn(get_children())
+	player.global_position = get_player_spawn(new_rooms)
 	player.move_target = player.position
 	# wait until next frame
 	await get_tree().create_timer(0).timeout
@@ -78,6 +87,7 @@ func get_player_spawn(rooms: Array) -> Vector2:
 	# find where to spawn the player
 	for room in rooms: 
 		if room.has_node("PlayerSpawnLoc"):
+			print("spawning player at: " + str(room.get_node("PlayerSpawnLoc").position))
 			return room.get_node("PlayerSpawnLoc").global_position
 	# if none, spawn in top left room center
 	printerr("Could not find player spawn pos. Spawning in default pos.")
@@ -87,14 +97,15 @@ func get_player_spawn(rooms: Array) -> Vector2:
 func reset_boss_level_array():
 	available_boss_levels = boss_levels
 
-func init_boss_room():
+func init_boss_room() -> Array[Node]:
 	# randomly choose a boss+room to spawn
 	var random_num = randi_range(0, available_boss_levels.size()-1)
-	var new_room = available_boss_levels[random_num].instantiate()
+	var new_room: Node2D = available_boss_levels[random_num].instantiate()
 	add_child(new_room)
 	# remove it from the array
 	available_boss_levels.remove_at(random_num)
 	setup_boss_room(new_room)
+	return [new_room]
 
 func setup_boss_room(new_room: Node2D):
 	for node in new_room.get_children():
@@ -113,7 +124,8 @@ func setup_boss_room(new_room: Node2D):
 		if node is ExitDoor:
 			node.connect("load_level", Callable(self, "_load_level"))
 
-func init_rooms():
+func init_rooms() -> Array[Node]:
+	var new_rooms: Array[Node]
 	exit_room = Vector2i(randi_range(1, MAP_SIZE-1), randi_range(1, MAP_SIZE-1))
 	for i in range(0,MAP_SIZE):
 		for j in range(0,MAP_SIZE):
@@ -171,6 +183,8 @@ func init_rooms():
 						tilemap.set_cell(Vector2i(31, n), 0, Vector2i(8, 7), 0)
 			add_child(newRoom)
 			init_room_connections(newRoom)
+			new_rooms.append(newRoom)
+	return new_rooms
 
 func init_room_connections(newRoom: Node2D):
 	for node in newRoom.get_children():

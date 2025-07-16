@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=20 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" uid="uid://bsujmysejgy4k" path="res://Main.gd" id="1"]
 [ext_resource type="Script" uid="uid://n3gij2h648i7" path="res://LevelHandler.gd" id="2_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://83qg0j5exfyc" path="res://Characters/Player.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://dbvxpxv3fg03q" path="res://Maps/Tutorial.tscn" id="4_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://d37cep1ypwea6" path="res://HUDs/Menu.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://d14papl6dxsqu" path="res://HUDs/Selection.tscn" id="6_7rc56"]
 [ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
@@ -79,14 +78,11 @@ script = ExtResource("1")
 process_mode = 1
 position = Vector2(168, 104)
 
-[node name="LevelHandler" type="Node2D" parent="." node_paths=PackedStringArray("initial_level")]
+[node name="LevelHandler" type="Node2D" parent="."]
 process_mode = 1
 z_index = -1
 y_sort_enabled = true
 script = ExtResource("2_5vvyt")
-initial_level = NodePath("Tutorial")
-
-[node name="Tutorial" parent="LevelHandler" instance=ExtResource("4_5vvyt")]
 
 [node name="HUD" parent="." instance=ExtResource("4")]
 

@@ -57,6 +57,9 @@ position = Vector2(496, -576)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTriggers/SpellTutorialStartTrigger"]
 shape = SubResource("RectangleShape2D_vqqba")
 
+[node name="MurderTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="TutorialHUD" type="CanvasLayer" parent="."]
 visible = false
 
@@ -133,3 +136,4 @@ horizontal_alignment = 1
 [connection signal="body_entered" from="LevelTriggers/MoveTutorialCompleteTrigger" to="." method="_on_move_tutorial_complete_trigger_body_entered"]
 [connection signal="body_entered" from="LevelTriggers/DashTutorialStartTrigger" to="." method="_on_dash_tutorial_start_trigger_body_entered"]
 [connection signal="body_entered" from="LevelTriggers/SpellTutorialStartTrigger" to="." method="_on_spell_tutorial_start_trigger_body_entered"]
+[connection signal="timeout" from="MurderTimer" to="." method="_on_murder_timer_timeout"]

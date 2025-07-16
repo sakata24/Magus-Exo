@@ -1,5 +1,7 @@
 class_name PlayerInfo extends CanvasLayer
 
+@onready var buff_container = $ContentContainer/HBoxContainer2/VBoxContainer/HFlowContainer
+@onready var xp_container = $ContentContainer/HBoxContainer2/HBoxContainer
 var icon_path = "res://Resources/icons/ui/"
 var readable_string_dict = {
 	"sunder_dmg": {
@@ -82,7 +84,7 @@ func update_run_data(run_data: PlayerRunData):
 		container.add_child(buff_label)
 		container.add_child(amt_label)
 		# add to flow container
-		$ContentContainer/HFlowContainer.add_child(container)
+		buff_container.add_child(container)
 
 func update_exp_count(sunder, entropy, construct, growth, flow, wither):
-	$ContentContainer/HBoxContainer2/HBoxContainer/XPCounts.text = str(sunder) + "\n" + str(entropy) + "\n" + str(construct) + "\n" + str(growth) + "\n" + str(flow) + "\n" + str(wither)
+	xp_container.get_node("XPCounts").text = str(sunder) + "\n" + str(entropy) + "\n" + str(construct) + "\n" + str(growth) + "\n" + str(flow) + "\n" + str(wither)

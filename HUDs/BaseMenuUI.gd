@@ -4,6 +4,8 @@ extends Control
 
 func _ready() -> void:
 	set_process(false)
+	var esc_keys = Settings.get_controls_from_event("ui_cancel")
+	$CloseTooltip.text = "use " + esc_keys + " to close menu."
 
 func _process(delta: float) -> void:
 	$HighlightHolder/VisibleOnScreenNotifier2D.position.x += delta * highlightSpeed
