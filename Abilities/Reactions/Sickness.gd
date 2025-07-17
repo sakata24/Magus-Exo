@@ -9,13 +9,14 @@ var debuffedEnemies = []
 # called after creation and add_child
 func init(reaction_components: Dictionary):
 	spawn_reaction_name("sickness!", get_parent(), Color("#ffd966"), Color("#591b82"))
+	self.reparent(get_parent().get_parent())
 	super(reaction_components)
 
 # every tick add debuff
 func _on_tick_timer_timeout():
 	remove_debuffs_from_debuffed_enemies()
 	if has_overlapping_bodies():
-		debuff_enemies_in_radius()
+		debuff_enemies(get_overlapping_bodies())
 
 # when this effect is done, cleanse
 func _on_lifetime_timer_timeout():
@@ -30,11 +31,11 @@ func remove_debuffs_from_debuffed_enemies():
 				body.can_move = true
 				body.speed = body.baseSpeed
 				body.my_dmg = body.baseDmg
-		debuffedEnemies = []
+	debuffedEnemies = []
 
 # apply random debuff
-func debuff_enemies_in_radius():
-	debuffedEnemies = get_overlapping_bodies()
+func debuff_enemies(enemies: Array):
+	debuffedEnemies.append_array(enemies)
 	for body: Monster in debuffedEnemies:
 		if body.is_in_group("monsters"):
 			var rand = randi_range(0, 2)

@@ -12,6 +12,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 16.0
 
 [node name="Map" type="Node2D"]
+z_as_relative = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(192, 145)

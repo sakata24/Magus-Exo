@@ -11,6 +11,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 15.0
 
 [node name="Map3" type="Node2D"]
+z_as_relative = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_7iv10")
