@@ -15,7 +15,7 @@ var home = preload("res://Maps/Home.tscn")
 var tutorial = preload("res://Maps/Tutorial.tscn")
 
 var current_level: int = 0
-var boss_level_multiple: int = 5 # default floor multiple boss spawns on
+var boss_level_multiple: int = 3 # default floor multiple boss spawns on
 var exit_room: Vector2i = Vector2i() # the location of the room
 var roomArray = []
 var MAP_SIZE = 3 # sqrt of room amt
