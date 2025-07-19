@@ -7,7 +7,7 @@ var ALL_SKILLS = {
 		"bolt": {
 			"name": "bolt",
 			"cooldown": 1.5,
-			"dmg": 1.0,
+			"dmg": 0.8,
 			"element": "sunder",
 			"lifetime": 0.5,
 			"size": 1.0,
@@ -22,7 +22,7 @@ var ALL_SKILLS = {
 		"crack": {
 			"name": "crack",
 			"cooldown": 16.0,
-			"dmg": 2.5,
+			"dmg": 2.0,
 			"element": "sunder",
 			"lifetime": 0.5,
 			"size": 10.0,

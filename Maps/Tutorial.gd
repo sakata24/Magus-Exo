@@ -44,7 +44,9 @@ func _physics_process(delta: float) -> void:
 	if cur_stage == DONE_CHEST:
 		cur_stage = PLAYER_INFO_STAGE
 		start_player_info_stage()
-	if Input.is_action_just_pressed("I") and cur_stage == PLAYER_INFO_STAGE:
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("I") and cur_stage == PLAYER_INFO_STAGE:
 		cur_stage = MURDER_PLAYER
 		print("Done Player Info Stage")
 		eliminate_player_stage()
@@ -139,8 +141,9 @@ func _on_murder_timer_timeout() -> void:
 		inst.droppable = false
 		inst.maxHealth *= 5
 		inst.health *= 5
-		inst.my_dmg *= 3
-		inst.speed += 50
+		inst.my_dmg = 500
+		inst.speed += 75
+		inst.scale *= 1.5
 		inst.set_collision_mask_value(6, false)
 	
 func display_tutorial_text(dialogue_to_display: String, directions_to_display: String, time_to_display: float):

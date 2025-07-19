@@ -17,7 +17,8 @@ Finished Bugs:
 	- FIXED BUG [Gameplay]: Storm spell dmg at max upon casting
 	- FIXED BUG [???] screen shrink on dark mage
 	- FIXED BUG [Gameplay]: Spell shatter location on fissure located not in the center
-	- FIXED BUG [Gameplay]: boss level monsters should not drop upgrades (TESTING)
+	- FIXED BUG [Gameplay]: boss level monsters should not drop upgrades
+	- FIXED BUG [Tutorial]: input not recieved first time for player info step
 
 Finished Implementations:
 	- [UI] finish boss indicator
