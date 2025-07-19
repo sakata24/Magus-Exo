@@ -9,6 +9,6 @@ func get_reaction_scene(reactant_element: String) -> Node2D:
 		"sunder": return SkillSceneHandler.get_scene_by_name("blast")
 		"construct": return SkillSceneHandler.get_scene_by_name("discharge")
 		"growth": return SkillSceneHandler.get_scene_by_name("life")
-		"flow": return SkillSceneHandler.get_scene_by_name("fork")
+		"flow": return SkillSceneHandler.get_scene_by_name("erode")
 		"wither": return SkillSceneHandler.get_scene_by_name("sickness")
 		_: return null

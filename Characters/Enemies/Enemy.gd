@@ -16,6 +16,8 @@ var lastElementsHitBy: Array[String] = []
 # cc immune?
 var cc_immune: bool = false
 
+signal got_hit(damage: DamageObject)
+
 func hit(damage: DamageObject):
 	# reduce my hp
 	health -= damage.get_value()
@@ -28,3 +30,4 @@ func hit(damage: DamageObject):
 	dmgNum.set_colors(AbilityColor.get_color_by_string(damage.get_type(0)), AbilityColor.get_color_by_string(damage.get_type(1)))
 	get_parent().add_child(dmgNum)
 	dmgNum.set_value_and_pos(damage.get_value(), self.global_position)
+	got_hit.emit(damage)

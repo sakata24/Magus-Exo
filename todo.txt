@@ -1,24 +1,26 @@
 - BUG [Visual?]: particles for singularity show more than usual
 - BUG [Gameplay]: Player gets stuck in between mirrors
 - BUG [Gameplay]: Player spawns in odd spot after boss level
-- BUG [UI/Gameplay]: Choosing spells does not update in HUD
 - [UI] tooltips for other things besides npc
 - [Gameplay][UI] armorer
 - [Gameplay]: Balance the game
 - [Gameplay]: finish reactions:
-	fork: split the flow spell into two
+	erode: cause enemies to become vulnerable
+
+Testing Bugs:
+	- BUG [Tutorial]: input not recieved first time for player info step (TESTING)
+	- BUG [Gameplay]: Stun oddly long and enemies still move for sickness (TESTING)
 
 Finished Bugs:
 	- FIXED BUG [UI]: cooldown dash doesnt reflect on UI
 	- FIXED BUG [UI]: Boss health bar still present after death
 	- FIXED BUG [Gameplay]: Multicast bolt being goofy. spam bolt
 	- FIXED BUG [Gameplay]: Scythes spawning outside should not occur
-	- FIXED BUG [Gameplay]: Stun oddly long and enemies still move for sickness (TESTING)
 	- FIXED BUG [Gameplay]: Storm spell dmg at max upon casting
 	- FIXED BUG [???] screen shrink on dark mage
 	- FIXED BUG [Gameplay]: Spell shatter location on fissure located not in the center
 	- FIXED BUG [Gameplay]: boss level monsters should not drop upgrades
-	- FIXED BUG [Tutorial]: input not recieved first time for player info step
+	- FIXED BUG [UI/Gameplay]: Choosing spells does not update in HUD
 
 Finished Implementations:
 	- [UI] finish boss indicator

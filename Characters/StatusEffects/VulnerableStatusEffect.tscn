@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbtj45uixp4nk"]
+
+[ext_resource type="Texture2D" uid="uid://cblckg1ylm6x2" path="res://Resources/2D Pixel Dungeon Asset Pack/interface/arrow_1.png" id="1_uedfv"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dc4ta"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="VulnerableStatusEffect" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = ExtResource("1_uedfv")
+process_material = SubResource("ParticleProcessMaterial_dc4ta")
