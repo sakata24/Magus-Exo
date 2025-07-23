@@ -1,12 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://510jm32k8p7m"]
+[gd_scene load_steps=7 format=3 uid="uid://510jm32k8p7m"]
 
 [ext_resource type="Script" uid="uid://ci7f64u346qcj" path="res://Abilities/Reactions/Erode.gd" id="1_ja40l"]
+[ext_resource type="Texture2D" uid="uid://cblckg1ylm6x2" path="res://Resources/2D Pixel Dungeon Asset Pack/interface/arrow_1.png" id="2_xpprd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja40l"]
 radius = 32.0
 
+[sub_resource type="Gradient" id="Gradient_xpprd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u4kbq"]
+gradient = SubResource("Gradient_xpprd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sjxou"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 10.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -6, 0)
+color_ramp = SubResource("GradientTexture1D_u4kbq")
+
 [node name="Erode" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_ja40l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ja40l")
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 10
+texture = ExtResource("2_xpprd")
+process_material = SubResource("ParticleProcessMaterial_sjxou")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]

@@ -1,13 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbtj45uixp4nk"]
+[gd_scene load_steps=6 format=3 uid="uid://cbtj45uixp4nk"]
 
+[ext_resource type="Script" uid="uid://dias1h67cqbom" path="res://Characters/StatusEffects/VulnerableStatusEffect.gd" id="1_dc4ta"]
 [ext_resource type="Texture2D" uid="uid://cblckg1ylm6x2" path="res://Resources/2D Pixel Dungeon Asset Pack/interface/arrow_1.png" id="1_uedfv"]
+
+[sub_resource type="Gradient" id="Gradient_uedfv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dc4ta"]
+gradient = SubResource("Gradient_uedfv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dc4ta"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+emission_shape = 2
+emission_sphere_radius = 10.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -6, 0)
+color_ramp = SubResource("GradientTexture1D_dc4ta")
 
 [node name="VulnerableStatusEffect" type="Node2D"]
+script = ExtResource("1_dc4ta")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -8)
+amount = 7
 texture = ExtResource("1_uedfv")
+lifetime = 2.0
+preprocess = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_dc4ta")
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]

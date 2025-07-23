@@ -3,19 +3,20 @@
 extends Node
 
 # preloaded reactions
-var shatterScene = load("res://Abilities/Reactions/Shatter.tscn")
-var singularityScene = load("res://Abilities/Reactions/Singularity.tscn")
-var extinctionScene = load("res://Abilities/Reactions/Extinction.tscn")
-var blastScene = load("res://Abilities/Reactions/Blast.tscn")
-var dischargeScene = load("res://Abilities/Reactions/Discharge.tscn")
-var sicknessScene = load("res://Abilities/Reactions/Sickness.tscn")
-var overgrowthScene = load("res://Abilities/Reactions/Overgrowth.tscn")
-var breakScene = load("res://Abilities/Reactions/Break.tscn")
-var extendScene = load("res://Abilities/Reactions/Extend.tscn")
+var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
+var singularityScene = preload("res://Abilities/Reactions/Singularity.tscn")
+var extinctionScene = preload("res://Abilities/Reactions/Extinction.tscn")
+var blastScene = preload("res://Abilities/Reactions/Blast.tscn")
+var dischargeScene = preload("res://Abilities/Reactions/Discharge.tscn")
+var sicknessScene = preload("res://Abilities/Reactions/Sickness.tscn")
+var overgrowthScene = preload("res://Abilities/Reactions/Overgrowth.tscn")
+var breakScene = preload("res://Abilities/Reactions/Break.tscn")
+var extendScene = preload("res://Abilities/Reactions/Extend.tscn")
 var lifeScene = preload("res://Abilities/Reactions/Life.tscn")
 var pursuitScene = preload("res://Abilities/Reactions/Pursuit.tscn")
 var swarmScene = preload("res://Abilities/Reactions/Swarm.tscn")
 var justiceScene = preload("res://Abilities/Reactions/Justice.tscn")
+var erodeScene = preload("res://Abilities/Reactions/Erode.tscn")
 
 # preloaded spells
 var crackScene = preload("res://Abilities/Crack.tscn")
@@ -48,6 +49,7 @@ func get_scene_by_name(scene_name: String) -> Node2D:
 		"pursuit": return pursuitScene.instantiate()
 		"swarm": return swarmScene.instantiate()
 		"justice": return justiceScene.instantiate()
+		"erode": return erodeScene.instantiate()
 		# abilities
 		"bolt": return boltScene.instantiate()
 		"charge": return chargeScene.instantiate()
