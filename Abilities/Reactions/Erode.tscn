@@ -7,7 +7,7 @@
 radius = 32.0
 
 [sub_resource type="Gradient" id="Gradient_xpprd"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 1, 100, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_u4kbq"]
 gradient = SubResource("Gradient_xpprd")
@@ -39,6 +39,8 @@ autostart = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 10
 texture = ExtResource("2_xpprd")
+lifetime = 2.0
+preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_sjxou")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

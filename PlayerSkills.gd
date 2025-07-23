@@ -6,7 +6,7 @@ var ALL_SKILLS = {
 	"skills": {
 		"bolt": {
 			"name": "bolt",
-			"cooldown": 1.5,
+			"cooldown": 1.6,
 			"dmg": 0.8,
 			"element": "sunder",
 			"lifetime": 0.5,

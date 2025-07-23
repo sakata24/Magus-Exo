@@ -4,8 +4,7 @@
 - [UI] tooltips for other things besides npc
 - [Gameplay][UI] armorer
 - [Gameplay]: Balance the game
-- [Gameplay]: finish reactions:
-	erode: cause enemies to become vulnerable
+- [Gameplay]: Investigate multiplayer.
 
 Testing Bugs:
 	- BUG [Tutorial]: input not recieved first time for player info step (TESTING)
@@ -28,6 +27,7 @@ Finished Implementations:
 	- [UI] show upgrades chosen
 	- [User Experience]: Tutorial/learning curve
 	- [User Experience]: Intro/story
+	- [Gameplay]: Finished all reactions
 
 - gameplay notes -
 Utility spells/movement not for damage
