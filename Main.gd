@@ -4,6 +4,7 @@ var dead = false
 var menus = []
 var level = 0
 var player_info_scene = preload("res://HUDs/PlayerInfo.tscn")
+var player_scene = preload("res://Characters/Player.tscn")
 
 # room hex: 25131a
 # menu maroon: 460028
@@ -23,6 +24,15 @@ func _ready():
 	$Menu.connect("run_ended", kill_player)
 	$LevelHandler.connect("change_song", $AudioStreamPlayer.swap_bgm)
 	$AudioStreamPlayer.play()
+	Lobby.player_loaded.rpc_id(1)
+	#for player in Lobby.players:
+		#var new_player = player_scene.instantiate()
+		#new_player.name = str(Lobby.players[player].id)
+		#add_child(new_player)
+
+# called only on server. all players are ready to recieve packets
+func start_game():
+	pass
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !dead:

@@ -1,112 +1,34 @@
 extends Control
 
-# These signals can be connected to by a UI lobby scene or the game scene.
-signal player_connected(peer_id, player_info)
-signal player_disconnected(peer_id)
-signal server_disconnected
+@onready var ip_address_entry: LineEdit = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/IPEntry
+@onready var name_entry: LineEdit = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/NameEntry
+@onready var player_list_label: Label = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PlayerList
+@onready var host_button: Button = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HostButton
+@onready var join_button: Button = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/JoinButton
+@onready var start_game_button: Button = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StartGameButton
 
-const PORT = 7001
-const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
-const MAX_CONNECTIONS = 3
+func _ready() -> void:
+	Lobby.connect("player_connected", update_player_list)
+	update_player_list("", "")
 
-@onready var ip_address_entry: LineEdit = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextEdit
+func update_player_list(peer_id, player_info):
+	player_list_label.text = ""
+	var list_str: String = ""
+	for id in Lobby.players:
+		list_str = list_str + str(Lobby.players[id]["name"]) + "\n"
+	player_list_label.text = list_str
 
-# This will contain player info for every player,
-# with the keys being each player's unique IDs.
-var players = {}
+func _on_name_entry_text_changed(new_text: String) -> void:
+	Lobby.player_info["name"] = new_text
 
-# This is the local player info. This should be modified locally
-# before the connection is made. It will be passed to every other peer.
-# For example, the value of "name" can be set to something the player
-# entered in a UI scene.
-var player_info = {"name": "Name"}
+func _on_join_button_pressed() -> void:
+	Lobby.join_game(ip_address_entry.text)
+	host_button.disabled = true
+	start_game_button.disabled = true
 
-var players_loaded = 0
+func _on_host_button_pressed() -> void:
+	Lobby.create_game()
+	join_button.disabled = true
 
-
-func _ready():
-	multiplayer.peer_connected.connect(_on_player_connected)
-	multiplayer.peer_disconnected.connect(_on_player_disconnected)
-	multiplayer.connected_to_server.connect(_on_connected_ok)
-	multiplayer.connection_failed.connect(_on_connected_fail)
-	multiplayer.server_disconnected.connect(_on_server_disconnected)
-
-
-func join_game():
-	var address: String = ip_address_entry.text
-	if address.is_empty():
-		address = DEFAULT_SERVER_IP
-	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_client(address, PORT)
-	if error:
-		return error
-	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	multiplayer.multiplayer_peer = peer
-
-
-func create_game():
-	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(PORT, MAX_CONNECTIONS)
-	if error:
-		return error
-	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	multiplayer.multiplayer_peer = peer
-
-	players[1] = player_info
-	player_connected.emit(1, player_info)
-
-func start_game():
-	load_game.rpc("res://Main.tscn")
-
-func remove_multiplayer_peer():
-	multiplayer.multiplayer_peer = null
-	players.clear()
-
-# When the server decides to start the game from a UI scene,
-# do Lobby.load_game.rpc(filepath)
-@rpc("call_local", "reliable")
-func load_game(game_scene_path):
-	get_tree().change_scene_to_file(game_scene_path)
-
-
-# Every peer will call this when they have loaded the game scene.
-@rpc("any_peer", "call_local", "reliable")
-func player_loaded():
-	if multiplayer.is_server():
-		players_loaded += 1
-		if players_loaded == players.size():
-			$/root/Game.start_game()
-			players_loaded = 0
-
-# When a peer connects, send them my player info.
-# This allows transfer of all desired data for each player, not only the unique ID.
-#  called on server and clients
-func _on_player_connected(id):
-	_register_player.rpc_id(id, player_info)
-
-
-@rpc("any_peer", "reliable")
-func _register_player(new_player_info):
-	var new_player_id = multiplayer.get_remote_sender_id()
-	players[new_player_id] = new_player_info
-	player_connected.emit(new_player_id, new_player_info)
-
-
-func _on_player_disconnected(id):
-	players.erase(id)
-	player_disconnected.emit(id)
-
-# called only from clients
-func _on_connected_ok():
-	var peer_id = multiplayer.get_unique_id()
-	players[peer_id] = player_info
-	player_connected.emit(peer_id, player_info)
-
-# called only from clients
-func _on_connected_fail():
-	multiplayer.multiplayer_peer = null
-
-func _on_server_disconnected():
-	multiplayer.multiplayer_peer = null
-	players.clear()
-	server_disconnected.emit()
+func _on_start_game_button_pressed() -> void:
+	Lobby.load_game.rpc("res://Main.tscn")

@@ -24,6 +24,7 @@ SkillSceneHandler="*res://SkillSceneHandler.gd"
 SaveLoader="*res://SaveLoader.gd"
 Settings="*res://Settings.gd"
 PersistentData="*res://PersistentData.gd"
+Lobby="*res://HUDs/Lobby.gd"
 
 [debug]
 
@@ -39,7 +40,6 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://83qg0j5exfyc"]
+[gd_scene load_steps=34 format=3 uid="uid://83qg0j5exfyc"]
 
 [ext_resource type="Script" uid="uid://yspisjr3b8y5" path="res://Characters/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dq0nxxg68sdw7" path="res://Resources/player-cast.png" id="2_58vhh"]
@@ -159,6 +159,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_bixge"]
 radius = 8.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lli6r"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 105
@@ -249,6 +254,9 @@ metadata/_custom_type_script = "uid://cfs5h0csie147"
 script = ExtResource("12_o8u7c")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://d1tq2i2wkva5c"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_lli6r")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Dead" method="_on_death_animation_finished"]

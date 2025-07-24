@@ -57,6 +57,7 @@ var casting: bool = false
 
 # on ready
 func _ready():
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	# Update the equipped skills
 	equippedSkills = PersistentData.get_equipped_skills()
 	# Make the player look right
