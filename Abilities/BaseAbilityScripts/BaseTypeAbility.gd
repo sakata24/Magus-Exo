@@ -24,18 +24,21 @@ const CAST_RANGE = 500
 # constructs the bullet
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: CharacterBody2D):
 	# set variables
-	abilityID = skill_dict["name"]
+	abilityID = SkillDataHandler._get_ability(abilityID)["name"]
 	element = skill_dict["element"]
 	dmg *= skill_dict["dmg"]
 	speed *= skill_dict["speed"]
 	lifetime *= skill_dict["lifetime"]
 	reaction_priority = skill_dict["priority"]
 	spell_caster = caster
-	myMovement = Movement.get_movement_object_by_name(skill_dict["movement"])
-	mySpawnBehavior = SpawnBehavior.get_spawn_behavior_object_by_name(skill_dict["spawn"])
 	setup_spell(cast_target, caster)
 	for modifier: Modifier in myModifiers:
 		modifier.apply(self)
+
+func _ready() -> void:
+	abilityID = SkillDataHandler._get_ability(abilityID)["name"]
+	myMovement = Movement.get_movement_object_by_name(SkillDataHandler._get_ability(abilityID)["movement"])
+	mySpawnBehavior = SpawnBehavior.get_spawn_behavior_object_by_name(SkillDataHandler._get_ability(abilityID)["spawn"])
 
 # set up the spell
 func setup_spell(cast_target: Vector2, caster: Node2D):
