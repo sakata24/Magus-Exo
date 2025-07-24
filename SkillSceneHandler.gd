@@ -33,36 +33,36 @@ var displaceScene = preload("res://Abilities/Displace.tscn")
 var decayScene = preload("res://Abilities/Decay.tscn")
 
 # returns an instantiated scene by the given name
-func get_scene_by_name(scene_name: String) -> Node2D:
+func get_scene_by_name(scene_name: String) -> PackedScene:
 	match scene_name:
 		# reactions
-		"shatter": return shatterScene.instantiate()
-		"singularity": return singularityScene.instantiate()
-		"extinction": return extinctionScene.instantiate()
-		"blast": return blastScene.instantiate()
-		"discharge": return dischargeScene.instantiate()
-		"sickness": return sicknessScene.instantiate()
-		"overgrowth": return overgrowthScene.instantiate()
-		"break": return breakScene.instantiate()
-		"extend": return extendScene.instantiate()
-		"life": return lifeScene.instantiate()
-		"pursuit": return pursuitScene.instantiate()
-		"swarm": return swarmScene.instantiate()
-		"justice": return justiceScene.instantiate()
-		"erode": return erodeScene.instantiate()
+		"shatter": return shatterScene
+		"singularity": return singularityScene
+		"extinction": return extinctionScene
+		"blast": return blastScene
+		"discharge": return dischargeScene
+		"sickness": return sicknessScene
+		"overgrowth": return overgrowthScene
+		"break": return breakScene
+		"extend": return extendScene
+		"life": return lifeScene
+		"pursuit": return pursuitScene
+		"swarm": return swarmScene
+		"justice": return justiceScene
+		"erode": return erodeScene
 		# abilities
-		"bolt": return boltScene.instantiate()
-		"charge": return chargeScene.instantiate()
-		"rock": return rockScene.instantiate()
-		"cell": return cellScene.instantiate()
-		"displace": return displaceScene.instantiate()
-		"decay": return decayScene.instantiate()
-		"crack": return crackScene.instantiate()
-		"storm": return stormScene.instantiate()
-		"fissure": return fissureScene.instantiate()
-		"vine": return vineScene.instantiate()
-		"fountain": return fountainScene.instantiate()
-		"suspend": return suspendScene.instantiate()
+		"bolt": return boltScene
+		"charge": return chargeScene
+		"rock": return rockScene
+		"cell": return cellScene
+		"displace": return displaceScene
+		"decay": return decayScene
+		"crack": return crackScene
+		"storm": return stormScene
+		"fissure": return fissureScene
+		"vine": return vineScene
+		"fountain": return fountainScene
+		"suspend": return suspendScene
 		_:
 			print("bad spell/reaction load or no reaction implemented for \"" + scene_name + "\"!")
 			return null

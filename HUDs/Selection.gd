@@ -3,6 +3,8 @@ extends CanvasLayer
 var slots = []
 
 const ART_PATH = "res://Resources/hud_elements/"
+signal upgrade_chosen(upgrade)
+signal heal_chosen(heal_value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -80,18 +82,18 @@ func setup():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel") and visible:
-		get_parent().get_node("Player").call_deferred("heal", 2)
+		heal_chosen.emit(2)
 
 func _on_slot_1_button_pressed():
-	get_parent().get_node("Player").upgrade(slots[0])
+	upgrade_chosen.emit(slots[0])
 	cleanup()
 
 func _on_slot_2_button_pressed():
-	get_parent().get_node("Player").upgrade(slots[1])
+	upgrade_chosen.emit(slots[1])
 	cleanup()
 
 func _on_slot_3_button_pressed():
-	get_parent().get_node("Player").upgrade(slots[2])
+	upgrade_chosen.emit(slots[3])
 	cleanup()
 
 func cleanup():

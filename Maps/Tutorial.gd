@@ -129,7 +129,7 @@ func eliminate_player_stage():
 
 func _on_murder_timer_timeout() -> void:
 	# taking a page out of mr dark mage's book
-	var player_pos = main.get_node("Player").global_position
+	var player_pos = get_tree().get_nodes_in_group("players")[0].global_position
 		#Spawn Minions around the player
 	for i in (5):
 		var rad = deg_to_rad(360/(5) * i - 45)

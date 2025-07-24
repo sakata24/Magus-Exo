@@ -51,6 +51,7 @@ windows=""
 enemy_skills=""
 monsters=""
 sfx_stream_players=""
+players=""
 
 [gui]
 

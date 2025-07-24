@@ -5,30 +5,37 @@ var menus = []
 var level = 0
 var player_info_scene = preload("res://HUDs/PlayerInfo.tscn")
 var player_scene = preload("res://Characters/Player.tscn")
+var my_player
 
 # room hex: 25131a
 # menu maroon: 460028
 # border grey: 464646
 
 func _ready():
-	# connect hud to player
-	$HUD.init($Player.health, $Player.max_health, PersistentData.equipped_skills)
-	PersistentData.connect("equipped_skills_updated", $HUD._set_skills)
-	PersistentData.connect("equipped_skills_updated", $Player.set_equipped_skills)
-	$Player.connect("moving_to", _show_click)
-	$Player.connect("cooling_down", $HUD._set_cd)
-	$Player.connect("health_changed", $HUD._set_health)
-	$Player.connect("player_died", game_over)
-	$Player.connect("cooling_dash", $HUD._set_dash_cd)
-	$Menu.connect("skill_changed", _change_skills)
-	$Menu.connect("run_ended", kill_player)
-	$LevelHandler.connect("change_song", $AudioStreamPlayer.swap_bgm)
-	$AudioStreamPlayer.play()
 	Lobby.player_loaded.rpc_id(1)
-	#for player in Lobby.players:
-		#var new_player = player_scene.instantiate()
-		#new_player.name = str(Lobby.players[player].id)
-		#add_child(new_player)
+	for player in Lobby.players:
+		var new_player = player_scene.instantiate()
+		new_player.name = str(player)
+		add_child(new_player)
+		new_player.add_to_group("players")
+		
+		if multiplayer.get_unique_id() == new_player.name.to_int():
+			print("I am the owner of " + str(multiplayer.get_unique_id()))
+			my_player = new_player
+			# connect hud to player
+			$HUD.init(new_player.health, new_player.max_health, PersistentData.equipped_skills)
+			PersistentData.connect("equipped_skills_updated", $HUD._set_skills)
+			PersistentData.connect("equipped_skills_updated", new_player.set_equipped_skills)
+			new_player.connect("moving_to", _show_click)
+			new_player.connect("cooling_down", $HUD._set_cd)
+			new_player.connect("health_changed", $HUD._set_health)
+			new_player.connect("player_died", game_over)
+			new_player.connect("cooling_dash", $HUD._set_dash_cd)
+			$Menu.connect("skill_changed", _change_skills)
+			$Menu.connect("run_ended", kill_player)
+			$LevelHandler.connect("change_song", $AudioStreamPlayer.swap_bgm)
+			$AudioStreamPlayer.play()
+			$LevelHandler.place_player($LevelHandler.get_children())
 
 # called only on server. all players are ready to recieve packets
 func start_game():
@@ -50,7 +57,7 @@ func _unhandled_input(event):
 		if menus.is_empty():
 			var player_info_menu: PlayerInfo = player_info_scene.instantiate()
 			self._add_menu(player_info_menu)
-			player_info_menu.update_run_data($Player.current_run_data)
+			player_info_menu.update_run_data(my_player.current_run_data)
 			get_tree().paused = true
 		elif menus[0] is PlayerInfo:
 			menus.pop_front().visible = false
@@ -59,7 +66,7 @@ func _unhandled_input(event):
 			menus.pop_front().visible = false
 			var player_info_menu = player_info_scene.instantiate()
 			self._add_menu(player_info_menu)
-			player_info_menu.update_run_data($Player.current_run_data)
+			player_info_menu.update_run_data(my_player.current_run_data)
 			get_tree().paused = true
 
 func _close_top_menu():
@@ -92,8 +99,8 @@ func _on_click_animation_animation_finished():
 
 func kill_player():
 	_clear_menus()
-	if $Player.health >= 0:
-		$Player.health = 0
+	if my_player.health >= 0:
+		my_player.health = 0
 
 func game_over():
 	# clear menus
@@ -112,6 +119,6 @@ func _change_skills(idx, new_skill):
 		1: key = "W"
 		2: key = "E"
 		3: key = "R"
-	$Player.equippedSkills[idx] = new_skill
-	$Player.init_skill_cooldowns()
+	my_player.equippedSkills[idx] = new_skill
+	my_player.init_skill_cooldowns()
 	get_node("HUD/Skill/Ability" + str(idx+1) + "/HBoxContainer/Border/SkillIcon").set_icon(new_skill, key)

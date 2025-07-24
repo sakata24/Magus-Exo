@@ -9,7 +9,7 @@ func init(reaction_components: Dictionary):
 	reaction_components["source"].myMovement = Movement.get_movement_object_by_name("homing")
 	# check that it doesnt already have a pursuit node if not, make it
 	if !reaction_components["reactant"].has_node("Pursuit"):
-		reaction_components["reactant"].add_child(SkillSceneHandler.get_scene_by_name("pursuit"))
+		reaction_components["reactant"].add_child(SkillSceneHandler.get_scene_by_name("pursuit").instantiate())
 		reaction_components["reactant"].myMovement = Movement.get_movement_object_by_name("homing")
 	apply_buff_to_spell(reaction_components["reactant"])
 	apply_buff_to_spell(reaction_components["source"])

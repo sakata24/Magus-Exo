@@ -158,7 +158,7 @@ func play_cast_sound():
 
 func spawn_ability(ability_name: String):
 	canCast = true
-	var instantiated_ability: BaseTypeAbility = SkillSceneHandler.get_scene_by_name(ability_name)
+	var instantiated_ability: BaseTypeAbility = SkillSceneHandler.get_scene_by_name(ability_name).instantiate()
 	# spawn the projectile and initialize it
 	get_parent().add_child(instantiated_ability)
 	# init after creation

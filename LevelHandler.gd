@@ -23,7 +23,6 @@ var MAP_SIZE = 3 # sqrt of room amt
 signal change_song(song)
 
 @onready var main = get_parent()
-@onready var player: Player = main.get_node("Player")
 
 @export var initial_level: Node2D # for debugging purposes
 
@@ -35,7 +34,6 @@ func _ready() -> void:
 			add_child(home.instantiate())
 	for room in get_children():
 		init_room_connections(room)
-	place_player(get_children())
 	if Settings.dev_mode:
 		boss_level_multiple = 2
 
@@ -67,18 +65,19 @@ func _load_level():
 
 func place_player(new_rooms: Array[Node]):
 	# move player. must disable cam smoothing for transitioning purposes
-	player.my_cam.position_smoothing_enabled = false
-	player.global_position = get_player_spawn(new_rooms)
-	player.move_target = player.position
+	print("placing player " + str(main.my_player) + "... in: " + str(new_rooms))
+	main.my_player.moving = false
+	main.my_player.my_cam.position_smoothing_enabled = false
+	main.my_player.global_position = get_player_spawn(new_rooms)
+	main.my_player.move_target = main.my_player.position
 	# wait until next frame
 	await get_tree().create_timer(0).timeout
-	player.my_cam.call_deferred("set_position_smoothing_enabled", true)
+	main.my_player.my_cam.call_deferred("set_position_smoothing_enabled", true)
 
 func cleanup_rooms():
 	# clean rooms node
 	for child in get_children():
 		child.queue_free()
-	player.moving = false
 	# clear groups
 	for spell in get_tree().get_nodes_in_group("spells"):
 		spell.queue_free()
@@ -116,10 +115,12 @@ func setup_boss_room(new_room: Node2D):
 					"boss_dead": node.connect("boss_dead", get_parent().get_node("HUD").hide_boss_bar)
 					"blinding_player": 
 						node.connect("blinding_player", get_parent().get_node("BGHandler").despawn_light)
-						node.connect("blinding_player", get_parent().get_node("Player").spawn_light)
+						for player in get_tree().get_nodes_in_group("players"):
+							node.connect("blinding_player", player.spawn_light)
 					"unblinding_player": 
 						node.connect("unblinding_player", get_parent().get_node("BGHandler").respawn_light)
-						node.connect("unblinding_player", get_parent().get_node("Player").despawn_light)
+						for player in get_tree().get_nodes_in_group("players"):
+							node.connect("unblinding_player", player.despawn_light)
 			get_parent().get_node("HUD").show_boss_bar(node.boss_name, node.health)
 		if node is ExitDoor:
 			node.connect("load_level", Callable(self, "_load_level"))
@@ -193,8 +194,9 @@ func init_room_connections(newRoom: Node2D):
 		if node is ExitDoor:
 			node.connect("load_level", _load_level)
 		if node is Monster:
-			node.connect("give_xp", player.gain_xp)
-			update_monster_scaling(node)
+			for player in get_tree().get_nodes_in_group("players"):
+				node.connect("give_xp", player.gain_xp)
+				update_monster_scaling(node)
 
 func update_monster_scaling(monster: Monster):
 	if monster is Boss:

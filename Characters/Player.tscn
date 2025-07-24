@@ -163,10 +163,13 @@ radius = 8.0
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 9
-collision_mask = 105
+collision_mask = 104
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1")

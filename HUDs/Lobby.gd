@@ -12,6 +12,7 @@ const MAX_CONNECTIONS = 3
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
 var players = {}
+var main_player: Player
 
 # This is the local player info. This should be modified locally
 # before the connection is made. It will be passed to every other peer.
