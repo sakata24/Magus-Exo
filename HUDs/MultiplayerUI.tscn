@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://mi0rwpw45c43"]
+
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="1_47pw2"]
+[ext_resource type="Script" uid="uid://ccehc22nivh4a" path="res://HUDs/multiplayer_ui.gd" id="2_or8pw"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="3_or8pw"]
+
+[node name="MultiplayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_47pw2")
+script = ExtResource("2_or8pw")
+
+[node name="StylizedContainer" parent="." instance=ExtResource("3_or8pw")]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+container_color = Color(0.54099, 0.54099, 0.54099, 1)
+
+[node name="ControlMarginContainer" type="MarginContainer" parent="StylizedContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StylizedContainer/ControlMarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="StylizedContainer/ControlMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Multiplayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StylizedContainer/ControlMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="JoinButton" type="Button" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 4
+text = "Join"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IPEntry" type="LineEdit" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "host ip address"
+
+[node name="NameEntry" type="LineEdit" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Display Name"
+
+[node name="HostButton" type="Button" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 4
+text = "Host"
+
+[node name="StartGameButton" type="Button" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 4
+text = "Start Game"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayersTitle" type="Label" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "Players"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "me
+me2
+me3"
+horizontal_alignment = 1
+
+[node name="MyIP" type="Label" parent="StylizedContainer/ControlMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MY IP ADDRESS"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/JoinButton" to="." method="join_game"]
+[connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HostButton" to="." method="create_game"]
+[connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StartGameButton" to="." method="start_game"]
