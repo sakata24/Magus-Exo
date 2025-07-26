@@ -56,6 +56,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
+[node name="MyIP" type="Label" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MY IP ADDRESS"
+horizontal_alignment = 1
+
 [node name="JoinButton" type="Button" parent="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 7
@@ -104,12 +109,13 @@ layout_mode = 2
 size_flags_vertical = 2
 horizontal_alignment = 1
 
-[node name="MyIP" type="Label" parent="StylizedContainer/ControlMarginContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="StylizedContainer/ControlMarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "MY IP ADDRESS"
-horizontal_alignment = 1
+size_flags_horizontal = 4
+text = "Main Menu"
 
 [connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/NameEntry" to="." method="_on_name_entry_text_changed"]
 [connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="StylizedContainer/ControlMarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

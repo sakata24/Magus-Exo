@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgdi3nfdxmacy"]
+[gd_scene load_steps=6 format=3 uid="uid://bgdi3nfdxmacy"]
 
 [ext_resource type="Script" uid="uid://dg0j7ct5e1hj6" path="res://Abilities/Reactions/CellBurst.gd" id="1_q1x0g"]
 
@@ -27,6 +27,14 @@ turbulence_influence_max = 0.211
 turbulence_initial_displacement_min = -50.0
 turbulence_initial_displacement_max = 50.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_q1x0g"]
+properties/0/path = NodePath("AbilityBody:scale")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AbilityBody:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="CellBurst" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
@@ -47,6 +55,9 @@ process_material = SubResource("ParticleProcessMaterial_jnwtg")
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_q1x0g")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

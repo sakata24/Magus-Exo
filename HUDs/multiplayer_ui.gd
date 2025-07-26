@@ -1,5 +1,6 @@
 extends Control
 
+@onready var main_menu_scene = preload("res://HUDs/Home.tscn")
 @onready var ip_address_entry: LineEdit = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/IPEntry
 @onready var name_entry: LineEdit = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/NameEntry
 @onready var player_list_label: Label = $StylizedContainer/ControlMarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/PlayerList
@@ -32,3 +33,6 @@ func _on_host_button_pressed() -> void:
 
 func _on_start_game_button_pressed() -> void:
 	Lobby.load_game.rpc("res://Main.tscn")
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://HUDs/Home.tscn")

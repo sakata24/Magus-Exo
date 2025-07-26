@@ -10,6 +10,7 @@ func _ready():
 func _process(delta):
 	pass
 
+@rpc("any_peer", "call_local", "unreliable")
 func set_value_and_pos(dmg, pos: Vector2):
 	self.global_position = pos
 	$DmgText.text = str(dmg)
@@ -17,10 +18,11 @@ func set_value_and_pos(dmg, pos: Vector2):
 	var tween = create_tween()
 	var end_pos = Vector2(randf_range(-7, 7), -10) + pos
 	tween.tween_property(self, "global_position", end_pos, 0.9)
-	
+
 func _on_timer_timeout():
 	self.queue_free()
 
+@rpc("any_peer", "call_local", "unreliable")
 func set_colors(color_1: Color, color_2: Color):
 	var colors = PackedColorArray()
 	colors.append(color_1)

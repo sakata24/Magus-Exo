@@ -8,7 +8,7 @@ func get_reaction_scene(reactant_element: String) -> Node2D:
 	match reactant_element:
 		"entropy": return SkillSceneHandler.get_scene_by_name("blast").instantiate()
 		"construct": return SkillSceneHandler.get_scene_by_name("shatter").instantiate()
-		"growth": return SkillSceneHandler.get_scene_by_name("burst").instantiate()
+		"growth": return null
 		"flow": return SkillSceneHandler.get_scene_by_name("break").instantiate()
 		"wither": return SkillSceneHandler.get_scene_by_name("singularity").instantiate()
 		_: return null

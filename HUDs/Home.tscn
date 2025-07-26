@@ -5,10 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="2_yh670"]
 [ext_resource type="Texture2D" uid="uid://b0avnv0ggnic8" path="res://Resources/title_logo_256x128.png" id="4_efsqm"]
 
-[node name="Home" type="CanvasLayer"]
+[node name="Home" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
 
 [node name="StylizedContainer" parent="." instance=ExtResource("2_yh670")]
+layout_mode = 1
 anchors_preset = 15
 anchor_left = 0.0
 anchor_top = 0.0
@@ -21,6 +28,7 @@ offset_bottom = 0.0
 container_color = Color(0.32549, 0.0745098, 0.192157, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -42,6 +50,17 @@ stretch_mode = 4
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_axxtm")
-text = "Play"
+text = "Singleplayer"
+
+[node name="MultiplayerButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Multiplayer"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Settings"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

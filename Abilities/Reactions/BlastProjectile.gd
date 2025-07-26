@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 0
 var dmg = 0
-var center
+@onready var center = get_parent()
 var spell_caster
 
 func _ready() -> void:
@@ -17,10 +17,11 @@ func init(init_speed, init_dmg, init_center, caster):
 
 # called every frame
 func _physics_process(delta: float):
-	var collision = handle_movement(delta)
-	self.scale += Vector2(0.05, 0.05)
-	if collision:
-		handle_collision(collision)
+	if multiplayer.is_server():
+		var collision = handle_movement(delta)
+		self.scale += Vector2(0.05, 0.05)
+		if collision:
+			handle_collision(collision)
 
 func _process(delta: float):
 	# rotate self

@@ -9,6 +9,6 @@ func init(reaction_components: Dictionary):
 
 func spawn_reaction_name(reaction_name: String, origin_spell: Node2D, dmg_color_1: Color, dmg_color_2: Color):
 	var reactionText = reactionTextScene.instantiate()
-	reactionText.set_colors(dmg_color_1, dmg_color_2)
-	origin_spell.get_parent().add_child(reactionText)
-	reactionText.set_value_and_pos(reaction_name, origin_spell.position)
+	reactionText.set_colors.rpc(dmg_color_1, dmg_color_2)
+	origin_spell.add_sibling(reactionText)
+	reactionText.set_value_and_pos.rpc(reaction_name, origin_spell.position)

@@ -15,7 +15,8 @@ func _ready():
 func init(reaction_components: Dictionary):
 	parents = reaction_components
 	# reparent myself to main to not despawn when parents react and destroy themselves
-	reparent(parents["source"].get_parent(), true)
+	parents["source"].add_sibling(self)
+	self.global_position = parents["source"].global_position
 	dmg = parents["source"].dmg + parents["reactant"].dmg
 	# set projectiles dmg
 	init_projectiles(parents["source"].spell_caster)

@@ -135,8 +135,6 @@ func create_new_reaction(other: Node2D):
 	if other:
 		var reaction_scene = get_reaction_scene(other.element)
 		if reaction_scene:
-			# set as the child
-			self.add_child(reaction_scene)
 			# after entering tree things and if need info from both spells reacting
 			reaction_scene.init({"source": self, "reactant": other})
 
