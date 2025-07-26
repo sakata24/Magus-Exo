@@ -107,7 +107,7 @@ script = ExtResource("10_wkp8b")
 [node name="BGHandler" parent="." instance=ExtResource("11_20pc6")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://7rvqd8favk01")
+_spawnable_scenes = PackedStringArray("uid://6wsalq0imix6", "uid://b4eyysn7cgefr", "uid://7rvqd8favk01", "uid://k5ic6d1vjwes", "uid://sr7xm2t52u8g", "uid://c13vw3m0wno8f", "uid://dgmh0ylowuf1s", "uid://gh08h6cy5y6d", "uid://m50qcfm1r50t", "uid://bcr28ege15fm0", "uid://dxulnknqlsd2f", "uid://d3g76w8m4y2q5", "uid://p7ummabjf61", "uid://rgu2qb8ck42q")
 spawn_path = NodePath("..")
 
 [connection signal="animation_finished" from="ClickAnimation" to="." method="_on_click_animation_animation_finished"]

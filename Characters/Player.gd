@@ -124,31 +124,34 @@ func choose_sprite_direction():
 
 # This function handles skill casting
 func cast_ability(slot_num: int) -> bool:
-	# check if ready
-	if (not skillReady[slot_num]) or (not $CastTimer.is_stopped()):
+	if multiplayer.get_unique_id() == self.name.to_int():
+		# check if ready
+		if (not skillReady[slot_num]) or (not $CastTimer.is_stopped()):
+			return false
+		# casting
+		casting = true
+		# start cooldowns
+		skillReady[slot_num] = false
+		skillTimer[slot_num] = 0
+		# obtain reference to the ability dict
+		var ability_name: String = equippedSkills[slot_num]
+		# cannot cast for a short period
+		canCast = false
+		# get cast target
+		cast_target = get_global_mouse_position()
+		# stop moving
+		speed = 0
+		moving = false
+		# play sound
+		play_cast_sound()
+		# start a timer
+		$CastTimer.start()
+		await $CastTimer.timeout
+		canCast = true
+		spawn_ability.rpc(ability_name, cast_target)
+		return true
+	else:
 		return false
-	# casting
-	casting = true
-	# start cooldowns
-	skillReady[slot_num] = false
-	skillTimer[slot_num] = 0
-	# obtain reference to the ability dict
-	var ability_name: String = equippedSkills[slot_num]
-	# cannot cast for a short period
-	canCast = false
-	# get cast target
-	cast_target = get_global_mouse_position()
-	# stop moving
-	speed = 0
-	moving = false
-	# play sound
-	play_cast_sound()
-	# start a timer
-	$CastTimer.start()
-	await $CastTimer.timeout
-	canCast = true
-	spawn_ability(ability_name)
-	return true
 
 func play_cast_sound():
 	# play casting audio
@@ -156,13 +159,16 @@ func play_cast_sound():
 	$AudioStreamPlayer2D.pitch_scale = randf_range(0.85, 1.15)
 	$AudioStreamPlayer2D.play()
 
-func spawn_ability(ability_name: String):
+@rpc("any_peer", "call_local", "unreliable_ordered")
+func spawn_ability(ability_name: String, my_cast_target: Vector2):
+	if !multiplayer.is_server():
+		return
 	canCast = true
 	var instantiated_ability: BaseTypeAbility = SkillSceneHandler.get_scene_by_name(ability_name).instantiate()
-	# spawn the projectile and initialize it
-	get_parent().add_child(instantiated_ability)
 	# init after creation
-	instantiated_ability.init(SkillDataHandler._get_ability(ability_name), cast_target, self)
+	instantiated_ability.init(SkillDataHandler._get_ability(ability_name), my_cast_target, self)
+	# spawn the projectile and initialize it
+	get_parent().add_child(instantiated_ability, true)
 	# apply player's run buffs after creation
 	apply_run_buffs(instantiated_ability)
 
@@ -179,7 +185,7 @@ func apply_run_buffs(ability: BaseTypeAbility):
 func _on_multi_cast_timer_timeout():
 	if remaining_casts > 0 and ability_ref:
 		remaining_casts -= 1
-		spawn_ability(ability_ref)
+		spawn_ability(ability_ref, cast_target)
 		$MultiCastTimer.start()
 	else:
 		remaining_casts = -1

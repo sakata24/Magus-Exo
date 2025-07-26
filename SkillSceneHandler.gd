@@ -2,6 +2,38 @@
 
 extends Node
 
+var scenes = {
+	"reactions": {
+		"shatter": preload("res://Abilities/Reactions/Shatter.tscn"),
+		"singularity": preload("res://Abilities/Reactions/Singularity.tscn"),
+		"extinction": preload("res://Abilities/Reactions/Extinction.tscn"),
+		"blast": preload("res://Abilities/Reactions/Blast.tscn"),
+		"discharge": preload("res://Abilities/Reactions/Discharge.tscn"),
+		"sickness": preload("res://Abilities/Reactions/Sickness.tscn"),
+		"overgrowth": preload("res://Abilities/Reactions/Overgrowth.tscn"),
+		"break": preload("res://Abilities/Reactions/Break.tscn"),
+		"extend": preload("res://Abilities/Reactions/Extend.tscn"),
+		"life": preload("res://Abilities/Reactions/Life.tscn"),
+		"pursuit": preload("res://Abilities/Reactions/Pursuit.tscn"),
+		"swarm": preload("res://Abilities/Reactions/Swarm.tscn"),
+		"justice": preload("res://Abilities/Reactions/Justice.tscn"),
+		"erode": preload("res://Abilities/Reactions/Erode.tscn")
+	},
+	"skills": {
+		"crack": preload("res://Abilities/Crack.tscn"),
+		"storm" : preload("res://Abilities/Storm.tscn"),
+		"vine" : preload("res://Abilities/Vine.tscn"),
+		"fissure" : preload("res://Abilities/Fissure.tscn"),
+		"fountain" : preload("res://Abilities/Fountain.tscn"),
+		"suspend" : preload("res://Abilities/Suspend.tscn"),
+		"bolt" : preload("res://Abilities/Bolt.tscn"),
+		"charge" : preload("res://Abilities/Charge.tscn"),
+		"rock" : preload("res://Abilities/Rock.tscn"),
+		"cell" : preload("res://Abilities/Cell.tscn"),
+		"displace" : preload("res://Abilities/Displace.tscn"),
+		"decay" : preload("res://Abilities/Decay.tscn")
+	}
+}
 # preloaded reactions
 var shatterScene = preload("res://Abilities/Reactions/Shatter.tscn")
 var singularityScene = preload("res://Abilities/Reactions/Singularity.tscn")
@@ -66,3 +98,6 @@ func get_scene_by_name(scene_name: String) -> PackedScene:
 		_:
 			print("bad spell/reaction load or no reaction implemented for \"" + scene_name + "\"!")
 			return null
+
+func get_all_scenes() -> Dictionary:
+	return scenes

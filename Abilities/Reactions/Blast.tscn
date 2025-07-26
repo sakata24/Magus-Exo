@@ -1,8 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://rgu2qb8ck42q"]
+[gd_scene load_steps=5 format=3 uid="uid://rgu2qb8ck42q"]
 
 [ext_resource type="Script" uid="uid://cm640blh2uc3c" path="res://Abilities/Reactions/Blast.gd" id="1_x77nc"]
 [ext_resource type="Script" uid="uid://buy1w3sch0a7k" path="res://Abilities/Reactions/BlastProjectile.gd" id="2_mko80"]
 [ext_resource type="Texture2D" uid="uid://xox7jfsei02j" path="res://Resources/abilities/blast-sprite.png" id="3_6ew2r"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sbsiw"]
+properties/0/path = NodePath("Projectile1:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Projectile1:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Projectile2:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Projectile3:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Projectile4:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Projectile5:position")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Projectile6:position")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Projectile7:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Projectile8:position")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Projectile8:rotation")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Projectile7:rotation")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Projectile6:rotation")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath("Projectile5:rotation")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("Projectile4:rotation")
+properties/13/spawn = true
+properties/13/replication_mode = 1
+properties/14/path = NodePath("Projectile3:rotation")
+properties/14/spawn = true
+properties/14/replication_mode = 1
+properties/15/path = NodePath("Projectile2:rotation")
+properties/15/spawn = true
+properties/15/replication_mode = 1
 
 [node name="Blast" type="Node2D"]
 script = ExtResource("1_x77nc")
@@ -121,5 +171,8 @@ polygon = PackedVector2Array(0, -5, 2, -2, 5, 0, 2, 2, 0, 5, -2, 2, -5, 0, -2, -
 rotation = 0.750492
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_6ew2r")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_sbsiw")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -13,32 +13,36 @@ var velocity = Vector2.ZERO
 var dmg: int = 10
 var timeout = 1
 var lifetime = 1
-var cooldown = 0.1
 var reaction_priority = 0
 var element
 var can_react
 var spell_caster
+var initial_cast_target
 
 const CAST_RANGE = 500
 
 # constructs the bullet
+@rpc("authority", "call_local", "reliable")
 func init(skill_dict: Dictionary, cast_target: Vector2, caster: CharacterBody2D):
 	# set variables
-	abilityID = SkillDataHandler._get_ability(abilityID)["name"]
+	abilityID = skill_dict["name"]
 	element = skill_dict["element"]
 	dmg *= skill_dict["dmg"]
 	speed *= skill_dict["speed"]
 	lifetime *= skill_dict["lifetime"]
 	reaction_priority = skill_dict["priority"]
+	initial_cast_target = cast_target
 	spell_caster = caster
-	setup_spell(cast_target, caster)
+	myMovement = Movement.get_movement_object_by_name(SkillDataHandler._get_ability(abilityID)["movement"])
+	mySpawnBehavior = SpawnBehavior.get_spawn_behavior_object_by_name(SkillDataHandler._get_ability(abilityID)["spawn"])
 	for modifier: Modifier in myModifiers:
 		modifier.apply(self)
 
 func _ready() -> void:
-	abilityID = SkillDataHandler._get_ability(abilityID)["name"]
-	myMovement = Movement.get_movement_object_by_name(SkillDataHandler._get_ability(abilityID)["movement"])
-	mySpawnBehavior = SpawnBehavior.get_spawn_behavior_object_by_name(SkillDataHandler._get_ability(abilityID)["spawn"])
+	if is_multiplayer_authority():
+		setup_spell(initial_cast_target, spell_caster)
+	else:
+		pass
 
 # set up the spell
 func setup_spell(cast_target: Vector2, caster: Node2D):
@@ -49,7 +53,10 @@ func setup_spell(cast_target: Vector2, caster: Node2D):
 
 # run every frame
 func _physics_process(delta):
-	handle_movement(delta)
+	if is_multiplayer_authority():
+		handle_movement(delta)
+	else:
+		pass
 
 # handles movement of bullet. Standard is a constant speed in a straight line.
 func handle_movement(delta):

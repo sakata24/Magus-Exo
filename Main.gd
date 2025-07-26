@@ -39,7 +39,10 @@ func _ready():
 
 # called only on server. all players are ready to recieve packets
 func start_game():
-	pass
+	var packed_scenes = SkillSceneHandler.get_all_scenes()
+	for category in packed_scenes.keys():
+		for scene in packed_scenes[category].keys():
+			$MultiplayerSpawner.add_spawnable_scene(packed_scenes[category][scene].resource_path)
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !dead:
