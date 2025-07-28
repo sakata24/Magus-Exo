@@ -28,10 +28,10 @@ turbulence_initial_displacement_min = -50.0
 turbulence_initial_displacement_max = 50.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_q1x0g"]
-properties/0/path = NodePath("AbilityBody:scale")
+properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("AbilityBody:position")
+properties/1/path = NodePath(".:scale")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
@@ -49,6 +49,7 @@ amount = 64
 texture = SubResource("GradientTexture2D_ntjlb")
 lifetime = 0.4
 preprocess = 0.4
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_jnwtg")
 
 [node name="Timer" type="Timer" parent="."]

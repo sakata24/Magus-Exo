@@ -4,7 +4,6 @@
 
 class_name LifeReaction extends Reaction
 
-var parents
 var dmg
 
 # call after entering scene tree

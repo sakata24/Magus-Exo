@@ -9,12 +9,20 @@ const BASE_DISCHARGE_RADIUS = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_discharge_size()
-	init_particles()
+	if multiplayer.is_server():
+		set_discharge_size()
+		ReactionScript.parents["source"].connect("tree_exited", queue_free)
 
 func init(reaction_components: Dictionary):
-	spawn_reaction_name("discharge!", get_parent(), Color("#ffd966"), Color("#663c33"))
 	super(reaction_components)
+	ReactionScript.parents["source"].add_sibling(self, true)
+	spawn_reaction_name("discharge!", reaction_components["source"], Color("#ffd966"), Color("#663c33"))
+	init_particles.rpc($CollisionShape2D.shape.radius)
+
+func _physics_process(delta: float) -> void:
+	if multiplayer.is_server():
+		if ReactionScript.parents["source"]:
+			self.global_position = ReactionScript.parents["source"].global_position
 
 # calculate and set the discharge reaction size
 func set_discharge_size():
@@ -22,11 +30,11 @@ func set_discharge_size():
 	$CollisionShape2D.shape.radius = get_parent_bounding_radius() + BASE_DISCHARGE_RADIUS
 
 # ready up the particle generator for the discharge reaction
-func init_particles():
-	var discharge_size = $CollisionShape2D.shape.radius
-	$CPUParticles2D.emission_sphere_radius = discharge_size + BASE_DISCHARGE_RADIUS
-	$CPUParticles2D.scale_amount_min = (discharge_size) / BASE_EMISSION_RADIUS
-	$CPUParticles2D.scale_amount_max = (discharge_size + BASE_DISCHARGE_RADIUS) / BASE_EMISSION_RADIUS
+@rpc("any_peer", "call_local", "unreliable")
+func init_particles(collision_radius: float = 0.0):
+	$CPUParticles2D.emission_sphere_radius = BASE_DISCHARGE_RADIUS + collision_radius
+	$CPUParticles2D.scale_amount_min = (collision_radius) / BASE_EMISSION_RADIUS
+	$CPUParticles2D.scale_amount_max = (collision_radius + BASE_DISCHARGE_RADIUS) / BASE_EMISSION_RADIUS
 
 # timer to tick on all monsters in the area
 func _on_attack_timer_timeout():

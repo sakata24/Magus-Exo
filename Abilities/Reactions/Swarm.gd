@@ -10,7 +10,6 @@ var BASE_SWARM_RADIUS = 32
 var swarm_radius = 32
 var target: Enemy
 var speed = 50
-var parents
 
 func _ready():
 	# start tracking target

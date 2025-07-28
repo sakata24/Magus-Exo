@@ -17,7 +17,9 @@ var scenes = {
 		"pursuit": preload("res://Abilities/Reactions/Pursuit.tscn"),
 		"swarm": preload("res://Abilities/Reactions/Swarm.tscn"),
 		"justice": preload("res://Abilities/Reactions/Justice.tscn"),
-		"erode": preload("res://Abilities/Reactions/Erode.tscn")
+		"erode": preload("res://Abilities/Reactions/Erode.tscn"),
+		"cell-burst": preload("res://Abilities/Reactions/CellBurst.tscn"),
+		"vine-burst": preload("res://Abilities/Reactions/VineBurst.tscn")
 	},
 	"skills": {
 		"crack": preload("res://Abilities/Crack.tscn"),
@@ -49,6 +51,8 @@ var pursuitScene = preload("res://Abilities/Reactions/Pursuit.tscn")
 var swarmScene = preload("res://Abilities/Reactions/Swarm.tscn")
 var justiceScene = preload("res://Abilities/Reactions/Justice.tscn")
 var erodeScene = preload("res://Abilities/Reactions/Erode.tscn")
+var cellBurstScene = preload("res://Abilities/Reactions/CellBurst.tscn")
+var vineBurstScene = preload("res://Abilities/Reactions/VineBurst.tscn")
 
 # preloaded spells
 var crackScene = preload("res://Abilities/Crack.tscn")
@@ -82,6 +86,8 @@ func get_scene_by_name(scene_name: String) -> PackedScene:
 		"swarm": return swarmScene
 		"justice": return justiceScene
 		"erode": return erodeScene
+		"cell-burst": return cellBurstScene
+		"vine-burst": return vineBurstScene
 		# abilities
 		"bolt": return boltScene
 		"charge": return chargeScene

@@ -41,28 +41,32 @@ func _ready() -> void:
 func _load_level():
 	# first, fade to black
 	main.get_node("BGHandler").transition(1.5)
-	cleanup_rooms()
+	# only if server, create the map
 	var new_rooms: Array[Node]
-	if not PersistentData.tutorial_complete:
-		new_rooms = [tutorial.instantiate()]
-		add_child(new_rooms[0])
-		place_player(new_rooms)
-		return
-	# inc difficulty when loading
-	current_level += 1
-	main.get_node("HUD").set_floor(current_level)
-	# init rooms
-	if current_level % boss_level_multiple == 0:
-		if available_boss_levels.size() <= 0:
-			reset_boss_level_array()
-		new_rooms = init_boss_room()
-	else:
-		new_rooms = init_rooms()
-		play_song("dungeon_delving")
-	place_player(new_rooms)
+	if multiplayer.is_server():
+		cleanup_rooms()
+		if not PersistentData.tutorial_complete:
+			new_rooms = [tutorial.instantiate()]
+			add_child(new_rooms[0])
+			place_player(new_rooms)
+			return
+		# inc difficulty when loading
+		current_level += 1
+		main.get_node("HUD").set_floor(current_level)
+		# init rooms
+		if current_level % boss_level_multiple == 0:
+			if available_boss_levels.size() <= 0:
+				reset_boss_level_array()
+			new_rooms = init_boss_room()
+		else:
+			new_rooms = init_rooms()
+			play_song("dungeon_delving")
+		# client will then copy the new rooms
+		place_player.rpc(new_rooms)
 	# save the state of the game every level to be persisted
 	SaveLoader.save_game()
 
+@rpc("any_peer", "call_local", "reliable")
 func place_player(new_rooms: Array[Node]):
 	# move player. must disable cam smoothing for transitioning purposes
 	print("placing player " + str(main.my_player) + "... in: " + str(new_rooms))
@@ -192,7 +196,7 @@ func init_room_connections(newRoom: Node2D):
 		if node is NPC:
 			node.connect("button_pressed", main._add_menu)
 		if node is ExitDoor:
-			node.connect("load_level", _load_level)
+			node.connect("load_level", _load_level.rpc)
 		if node is Monster:
 			for player in get_tree().get_nodes_in_group("players"):
 				node.connect("give_xp", player.gain_xp)

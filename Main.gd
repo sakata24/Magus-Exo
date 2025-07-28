@@ -36,6 +36,7 @@ func _ready():
 			$LevelHandler.connect("change_song", $AudioStreamPlayer.swap_bgm)
 			$AudioStreamPlayer.play()
 			$LevelHandler.place_player($LevelHandler.get_children())
+	$MultiplayerSpawner.connect("spawned", func(arg): print("I spawned a: " + str(arg)))
 
 # called only on server. all players are ready to recieve packets
 func start_game():
