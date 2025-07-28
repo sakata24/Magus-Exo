@@ -23,11 +23,13 @@ var MAP_SIZE = 3 # sqrt of room amt
 signal change_song(song)
 
 @onready var main = get_parent()
-@onready var player: Player = main.get_node("Player")
+@onready var player: Player = main.my_player
 
 @export var initial_level: Node2D # for debugging purposes
 
 func _ready() -> void:
+	self.z_index = -1
+	self.process_mode = Node.PROCESS_MODE_PAUSABLE
 	if get_child_count() <= 0:
 		if not PersistentData.tutorial_complete:
 			add_child(tutorial.instantiate())
