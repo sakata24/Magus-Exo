@@ -3,7 +3,7 @@ class_name PauseMenu extends CanvasLayer
 var SettingMenu = preload("res://HUDs/Settings.tscn")
 
 signal skill_changed(idx, newSkill)
-signal run_ended
+signal kill_player
 
 func _ready():
 	if Settings.dev_mode:
@@ -39,7 +39,7 @@ func _on_end_run_button_pressed() -> void:
 	$EndRunConfirm.popup()
 
 func _on_end_run_confirm_confirmed() -> void:
-	emit_signal("run_ended")
+	emit_signal("kill_player")
 
 func _on_settings_button_pressed() -> void:
 	get_parent()._add_menu(SettingMenu.instantiate())

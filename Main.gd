@@ -20,13 +20,14 @@ func _ready():
 	$HUD.init(my_player.health, my_player.max_health, PersistentData.equipped_skills)
 	PersistentData.connect("equipped_skills_updated", $HUD._set_skills)
 	PersistentData.connect("equipped_skills_updated", my_player.set_equipped_skills)
+	MenuHandler.connect("new_menu_added", add_child)
 	my_player.connect("moving_to", _show_click)
 	my_player.connect("cooling_down", $HUD._set_cd)
 	my_player.connect("health_changed", $HUD._set_health)
 	my_player.connect("player_died", game_over)
 	my_player.connect("cooling_dash", $HUD._set_dash_cd)
-	$Menu.connect("skill_changed", _change_skills)
-	$Menu.connect("run_ended", kill_player)
+	MenuHandler.menus[MenuHandler.MENU.PAUSE].connect("skill_changed", _change_skills)
+	MenuHandler.menus[MenuHandler.MENU.PAUSE].connect("kill_player", kill_player)
 	$AudioStreamPlayer.play()
 	level_handler = Node2D.new()
 	level_handler.set_script(level_handler_script)
@@ -47,13 +48,13 @@ func _on_click_animation_animation_finished():
 	$ClickAnimation.visible = false
 
 func kill_player():
-	_clear_menus()
+	MenuHandler._clear_menus()
 	if my_player.health >= 0:
 		my_player.health = 0
 
 func game_over():
 	# clear menus
-	_clear_menus()
+	MenuHandler._clear_menus()
 	# make dead
 	dead = true
 	$Death.setup()

@@ -191,7 +191,7 @@ func init_rooms() -> Array[Node]:
 func init_room_connections(newRoom: Node2D):
 	for node in newRoom.get_children():
 		if node is NPC:
-			node.connect("button_pressed", main._add_menu)
+			node.connect("button_pressed", MenuHandler._add_menu)
 		if node is ExitDoor:
 			node.connect("load_level", _load_level)
 		if node is Monster:
