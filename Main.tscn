@@ -1,11 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=15 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" uid="uid://bsujmysejgy4k" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://d37cep1ypwea6" path="res://HUDs/Menu.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://d14papl6dxsqu" path="res://HUDs/Selection.tscn" id="6_7rc56"]
 [ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
-[ext_resource type="PackedScene" uid="uid://cpkd7jx2ts1lw" path="res://HUDs/Death.tscn" id="6_m4you"]
 [ext_resource type="AudioStream" uid="uid://bb15t6j533uux" path="res://Resources/audio/music/Dungeon_Delving.mp3" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://bwry02qor847m" path="res://BGMPlayer.gd" id="10_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://ehygk7kad8e8" path="res://BGHandler.tscn" id="11_20pc6"]
@@ -73,16 +70,6 @@ y_sort_enabled = true
 script = ExtResource("1")
 
 [node name="HUD" parent="." instance=ExtResource("4")]
-
-[node name="Menu" parent="." instance=ExtResource("5")]
-process_mode = 3
-visible = false
-
-[node name="Selection" parent="." instance=ExtResource("6_7rc56")]
-visible = false
-
-[node name="Death" parent="." instance=ExtResource("6_m4you")]
-visible = false
 
 [node name="ClickAnimation" type="AnimatedSprite2D" parent="."]
 visible = false

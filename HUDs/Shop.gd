@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var SkillCard = preload("res://HUDs/SkillCard.tscn")
+@onready var SkillCard = preload("res://HUDs/Components/SkillCard.tscn")
 @onready var SkillContainer = $ContentContainer/VBoxContainer/ScrollContainer/SkillContainer
-@onready var ConfirmPopup = preload("res://HUDs/ConfirmationPopup.tscn")
+@onready var ConfirmPopup = preload("res://HUDs/Components/ConfirmationPopup.tscn")
 
 var selectedElement
 var selectedSpell : Dictionary

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://mi0rwpw45c43"]
 
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="1_47pw2"]
-[ext_resource type="Script" uid="uid://dnwcfm8hlquup" path="res://HUDs/multiplayer_ui.gd" id="2_or8pw"]
-[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="3_or8pw"]
+[ext_resource type="Script" uid="uid://dnwcfm8hlquup" path="res://HUDs/MultiplayerUI.gd" id="2_or8pw"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/Components/StylizedContainer.tscn" id="3_or8pw"]
 
 [node name="MultiplayerUI" type="Control"]
 layout_mode = 3

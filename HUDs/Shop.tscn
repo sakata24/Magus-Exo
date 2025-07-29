@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfjn1120750p4" path="res://HUDs/Shop.gd" id="1_3qepl"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_22pmb"]
 [ext_resource type="Texture2D" uid="uid://dan0j4bwdb37c" path="res://Resources/warlock.png" id="2_e63p4"]
-[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/BaseMenuUI.tscn" id="2_t715p"]
+[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/Components/BaseMenuUI.tscn" id="2_t715p"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_t715p"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yi03b"]

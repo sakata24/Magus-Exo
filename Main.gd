@@ -37,53 +37,6 @@ func _ready():
 func start_game():
 	pass
 
-func _unhandled_input(event):
-	if event.is_action_pressed('ui_cancel') and !dead:
-		# if no menu open, open the pause menu
-		if menus.is_empty():
-			menus.push_front($Menu)
-			$Menu.visible = true
-			# pass along the xp from player to the menu
-			get_tree().paused = true
-		# if menu is open, close it
-		else:
-			menus.pop_front().visible = false
-			get_tree().paused = false
-	elif event.is_action_pressed('I') and !dead:
-		if menus.is_empty():
-			var player_info_menu: PlayerInfo = player_info_scene.instantiate()
-			self._add_menu(player_info_menu)
-			player_info_menu.update_run_data(my_player.current_run_data)
-			get_tree().paused = true
-		elif menus[0] is PlayerInfo:
-			menus.pop_front().visible = false
-			get_tree().paused = false
-		else:
-			menus.pop_front().visible = false
-			var player_info_menu = player_info_scene.instantiate()
-			self._add_menu(player_info_menu)
-			player_info_menu.update_run_data(my_player.current_run_data)
-			get_tree().paused = true
-
-func _close_top_menu():
-	menus.pop_front().visible = false
-	get_tree().paused = false
-
-func _add_menu(menu):
-	for child in menu.get_children():
-		if child is BaseMenuUI:
-			child.connect("close_me", _close_top_menu)
-	add_child(menu)
-	menus.push_front(menu)
-	menu.visible = true
-	print("menu.")
-
-func _clear_menus():
-	for menu in menus:
-		menu.visible = false
-	menus.clear()
-	get_tree().paused = false
-
 func _show_click():
 	$ClickAnimation.global_position = get_global_mouse_position()
 	$ClickAnimation.set_frame(0)

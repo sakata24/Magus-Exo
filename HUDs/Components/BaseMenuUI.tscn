@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3g685ilkl0qx"]
 
-[ext_resource type="Script" uid="uid://baldn1yvjhbgg" path="res://HUDs/BaseMenuUI.gd" id="1_t44e7"]
-[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="2_t44e7"]
+[ext_resource type="Script" uid="uid://baldn1yvjhbgg" path="res://HUDs/Components/BaseMenuUI.gd" id="1_t44e7"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/Components/StylizedContainer.tscn" id="2_t44e7"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_teuwr"]
 [ext_resource type="Texture2D" uid="uid://bx4eby5tdrc57" path="res://Resources/hud_elements/x.png" id="3_gp4yr"]
 

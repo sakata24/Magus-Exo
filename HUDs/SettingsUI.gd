@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var ConfirmPopup = preload("res://HUDs/ConfirmationPopup.tscn")
+@onready var ConfirmPopup = preload("res://HUDs/Components/ConfirmationPopup.tscn")
 # Enum of each setting from how it shows top to bottom
 enum SETTING_LIST {RESOLUTION, MASTER_VOL, TOOLTIPS_ENABLED}
 

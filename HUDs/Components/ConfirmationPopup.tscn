@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cma3ewvp13o2r"]
 
-[ext_resource type="Script" uid="uid://cxleb8gchjcn" path="res://HUDs/ConfirmationPopup.gd" id="1_waym6"]
-[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="2_aj5u4"]
+[ext_resource type="Script" uid="uid://cxleb8gchjcn" path="res://HUDs/Components/ConfirmationPopup.gd" id="1_waym6"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/Components/StylizedContainer.tscn" id="2_aj5u4"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="2_waym6"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="4_aj5u4"]
 
@@ -11,7 +11,7 @@ initial_position = 1
 size = Vector2i(300, 193)
 visible = true
 min_size = Vector2i(300, 0)
-max_size = Vector2i(32768, 250)
+max_size = Vector2i(16384, 250)
 content_scale_mode = 2
 content_scale_stretch = 1
 script = ExtResource("1_waym6")

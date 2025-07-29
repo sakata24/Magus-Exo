@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name PauseMenu extends CanvasLayer
 
 var SettingMenu = preload("res://HUDs/Settings.tscn")
 

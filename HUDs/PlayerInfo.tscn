@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://yhdqjy786650"]
 
 [ext_resource type="Script" uid="uid://bdgvgmd2fvit6" path="res://HUDs/PlayerInfo.gd" id="1_0ns2i"]
-[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/BaseMenuUI.tscn" id="2_4a1o5"]
+[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/Components/BaseMenuUI.tscn" id="2_4a1o5"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="3_4a1o5"]
 
 [node name="PlayerInfo" type="CanvasLayer"]

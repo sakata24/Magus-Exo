@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2wqrhc76jt1c"]
 
 [ext_resource type="Script" uid="uid://ljky4pvpm8mk" path="res://HUDs/SwapSpellMenu.gd" id="1_8dwud"]
-[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/BaseMenuUI.tscn" id="2_xaoks"]
+[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/Components/BaseMenuUI.tscn" id="2_xaoks"]
 [ext_resource type="Texture2D" uid="uid://cs8cp06d6ocpq" path="res://Resources/book.png" id="3_8dwud"]
-[ext_resource type="PackedScene" uid="uid://d2rtprrmgnbft" path="res://HUDs/HeaderSkillCard.tscn" id="4_8dwud"]
+[ext_resource type="PackedScene" uid="uid://d2rtprrmgnbft" path="res://HUDs/Components/HeaderSkillCard.tscn" id="4_8dwud"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="4_mbbew"]
 
 [node name="SwapSpell" type="CanvasLayer" groups=["windows"]]
