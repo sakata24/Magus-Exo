@@ -15,13 +15,13 @@ func _process(delta):
 	pass
 
 func _on_area_2d_body_entered(body):
-	if body.get_name() == "Player":
+	if body.is_in_group("players"):
 		$Button.visible = true
 		if Settings.tooltips_enabled:
 			tooltip.visible = true
 
 func _on_area_2d_body_exited(body):
-	if body.get_name() == "Player":
+	if body.is_in_group("players"):
 		$Button.visible = false
 		if Settings.tooltips_enabled:
 			tooltip.visible = false

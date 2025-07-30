@@ -21,5 +21,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	$HighlightHolder/HighlightTimer.start(randi_range(3, 7))
 
 func _on_close_button_pressed() -> void:
-	print("hi")
 	emit_signal("close_me")
