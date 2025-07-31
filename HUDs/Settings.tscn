@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/Components/BaseMenuUI.tscn" id="2_foi73"]
 
 [node name="Settings" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_foi73")
 
 [node name="Menu" parent="." instance=ExtResource("2_foi73")]

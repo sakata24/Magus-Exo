@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="3_4a1o5"]
 
 [node name="PlayerInfo" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_0ns2i")
 
 [node name="Menu" parent="." instance=ExtResource("2_4a1o5")]

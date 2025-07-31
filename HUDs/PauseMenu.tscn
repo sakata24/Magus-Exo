@@ -31,6 +31,7 @@ font = ExtResource("3_w5m8w")
 font_size = 24
 
 [node name="PauseMenu" type="CanvasLayer" groups=["windows"]]
+process_mode = 3
 script = ExtResource("1")
 
 [node name="BackgroundDimmer" type="ColorRect" parent="."]

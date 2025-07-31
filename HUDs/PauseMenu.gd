@@ -3,6 +3,7 @@ class_name PauseMenu extends CanvasLayer
 var SettingMenu = preload("res://HUDs/Settings.tscn")
 
 signal skill_changed(idx, newSkill)
+signal new_menu(menu)
 signal kill_player
 signal menu_changed(menu)
 

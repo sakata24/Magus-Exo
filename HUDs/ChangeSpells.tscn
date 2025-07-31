@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://d06fhscpeqxal" path="res://HUDs/ChangeSpells.gd" id="1_ux4n7"]
 [ext_resource type="PackedScene" uid="uid://jb02v63no31m" path="res://Resources/hud_elements/SkillIcon.tscn" id="2_03qwh"]
 
-
 [sub_resource type="LabelSettings" id="LabelSettings_02eau"]
 font_size = 40
 outline_size = 12
@@ -18,6 +17,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ChangeSpells" type="CanvasLayer"]
+process_mode = 3
 layer = 2
 script = ExtResource("1_ux4n7")
 

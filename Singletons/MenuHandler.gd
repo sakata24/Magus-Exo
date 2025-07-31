@@ -46,27 +46,24 @@ func show_player_info(player_data):
 	if !player_dead:
 		if active_menus.is_empty():
 			menus[MENU.PLAYER_INFO].update_run_data(player_data)
+			active_menus.push_front(menus[MENU.PLAYER_INFO])
 			new_menu_added.emit(menus[MENU.PLAYER_INFO])
 		else:
 			_clear_menus()
 
 func _close_top_menu():
 	var top_menu = active_menus.pop_front()
-	top_menu.visible = false
 	top_menu.get_parent().remove_child(top_menu)
-	get_tree().paused = false
 
 func _add_menu(new_menu):
 	for child in new_menu.get_children():
 		if child is BaseMenuUI:
 			child.connect("close_me", _close_top_menu)
-	add_child(new_menu)
+	new_menu_added.emit(new_menu)
 	active_menus.push_front(new_menu)
-	new_menu.visible = true
 	print("menu.")
 
 func _clear_menus():
 	for menu in active_menus:
 		menu.get_parent().remove_child(menu)
 	active_menus.clear()
-	get_tree().paused = false

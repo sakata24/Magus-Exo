@@ -99,6 +99,7 @@ _data = {
 }
 
 [node name="Shop" type="CanvasLayer" groups=["windows"]]
+process_mode = 3
 layer = 0
 script = ExtResource("1_3qepl")
 
