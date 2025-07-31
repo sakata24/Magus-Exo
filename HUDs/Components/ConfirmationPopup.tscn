@@ -58,23 +58,6 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_aj5u4")
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="YesButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_aj5u4")
-text = "Yes"
-
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="NoButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_aj5u4")
-text = "No"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

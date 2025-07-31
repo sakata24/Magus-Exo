@@ -37,7 +37,7 @@ func _unhandled_input(event):
 			active_menus.push_front(menus[MENU.PAUSE])
 			new_menu_added.emit(menus[MENU.PAUSE])
 			# pass along the xp from player to the menu
-			get_tree().paused = true
+			#get_tree().paused = true
 		# if menu is open, close it
 		else:
 			_clear_menus()
@@ -66,8 +66,7 @@ func _add_menu(new_menu):
 	print("menu.")
 
 func _clear_menus():
-	for menu in menus:
-		menu.visible = false
+	for menu in active_menus:
 		menu.get_parent().remove_child(menu)
-	menus.clear()
+	active_menus.clear()
 	get_tree().paused = false

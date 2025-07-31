@@ -39,6 +39,16 @@ func get_all_data() -> Dictionary:
 		"tutorial_complete": tutorial_complete
 	}
 
+func get_xp_for_type(type: String):
+	match type:
+		"sunder": return sunder_xp
+		"entropy": return entropy_xp
+		"construct": return construct_xp
+		"growth": return growth_xp
+		"flow": return flow_xp
+		"wither": return wither_xp
+		_: return null
+
 # this function's purpose is to grab and assign data to this file's instance variables
 func fetch_save_data():
 	# load a save
@@ -100,6 +110,16 @@ func increase_xp(value: int, element: String):
 		"growth": growth_xp += value
 		"flow": flow_xp += value
 		"wither": wither_xp += value
+
+# decrease the xp gained by value given
+func decrease_xp(value: int, element: String):
+	match element:
+		"sunder": sunder_xp -= value
+		"entropy": entropy_xp -= value
+		"construct": construct_xp -= value
+		"growth": growth_xp -= value
+		"flow": flow_xp -= value
+		"wither": wither_xp -= value
 
 # save function
 func save():
