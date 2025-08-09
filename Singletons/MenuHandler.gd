@@ -11,13 +11,13 @@ enum MENU {
 }
 
 var menus = {
-	MENU.PAUSE: preload("res://HUDs/PauseMenu.tscn").instantiate(),
-	MENU.SELECTION: preload("res://HUDs/Selection.tscn").instantiate(),
-	MENU.SETTINGS: preload("res://HUDs/Settings.tscn").instantiate(),
-	MENU.DEATH: preload("res://HUDs/Death.tscn").instantiate(),
-	MENU.SHOP: preload("res://HUDs/Shop.tscn").instantiate(),
-	MENU.CHANGE_SPELLS: preload("res://HUDs/ChangeSpells.tscn").instantiate(),
-	MENU.PLAYER_INFO: preload("res://HUDs/PlayerInfo.tscn").instantiate()
+	MENU.PAUSE: load("res://HUDs/PauseMenu.tscn").instantiate(),
+	MENU.SELECTION: load("res://HUDs/Selection.tscn").instantiate(),
+	MENU.SETTINGS: load("res://HUDs/Settings.tscn").instantiate(),
+	MENU.DEATH: load("res://HUDs/Death.tscn").instantiate(),
+	MENU.SHOP: load("res://HUDs/Shop.tscn").instantiate(),
+	MENU.CHANGE_SPELLS: load("res://HUDs/ChangeSpells.tscn").instantiate(),
+	MENU.PLAYER_INFO: load("res://HUDs/PlayerInfo.tscn").instantiate()
 }
 
 var active_menus = []

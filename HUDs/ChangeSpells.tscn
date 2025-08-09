@@ -108,7 +108,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability1/HBoxContainer"]
 layout_mode = 2
@@ -144,7 +143,6 @@ theme_override_constants/margin_top = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability2/HBoxContainer"]
 layout_mode = 2
@@ -180,7 +178,6 @@ theme_override_constants/margin_top = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability3/HBoxContainer"]
 layout_mode = 2
@@ -216,7 +213,6 @@ theme_override_constants/margin_top = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability4/HBoxContainer"]
 layout_mode = 2
