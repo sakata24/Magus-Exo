@@ -29,7 +29,8 @@ func get_clamped_position(origin: Vector2, original: Vector2, radius: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	set_angle_and_position(get_global_mouse_position(), self.spell_caster.global_position)
+	if spell_caster:
+		set_angle_and_position(get_global_mouse_position(), spell_caster.global_position)
 
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):

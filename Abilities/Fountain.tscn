@@ -27,5 +27,3 @@ autoplay = "default"
 [node name="PrimingTimer" type="Timer" parent="." index="4"]
 wait_time = 0.5
 autostart = true
-
-[connection signal="timeout" from="PrimingTimer" to="." method="_on_priming_timer_timeout"]

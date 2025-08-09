@@ -2,10 +2,11 @@ class_name VineBurstReaction extends Reaction
 
 var burn_status_effect_scene = load("res://Characters/StatusEffects/BurnStatusEffect.tscn")
 var MIN_PARTICLES = 8
-@onready var parent: VineSpell = get_parent()
 var particle_spawn_area
+var parent: VineSpell
 
 func _ready() -> void:
+	self.parent = get_parent()
 	setup_particle_spawn_box()
 	parent.get_node("AnimatedSprite2D").modulate = Color(0.769, 0.345, 0.153)
 	# spawn reaction name

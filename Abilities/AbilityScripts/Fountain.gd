@@ -5,6 +5,9 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	super.init(skill_dict, cast_target, caster)
 	set_collision_mask_value(2, false)
 
+func _ready() -> void:
+	$PrimingTimer.connect("timeout", _on_priming_timer_timeout)
+
 # after primer timer, fountain pops
 func _on_priming_timer_timeout() -> void:
 	set_collision_mask_value(2, true)

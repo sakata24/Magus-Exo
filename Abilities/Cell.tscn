@@ -17,5 +17,3 @@ autoplay = "default"
 [node name="GrowthTimer" type="Timer" parent="." index="4"]
 wait_time = 0.1
 autostart = true
-
-[connection signal="timeout" from="GrowthTimer" to="." method="_on_growth_timer_timeout"]

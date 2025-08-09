@@ -7,6 +7,9 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	myModifiers.append(CollisionDespawnModifier.new())
 	super.init(skill_dict, cast_target, caster)
 
+func _ready() -> void:
+	$GrowthTimer.connect("timeout", _on_growth_timer_timeout)
+
 # Increases the scale of this ability
 func increase_scale(growth_float: float):
 	scale += Vector2(growth_float, growth_float)
