@@ -6,14 +6,17 @@ var particle_spawn_area
 var parent: VineSpell
 
 func _ready() -> void:
+	if get_parent() is not VineSpell:
+		printerr("Parent of " + str(self) + " is not a 'Vine' spell.")
+		queue_free()
 	self.parent = get_parent()
-	setup_particle_spawn_box()
+	setup_particle_spawn_box(parent.get_node("CollisionPolygon2D").get_polygon())
 	parent.get_node("AnimatedSprite2D").modulate = Color(0.769, 0.345, 0.153)
 	# spawn reaction name
 	spawn_reaction_name("vine-burst!", parent, AbilityColor.GROWTH, AbilityColor.SUNDER)
 
-func setup_particle_spawn_box():
-	var vine_shape = parent.get_node("CollisionPolygon2D").get_polygon()
+func setup_particle_spawn_box(polygon):
+	var vine_shape = polygon
 	var x_size
 	var x_min = 9999
 	var x_max = 0

@@ -8,6 +8,7 @@ signal health_changed
 signal boss_dead
 
 var signals : Array[String] = ["health_changed", "boss_dead"]
+var focus_target: Node2D = null
 
 func _ready():
 	cc_immune = true
@@ -17,8 +18,8 @@ func _ready():
 	emit_signal("health_changed", maxHealth, true)
 
 func _set_player():
-	if get_tree().get_nodes_in_group("players").size() > 0:
-		player = get_tree().get_nodes_in_group("players")[0]
+	# for now, randomly choose player, except theres only one so.
+	player = get_tree().get_nodes_in_group("players")[randi_range(0, get_tree().get_nodes_in_group("players").size() - 1)]
 
 func hit(dmg: DamageObject):
 	super(dmg)
@@ -40,3 +41,6 @@ func die():
 	for enemy in get_tree().get_nodes_in_group("monsters"):
 		enemy.queue_free()
 	queue_free()
+
+func set_focus_target(target: Node2D):
+	focus_target = target

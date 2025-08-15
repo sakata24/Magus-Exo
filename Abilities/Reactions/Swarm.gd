@@ -11,6 +11,7 @@ var swarm_radius = 32
 var target: Enemy
 var speed = 50
 var parents
+var particles: Array[Dictionary] = []
 
 func _ready():
 	# start tracking target
@@ -41,6 +42,7 @@ func spawn_n_swarm_particles(n: int):
 	for num in n:
 		# instantiate the particle and add it to my children
 		var new_particle = swarm_particle_scene.instantiate()
+		particles.append(new_particle)
 		add_child(new_particle)
 
 # assigns the target variable if needed
