@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bajdt7lxv6eil"]
 
-[ext_resource type="Script" uid="uid://ff5ht1jylom5" path="res://HUDs/SkillCard.gd" id="1_826kd"]
+[ext_resource type="Script" uid="uid://ff5ht1jylom5" path="res://HUDs/Components/SkillCard.gd" id="1_826kd"]
 [ext_resource type="Texture2D" uid="uid://lh1ydjrxwlrk" path="res://Resources/icons/bolt.png" id="1_ha2yh"]
 [ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="2_kiolq"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="3_kiolq"]

@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_lgskx"]
 
 [node name="Selection" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_cue40")
 
 [node name="CanvasModulate" type="ColorRect" parent="."]

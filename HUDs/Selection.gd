@@ -1,16 +1,17 @@
 extends CanvasLayer
 
 var slots = []
-
+var player_to_buff: Player
 const ART_PATH = "res://Resources/hud_elements/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	setup()
+
+func set_player_to_buff(player: Player):
+	player_to_buff = player
 
 func setup():
-	get_tree().paused = true
-	get_parent()._add_menu(self)
 	# loop thru card slots
 	for i in range(1, 4):
 		var text = ""
@@ -83,19 +84,18 @@ func _unhandled_input(event):
 		get_parent().get_node("Player").call_deferred("heal", 2)
 
 func _on_slot_1_button_pressed():
-	get_parent().get_node("Player").upgrade(slots[0])
+	player_to_buff.upgrade(slots[0])
 	cleanup()
 
 func _on_slot_2_button_pressed():
-	get_parent().get_node("Player").upgrade(slots[1])
+	player_to_buff.upgrade(slots[1])
 	cleanup()
 
 func _on_slot_3_button_pressed():
-	get_parent().get_node("Player").upgrade(slots[2])
+	player_to_buff.upgrade(slots[2])
 	cleanup()
 
 func cleanup():
 	slots = []
-	self.visible = false
-	get_tree().paused = false
-	get_parent().menus.pop_front()
+	player_to_buff = null
+	MenuHandler._clear_menus()

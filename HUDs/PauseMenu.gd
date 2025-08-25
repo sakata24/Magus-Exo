@@ -1,11 +1,14 @@
-extends CanvasLayer
+class_name PauseMenu extends CanvasLayer
 
-var SettingMenu = preload("res://HUDs/Settings.tscn")
+#var SettingMenu = preload("res://HUDs/Settings.tscn")
 
 signal skill_changed(idx, newSkill)
-signal run_ended
+signal new_menu(menu)
+signal kill_player
+signal menu_changed(menu)
 
 func _ready():
+	connect("menu_changed", MenuHandler._add_menu)
 	if Settings.dev_mode:
 		var skillDict = PersistentData.get_equipped_skills()
 		# Load skills in drop down menu
@@ -39,10 +42,10 @@ func _on_end_run_button_pressed() -> void:
 	$EndRunConfirm.popup()
 
 func _on_end_run_confirm_confirmed() -> void:
-	emit_signal("run_ended")
+	emit_signal("kill_player")
 
 func _on_settings_button_pressed() -> void:
-	get_parent()._add_menu(SettingMenu.instantiate())
+	menu_changed.emit(MenuHandler.menus[MenuHandler.MENU.SETTINGS])
 
 func _on_save_button_pressed():
 	SaveLoader.save_game()

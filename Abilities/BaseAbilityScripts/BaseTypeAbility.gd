@@ -50,11 +50,12 @@ func _physics_process(delta):
 
 # handles movement of bullet. Standard is a constant speed in a straight line.
 func handle_movement(delta):
-	myMovement.apply_movement(self, delta)
+	if myMovement:
+		myMovement.apply_movement(self, delta)
 
 # on collision
 func _on_body_entered(body: Node2D):
-	if body.name != "Player":
+	if !body.is_in_group("players"):
 		if body.is_in_group("monsters"):
 			handle_enemy_interaction(body)
 		else:

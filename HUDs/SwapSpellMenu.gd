@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var SkillCard = preload("res://HUDs/SkillCard.tscn")
+@onready var SkillCard = preload("res://HUDs/Components/SkillCard.tscn")
 @onready var SkillContainer = $ContentContainer/VBoxContainer/ScrollContainer/SkillContainer
 @onready var HeaderSkillCards = [$ContentContainer/VBoxContainer/HBoxContainer/HeaderSkillCard,
 $ContentContainer/VBoxContainer/HBoxContainer/HeaderSkillCard2,

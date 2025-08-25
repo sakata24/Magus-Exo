@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dir7iaigxtvar" path="res://Maps/Tutorial.gd" id="1_vqqba"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_8a582"]
 [ext_resource type="Texture2D" uid="uid://cnn41x468jkea" path="res://icon-144.png" id="2_w5kg4"]
-[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="3_p0mxm"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/Components/StylizedContainer.tscn" id="3_p0mxm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vqqba"]
 vertices = PackedVector2Array(758, -870, 758, -570, 550, -570, 234, -870, 550, 102, 26, 102, 26, 26, 442, 26, 442, -570, 234, -570)

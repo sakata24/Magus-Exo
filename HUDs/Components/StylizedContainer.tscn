@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwpheh7agwnlk"]
 
-[ext_resource type="Script" uid="uid://b8y6jm3oxm4is" path="res://HUDs/StylizedContainer.gd" id="1_iaoqe"]
+[ext_resource type="Script" uid="uid://b8y6jm3oxm4is" path="res://HUDs/Components/StylizedContainer.gd" id="1_iaoqe"]
 [ext_resource type="Texture2D" uid="uid://em1agvjl7ifw" path="res://pixil-frame-0.png" id="1_lp0nr"]
 
 [node name="StylizedContainer" type="MarginContainer"]

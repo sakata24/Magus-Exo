@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d0rpx0dk26upk" path="res://HUDs/SettingsUI.gd" id="1_foi73"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_e018v"]
-[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/BaseMenuUI.tscn" id="2_foi73"]
+[ext_resource type="PackedScene" uid="uid://3g685ilkl0qx" path="res://HUDs/Components/BaseMenuUI.tscn" id="2_foi73"]
 
 [node name="Settings" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_foi73")
 
 [node name="Menu" parent="." instance=ExtResource("2_foi73")]

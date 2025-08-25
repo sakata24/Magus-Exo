@@ -11,11 +11,11 @@ var swarm_radius = 32
 var target: Enemy
 var speed = 50
 var parents
+var particles: Array[Dictionary] = []
 
 func _ready():
 	# start tracking target
 	find_target()
-	spawn_reaction_name("swarm!", parents["reactant"], Color("#82b1ff"), Color("#591b82"))
 
 # assign instance variables
 func init(reaction_components: Dictionary):
@@ -26,6 +26,7 @@ func init(reaction_components: Dictionary):
 	# spawn the correct amt of particles
 	spawn_n_swarm_particles(10 + parents["source"].dmg/2)
 	super(reaction_components)
+	spawn_reaction_name("swarm!", parents["reactant"], Color("#82b1ff"), Color("#591b82"))
 
 func _physics_process(delta: float) -> void:
 	# start tracking another target if need to
@@ -41,6 +42,7 @@ func spawn_n_swarm_particles(n: int):
 	for num in n:
 		# instantiate the particle and add it to my children
 		var new_particle = swarm_particle_scene.instantiate()
+		particles.append(new_particle)
 		add_child(new_particle)
 
 # assigns the target variable if needed

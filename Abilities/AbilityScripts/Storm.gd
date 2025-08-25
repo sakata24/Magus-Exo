@@ -7,6 +7,9 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: Node2D):
 	super.init(skill_dict, cast_target, caster)
 	INIT_DMG = dmg
 
+func _ready() -> void:
+	$TimeoutTimer.connect("timeout", _on_timeout_timer_timeout)
+
 # Handles the reaction effects.
 func handle_reaction(reactant: Node2D):
 	super(reactant)

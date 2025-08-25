@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ciors68i7i3jv"]
 
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="1_41enn"]
-[ext_resource type="Script" uid="uid://d06fhscpeqxal" path="res://HUDs/change_spells.gd" id="1_ux4n7"]
+[ext_resource type="Script" uid="uid://d06fhscpeqxal" path="res://HUDs/ChangeSpells.gd" id="1_ux4n7"]
 [ext_resource type="PackedScene" uid="uid://jb02v63no31m" path="res://Resources/hud_elements/SkillIcon.tscn" id="2_03qwh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_02eau"]
@@ -17,6 +17,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ChangeSpells" type="CanvasLayer"]
+process_mode = 3
 layer = 2
 script = ExtResource("1_ux4n7")
 
@@ -107,7 +108,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability1/HBoxContainer"]
 layout_mode = 2
@@ -143,7 +143,6 @@ theme_override_constants/margin_top = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability2/HBoxContainer"]
 layout_mode = 2
@@ -179,7 +178,6 @@ theme_override_constants/margin_top = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability3/HBoxContainer"]
 layout_mode = 2
@@ -215,7 +213,6 @@ theme_override_constants/margin_top = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="SkillName" type="Label" parent="Control/VBoxContainer/HBoxContainer/EquippedAbilities/Ability4/HBoxContainer"]
 layout_mode = 2

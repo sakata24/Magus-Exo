@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var ConfirmPopup = preload("res://HUDs/ConfirmationPopup.tscn")
+@onready var ConfirmPopup = preload("res://HUDs/Components/ConfirmationPopup.tscn")
 # Enum of each setting from how it shows top to bottom
 enum SETTING_LIST {RESOLUTION, MASTER_VOL, TOOLTIPS_ENABLED}
 
@@ -49,8 +49,7 @@ func _setting_changes_accepted():
 	Settings.save()
 	
 	# Close settings menu
-	get_parent().menus.pop_front()
-	queue_free()
+	MenuHandler._close_top_menu()
 
 # Update the volume amount label
 func _on_h_slider_value_changed(value: float) -> void:
@@ -71,5 +70,4 @@ func _on_h_slider_drag_ended(value_changed: bool) -> void:
 
 
 func _on_cancel_button_pressed() -> void:
-	get_parent().menus.pop_front()
-	queue_free()
+	MenuHandler._close_top_menu()

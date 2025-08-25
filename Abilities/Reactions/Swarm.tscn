@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://blrqm5xuxk1fj"]
+[gd_scene load_steps=3 format=3 uid="uid://blrqm5xuxk1fj"]
 
 [ext_resource type="Script" uid="uid://cku8lyeheo4iq" path="res://Abilities/Reactions/Swarm.gd" id="1_3f17e"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3f17e"]
 
 [node name="Swarm" type="Node2D"]
 process_mode = 1
@@ -10,5 +12,8 @@ script = ExtResource("1_3f17e")
 wait_time = 6.0
 one_shot = true
 autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3f17e")
 
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

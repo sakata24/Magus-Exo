@@ -18,6 +18,7 @@ signal cooling_down(skill_cds, skill_cds_max)
 signal cooling_dash(dash_cd, dash_cd_max)
 signal health_changed(newHP, maxHP)
 signal player_died
+signal request_player_info_ui(info)
 
 # instance variables for player HP
 var health: int = 15
@@ -57,7 +58,10 @@ var casting: bool = false
 
 # on ready
 func _ready():
+	# assign my name
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	# connect my signals
+	self.connect("request_player_info_ui", MenuHandler.show_player_info)
 	# Update the equipped skills
 	equippedSkills = PersistentData.get_equipped_skills()
 	# Make the player look right
@@ -86,6 +90,10 @@ func get_equipped_skills():
 func set_equipped_skills(new_skills: Array):
 	equippedSkills = new_skills
 	init_skill_cooldowns()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed('I'):
+		request_player_info_ui.emit(current_run_data)
 
 func _physics_process(delta):
 	$ProjectilePivot.look_at(cast_target)

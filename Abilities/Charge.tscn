@@ -52,5 +52,3 @@ amount = 16
 texture = SubResource("GradientTexture2D_b7lqw")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_lbg6i")
-
-[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]

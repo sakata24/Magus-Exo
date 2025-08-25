@@ -1,22 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6kgq314efu3b"]
 
 [ext_resource type="PackedScene" uid="uid://jb02v63no31m" path="res://Resources/hud_elements/SkillIcon.tscn" id="1_8m8eu"]
-[ext_resource type="Script" uid="uid://ebgefu8gcx4b" path="res://Resources/hud_elements/SkillContainer.gd" id="1_tienq"]
+[ext_resource type="Script" path="res://Resources/hud_elements/SkillContainer.gd" id="1_tienq"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_2d173"]
 
 [node name="SkillContainer" type="MarginContainer"]
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_tienq")
 
 [node name="Body" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_vertical = 4
-mouse_filter = 1
+mouse_filter = 2
 color = Color(0, 0, 0, 0.392157)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Border" type="ColorRect" parent="HBoxContainer"]
@@ -24,6 +26,7 @@ custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 color = Color(0.682353, 0.458824, 0, 1)
 
 [node name="SkillIcon" parent="HBoxContainer/Border" instance=ExtResource("1_8m8eu")]
@@ -34,6 +37,7 @@ offset_right = 15.0
 offset_bottom = 15.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+mouse_filter = 2
 
 [node name="SkillName" type="Label" parent="HBoxContainer"]
 layout_mode = 2
@@ -46,6 +50,7 @@ text = "Q:"
 
 [node name="SkillMargin" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_right = 20
 
 [connection signal="mouse_entered" from="HBoxContainer/Border/SkillIcon" to="." method="_show_ability_names"]

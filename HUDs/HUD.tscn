@@ -110,6 +110,7 @@ offset_top = -90.5
 offset_right = 86.0
 offset_bottom = 90.5
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_2uc2n")
 theme_override_constants/separation = 15
 alignment = 1

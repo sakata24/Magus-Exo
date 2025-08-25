@@ -22,10 +22,10 @@ autostart = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 35
+texture = ExtResource("2_6bpwe")
 lifetime = 3.0
 preprocess = 1.0
 local_coords = true
-texture = ExtResource("2_6bpwe")
 emission_shape = 2
 emission_sphere_radius = 64.0
 gravity = Vector2(0, 0)

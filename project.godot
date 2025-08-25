@@ -18,13 +18,14 @@ config/icon="uid://dsg7wh7xgxc1s"
 
 [autoload]
 
-SkillDataHandler="*res://SkillDataHandler.gd"
-PlayerSkills="*res://PlayerSkills.gd"
-SkillSceneHandler="*res://SkillSceneHandler.gd"
-SaveLoader="*res://SaveLoader.gd"
-Settings="*res://Settings.gd"
-PersistentData="*res://PersistentData.gd"
-Lobby="*res://HUDs/Lobby.gd"
+SkillDataHandler="*res://Singletons/SkillDataHandler.gd"
+PlayerSkills="*res://Singletons/PlayerSkills.gd"
+SkillSceneHandler="*res://Singletons/SkillSceneHandler.gd"
+SaveLoader="*res://Singletons/SaveLoader.gd"
+Settings="*res://Singletons/Settings.gd"
+PersistentData="*res://Singletons/PersistentData.gd"
+Lobby="*res://Singletons/Lobby.gd"
+MenuHandler="*res://Singletons/MenuHandler.gd"
 
 [debug]
 

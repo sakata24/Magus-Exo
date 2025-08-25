@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gy7gmodgfb14" path="res://HUDs/Home.gd" id="1"]
 [ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="2_axxtm"]
-[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/StylizedContainer.tscn" id="2_yh670"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/Components/StylizedContainer.tscn" id="2_yh670"]
 [ext_resource type="Texture2D" uid="uid://b0avnv0ggnic8" path="res://Resources/title_logo_256x128.png" id="4_efsqm"]
 
 [node name="Home" type="CanvasLayer"]
