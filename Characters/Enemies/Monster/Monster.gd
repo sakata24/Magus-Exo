@@ -61,7 +61,12 @@ func hit(damage: DamageObject):
 	if not aggro and damage.has_source() and damage.get_source() is Player and self.has_node("PathTimer"):
 		aggro = true
 		player = damage.get_source()
+		$StateMachine/Chase.chase_target = damage.get_source()
+		$StateMachine/Attacking.chase_target = damage.get_source()
 		$PathTimer.start()
+	
+	if self.has_node("AnimationPlayer"):
+		$AnimationPlayer.play("hit")
 
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):

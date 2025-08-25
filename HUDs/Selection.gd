@@ -8,6 +8,9 @@ const ART_PATH = "res://Resources/hud_elements/"
 func _ready():
 	setup()
 
+func _enter_tree() -> void:
+	setup()
+
 func set_player_to_buff(player: Player):
 	player_to_buff = player
 

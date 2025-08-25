@@ -29,7 +29,7 @@ func attach_stun_timer(wait_time: float, enemy: Node2D):
 	timer.connect("timeout", Callable(func():
 		if enemy is Monster:
 			enemy.can_move = true
-		enemy.velocity = Vector2.ZERO
+			enemy.velocity = Vector2.ZERO
 		timer.queue_free()))
 	enemy.add_sibling(timer)
 	timer.start()
