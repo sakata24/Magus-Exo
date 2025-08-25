@@ -80,6 +80,21 @@ turbulence_noise_strength = 20.0
 radius = 7.0
 height = 28.0
 
+[sub_resource type="Animation" id="Animation_rj3aj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.3, 1.0, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_q8gf7"]
 resource_name = "hit"
 length = 0.2
@@ -94,21 +109,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.3, 0.3, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_rj3aj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_percent")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.3, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oiitb"]

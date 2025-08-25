@@ -7,6 +7,7 @@ var player_info_scene = preload("res://HUDs/PlayerInfo.tscn")
 var player_scene = preload("res://Characters/Player.tscn")
 var level_handler_script = preload("res://LevelHandler.gd")
 var level_handler: Node2D
+var sfx_player: SFXAudioStreamPlayer
 var my_player
 
 # room hex: 25131a
@@ -32,6 +33,7 @@ func _ready():
 	level_handler = Node2D.new()
 	level_handler.set_script(level_handler_script)
 	level_handler.connect("change_song", $AudioStreamPlayer.swap_bgm)
+	self.sfx_player = $SFXAudioStreamPlayer
 	add_child(level_handler)
 
 # called only on server. all players are ready to recieve packets

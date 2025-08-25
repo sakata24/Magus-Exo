@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dda6n6o12t38y"]
+[gd_scene load_steps=17 format=3 uid="uid://dda6n6o12t38y"]
 
 [ext_resource type="Script" uid="uid://bsujmysejgy4k" path="res://Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://76xj3tuaqt16" path="res://HUDs/HUD.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://cu3clq06ceo3a" path="res://Resources/hud_elements/click_sprites.png" id="6_f2si5"]
+[ext_resource type="AudioStream" uid="uid://da2r0v08mxsle" path="res://Resources/audio/sfx/hitmark.ogg" id="6_trn2v"]
+[ext_resource type="Script" uid="uid://cnsc32echap6r" path="res://SFXAudioStreamPlayer.gd" id="7_03owx"]
 [ext_resource type="AudioStream" uid="uid://bb15t6j533uux" path="res://Resources/audio/music/Dungeon_Delving.mp3" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://bwry02qor847m" path="res://BGMPlayer.gd" id="10_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://ehygk7kad8e8" path="res://BGHandler.tscn" id="11_20pc6"]
@@ -84,6 +86,11 @@ frame_progress = 1.0
 stream = ExtResource("10_20pc6")
 volume_db = -5.0
 script = ExtResource("10_wkp8b")
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_trn2v")
+max_polyphony = 64
+script = ExtResource("7_03owx")
 
 [node name="BGHandler" parent="." instance=ExtResource("11_20pc6")]
 

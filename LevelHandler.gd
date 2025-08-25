@@ -196,6 +196,7 @@ func init_room_connections(newRoom: Node2D):
 			node.connect("load_level", _load_level)
 		if node is Monster:
 			node.connect("give_xp", player.gain_xp)
+			node.connect("got_hit", main.sfx_player.play_hitmark)
 			update_monster_scaling(node)
 
 func update_monster_scaling(monster: Monster):
