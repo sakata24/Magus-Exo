@@ -55,7 +55,7 @@ func _ready() -> void:
 	call_deferred("on_tutorial_start")
 
 func on_tutorial_start():
-	self.connect("dialogue_menu_triggered", main._add_menu)
+	#self.connect("dialogue_menu_triggered", MenuHandler._add_menu)
 	await main.get_node("BGHandler").transition(1.5)
 	var move_controls = Settings.get_controls_from_event("R-Click")
 	display_tutorial_text("... I think I should move that way...", "use " + move_controls + " to move to target area.", 2.0)
@@ -129,7 +129,7 @@ func eliminate_player_stage():
 
 func _on_murder_timer_timeout() -> void:
 	# taking a page out of mr dark mage's book
-	var player_pos = main.get_node("Player").global_position
+	var player_pos = get_tree().get_nodes_in_group("players")[0].global_position
 		#Spawn Minions around the player
 	for i in (5):
 		var rad = deg_to_rad(360/(5) * i - 45)

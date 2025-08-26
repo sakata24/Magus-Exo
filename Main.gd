@@ -58,8 +58,8 @@ func game_over():
 	MenuHandler._clear_menus()
 	# make dead
 	dead = true
-	$Death.setup()
-	$Death.visible = true
+	MenuHandler.player_dead = true
+	MenuHandler._add_menu(MenuHandler.menus[MenuHandler.MENU.DEATH])
 	# reset difficulty
 	level = 0
 

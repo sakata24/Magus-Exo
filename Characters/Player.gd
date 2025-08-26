@@ -218,6 +218,7 @@ func heal(amount: int):
 	heal_num.set_value_and_pos(amount, self.global_position)
 
 func upgrade(upgrade_name):
+	print(upgrade_name)
 	match upgrade_name:
 		"sunder_dmg": current_run_data.sunder_dmg_boost += 0.1
 		"sunder_multicast": current_run_data.sunder_extra_casts += 1

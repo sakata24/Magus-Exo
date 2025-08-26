@@ -11,13 +11,13 @@ enum MENU {
 }
 
 var menus = {
-	MENU.PAUSE: load("res://HUDs/PauseMenu.tscn").instantiate(),
-	MENU.SELECTION: load("res://HUDs/Selection.tscn").instantiate(),
-	MENU.SETTINGS: load("res://HUDs/Settings.tscn").instantiate(),
-	MENU.DEATH: load("res://HUDs/Death.tscn").instantiate(),
-	MENU.SHOP: load("res://HUDs/Shop.tscn").instantiate(),
-	MENU.CHANGE_SPELLS: load("res://HUDs/ChangeSpells.tscn").instantiate(),
-	MENU.PLAYER_INFO: load("res://HUDs/PlayerInfo.tscn").instantiate()
+	MENU.PAUSE: load("res://HUDs/PauseMenu.tscn"),
+	MENU.SELECTION: load("res://HUDs/Selection.tscn"),
+	MENU.SETTINGS: load("res://HUDs/Settings.tscn"),
+	MENU.DEATH: load("res://HUDs/Death.tscn"),
+	MENU.SHOP: load("res://HUDs/Shop.tscn"),
+	MENU.CHANGE_SPELLS: load("res://HUDs/ChangeSpells.tscn"),
+	MENU.PLAYER_INFO: load("res://HUDs/PlayerInfo.tscn")
 }
 
 var active_menus = []
@@ -29,6 +29,9 @@ signal new_menu_added(new_menu)
 
 func _ready() -> void:
 	menus[MENU.PAUSE].connect("kill_player", _clear_menus)
+	# to prevent null calls, and prevent cyclical references on preload
+	for key in menus:
+		menus[key] = menus[key].instantiate()
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_cancel') and !player_dead:

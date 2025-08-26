@@ -2,6 +2,7 @@ class_name PlayerInfo extends CanvasLayer
 
 @onready var buff_container = $ContentContainer/HBoxContainer2/VBoxContainer/HFlowContainer
 @onready var xp_container = $ContentContainer/HBoxContainer2/HBoxContainer
+var containers: Array[Container]
 var icon_path = "res://Resources/icons/ui/"
 var readable_string_dict = {
 	"sunder_dmg": {
@@ -56,8 +57,11 @@ var readable_string_dict = {
 
 func _ready() -> void:
 	update_exp_count(PersistentData.sunder_xp, PersistentData.entropy_xp, PersistentData.construct_xp, PersistentData.growth_xp, PersistentData.flow_xp, PersistentData.wither_xp)
+	update_buffs()
 
 func update_run_data(run_data: PlayerRunData):
+	# clear the holder array for the buff containers
+	containers = []
 	# loop through all of the buffs obtained
 	for key in run_data.obtained_buffs.keys():
 		var img = TextureRect.new()
@@ -84,6 +88,17 @@ func update_run_data(run_data: PlayerRunData):
 		container.add_child(buff_label)
 		container.add_child(amt_label)
 		# add to flow container
+		containers.append(container)
+	# update only when node has already been added to scene tree once.
+	if is_node_ready():
+		update_buffs()
+
+func update_buffs():
+	# first cleanup
+	for child in buff_container.get_children():
+		child.queue_free()
+	# then add back in
+	for container in containers:
 		buff_container.add_child(container)
 
 func update_exp_count(sunder, entropy, construct, growth, flow, wither):

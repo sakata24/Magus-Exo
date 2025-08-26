@@ -4,10 +4,6 @@ var slots = []
 var player_to_buff: Player
 const ART_PATH = "res://Resources/hud_elements/"
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	setup()
-
 func _enter_tree() -> void:
 	setup()
 
@@ -79,7 +75,8 @@ func setup():
 		get_node(str("HBoxContainer/Slot", i, "/VBoxContainer/TextureRect")).texture = load(ART_PATH+element+"-card-sprite"+".png")
 		if !get_node(str("HBoxContainer/Slot", i, "/VBoxContainer/TextureRect")).texture:
 			get_node(str("HBoxContainer/Slot", i, "/VBoxContainer/TextureRect")).texture = load("res://Resources/icon.png")
-		slots.push_back(buff_name)
+		print(buff_name)
+		slots.append(buff_name)
 		self.visible = true
 
 func _unhandled_input(event):
