@@ -5,6 +5,9 @@
 - [Gameplay][UI] armorer
 - [Gameplay]: Balance the game
 - [Gameplay]: Investigate multiplayer.
+- [Gameplay]: Add step in tutorial to combo spells together
+- [Gameplay]: Add combo spell npc
+- [Gameplay]: Hidden areas...
 
 Testing Bugs:
 	- BUG [Tutorial]: input not recieved first time for player info step (TESTING)

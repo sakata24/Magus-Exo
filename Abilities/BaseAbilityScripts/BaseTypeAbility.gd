@@ -33,6 +33,7 @@ func init(skill_dict: Dictionary, cast_target: Vector2, caster: CharacterBody2D)
 	spell_caster = caster
 	myMovement = Movement.get_movement_object_by_name(skill_dict["movement"])
 	mySpawnBehavior = SpawnBehavior.get_spawn_behavior_object_by_name(skill_dict["spawn"])
+	self.add_to_group("spells")
 	setup_spell(cast_target, caster)
 	for modifier: Modifier in myModifiers:
 		modifier.apply(self)
