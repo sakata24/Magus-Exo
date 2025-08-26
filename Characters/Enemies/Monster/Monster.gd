@@ -71,7 +71,7 @@ func hit(damage: DamageObject):
 # when player makes me mad
 func _on_AggroRange_body_entered(body: CharacterBody2D):
 	if body:
-		if body.name == "Player":
+		if body.is_in_group("players"):
 			aggro = true
 			player = body
 			$StateMachine/Chase.chase_target = body

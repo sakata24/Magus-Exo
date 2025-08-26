@@ -96,6 +96,7 @@ func start_enemy_stage():
 	enemy.my_dmg = 1
 	enemy.drop_chance = 1.1
 	enemy.global_position = $MonsterSpawnLoc.global_position
+	enemy.connect("got_hit", main.sfx_player.play_hitmark)
 	display_tutorial_text("what is that...?", "Slay the enemy!", 2.0)
 
 func on_enemy_killed(none, none_):
@@ -144,7 +145,9 @@ func _on_murder_timer_timeout() -> void:
 		inst.my_dmg = 500
 		inst.speed += 75
 		inst.scale *= 1.5
+		inst.connect("got_hit", main.sfx_player.play_hitmark)
 		inst.set_collision_mask_value(6, false)
+		
 	
 func display_tutorial_text(dialogue_to_display: String, directions_to_display: String, time_to_display: float):
 	dialogue_label.text = ""
