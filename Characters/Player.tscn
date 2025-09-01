@@ -157,7 +157,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bixge"]
-radius = 8.0
+radius = 5.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lli6r"]
 properties/0/path = NodePath(".:position")
@@ -189,6 +189,7 @@ color = Color(0, 0, 0, 0.298039)
 polygon = PackedVector2Array(-2, 6, -8, 7, -9, 8, -7, 9, 6, 9, 7, 8, 6, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_bixge")
 
 [node name="DashTimer" type="Timer" parent="."]
