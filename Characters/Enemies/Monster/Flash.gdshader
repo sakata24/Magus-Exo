@@ -9,7 +9,6 @@ void vertex() {
 
 void fragment() {
 	vec4 original_color = texture(TEXTURE, UV);
-	
 	vec4 mixed_color = mix(original_color, flash_color, flash_percent);
 	
 	COLOR = mixed_color;

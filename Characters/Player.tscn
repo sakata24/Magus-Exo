@@ -180,7 +180,7 @@ script = ExtResource("2_nwlvs")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bv2qp")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Shadow" type="Polygon2D" parent="."]

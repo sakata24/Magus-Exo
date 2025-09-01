@@ -1,34 +1,55 @@
-[gd_scene load_steps=12 format=3 uid="uid://ceqvkhki38wwr"]
+[gd_scene load_steps=14 format=3 uid="uid://ceqvkhki38wwr"]
 
 [ext_resource type="Script" uid="uid://b4m2erald7q03" path="res://Characters/NPCs/Librarian.gd" id="1_dpsci"]
-[ext_resource type="Texture2D" uid="uid://dan0j4bwdb37c" path="res://Resources/warlock.png" id="2_6dfoj"]
+[ext_resource type="Texture2D" uid="uid://dyudt8vpddn23" path="res://Resources/librarian.png" id="2_ux4g1"]
 [ext_resource type="FontFile" uid="uid://wige0wqmw7c7" path="res://Resources/fonts/Early GameBoy.ttf" id="3_s2qmh"]
 [ext_resource type="PackedScene" uid="uid://b87627nrcya2c" path="res://HUDs/Shop.tscn" id="4_pg1vt"]
 [ext_resource type="PackedScene" uid="uid://utfq0vmk2p7t" path="res://HUDs/Tooltip.tscn" id="5_lockf"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="5_ux4g1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxb7v"]
 radius = 25.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0hd0"]
-atlas = ExtResource("2_6dfoj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jl7x"]
+atlas = ExtResource("2_ux4g1")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tli2y"]
-atlas = ExtResource("2_6dfoj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojcit"]
+atlas = ExtResource("2_ux4g1")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4qshb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a2yx"]
+atlas = ExtResource("2_ux4g1")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6gsy"]
+atlas = ExtResource("2_ux4g1")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcnpy"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w0hd0")
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_0jl7x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tli2y")
+"texture": SubResource("AtlasTexture_ojcit")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7a2yx")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_t6gsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a2yx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojcit")
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 3.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ohol"]
@@ -38,10 +59,6 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.784314)
-
-[sub_resource type="Theme" id="Theme_lpuhh"]
-default_font = ExtResource("3_s2qmh")
-default_font_size = 8
 
 [node name="Librarian" type="Node2D"]
 script = ExtResource("1_dpsci")
@@ -57,9 +74,9 @@ color = Color(0, 0, 0, 0.294118)
 polygon = PackedVector2Array(1, 6, -8, 7, -9, 8, -8, 9, 6, 9, 7, 8, 6, 7)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4qshb")
+sprite_frames = SubResource("SpriteFrames_jcnpy")
 autoplay = "default"
-flip_h = true
+frame_progress = 0.350804
 
 [node name="Name" type="Label" parent="."]
 z_index = 100
@@ -101,7 +118,7 @@ offset_right = 20.0
 offset_bottom = 28.0
 size_flags_horizontal = 3
 tooltip_text = "purchase new spells"
-theme = SubResource("Theme_lpuhh")
+theme = ExtResource("5_ux4g1")
 text = "shop"
 
 [node name="Shop" parent="." instance=ExtResource("4_pg1vt")]

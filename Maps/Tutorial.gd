@@ -2,12 +2,9 @@ class_name Tutorial extends Node2D
 
 var enemy_scene = preload("res://Characters/Enemies/Monster/Monster.tscn")
 
-@onready var dialogue_label = $TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer/DisplayText
-@onready var directions_label = $TutorialHUD/MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer/DirectionsText
-@onready var tutorial_hud = $TutorialHUD
+@onready var tutorial_hud := $TutorialHUD
 @onready var level_handler = get_parent()
 @onready var main: Main = get_parent().get_parent()
-var tween: Tween
 
 signal dialogue_menu_triggered(menu)
 enum {MOVE_STAGE, DONE_MOVE, DASH_STAGE, DONE_DASH, SPELL_STAGE, DONE_SPELL, ENEMY_STAGE, CHEST_STAGE, DONE_CHEST, PLAYER_INFO_STAGE, MURDER_PLAYER}
@@ -23,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed('Space') and cur_stage == DASH_STAGE:
 		cur_stage = DONE_DASH
 		print("Done Dash Stage")
-		hide_dialogue_hud()
+		tutorial_hud.hide_dialogue_hud()
 	if cur_stage == SPELL_STAGE:
 		if Input.is_action_just_pressed("Q"):
 			spell_slots_used["Q"] = true
@@ -38,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		all_keys_used = all_keys_used and spell_slots_used[key_used]
 	if all_keys_used and cur_stage == SPELL_STAGE:
 		cur_stage = DONE_SPELL
-		hide_dialogue_hud()
+		tutorial_hud.hide_dialogue_hud()
 		start_enemy_stage()
 		print("Done Spell Stage")
 	if cur_stage == DONE_CHEST:
@@ -58,19 +55,19 @@ func on_tutorial_start():
 	#self.connect("dialogue_menu_triggered", MenuHandler._add_menu)
 	await main.get_node("BGHandler").transition(1.5)
 	var move_controls = Settings.get_controls_from_event("R-Click")
-	display_tutorial_text("... I think I should move that way...", "use " + move_controls + " to move to target area.", 2.0)
+	tutorial_hud.display_text("... I think I should move that way...", "use " + move_controls + " to move to target area.", 2.0, false, false)
 
 func _on_move_tutorial_complete_trigger_body_entered(body: Node2D) -> void:
 	if cur_stage == MOVE_STAGE:
 		cur_stage = DONE_MOVE
 		print("Done Move Stage")
-		hide_dialogue_hud()
+		tutorial_hud.hide_dialogue_hud()
 
 func _on_dash_tutorial_start_trigger_body_entered(body: Node2D) -> void:
 	if cur_stage == DONE_MOVE:
 		cur_stage = DASH_STAGE
 		var dash_controls = Settings.get_controls_from_event("Space")
-		display_tutorial_text("... faster...", "use " + dash_controls + " to dash towards target.", 1.0)
+		tutorial_hud.display_text("... faster...", "use " + dash_controls + " to dash towards target.", 1.0, false, false)
 
 func _on_spell_tutorial_start_trigger_body_entered(body: Node2D) -> void:
 	if cur_stage == DONE_DASH:
@@ -79,7 +76,7 @@ func _on_spell_tutorial_start_trigger_body_entered(body: Node2D) -> void:
 		for spell_key in ["Q", "W", "E", "R"]:
 			spell_controls = spell_controls + Settings.get_controls_from_event(spell_key) + ", "
 		spell_controls.substr(0, spell_controls.rfind(",")).strip_edges()
-		display_tutorial_text("... i can do..... this?", "use " + spell_controls + " to cast spells.", 1.0)
+		tutorial_hud.display_text("... i can do..... this?", "use " + spell_controls + " to cast spells.", 1.0, false, false)
 	elif cur_stage < DONE_DASH:
 		# push the player back 50 px
 		body.global_position = Vector2(body.global_position.x, body.global_position.y + 50)
@@ -97,12 +94,12 @@ func start_enemy_stage():
 	enemy.drop_chance = 1.1
 	enemy.global_position = $MonsterSpawnLoc.global_position
 	enemy.connect("got_hit", main.sfx_player.play_hitmark)
-	display_tutorial_text("what is that...?", "Slay the enemy!", 2.0)
+	tutorial_hud.display_text("what is that...?", "Slay the enemy!", 2.0, false, false)
 
 func on_enemy_killed(none, none_):
 	cur_stage = CHEST_STAGE
-	hide_dialogue_hud()
-	display_tutorial_text("it dropped something.", "Pick up the chest.", 1.0)
+	tutorial_hud.hide_dialogue_hud()
+	tutorial_hud.display_text("it dropped something.", "Pick up the chest.", 1.0, false, false)
 	var chest_dropped: UpgradeChest = get_node("UpgradeChest")
 	if chest_dropped:
 		chest_dropped.connect("body_entered", on_chest_grabbed)
@@ -110,19 +107,19 @@ func on_enemy_killed(none, none_):
 
 func on_chest_grabbed(body: Node2D):
 	cur_stage = DONE_CHEST
-	hide_dialogue_hud()
+	tutorial_hud.hide_dialogue_hud()
 	print("Done Chest Stage")
 
 func start_player_info_stage():
-	hide_dialogue_hud()
+	tutorial_hud.hide_dialogue_hud()
 	var player_info_controls = Settings.get_controls_from_event("I")
 	await get_tree().create_timer(0).timeout
-	display_tutorial_text("I feel something different.", "Press " + player_info_controls + " to check your info.", 1.0)
+	tutorial_hud.display_text("I feel something different.", "Press " + player_info_controls + " to check your info.", 1.0, false, false)
 
 func eliminate_player_stage():
-	hide_dialogue_hud()
+	tutorial_hud.hide_dialogue_hud()
 	print("End of tutorial")
-	display_tutorial_text("!!!!!!!!!!!!!!!!!!!!!!!!!!", "die.", 0.5)
+	tutorial_hud.display_text("!!!!!!!!!!!!!!!!!!!!!!!!!!", "die.", 0.5, false, false)
 	PersistentData.tutorial_complete = true
 	SaveLoader.save_game()
 	$MurderTimer.start()
@@ -147,26 +144,3 @@ func _on_murder_timer_timeout() -> void:
 		inst.scale *= 1.5
 		inst.connect("got_hit", main.sfx_player.play_hitmark)
 		inst.set_collision_mask_value(6, false)
-		
-	
-func display_tutorial_text(dialogue_to_display: String, directions_to_display: String, time_to_display: float):
-	dialogue_label.text = ""
-	directions_label.text = ""
-	dialogue_label.text = dialogue_to_display
-	dialogue_label.visible_ratio = 0
-	tween = create_tween()
-	tween.tween_property(dialogue_label, "visible_ratio", 1.0, time_to_display)
-	tween.tween_callback(func():
-		directions_label.text = directions_to_display
-		directions_label.visible = true
-		)
-	tutorial_hud.visible = true
-	tween.play()
-
-func hide_dialogue_hud():
-	tween.kill()
-	dialogue_label.text = ""
-	dialogue_label.visible_ratio = 0
-	directions_label.text = ""
-	directions_label.visible = false
-	tutorial_hud.visible = false

@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://vswgrotid75j"]
+
+[ext_resource type="Script" uid="uid://cjhgaj7atpgq8" path="res://HUDs/DialogueHUD.gd" id="1_n42ab"]
+[ext_resource type="Theme" uid="uid://bngt8jkm3fvb1" path="res://Resources/hud_elements/default.theme" id="1_tr3wc"]
+[ext_resource type="PackedScene" uid="uid://bwpheh7agwnlk" path="res://HUDs/Components/StylizedContainer.tscn" id="2_n42ab"]
+[ext_resource type="Texture2D" uid="uid://cnn41x468jkea" path="res://icon-144.png" id="3_erevv"]
+
+[node name="DialogueHUD" type="CanvasLayer"]
+script = ExtResource("1_n42ab")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.564706)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tr3wc")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="StylizedContainer" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_n42ab")]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+container_color = Color(0.592, 0.365, 0.22, 1)
+border_color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/StylizedContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_erevv")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "lorem ipsum dolor sit amet"
+vertical_alignment = 1
+
+[node name="DirectionsText" type="Label" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "do this thing"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "continue"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StylizedContainer/MarginContainer2/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

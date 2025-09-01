@@ -57,8 +57,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_4nhfx")
 theme_override_font_sizes/font_size = 8
-text = "Tome of Spells"
+text = "Codex"
 label_settings = SubResource("LabelSettings_2ohol")
+horizontal_alignment = 1
 
 [node name="Tooltip" parent="." instance=ExtResource("5_u6w7u")]
 visible = false

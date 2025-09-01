@@ -4,7 +4,7 @@ class_name TomeNPC extends NPC
 
 func _ready() -> void:
 	tooltip = $Tooltip
-	tooltip.change_title("Tome of Spells:")
+	tooltip.change_title("Codex:")
 	tooltip.change_text("Browse owned spells and equip the ones you want.")
 	super()
 

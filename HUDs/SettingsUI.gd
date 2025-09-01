@@ -20,14 +20,15 @@ func _ready() -> void:
 	settingListArray[SETTING_LIST.TOOLTIPS_ENABLED]["node"].get_node("CheckBox").button_pressed = Settings.tooltips_enabled
 
 func _on_apply_button_pressed() -> void:
-	var inst = ConfirmPopup.instantiate()
+	var inst: ConfirmationPopup = ConfirmPopup.instantiate()
 	# Set the text
-	inst.set_label("Apply Settings?")
-	
+	var button_signals = inst.init(2, "Apply Settings?")
+	inst.buttons[0].text = "Yes"
+	inst.buttons[1].text = "No"
+	button_signals[0].connect(_setting_changes_accepted)
 	# Show the confirmation popup
 	if get_parent() is Node2D:
-		get_parent()._add_menu(inst)
-	inst.connect("accepted", _setting_changes_accepted)
+		get_parent().add_child(inst)
 
 
 func _setting_changes_accepted():
