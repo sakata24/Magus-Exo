@@ -17,6 +17,7 @@ func _ready():
 		$CollisionShape2D.shape.radius = get_parent_bounding_radius() + BASE_SIZE/2.0
 		$GPUParticles2D.process_material.emission_sphere_radius = $CollisionShape2D.shape.radius
 	self.reparent(get_parent().get_parent())
+	self.rotation = 0.0
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
