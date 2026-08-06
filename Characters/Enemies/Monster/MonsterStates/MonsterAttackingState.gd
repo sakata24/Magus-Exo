@@ -1,7 +1,6 @@
 class_name MonsterAttackingState extends State
 
 @export var monster: Monster
-var chase_target: CharacterBody2D
 @onready var animation: AnimatedSprite2D = monster.get_node("AnimatedSprite2D")
 
 func enter():
@@ -27,7 +26,7 @@ func physics_update(delta: float):
 
 func show_damage_area():
 	monster.get_node("DamageArea/Indicator").visible = true
-	monster.get_node("DamageArea").look_at(chase_target.position)
+	monster.get_node("DamageArea").look_at(monster.player.position)
 
 func on_attack_timer_timeout():
 	get_node("attack_timer").queue_free()

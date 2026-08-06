@@ -1,7 +1,6 @@
 class_name ChargerAttackingState extends State
 
 @export var charger: Charger
-var chase_target: CharacterBody2D
 
 func enter():
 	charger.attacking = true

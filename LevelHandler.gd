@@ -118,10 +118,10 @@ func setup_boss_room(new_room: Node2D):
 					"boss_dead": node.connect("boss_dead", get_parent().get_node("HUD").hide_boss_bar)
 					"blinding_player": 
 						node.connect("blinding_player", get_parent().get_node("BGHandler").despawn_light)
-						node.connect("blinding_player", get_parent().get_node("Player").spawn_light)
+						node.connect("blinding_player", self.player.spawn_light)
 					"unblinding_player": 
 						node.connect("unblinding_player", get_parent().get_node("BGHandler").respawn_light)
-						node.connect("unblinding_player", get_parent().get_node("Player").despawn_light)
+						node.connect("unblinding_player", self.player.despawn_light)
 			get_parent().get_node("HUD").show_boss_bar(node.boss_name, node.health)
 		if node is ExitDoor:
 			node.connect("load_level", Callable(self, "_load_level"))
@@ -210,4 +210,4 @@ func update_monster_scaling(monster: Monster):
 		monster.baseDmg += current_level / 2.0
 
 func play_song(song_name: String):
-	emit_signal("change_song", song_name, 1.5)
+	emit_signal("change_song", song_name, 1.0)

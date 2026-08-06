@@ -11,7 +11,7 @@ var swarm_radius = 32
 var target: Enemy
 var speed = 50
 var parents
-var particles: Array[Dictionary] = []
+var particles: Array[Object] = []
 
 func _ready():
 	# start tracking target

@@ -35,6 +35,8 @@ func _ready():
 	health = 100
 	maxHealth = 100
 	add_to_group("monsters")
+	for state in $StateMachine.get_children():
+		pass
 
 func init():
 	pass
@@ -61,8 +63,6 @@ func hit(damage: DamageObject):
 	if not aggro and damage.has_source() and damage.get_source() is Player and self.has_node("PathTimer"):
 		aggro = true
 		player = damage.get_source()
-		$StateMachine/Chase.chase_target = damage.get_source()
-		$StateMachine/Attacking.chase_target = damage.get_source()
 		$PathTimer.start()
 	
 	if self.has_node("AnimationPlayer"):
@@ -74,8 +74,6 @@ func _on_AggroRange_body_entered(body: CharacterBody2D):
 		if body.is_in_group("players"):
 			aggro = true
 			player = body
-			$StateMachine/Chase.chase_target = body
-			$StateMachine/Attacking.chase_target = body
 			$PathTimer.start()
 
 # when i die

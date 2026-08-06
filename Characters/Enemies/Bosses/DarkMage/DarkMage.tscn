@@ -145,6 +145,9 @@ dark_mage = NodePath("../..")
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("dark_mage")]
 script = ExtResource("6_ki4rp")
 dark_mage = NodePath("../..")
+SPIKE_TIMER = null
+CANNON_TIMER = null
+CANNON_AMOUNT = null
 
 [node name="StatusLabel" type="Label" parent="."]
 visible = false

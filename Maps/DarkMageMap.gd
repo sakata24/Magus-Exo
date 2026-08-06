@@ -4,6 +4,7 @@ extends Node2D
 @export var MAX_ENEMIES : int = 8
 
 @onready var Mon = preload("res://Characters/Enemies/Monster/Monster.tscn")
+@onready var level_handler: LevelHandler = get_parent()
 
 var player: Player
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 	var tween = create_tween()
 	tween.connect("finished", _on_tween_finished)
 	tween.tween_property(player.my_cam, "global_position", player.global_position, 2)
+	level_handler.play_song("anonymous_figure")
 
 func _process(delta: float) -> void:
 	$Path2D/PathFollow2D.progress_ratio = $Path2D/MoveTimer.time_left/$Path2D/MoveTimer.wait_time

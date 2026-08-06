@@ -36,8 +36,8 @@ func remove_debuffs_from_debuffed_enemies():
 # apply random debuff
 func debuff_enemies(enemies: Array):
 	debuffedEnemies.append_array(enemies)
-	for body: Monster in debuffedEnemies:
-		if body.is_in_group("monsters"):
+	for body in debuffedEnemies:
+		if body.is_in_group("monsters") and body.is_class("Monster"):
 			var rand = randi_range(0, 2)
 			if rand == 0:
 				body.velocity = Vector2.ZERO
