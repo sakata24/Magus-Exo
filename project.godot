@@ -46,6 +46,10 @@ window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="uid://dsjdsjsl0svxw"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/local_keep_ai/plugin.cfg")
+
 [global_group]
 
 windows=""

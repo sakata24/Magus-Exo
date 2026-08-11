@@ -55,10 +55,15 @@ func show_player_info(player_data):
 			_clear_menus()
 
 func _close_top_menu():
+	if active_menus.is_empty():
+		return
 	var top_menu = active_menus.pop_front()
-	top_menu.get_parent().remove_child(top_menu)
+	if is_instance_valid(top_menu) and top_menu.get_parent() != null:
+		top_menu.get_parent().remove_child(top_menu)
 
 func _add_menu(new_menu):
+	if new_menu == null or not is_instance_valid(new_menu):
+		return
 	for child in new_menu.get_children():
 		if child is BaseMenuUI:
 			child.connect("close_me", _close_top_menu)
@@ -68,5 +73,8 @@ func _add_menu(new_menu):
 
 func _clear_menus():
 	for menu in active_menus:
-		menu.get_parent().remove_child(menu)
+		if not is_instance_valid(menu):
+			continue
+		if menu.get_parent() != null:
+			menu.get_parent().remove_child(menu)
 	active_menus.clear()

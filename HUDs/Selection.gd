@@ -81,7 +81,7 @@ func setup():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel") and visible:
-		get_parent().get_node("Player").call_deferred("heal", 2)
+		player_to_buff.call_deferred("heal", 2)
 
 func _on_slot_1_button_pressed():
 	player_to_buff.upgrade(slots[0])

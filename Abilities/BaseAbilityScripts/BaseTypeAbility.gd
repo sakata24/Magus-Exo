@@ -131,6 +131,7 @@ func create_new_reaction(other: Node2D):
 			self.add_child(reaction_scene)
 			# after entering tree things and if need info from both spells reacting
 			reaction_scene.init({"source": self, "reactant": other})
+			reaction_scene.add_to_group("reactions")
 
 # FUNCTION TO BE OVERLOADED
 func get_reaction_scene(reactant_element: String) -> Node2D:

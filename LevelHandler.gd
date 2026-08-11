@@ -81,9 +81,12 @@ func cleanup_rooms():
 	for child in get_children():
 		child.queue_free()
 	player.moving = false
-	# clear groups
+	# clear spells
 	for spell in get_tree().get_nodes_in_group("spells"):
 		spell.queue_free()
+	# clear reactions that dont have spell parents
+	for reaction in get_tree().get_nodes_in_group("reactions"):
+		reaction.queue_free()
 
 func get_player_spawn(rooms: Array) -> Vector2:
 	# find where to spawn the player
