@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name SelectionMenu
+
 var slots = []
 var player_to_buff: Player
 const ART_PATH = "res://Resources/hud_elements/"
@@ -77,7 +79,7 @@ func setup():
 			get_node(str("HBoxContainer/Slot", i, "/VBoxContainer/TextureRect")).texture = load("res://Resources/icon.png")
 		print(buff_name)
 		slots.append(buff_name)
-		self.visible = true
+		# Visibility is managed by MenuController; don't force it here.
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel") and visible:
@@ -98,4 +100,5 @@ func _on_slot_3_button_pressed():
 func cleanup():
 	slots = []
 	player_to_buff = null
-	MenuHandler._clear_menus()
+	if is_instance_valid(MenuController):
+		MenuController.close_top_menu()

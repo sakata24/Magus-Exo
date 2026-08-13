@@ -52,7 +52,6 @@ func _ready() -> void:
 	call_deferred("on_tutorial_start")
 
 func on_tutorial_start():
-	#self.connect("dialogue_menu_triggered", MenuHandler._add_menu)
 	await main.get_node("BGHandler").transition(1.5)
 	var move_controls = Settings.get_controls_from_event("R-Click")
 	tutorial_hud.display_text("... I think I should move that way...", "use " + move_controls + " to move to target area.", 2.0, false, false)

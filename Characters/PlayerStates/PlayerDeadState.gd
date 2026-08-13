@@ -13,4 +13,4 @@ func enter():
 
 func _on_death_animation_finished():
 	if animation.animation == "death":
-		player.emit_signal("player_died")
+		player.call_deferred("emit_signal", "player_died")

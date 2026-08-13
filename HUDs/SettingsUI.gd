@@ -50,7 +50,7 @@ func _setting_changes_accepted():
 	Settings.save()
 	
 	# Close settings menu
-	MenuHandler._close_top_menu()
+	MenuController.close_top_menu()
 
 # Update the volume amount label
 func _on_h_slider_value_changed(value: float) -> void:
@@ -71,4 +71,4 @@ func _on_h_slider_drag_ended(value_changed: bool) -> void:
 
 
 func _on_cancel_button_pressed() -> void:
-	MenuHandler._close_top_menu()
+	MenuController.close_top_menu()

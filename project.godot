@@ -25,7 +25,9 @@ SaveLoader="*res://Singletons/SaveLoader.gd"
 Settings="*res://Singletons/Settings.gd"
 PersistentData="*res://Singletons/PersistentData.gd"
 Lobby="*res://Singletons/Lobby.gd"
-MenuHandler="*res://Singletons/MenuHandler.gd"
+AudioController="*res://Singletons/AudioController.gd"
+GameManager="*res://Singletons/GameManager.gd"
+MenuController="*res://Singletons/MenuController.gd"
 
 [debug]
 

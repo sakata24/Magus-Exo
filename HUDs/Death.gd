@@ -14,5 +14,9 @@ func setup():
 	tween.tween_property($BackgroundDimmer, ":modulate:a", 0.5, 1.5)
 	tween.play()
 
+signal restart_requested
+
 func _on_button_pressed():
-	get_tree().reload_current_scene()
+	if not is_instance_valid(self):
+		return
+	restart_requested.emit()

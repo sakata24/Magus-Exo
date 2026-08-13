@@ -14,7 +14,7 @@ var continue_args: Array
 var continue_func: Callable
 
 func _ready() -> void:
-	self.connect("request_menu", MenuHandler._add_menu)
+	self.connect("request_menu", Callable(MenuController, "open_menu"))
 
 func display_text(dialogue_to_display: String, directions_to_display: String, time_to_display: float, dim_screen: bool, show_button: bool):
 	dialogue_label.text = ""

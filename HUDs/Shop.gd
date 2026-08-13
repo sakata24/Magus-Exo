@@ -145,13 +145,13 @@ func _on_learn_button_pressed() -> void:
 			inst.buttons[0].text = "yes"
 			inst.buttons[1].text = "no"
 			# Show the confirmation popup
-			MenuHandler._add_menu(inst)
+			MenuController.open_menu(inst)
 			inst.buttons[0].connect("pressed", _on_yes_button_pressed)
 		else:
 			var inst: ConfirmationPopup = ConfirmPopup.instantiate()
 			inst.init(1, "Not enough [color=" + AbilityColor.get_color_by_string(selectedSpell.element).to_html(false) + "]" + selectedSpell.element + "[/color] XP to learn this.")
 			inst.buttons[0].text = "ok"
-			MenuHandler._add_menu(inst)
+			MenuController.open_menu(inst)
 
 func _on_yes_button_pressed() -> void:
 	# TO DO ------------
