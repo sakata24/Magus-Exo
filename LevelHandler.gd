@@ -71,7 +71,17 @@ func place_player(new_rooms: Array[Node]):
 	# move player. must disable cam smoothing for transitioning purposes
 	player.my_cam.position_smoothing_enabled = false
 	player.global_position = get_player_spawn(new_rooms)
+	# clear any existing movement target so the player doesn't continue moving
 	player.move_target = player.position
+	if player.has_node("NavigationAgent2D"):
+		var nav = player.get_node("NavigationAgent2D")
+		nav.target_position = player.position
+	# reset movement flags and vectors
+	player.moving = false
+	player.movement = Vector2()
+	# attempt to clear velocity if available
+	if "velocity" in player:
+		player.velocity = Vector2()
 	# wait until next frame
 	await get_tree().create_timer(0).timeout
 	player.my_cam.call_deferred("set_position_smoothing_enabled", true)
@@ -194,7 +204,7 @@ func init_rooms() -> Array[Node]:
 func init_room_connections(newRoom: Node2D):
 	for node in newRoom.get_children():
 		if node is NPC:
-			node.connect("button_pressed", MenuHandler._add_menu)
+			node.connect("button_pressed", Callable(MenuController, "open_menu"))
 		if node is ExitDoor:
 			node.connect("load_level", _load_level)
 		if node is Monster:

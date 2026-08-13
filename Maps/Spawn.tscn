@@ -22,3 +22,12 @@ tile_set = ExtResource("1_bwtbs")
 
 [node name="UpgradeChest" parent="." instance=ExtResource("2_s7opw")]
 position = Vector2(343, 249)
+
+[node name="UpgradeChest2" parent="." instance=ExtResource("2_s7opw")]
+position = Vector2(352, 248)
+
+[node name="UpgradeChest3" parent="." instance=ExtResource("2_s7opw")]
+position = Vector2(352, 248)
+
+[node name="UpgradeChest4" parent="." instance=ExtResource("2_s7opw")]
+position = Vector2(352, 248)

@@ -61,7 +61,7 @@ func _ready():
 	# assign my name
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	# connect my signals
-	self.connect("request_player_info_ui", MenuHandler.show_player_info)
+	self.connect("request_player_info_ui", Callable(MenuController, "show_player_info"))
 	# Update the equipped skills
 	equippedSkills = PersistentData.get_equipped_skills()
 	# Make the player look right

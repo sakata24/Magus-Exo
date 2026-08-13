@@ -8,7 +8,7 @@ signal kill_player
 signal menu_changed(menu)
 
 func _ready():
-	connect("menu_changed", MenuHandler._add_menu)
+	connect("menu_changed", Callable(MenuController, "open_menu"))
 	if Settings.dev_mode:
 		var skillDict = PersistentData.get_equipped_skills()
 		# Load skills in drop down menu
@@ -45,7 +45,8 @@ func _on_end_run_confirm_confirmed() -> void:
 	emit_signal("kill_player")
 
 func _on_settings_button_pressed() -> void:
-	menu_changed.emit(MenuHandler.menus[MenuHandler.MENU.SETTINGS])
+	if is_instance_valid(MenuController) and MenuController.menus.has(MenuController.MENU.SETTINGS):
+		menu_changed.emit(MenuController.menus[MenuController.MENU.SETTINGS])
 
 func _on_save_button_pressed():
 	SaveLoader.save_game()

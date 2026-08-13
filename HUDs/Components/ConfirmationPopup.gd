@@ -21,7 +21,6 @@ func init(init_num_buttons: int = 0, text: String = "") -> Array[Signal]:
 	return button_signals
 
 func _ready() -> void:
-	#connect("closing", MenuHandler._close_top_menu)
 	print(position)
 	#size.y = 0
 

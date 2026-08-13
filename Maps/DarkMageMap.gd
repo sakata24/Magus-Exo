@@ -17,7 +17,7 @@ func _ready() -> void:
 	var tween = create_tween()
 	tween.connect("finished", _on_tween_finished)
 	tween.tween_property(player.my_cam, "global_position", player.global_position, 2)
-	level_handler.play_song("anonymous_figure")
+	level_handler.play_song("just_a_hero")
 
 func _process(delta: float) -> void:
 	$Path2D/PathFollow2D.progress_ratio = $Path2D/MoveTimer.time_left/$Path2D/MoveTimer.wait_time
